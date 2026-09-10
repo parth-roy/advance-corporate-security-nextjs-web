@@ -92,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-IN" className={`${inter.variable} ${roboto.variable}`}>
+    <html lang="en-IN" data-scroll-behavior="smooth" className={`${inter.variable} ${roboto.variable}`}>
       <head>
         <script
           type="application/ld+json"

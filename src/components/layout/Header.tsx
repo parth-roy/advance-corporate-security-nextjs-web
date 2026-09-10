@@ -24,11 +24,19 @@ const navLinks = [
     href: "/services",
     children: [
       { label: "Security & Safety Services", href: "/services/security-safety" },
+      { label: "Security Guard Services", href: "/services/security-guard" },
+      { label: "Armed Guard Services", href: "/services/armed-guard" },
       { label: "Facility Management", href: "/services/facility-management" },
+      { label: "Corporate Housekeeping", href: "/services/housekeeping" },
+      { label: "Pest Control Services", href: "/services/pest-control" },
+      { label: "MEP Maintenance", href: "/services/mep-maintenance" },
+      { label: "Manpower Outsourcing", href: "/services/manpower-outsourcing" },
       { label: "Placement Services", href: "/services/placement-services" },
-      { label: "Horticulture", href: "/services/horticulture" },
+      { label: "Horticulture & Landscaping", href: "/services/horticulture" },
+      { label: "View All 17 Services →", href: "/services" },
     ],
   },
+  { label: "Locations", href: "/location" },
   { label: "Our Clients", href: "/clients" },
   { label: "Gallery", href: "/gallery" },
   { label: "Careers", href: "/careers" },
@@ -41,7 +49,16 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 40);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -88,28 +105,28 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Nav */}
+      {/* Main Nav — Silky Smooth Sticky Header (Zero Jitter, Zero Clipping) */}
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out ${
+        className={`sticky top-0 z-50 w-full bg-white transition-all duration-300 ease-out ${
           isScrolled
-            ? "bg-white/98 backdrop-blur-md shadow-[var(--shadow-nav)] py-0 animate-slide-down"
-            : "bg-white border-b border-gray-100 py-1"
+            ? "shadow-[var(--shadow-nav)] bg-white/95 backdrop-blur-md border-b border-gray-200/70"
+            : "border-b border-gray-100"
         }`}
         role="banner"
       >
         <nav
-          className={`container-acs flex items-center justify-between transition-all duration-300 ease-in-out ${
-            isScrolled ? "h-16 md:h-18" : "h-20 md:h-24"
+          className={`container-acs flex items-center justify-between transition-all duration-300 ease-out ${
+            isScrolled ? "h-20 md:h-22" : "h-26 sm:h-28 md:h-32"
           }`}
           aria-label="Main navigation"
         >
-          {/* Logo with Smooth Slide & Scale Animation on Scroll */}
-          <Link href="/" className="flex items-center shrink-0 group py-1" aria-label="ACS Home">
+          {/* Logo — Big & Prominent */}
+          <Link href="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="ACS Home">
             <div
-              className={`relative transition-all duration-300 ease-out transform group-hover:scale-[1.03] ${
+              className={`relative transition-all duration-300 ease-out transform group-hover:scale-[1.02] ${
                 isScrolled
-                  ? "h-12 sm:h-14 md:h-16 w-32 sm:w-36 md:w-40"
-                  : "h-16 sm:h-18 md:h-20 lg:h-22 w-40 sm:w-48 md:w-56 lg:w-60"
+                  ? "h-14 sm:h-16 md:h-18 w-40 sm:w-48 md:w-54"
+                  : "h-20 sm:h-22 md:h-26 lg:h-28 xl:h-30 w-52 sm:w-60 md:w-72 lg:w-76 xl:w-84"
               }`}
             >
               <Image
@@ -118,13 +135,13 @@ export default function Header() {
                 fill
                 className="object-contain object-left"
                 priority
-                sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 260px"
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 300px, 360px"
               />
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex items-center gap-1" role="list">
+          <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1" role="list">
             {navLinks.map((link) => (
               <li
                 key={link.href}
@@ -134,7 +151,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="px-4 py-2 rounded font-roboto font-500 text-sm text-gray-700 hover:text-navy hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1"
+                  className="px-2.5 xl:px-3.5 py-2 rounded font-roboto font-500 text-[13px] xl:text-sm text-gray-700 hover:text-navy hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1 whitespace-nowrap"
                   aria-haspopup={link.children ? "true" : undefined}
                 >
                   {link.label}
@@ -169,7 +186,7 @@ export default function Header() {
           {/* CTA Button (desktop) */}
           <Link
             href="/contact"
-            className="btn-primary hidden lg:inline-flex text-sm py-2.5 px-5"
+            className="btn-primary hidden lg:inline-flex text-xs xl:text-sm py-2 xl:py-2.5 px-3.5 xl:px-5 shrink-0 whitespace-nowrap"
             aria-label="Get a free quote"
           >
             Get Free Quote
@@ -211,13 +228,13 @@ export default function Header() {
           <nav className="relative w-80 max-w-full bg-white h-full overflow-y-auto shadow-2xl flex flex-col">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center py-1">
-                <div className="relative h-14 w-36">
+                <div className="relative h-20 sm:h-22 w-56 sm:w-64">
                   <Image
                     src="/images/acs-official-logo.webp"
                     alt={`${siteConfig.name} Logo`}
                     fill
                     className="object-contain object-left"
-                    sizes="144px"
+                    sizes="260px"
                   />
                 </div>
               </Link>

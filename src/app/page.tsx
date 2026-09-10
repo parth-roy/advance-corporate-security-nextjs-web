@@ -1,18 +1,30 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
-import HeroSlider from "@/components/home/HeroSlider";
+import HeroSection from "@/components/home/HeroSection";
 
 export const metadata: Metadata = {
   title: "India's Trusted Security & Facility Management Company Since 2000",
   description:
-    "Advance Corporate Services (ACS) — ISO 9001:2015 certified Security Guard Services, Facility Management, Manpower Outsourcing & Placement Services across pan India since 2000.",
+    "Advance Corporate Services (ACS) — PSARA licensed, ISO 9001:2015 certified. Security Guard Services, Corporate Housekeeping, Manpower Outsourcing & Facility Management across pan India since 2000. Get free consultation.",
+  keywords: [
+    "PSARA licensed security services India",
+    "corporate security guard agency India",
+    "ISO 9001 facility management company India",
+    "manpower outsourcing India",
+    "security guard services India",
+    "corporate housekeeping services India",
+    "B2B security services India",
+    "government empanelled security company",
+    "Advance Corporate Services",
+    "ACS security India",
+  ],
   alternates: { canonical: siteConfig.url },
   openGraph: {
-    title: "Advance Corporate Services | Security & Facility Management",
-    description: "25+ years of trusted security and facility management services across pan India.",
+    title: "Advance Corporate Services | PSARA Licensed Security & Facility Management",
+    description: "25+ years of trusted PSARA-licensed security and ISO-certified facility management services across pan India. Serving Govt, Defence, Hospitals & Corporates.",
     url: siteConfig.url,
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
   },
@@ -22,27 +34,32 @@ const homeFaqs = [
   {
     question: "What services does Advance Corporate Services provide?",
     answer:
-      "Advance Corporate Services provides Security & Safety Services, Facility Management (housekeeping, janitorial, maintenance), Manpower Outsourcing & Placement Services, and Horticulture services across pan India.",
+      "Advance Corporate Services (ACS) provides PSARA-licensed Security & Safety Services (security guards, armed guards, CCTV surveillance, night patrolling, fire fighting), Facility Management (corporate housekeeping, pest control, MEP maintenance, facade cleaning), Manpower Outsourcing & Placement Services, Payroll Compliance Management, and Horticulture & Landscaping — all delivered across pan India with full PF, ESIC, and labour law compliance.",
   },
   {
-    question: "Is Advance Corporate Services ISO certified?",
+    question: "Is Advance Corporate Services PSARA licensed?",
     answer:
-      "Yes. Advance Corporate Services is ISO 9001:2015 certified, ensuring the highest standards in service delivery, quality management, and customer satisfaction.",
+      "Yes. Advance Corporate Services holds a valid PSARA (Private Security Agencies Regulation Act) license issued by the Government of India. All our security personnel are licensed, background-verified, and trained per Ministry of Home Affairs standards. This makes ACS fully compliant for corporate, industrial, and government security deployments.",
   },
   {
-    question: "How long has Advance Corporate Services been in operation?",
+    question: "Is ACS ISO 9001:2015 certified?",
     answer:
-      "Advance Corporate Services was founded in 2000 and has over 25 years of experience in the security and facility management industry across India.",
+      "Yes. Advance Corporate Services is ISO 9001:2015 certified, ensuring internationally recognized quality management standards in all our service deliveries — from security guard deployment to corporate housekeeping and manpower outsourcing.",
   },
   {
-    question: "Does ACS provide security services across India?",
+    question: "Does ACS provide security and facility services across India?",
     answer:
-      "Yes. ACS provides security guard services, surveillance, and facility management across major cities in India including Kolkata, Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Patna, Bhubaneswar, and many more.",
+      "Yes. ACS provides services across all major Indian cities including Kolkata, Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Patna, Bhubaneswar, Ahmedabad, Pune, and 500+ other cities. We are one of Eastern India's most experienced B2B service companies with 25+ years of pan-India operations.",
   },
   {
     question: "Who are the major clients of Advance Corporate Services?",
     answer:
-      "ACS serves government organizations (Indian Air Force, BSF, Defence Ministry), hospitals (ESI Hospital, BMRC), industrial companies (Bhushan Power & Steel, Indian Oil), and educational institutions (Kendriya Vidyalaya, NIELIT).",
+      "ACS proudly serves government organizations (Indian Air Force, BSF, Ministry of Defence, CPCB), PSUs (Indian Oil, HAL Barrackpore), hospitals (ESI Hospital, BMRC), educational institutions (Kendriya Vidyalaya, NIELIT), and major corporate and industrial clients across pan India.",
+  },
+  {
+    question: "Does ACS handle PF, ESIC, and labour law compliance?",
+    answer:
+      "Absolutely. ACS assumes complete employer-of-record responsibility for all outsourced staff. We manage PF deposits, ESIC contributions, Minimum Wage Act compliance, Professional Tax, Bonus Act, and all other statutory obligations — giving client organizations zero legal exposure.",
   },
 ];
 
@@ -59,6 +76,15 @@ const clients = [
   "CBEC",
   "Metro Railway",
   "NIELIT",
+];
+
+const whyACS = [
+  { title: "PSARA Licensed", desc: "All security deployments strictly comply with the Private Security Agencies Regulation Act — India's gold standard for security firms.", icon: "🛡️" },
+  { title: "25+ Years Experience", desc: "Founded in 2000, we bring unmatched expertise and a proven track record to every contract across India.", icon: "🏆" },
+  { title: "ISO 9001:2015 Certified", desc: "Certified quality management ensuring consistent, high-standard service delivery in every city we operate.", icon: "✅" },
+  { title: "Government Empanelled", desc: "Trusted by Central & State Government, Defence establishments (IAF, BSF), and PSUs across India.", icon: "🏛️" },
+  { title: "24×7 Control Room", desc: "Round-the-clock deployment with night patrolling, CCTV monitoring, and emergency response teams.", icon: "🕐" },
+  { title: "Full Statutory Compliance", desc: "Complete PF, ESIC, Minimum Wage, Contract Labour Act compliance — zero legal exposure for your organization.", icon: "📋" },
 ];
 
 export default function HomePage() {
@@ -78,8 +104,39 @@ export default function HomePage() {
         />
       )}
 
-      {/* ===== HERO SLIDER SECTION ===== */}
-      <HeroSlider />
+      {/* ===== NEW HERO SECTION (replaces HeroSlider) ===== */}
+      <HeroSection />
+
+      {/* ===== GEO FACT BOX — AI Overview Bait ===== */}
+      <section className="bg-sky-50 border-y border-sky-100 py-6" aria-label="Quick facts about ACS">
+        <div className="container-acs">
+          <div className="geo-fact-box">
+            <p className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-3 font-roboto">
+              📋 ACS — Pan-India Quick Facts (AI Search Optimized)
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+              {[
+                { label: "PSARA License", value: "Yes — Government of India" },
+                { label: "ISO Certification", value: "ISO 9001:2015 + IAF/IAS" },
+                { label: "Founded", value: "Year 2000 (25+ years)" },
+                { label: "Statutory Compliance", value: "PF, ESIC, Min. Wage Act" },
+                { label: "Deployment Time", value: "24–72 hours standard" },
+                { label: "24x7 Operations", value: "Yes — Control Room Active" },
+                { label: "Government Clients", value: "50+ (IAF, BSF, CPCB, IOC)" },
+                { label: "Pan-India Coverage", value: "500+ cities across India" },
+              ].map((fact) => (
+                <div key={fact.label} className="flex gap-2">
+                  <span className="text-sky-600 font-bold text-xs shrink-0 pt-0.5">•</span>
+                  <div>
+                    <span className="text-navy font-bold text-xs">{fact.label}:</span>{" "}
+                    <span className="text-slate-600 text-xs">{fact.value}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ===== SERVICES GRID ===== */}
       <section className="section-py bg-white" aria-labelledby="services-heading">
@@ -87,11 +144,11 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <p className="section-label">What We Do</p>
             <h2 id="services-heading" className="text-navy">
-              Our <span className="text-gold">Core Services</span>
+              Our <span className="text-sky">Core Services</span>
             </h2>
-            <div className="divider-gold mx-auto" />
+            <div className="divider-sky mx-auto" />
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              From security guard deployment to complete facility management — we deliver trained, reliable, and disciplined workforce solutions tailored to your needs.
+              From PSARA-licensed security guard deployment to complete integrated facility management — we deliver trained, compliant, and reliable workforce solutions across pan India.
             </p>
           </div>
 
@@ -118,13 +175,13 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-roboto font-bold text-navy text-base mb-2 group-hover:text-gold transition-colors">
+                  <h3 className="font-roboto font-bold text-navy text-base mb-2 group-hover:text-sky transition-colors">
                     {service.name}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                     {service.description}
                   </p>
-                  <span className="inline-flex items-center gap-1 mt-4 text-gold text-sm font-medium group-hover:gap-2 transition-all">
+                  <span className="inline-flex items-center gap-1 mt-4 text-sky text-sm font-medium group-hover:gap-2 transition-all">
                     Learn More
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -144,11 +201,11 @@ export default function HomePage() {
             <div>
               <p className="section-label">Who We Are</p>
               <h2 id="about-heading" className="text-navy mb-4">
-                India&apos;s Trusted Manpower &amp; <span className="text-gold">Facility Management</span> Since 2000
+                India&apos;s Trusted Manpower &amp; <span className="text-sky">Facility Management</span> Since 2000
               </h2>
-              <div className="divider-gold" />
+              <div className="divider-sky" />
               <p className="text-gray-700 mt-4 leading-relaxed">
-                Advance Corporate Services (ACS) is a professionally managed, <strong>ISO 9001:2015 certified</strong> Facility Management and Manpower Outsourcing company. From humble beginnings in Barrackpore, Kolkata, we have grown into one of Eastern India&apos;s most trusted names — delivering trained, disciplined, and reliable workforce solutions to corporates, industries, malls, hospitals, educational institutions, and government offices.
+                Advance Corporate Services (ACS) is a professionally managed, <strong>PSARA-licensed</strong> and <strong>ISO 9001:2015 certified</strong> Facility Management and Manpower Outsourcing company. From humble beginnings in Barrackpore, Kolkata, we have grown into one of Eastern India&apos;s most trusted names — delivering trained, disciplined, and reliable workforce solutions to corporates, industries, malls, hospitals, educational institutions, and government offices.
               </p>
               <p className="text-gray-700 mt-4 leading-relaxed">
                 With over <strong>25 years of operational excellence</strong>, a pan-India presence, and thousands of dedicated professionals deployed across multiple sectors, ACS stands for one promise — <strong className="text-navy">Quality Placement, 24/7.</strong>
@@ -162,20 +219,18 @@ export default function HomePage() {
               <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
                 <Image
                   src="/images/about-us.jpg"
-                  alt="About Advance Corporate Services — 25 years of service"
+                  alt="About Advance Corporate Services — 25 years of security and facility management service"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-              {/* Floating badge */}
               <div className="absolute -bottom-4 -left-4 bg-gold text-navy-dark font-roboto font-900 px-6 py-4 rounded-lg shadow-lg">
                 <div className="text-3xl font-black">25+</div>
                 <div className="text-xs uppercase tracking-wider font-bold">Years of Excellence</div>
               </div>
-              {/* ISO badge */}
               <div className="absolute -top-3 -right-3 bg-navy text-white font-roboto text-xs px-3 py-2 rounded-lg shadow-lg text-center">
-                <div className="font-bold">ISO 9001:2015</div>
+                <div className="font-bold text-sky-400">ISO 9001:2015</div>
                 <div className="text-gold text-xs">Certified</div>
               </div>
             </div>
@@ -187,27 +242,20 @@ export default function HomePage() {
       <section className="section-py bg-navy text-white" aria-labelledby="why-heading">
         <div className="container-acs">
           <div className="text-center mb-12">
-            <p className="section-label">Why Choose ACS</p>
+            <p className="section-label-gold">Why Choose ACS</p>
             <h2 id="why-heading" className="text-white">
-              The <span className="text-gold">ACS Advantage</span>
+              The <span className="text-sky">ACS Advantage</span>
             </h2>
-            <div className="divider-gold mx-auto" />
+            <div className="divider-sky mx-auto" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "25+ Years Experience", desc: "Founded in 2000, we bring unmatched expertise to every contract across India.", icon: "🏆" },
-              { title: "ISO 9001:2015 Certified", desc: "Certified quality management ensuring consistent, high-standard service delivery.", icon: "✅" },
-              { title: "Government Empanelled", desc: "Validated by Central & State Government. Serving Air Force, BSF, Defence Ministry and more.", icon: "🏛️" },
-              { title: "24×7 Operations", desc: "Round-the-clock deployment with night patrolling, CCTV monitoring, and emergency response.", icon: "🕐" },
-              { title: "Trained Professionals", desc: "All personnel are specifically recruited, trained, and certified for client environments.", icon: "👮" },
-              { title: "Pan India Presence", desc: "From Kolkata to Mumbai, Delhi to Chennai — we serve across all major Indian cities.", icon: "🗺️" },
-            ].map((item) => (
+            {whyACS.map((item) => (
               <div
                 key={item.title}
-                className="bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-gold/30 transition-all duration-300"
+                className="bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-sky-400/30 transition-all duration-300"
               >
                 <div className="text-3xl mb-3" aria-hidden="true">{item.icon}</div>
-                <h3 className="font-roboto font-bold text-gold text-lg mb-2">{item.title}</h3>
+                <h3 className="font-roboto font-bold text-sky-400 text-lg mb-2">{item.title}</h3>
                 <p className="text-gray-300 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -221,27 +269,25 @@ export default function HomePage() {
           <div className="text-center mb-10">
             <p className="section-label">Who We Serve</p>
             <h2 id="clients-heading" className="text-navy">
-              Our <span className="text-gold">Trusted Clients</span>
+              Our <span className="text-sky">Trusted Clients</span>
             </h2>
-            <div className="divider-gold mx-auto" />
+            <div className="divider-sky mx-auto" />
             <p className="text-gray-600 mt-4 max-w-xl mx-auto text-sm">
-              Proudly serving Government bodies, Defence establishments, Hospitals, and Industries across India.
+              Proudly serving Government bodies, Defence establishments, Hospitals, PSUs, and Industries across India.
             </p>
           </div>
           <div className="flex flex-wrap gap-3 justify-center mb-8">
             {clients.map((client) => (
               <span
                 key={client}
-                className="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm hover:border-gold hover:text-navy transition-all duration-200 cursor-default"
+                className="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm hover:border-sky-300 hover:text-navy transition-all duration-200 cursor-default"
               >
                 {client}
               </span>
             ))}
           </div>
           <div className="text-center">
-            <Link href="/clients" className="btn-primary">
-              View All Clients
-            </Link>
+            <Link href="/clients" className="btn-primary">View All Clients</Link>
           </div>
         </div>
       </section>
@@ -252,19 +298,16 @@ export default function HomePage() {
           <div className="text-center mb-10">
             <p className="section-label">FAQs</p>
             <h2 id="faq-heading" className="text-navy">
-              Frequently Asked <span className="text-gold">Questions</span>
+              Frequently Asked <span className="text-sky">Questions</span>
             </h2>
-            <div className="divider-gold mx-auto" />
+            <div className="divider-sky mx-auto" />
           </div>
           <div className="space-y-4">
             {homeFaqs.map((faq, i) => (
-              <details
-                key={i}
-                className="group border border-gray-200 rounded-lg overflow-hidden"
-              >
-                <summary className="flex items-center justify-between px-5 py-4 cursor-pointer font-roboto font-600 text-navy hover:bg-off-white transition-colors list-none">
+              <details key={i} className="group border border-gray-200 rounded-lg overflow-hidden">
+                <summary className="flex items-center justify-between px-5 py-4 cursor-pointer font-roboto font-600 text-navy hover:bg-sky-50 transition-colors list-none">
                   <span>{faq.question}</span>
-                  <svg className="w-5 h-5 text-gold shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <svg className="w-5 h-5 text-sky shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
@@ -285,10 +328,10 @@ export default function HomePage() {
       >
         <div className="container-acs">
           <h2 id="cta-heading" className="text-white mb-4">
-            Ready to Partner with <span className="text-gold">India&apos;s Best</span>?
+            Ready to Partner with <span className="text-sky">India&apos;s Best</span>?
           </h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-            Contact our team today for a free consultation and customised manpower & facility management solution.
+            Contact our team today for a free consultation and customised security, facility management, or manpower outsourcing solution tailored to your business.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/contact" className="btn-primary text-lg px-8 py-4">

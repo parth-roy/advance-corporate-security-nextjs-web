@@ -1,14 +1,17 @@
-// ============================================================
+﻿// ============================================================
 // ACS — JSON-LD Schema Engine
 // Centralised entity graph for Google & AI search engines
-// (Perplexity, ChatGPT Search, Google AI Overviews)
+// (Perplexity, ChatGPT Search, Google AI Overviews, Gemini)
+// B2B Schema types: SecurityService, B2BBusiness, GovernmentPermit
 // ============================================================
 
 import { siteConfig } from "./config";
 
 /** Safe JSON-LD serialisation — prevents XSS via </script> injection */
 export function serializeJsonLd(obj: object): string {
-  return JSON.stringify(obj).replace(/</g, "\\u003c").replace(/>/g, "\\u003e");
+  return JSON.stringify(obj)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e");
 }
 
 /** Root Organisation + Website entity — placed in root layout */
@@ -17,19 +20,23 @@ export function buildOrganizationSchema() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "SecurityService"],
         "@id": siteConfig.entityId,
         name: siteConfig.name,
         alternateName: siteConfig.shortName,
+        legalName: "Advance Corporate Services",
         url: siteConfig.url,
         logo: {
           "@type": "ImageObject",
           url: `${siteConfig.url}/images/acs-official-logo.webp`,
-          width: 1151,
+          width: 1147,
           height: 458,
         },
+        image: `${siteConfig.url}/images/acs-official-logo.webp`,
         description: siteConfig.description,
         foundingDate: String(siteConfig.foundedYear),
+        numberOfEmployees: { "@type": "QuantitativeValue", value: 5000 },
+        slogan: "Quality Placement, 24/7",
         address: {
           "@type": "PostalAddress",
           streetAddress: siteConfig.address.streetAddress,
@@ -38,17 +45,47 @@ export function buildOrganizationSchema() {
           postalCode: siteConfig.address.postalCode,
           addressCountry: siteConfig.address.addressCountry,
         },
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: siteConfig.phone,
-          contactType: "customer service",
-          areaServed: "IN",
-          availableLanguage: ["en", "hi", "bn"],
-        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: siteConfig.phone,
+            contactType: "customer service",
+            areaServed: "IN",
+            availableLanguage: ["en", "hi", "bn"],
+          },
+          {
+            "@type": "ContactPoint",
+            email: siteConfig.email,
+            contactType: "sales",
+            areaServed: "IN",
+          },
+        ],
         sameAs: Object.values(siteConfig.social).filter(Boolean),
+        // PSARA License — critical for B2G/B2B trust signals
+        hasCredential: [
+          {
+            "@type": "EducationalOccupationalCredential",
+            name: "PSARA License",
+            credentialCategory: "Government License",
+            recognizedBy: {
+              "@type": "GovernmentOrganization",
+              name: "Government of India",
+              url: "https://www.india.gov.in",
+            },
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            name: "ISO 9001:2015 Certification",
+            credentialCategory: "Quality Management Certification",
+            recognizedBy: {
+              "@type": "Organization",
+              name: "International Organization for Standardization",
+            },
+          },
+        ],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Facility Management & Manpower Services",
+          name: "Security, Facility Management & Manpower Services",
           itemListElement: siteConfig.services.map((s) => ({
             "@type": "Offer",
             itemOffered: {
@@ -57,6 +94,17 @@ export function buildOrganizationSchema() {
               url: `${siteConfig.url}/services/${s.slug}`,
             },
           })),
+        },
+        areaServed: {
+          "@type": "Country",
+          name: "India",
+        },
+        priceRange: "₹₹",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          reviewCount: "120",
+          bestRating: "5",
         },
       },
       {
@@ -84,7 +132,7 @@ export function buildOrganizationSchema() {
         url: siteConfig.url,
         priceRange: "₹₹",
         currenciesAccepted: "INR",
-        paymentAccepted: "Cash, Bank Transfer, Cheque",
+        paymentAccepted: "Cash, Bank Transfer, Cheque, NEFT/RTGS",
         address: {
           "@type": "PostalAddress",
           streetAddress: siteConfig.address.streetAddress,
@@ -100,9 +148,7 @@ export function buildOrganizationSchema() {
         },
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday",
-          ],
+          dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
           opens: "00:00",
           closes: "23:59",
         },
@@ -118,9 +164,7 @@ export function buildOrganizationSchema() {
 }
 
 /** BreadcrumbList schema */
-export function buildBreadcrumbSchema(
-  crumbs: { name: string; url: string }[]
-) {
+export function buildBreadcrumbSchema(crumbs: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -150,36 +194,43 @@ export function buildFaqSchema(faqs: ReadonlyArray<{ readonly question: string; 
   };
 }
 
-/** Service-specific schema for individual service pages */
+/** Service schema — SecurityService / ProfessionalService / EmploymentAgency */
 export function buildServiceSchema(service: {
   name: string;
   description: string;
   slug: string;
   cityName?: string;
+  schemaType?: string;
 }) {
   const url = service.cityName
-    ? `${siteConfig.url}/services/${service.slug}/${service.cityName
-        .toLowerCase()
-        .replace(/\s+/g, "-")}`
+    ? `${siteConfig.url}/services/${service.slug}/${service.cityName.toLowerCase().replace(/\s+/g, "-")}`
     : `${siteConfig.url}/services/${service.slug}`;
+
+  const type = service.schemaType ?? "ProfessionalService";
 
   return {
     "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: service.name,
-    name: service.cityName
-      ? `${service.name} in ${service.cityName}`
-      : service.name,
+    "@type": type === "SecurityService" ? ["SecurityService", "ProfessionalService"] : type,
+    name: service.cityName ? `${service.name} in ${service.cityName}` : service.name,
     description: service.description,
     url,
     provider: { "@id": siteConfig.entityId },
     areaServed: service.cityName
-      ? {
-          "@type": "City",
-          name: service.cityName,
-          "@id": `https://www.wikidata.org/wiki/${service.cityName}`,
-        }
+      ? { "@type": "City", name: service.cityName }
       : { "@type": "Country", name: "India" },
+    // PSARA credential on security services
+    ...(type === "SecurityService"
+      ? {
+          hasCredential: {
+            "@type": "GovernmentPermit",
+            name: "PSARA License",
+            issuedBy: {
+              "@type": "GovernmentOrganization",
+              name: "Government of India",
+            },
+          },
+        }
+      : {}),
   };
 }
 

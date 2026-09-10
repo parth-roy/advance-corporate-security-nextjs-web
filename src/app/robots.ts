@@ -1,5 +1,4 @@
-import { siteConfig } from "@/lib/config";
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,10 +6,25 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/admin/"],
+        disallow: ["/api/", "/admin/", "/_next/"],
       },
+      // Unblock modern AI answer engines (GEO/AEO strategy)
+      { userAgent: "GPTBot", allow: "/" },
+      { userAgent: "OAI-SearchBot", allow: "/" },
+      { userAgent: "PerplexityBot", allow: "/" },
+      { userAgent: "ClaudeBot", allow: "/" },
+      { userAgent: "Google-Extended", allow: "/" },
+      { userAgent: "Applebot", allow: "/" },
+      { userAgent: "Bingbot", allow: "/" },
     ],
-    sitemap: `${siteConfig.url}/sitemap.xml`,
-    host: siteConfig.url,
+    sitemap: [
+      "https://www.advancecorporatesecurity.com/sitemap.xml",
+      "https://www.advancecorporatesecurity.com/sitemap-security.xml",
+      "https://www.advancecorporatesecurity.com/sitemap-facility.xml",
+      "https://www.advancecorporatesecurity.com/sitemap-manpower.xml",
+      "https://www.advancecorporatesecurity.com/sitemap-cities.xml",
+      "https://www.advancecorporatesecurity.com/sitemap-states.xml",
+      "https://www.advancecorporatesecurity.com/sitemap-core.xml",
+    ],
   };
 }

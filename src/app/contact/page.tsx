@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, serializeJsonLd } from "@/lib/schema";
+import CityMap from "@/components/common/CityMap";
 
 export const metadata: Metadata = {
   title: "Contact Us — Get a Free Quote for Security & Facility Management",
@@ -236,14 +237,9 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="mt-8 rounded-lg overflow-hidden h-56 bg-gray-200 flex items-center justify-center text-gray-500 text-sm border border-gray-200">
-                <div className="text-center">
-                  <svg className="w-10 h-10 text-gray-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                  </svg>
-                  <p>Barrackpore, Kolkata, West Bengal</p>
-                </div>
+              {/* Dynamic Interactive Head Office Map */}
+              <div className="mt-8">
+                <CityMap cityName="Barrackpore" stateName="West Bengal" />
               </div>
             </div>
           </div>
