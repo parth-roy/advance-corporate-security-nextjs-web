@@ -95,7 +95,7 @@ export function generateCityHubFaqs(cityName: string, stateName: string): FAQ[] 
     },
     {
       question: `How do I get a quotation for services in ${cityName}?`,
-      answer: `You can request a free quotation for any ACS service in ${cityName} by calling +91 98312 50270 or emailing advancedcorporatesecurityj@gmail.com. Our team will conduct a free on-site assessment in ${cityName} and provide a detailed, all-inclusive service proposal within 24–48 hours.`
+      answer: `You can request a free quotation for any ACS service in ${cityName} by calling +91 93399 88999 / +91 79801 47044 / +91 94770 06681 or emailing advancedcorporatesecurityj@gmail.com. Our team will conduct a free on-site assessment in ${cityName} and provide a detailed, all-inclusive service proposal within 24–48 hours.`
     },
     {
       question: `What government compliance certifications does ACS hold for services in ${stateName}?`,

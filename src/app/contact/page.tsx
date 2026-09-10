@@ -217,9 +217,21 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-roboto font-bold text-navy text-sm mb-1">Phone</h3>
-                    <a href={`tel:${siteConfig.phone}`} className="text-gray-600 text-sm hover:text-gold transition-colors">{siteConfig.phone}</a>
-                    <p className="text-gray-500 text-xs mt-1">Available 24×7</p>
+                    <h3 className="font-roboto font-bold text-navy text-sm mb-1.5">Phone Numbers</h3>
+                    <div className="space-y-1">
+                      {siteConfig.phones.map((p) => (
+                        <div key={p}>
+                          <a
+                            href={`tel:${p.replace(/[^+\d]/g, "")}`}
+                            className="text-gray-600 text-sm hover:text-gold transition-colors font-medium"
+                            aria-label={`Call ${p}`}
+                          >
+                            {p}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-gray-500 text-xs mt-2">Available 24×7 for Security & Facility Support</p>
                   </div>
                 </div>
 

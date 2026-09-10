@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // ACS — Single Source of Truth Configuration
 // All NAP (Name, Address, Phone), social, domain, and SEO data
 // MUST flow from this file. Never hardcode elsewhere.
@@ -31,7 +31,13 @@ export const siteConfig = {
     postalCode: "700120",
     addressCountry: "IN",
   },
-  phone: "+91 98312 50270",
+  phone: "+91 93399 88999",
+  phones: [
+    "+91 93399 88999",
+    "+91 79801 47044",
+    "+91 94770 06681",
+  ],
+  phoneDisplay: "+91 93399 88999 / +91 79801 47044 / +91 94770 06681",
   email: "advancedcorporatesecurityj@gmail.com",
   adminEmail: "admin@advancecorporatesecurity.com",
 
@@ -42,7 +48,7 @@ export const siteConfig = {
     twitter: "",
     instagram: "",
     youtube: "",
-    whatsapp: "+919831250270",
+    whatsapp: "+919477006681",
   },
 
   // --- Geographic Coordinates (for LocalBusiness schema) ---

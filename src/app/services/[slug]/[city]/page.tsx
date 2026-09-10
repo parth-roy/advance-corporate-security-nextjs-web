@@ -293,8 +293,19 @@ export default async function ServiceCityPage({
                   Request Free Quote
                 </Link>
                 <div className="mt-4 pt-4 border-t border-white/10 text-center">
-                  <span className="text-xs text-gray-400">Direct Procurement Desk:</span>
-                  <p className="text-sm font-bold text-sky mt-0.5">{siteConfig.phone}</p>
+                  <span className="text-xs text-gray-400">Direct Procurement Desk (24×7):</span>
+                  <div className="mt-1 space-y-1">
+                    {siteConfig.phones.map((p) => (
+                      <a
+                        key={p}
+                        href={`tel:${p.replace(/[^+\d]/g, "")}`}
+                        className="block text-sm font-bold text-sky hover:underline"
+                        aria-label={`Call ${p}`}
+                      >
+                        {p}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

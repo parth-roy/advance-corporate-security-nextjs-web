@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
@@ -264,8 +264,19 @@ export default async function ServicePage({
                   Get Free Quote
                 </Link>
                 <div className="mt-4 pt-4 border-t border-white/10 text-center">
-                  <span className="text-xs text-gray-400">Call Us Anytime:</span>
-                  <p className="text-sm font-bold text-sky mt-0.5">{siteConfig.phone}</p>
+                  <span className="text-xs text-gray-400">Call Us 24×7:</span>
+                  <div className="mt-1 space-y-1">
+                    {siteConfig.phones.map((p) => (
+                      <a
+                        key={p}
+                        href={`tel:${p.replace(/[^+\d]/g, "")}`}
+                        className="block text-sm font-bold text-sky hover:underline"
+                        aria-label={`Call ${p}`}
+                      >
+                        {p}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

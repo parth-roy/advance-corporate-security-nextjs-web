@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // ACS — JSON-LD Schema Engine
 // Centralised entity graph for Google & AI search engines
 // (Perplexity, ChatGPT Search, Google AI Overviews, Gemini)
@@ -48,8 +48,22 @@ export function buildOrganizationSchema() {
         contactPoint: [
           {
             "@type": "ContactPoint",
-            telephone: siteConfig.phone,
+            telephone: "+91 93399 88999",
             contactType: "customer service",
+            areaServed: "IN",
+            availableLanguage: ["en", "hi", "bn"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+91 79801 47044",
+            contactType: "operations support",
+            areaServed: "IN",
+            availableLanguage: ["en", "hi", "bn"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+91 94770 06681",
+            contactType: "emergency service",
             areaServed: "IN",
             availableLanguage: ["en", "hi", "bn"],
           },
@@ -127,7 +141,7 @@ export function buildOrganizationSchema() {
         "@id": `${siteConfig.url}/#localbusiness`,
         name: siteConfig.name,
         image: `${siteConfig.url}/images/acs-official-logo.webp`,
-        telephone: siteConfig.phone,
+        telephone: siteConfig.phones,
         email: siteConfig.email,
         url: siteConfig.url,
         priceRange: "₹₹",

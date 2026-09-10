@@ -1,4 +1,4 @@
-﻿// src/components/layout/Footer.tsx
+// src/components/layout/Footer.tsx
 // Full city grid — all 580+ cities grouped by state
 "use client";
 
@@ -47,10 +47,17 @@ export default function Footer() {
             PSARA Licensed · ISO 9001:2015 Certified · Pan India since {siteConfig.foundedYear}. Corporate Security, Facility Management & Manpower Outsourcing.
           </p>
           <div className="space-y-2 text-sm">
-            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="flex items-center gap-2 text-gray-300 hover:text-sky transition-colors">
-              <svg className="w-4 h-4 text-sky shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              {siteConfig.phone}
-            </a>
+            {siteConfig.phones.map((p) => (
+              <a
+                key={p}
+                href={`tel:${p.replace(/[^+\d]/g, "")}`}
+                className="flex items-center gap-2 text-gray-300 hover:text-sky transition-colors"
+                aria-label={`Call ${p}`}
+              >
+                <svg className="w-4 h-4 text-sky shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                {p}
+              </a>
+            ))}
             <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 text-gray-300 hover:text-sky transition-colors break-all">
               <svg className="w-4 h-4 text-sky shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               {siteConfig.email}
@@ -157,11 +164,25 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="container-acs py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-500">
-        <p>
-          © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-          PSARA Licensed · ISO 9001:2015 Certified
-        </p>
+      <div className="container-acs py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 border-t border-white/5">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            {" · "}PSARA Licensed · ISO 9001:2015 Certified
+          </p>
+          <span className="hidden sm:inline text-white/20">|</span>
+          <p>
+            Made by{" "}
+            <a
+              href="https://parthertech.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold hover:text-gold-light font-medium transition-colors underline-offset-2 hover:underline"
+            >
+              Parther Technologies Private Limited
+            </a>
+          </p>
+        </div>
         <div className="flex gap-4">
           <Link href="/privacy-policy" className="hover:text-sky transition-colors">Privacy Policy</Link>
           <Link href="/terms-of-service" className="hover:text-sky transition-colors">Terms of Service</Link>
