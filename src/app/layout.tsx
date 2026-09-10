@@ -72,8 +72,14 @@ export const metadata: Metadata = {
     canonical: siteConfig.url,
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/images/small-logo-150x94.png", type: "image/png", sizes: "32x32" },
+      { url: "/images/small-logo.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/images/small-logo.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   verification: {
     google: "", // TODO: Add Google Search Console verification token

@@ -28,7 +28,7 @@ export const siteConfig = {
     postalCode: "700120",
     addressCountry: "IN",
   },
-  phone: "+91-XXXXXXXXXX", // TODO: Add official phone number
+  phone: "+91 98312 50270",
   email: "advancedcorporatesecurityj@gmail.com",
   adminEmail: "admin@advancecorporatesecurity.com", // future
 
@@ -39,7 +39,7 @@ export const siteConfig = {
     twitter: "",
     instagram: "",
     youtube: "",
-    whatsapp: "", // TODO: Add WhatsApp business number
+    whatsapp: "+919831250270",
   },
 
   // --- Geographic Coordinates (for LocalBusiness schema) ---

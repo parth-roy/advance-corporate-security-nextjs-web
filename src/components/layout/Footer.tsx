@@ -52,22 +52,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4" aria-label="ACS Home">
-              <div className="relative w-12 h-12 bg-white rounded p-1">
-                <Image
-                  src="/images/logomew.png"
-                  alt={`${siteConfig.name} Logo`}
-                  fill
-                  className="object-contain p-1"
-                  sizes="48px"
-                />
-              </div>
-              <div>
-                <div className="font-roboto font-bold text-white text-sm leading-tight">
-                  Advance Corporate
-                </div>
-                <div className="font-roboto text-gold text-xs tracking-widest uppercase">
-                  Security Services
+            <Link href="/" className="inline-block mb-6 group" aria-label="ACS Home">
+              <div className="bg-white rounded-xl p-4 sm:p-5 shadow-lg inline-flex items-center transition-transform duration-200 group-hover:scale-[1.02]">
+                <div className="relative h-20 sm:h-24 md:h-28 w-52 sm:w-60 md:w-72">
+                  <Image
+                    src="/images/acs-official-logo.webp"
+                    alt={`${siteConfig.name} Logo`}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 210px, (max-width: 1024px) 240px, 288px"
+                  />
                 </div>
               </div>
             </Link>

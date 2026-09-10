@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
+import HeroSlider from "@/components/home/HeroSlider";
 
 export const metadata: Metadata = {
   title: "India's Trusted Security & Facility Management Company Since 2000",
@@ -77,78 +78,8 @@ export default function HomePage() {
         />
       )}
 
-      {/* ===== HERO SECTION ===== */}
-      <section
-        className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 60%, var(--color-navy-light) 100%)" }}
-        aria-labelledby="hero-heading"
-      >
-        {/* Background image overlay */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/security-service-slider.jpg"
-            alt="ACS Security Personnel"
-            fill
-            className="object-cover opacity-20"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/90 via-navy/70 to-transparent" />
-        </div>
-
-        {/* Gold accent line */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" aria-hidden="true" />
-
-        <div className="container-acs relative z-10 py-16 md:py-24">
-          <div className="max-w-2xl">
-            <p className="section-label mb-3 animate-fade-in-up">Trusted Since {siteConfig.foundedYear}</p>
-            <h1
-              id="hero-heading"
-              className="font-roboto font-900 text-white leading-tight mb-6 animate-fade-in-up"
-              style={{ animationDelay: "0.1s" }}
-            >
-              India&apos;s Trusted <span className="text-gold">Security &amp; Facility</span> Management Experts
-            </h1>
-            <p
-              className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 animate-fade-in-up"
-              style={{ animationDelay: "0.2s" }}
-            >
-              ISO 9001:2015 certified. 25+ years. 5000+ trained professionals. Serving Government, Corporate &amp; Industrial clients across pan India — 24×7.
-            </p>
-            <div
-              className="flex flex-wrap gap-4 animate-fade-in-up"
-              style={{ animationDelay: "0.3s" }}
-            >
-              <Link href="/contact" className="btn-primary text-base">
-                Get Free Consultation
-              </Link>
-              <Link href="/services" className="btn-secondary text-base">
-                Our Services
-              </Link>
-            </div>
-
-            {/* Trust badges */}
-            <div
-              className="mt-10 flex flex-wrap gap-6 animate-fade-in-up"
-              style={{ animationDelay: "0.4s" }}
-            >
-              {siteConfig.stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-roboto font-900 text-gold text-2xl md:text-3xl">{stat.value}</div>
-                  <div className="text-gray-400 text-xs mt-1 uppercase tracking-wider">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom wave */}
-        <div className="absolute bottom-0 left-0 right-0" aria-hidden="true">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-12 md:h-16">
-            <path d="M0 60L1440 0V60H0Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+      {/* ===== HERO SLIDER SECTION ===== */}
+      <HeroSlider />
 
       {/* ===== SERVICES GRID ===== */}
       <section className="section-py bg-white" aria-labelledby="services-heading">

@@ -66,17 +66,23 @@ export default function Header() {
           <div className="flex items-center gap-6">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="hover:text-gold transition-colors duration-200"
+              className="hover:text-gold transition-colors duration-200 flex items-center gap-1.5"
               aria-label="Email us"
             >
+              <svg className="w-4 h-4 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
               {siteConfig.email}
             </a>
             <a
-              href={`tel:${siteConfig.phone}`}
-              className="hover:text-gold transition-colors duration-200"
+              href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}
+              className="hover:text-gold transition-colors duration-200 flex items-center gap-1.5 font-medium"
               aria-label="Call us"
             >
-              {siteConfig.phone}
+              <svg className="w-4 h-4 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span>{siteConfig.phone}</span>
             </a>
           </div>
         </div>
@@ -84,33 +90,36 @@ export default function Header() {
 
       {/* Main Nav */}
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out ${
           isScrolled
-            ? "bg-white shadow-[var(--shadow-nav)]"
-            : "bg-white border-b border-gray-100"
+            ? "bg-white/98 backdrop-blur-md shadow-[var(--shadow-nav)] py-0 animate-slide-down"
+            : "bg-white border-b border-gray-100 py-1"
         }`}
         role="banner"
       >
-        <nav className="container-acs flex items-center justify-between h-16 md:h-20" aria-label="Main navigation">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="ACS Home">
-            <div className="relative w-12 h-12 md:w-14 md:h-14">
+        <nav
+          className={`container-acs flex items-center justify-between transition-all duration-300 ease-in-out ${
+            isScrolled ? "h-16 md:h-18" : "h-20 md:h-24"
+          }`}
+          aria-label="Main navigation"
+        >
+          {/* Logo with Smooth Slide & Scale Animation on Scroll */}
+          <Link href="/" className="flex items-center shrink-0 group py-1" aria-label="ACS Home">
+            <div
+              className={`relative transition-all duration-300 ease-out transform group-hover:scale-[1.03] ${
+                isScrolled
+                  ? "h-12 sm:h-14 md:h-16 w-32 sm:w-36 md:w-40"
+                  : "h-16 sm:h-18 md:h-20 lg:h-22 w-40 sm:w-48 md:w-56 lg:w-60"
+              }`}
+            >
               <Image
-                src="/images/logomew.png"
+                src="/images/acs-official-logo.webp"
                 alt={`${siteConfig.name} Logo`}
                 fill
-                className="object-contain"
+                className="object-contain object-left"
                 priority
-                sizes="56px"
+                sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 260px"
               />
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-roboto font-900 text-navy text-base leading-tight">
-                Advance Corporate
-              </div>
-              <div className="font-roboto font-500 text-gold text-xs tracking-widest uppercase">
-                Security Services
-              </div>
             </div>
           </Link>
 
@@ -201,11 +210,16 @@ export default function Header() {
           />
           <nav className="relative w-80 max-w-full bg-white h-full overflow-y-auto shadow-2xl flex flex-col">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
-              <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-                <div className="relative w-10 h-10">
-                  <Image src="/images/logomew.png" alt="ACS Logo" fill className="object-contain" />
+              <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center py-1">
+                <div className="relative h-14 w-36">
+                  <Image
+                    src="/images/acs-official-logo.webp"
+                    alt={`${siteConfig.name} Logo`}
+                    fill
+                    className="object-contain object-left"
+                    sizes="144px"
+                  />
                 </div>
-                <span className="font-roboto font-bold text-navy text-sm">Advance Corporate</span>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
