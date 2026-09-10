@@ -19,7 +19,7 @@ export const siteConfig = {
   certification: "ISO 9001:2015",
 
   // --- Domain & URLs ---
-  url: "https://www.advancecorporatesecurity.com",
+  url: "https://advancecorporatesecurity.com",
   apiUrl: "https://api.advancecorporatesecurity.com",
   legacyUrl: "https://advancecorporate.in",
 

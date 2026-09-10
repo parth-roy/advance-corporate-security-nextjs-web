@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "sitemap": "node --experimental-strip-types scripts/generate-sitemaps.ts",
+    "build": "npm run sitemap && next build",
     "start": "next start",
     "lint": "eslint"
   },

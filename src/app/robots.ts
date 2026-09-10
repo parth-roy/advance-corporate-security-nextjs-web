@@ -1,4 +1,4 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -18,13 +18,14 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Bingbot", allow: "/" },
     ],
     sitemap: [
-      "https://www.advancecorporatesecurity.com/sitemap.xml",
-      "https://www.advancecorporatesecurity.com/sitemap-security.xml",
-      "https://www.advancecorporatesecurity.com/sitemap-facility.xml",
-      "https://www.advancecorporatesecurity.com/sitemap-manpower.xml",
-      "https://www.advancecorporatesecurity.com/sitemap-cities.xml",
-      "https://www.advancecorporatesecurity.com/sitemap-states.xml",
-      "https://www.advancecorporatesecurity.com/sitemap-core.xml",
+      "https://advancecorporatesecurity.com/sitemap.xml",
+      "https://advancecorporatesecurity.com/sitemap-security.xml",
+      "https://advancecorporatesecurity.com/sitemap-facility.xml",
+      "https://advancecorporatesecurity.com/sitemap-manpower.xml",
+      "https://advancecorporatesecurity.com/sitemap-horticulture.xml",
+      "https://advancecorporatesecurity.com/sitemap-cities.xml",
+      "https://advancecorporatesecurity.com/sitemap-states.xml",
+      "https://advancecorporatesecurity.com/sitemap-core.xml",
     ],
   };
 }
