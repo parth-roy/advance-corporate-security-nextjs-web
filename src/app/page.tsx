@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
@@ -8,7 +8,7 @@ import HeroSection from "@/components/home/HeroSection";
 export const metadata: Metadata = {
   title: "India's Trusted Security & Facility Management Company Since 2000",
   description:
-    "Advance Corporate Services (ACS) — PSARA licensed, ISO 9001:2015 certified. Security Guard Services, Corporate Housekeeping, Manpower Outsourcing & Facility Management across pan India since 2000. Get free consultation.",
+    "Advance Corporate Security (ACS) — PSARA licensed, ISO 9001:2015 certified. Security Guard Services, Corporate Housekeeping, Manpower Outsourcing & Facility Management across pan India since 2000. Get free consultation.",
   keywords: [
     "PSARA licensed security services India",
     "corporate security guard agency India",
@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     "corporate housekeeping services India",
     "B2B security services India",
     "government empanelled security company",
-    "Advance Corporate Services",
+    "Advance Corporate Security",
     "ACS security India",
   ],
   alternates: { canonical: siteConfig.url },
   openGraph: {
-    title: "Advance Corporate Services | PSARA Licensed Security & Facility Management",
+    title: "Advance Corporate Security | PSARA Licensed Security & Facility Management",
     description: "25+ years of trusted PSARA-licensed security and ISO-certified facility management services across pan India. Serving Govt, Defence, Hospitals & Corporates.",
     url: siteConfig.url,
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
@@ -32,19 +32,19 @@ export const metadata: Metadata = {
 
 const homeFaqs = [
   {
-    question: "What services does Advance Corporate Services provide?",
+    question: "What services does Advance Corporate Security provide?",
     answer:
-      "Advance Corporate Services (ACS) provides PSARA-licensed Security & Safety Services (security guards, armed guards, CCTV surveillance, night patrolling, fire fighting), Facility Management (corporate housekeeping, pest control, MEP maintenance, facade cleaning), Manpower Outsourcing & Placement Services, Payroll Compliance Management, and Horticulture & Landscaping — all delivered across pan India with full PF, ESIC, and labour law compliance.",
+      "Advance Corporate Security (ACS) provides PSARA-licensed Security & Safety Services (security guards, armed guards, CCTV surveillance, night patrolling, fire fighting), Facility Management (corporate housekeeping, pest control, MEP maintenance, facade cleaning), Manpower Outsourcing & Placement Services, Payroll Compliance Management, and Horticulture & Landscaping — all delivered across pan India with full PF, ESIC, and labour law compliance.",
   },
   {
-    question: "Is Advance Corporate Services PSARA licensed?",
+    question: "Is Advance Corporate Security PSARA licensed?",
     answer:
-      "Yes. Advance Corporate Services holds a valid PSARA (Private Security Agencies Regulation Act) license issued by the Government of India. All our security personnel are licensed, background-verified, and trained per Ministry of Home Affairs standards. This makes ACS fully compliant for corporate, industrial, and government security deployments.",
+      "Yes. Advance Corporate Security holds a valid PSARA (Private Security Agencies Regulation Act) license issued by the Government of India. All our security personnel are licensed, background-verified, and trained per Ministry of Home Affairs standards. This makes ACS fully compliant for corporate, industrial, and government security deployments.",
   },
   {
     question: "Is ACS ISO 9001:2015 certified?",
     answer:
-      "Yes. Advance Corporate Services is ISO 9001:2015 certified, ensuring internationally recognized quality management standards in all our service deliveries — from security guard deployment to corporate housekeeping and manpower outsourcing.",
+      "Yes. Advance Corporate Security is ISO 9001:2015 certified, ensuring internationally recognized quality management standards in all our service deliveries — from security guard deployment to corporate housekeeping and manpower outsourcing.",
   },
   {
     question: "Does ACS provide security and facility services across India?",
@@ -52,7 +52,7 @@ const homeFaqs = [
       "Yes. ACS provides services across all major Indian cities including Kolkata, Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Patna, Bhubaneswar, Ahmedabad, Pune, and 500+ other cities. We are one of Eastern India's most experienced B2B service companies with 25+ years of pan-India operations.",
   },
   {
-    question: "Who are the major clients of Advance Corporate Services?",
+    question: "Who are the major clients of Advance Corporate Security?",
     answer:
       "ACS proudly serves government organizations (Indian Air Force, BSF, Ministry of Defence, CPCB), PSUs (Indian Oil, HAL Barrackpore), hospitals (ESI Hospital, BMRC), educational institutions (Kendriya Vidyalaya, NIELIT), and major corporate and industrial clients across pan India.",
   },
@@ -205,7 +205,7 @@ export default function HomePage() {
               </h2>
               <div className="divider-sky" />
               <p className="text-gray-700 mt-4 leading-relaxed">
-                Advance Corporate Services (ACS) is a professionally managed, <strong>PSARA-licensed</strong> and <strong>ISO 9001:2015 certified</strong> Facility Management and Manpower Outsourcing company. From humble beginnings in Barrackpore, Kolkata, we have grown into one of Eastern India&apos;s most trusted names — delivering trained, disciplined, and reliable workforce solutions to corporates, industries, malls, hospitals, educational institutions, and government offices.
+                Advance Corporate Security (ACS) is a professionally managed, <strong>PSARA-licensed</strong> and <strong>ISO 9001:2015 certified</strong> Facility Management and Manpower Outsourcing company. From humble beginnings in Barrackpore, Kolkata, we have grown into one of Eastern India&apos;s most trusted names — delivering trained, disciplined, and reliable workforce solutions to corporates, industries, malls, hospitals, educational institutions, and government offices.
               </p>
               <p className="text-gray-700 mt-4 leading-relaxed">
                 With over <strong>25 years of operational excellence</strong>, a pan-India presence, and thousands of dedicated professionals deployed across multiple sectors, ACS stands for one promise — <strong className="text-navy">Quality Placement, 24/7.</strong>
@@ -219,7 +219,7 @@ export default function HomePage() {
               <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
                 <Image
                   src="/images/about-us.jpg"
-                  alt="About Advance Corporate Services — 25 years of security and facility management service"
+                  alt="About Advance Corporate Security — 25 years of security and facility management service"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"

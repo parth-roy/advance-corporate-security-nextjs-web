@@ -52,7 +52,7 @@ export async function generateMetadata({
 
   const description = service.metaDescTemplate
     ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
-    : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Services (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`;
+    : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Security (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`;
 
   const url = `${siteConfig.url}/services/${slug}/${citySlug}`;
 
@@ -234,7 +234,7 @@ export default async function ServiceCityPage({
               </h2>
               <div className="divider-sky" />
               <p className="text-gray-700 leading-relaxed mb-6">
-                Advance Corporate Services provides end-to-end <strong>{service.name.toLowerCase()}</strong> tailored for corporate offices, commercial complexes, manufacturing units, hospitals, and government establishments in <strong>{cityName}, {state}</strong>.
+                Advance Corporate Security provides end-to-end <strong>{service.name.toLowerCase()}</strong> tailored for corporate offices, commercial complexes, manufacturing units, hospitals, and government establishments in <strong>{cityName}, {state}</strong>.
               </p>
               <p className="text-gray-700 leading-relaxed mb-8">
                 {service.longDescription}

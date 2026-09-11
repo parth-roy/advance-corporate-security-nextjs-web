@@ -1,4 +1,4 @@
-﻿// src/app/services/page.tsx
+// src/app/services/page.tsx
 // Services hub — all 4 parent categories + all 17 sub-services
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/sc
 export const metadata: Metadata = {
   title: "All Services | Security, Facility Management & Manpower | ACS",
   description:
-    "Explore all Advance Corporate Services offerings — PSARA-licensed security guards, facility management, manpower outsourcing, pest control, MEP maintenance, fire fighting, horticulture across pan India.",
+    "Explore all Advance Corporate Security offerings — PSARA-licensed security guards, facility management, manpower outsourcing, pest control, MEP maintenance, fire fighting, horticulture across pan India.",
   keywords: [
     "corporate security services India",
     "facility management company India",

@@ -137,7 +137,7 @@ export default function Header() {
               }`}
             >
               <Image
-                src="/images/acs-official-logo.webp"
+                src="/images/acs-official-logo.avif"
                 alt={`${siteConfig.name} Logo`}
                 fill
                 className="object-contain object-left"
@@ -237,7 +237,7 @@ export default function Header() {
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center py-1">
                 <div className="relative h-20 sm:h-22 w-56 sm:w-64">
                   <Image
-                    src="/images/acs-official-logo.webp"
+                    src="/images/acs-official-logo.avif"
                     alt={`${siteConfig.name} Logo`}
                     fill
                     className="object-contain object-left"

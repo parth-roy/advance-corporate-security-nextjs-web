@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!cityData) return {};
   const { name: cityName, state: stateName } = cityData;
   const title = `Security & Facility Management Services in ${cityName} | PSARA Licensed - ACS`;
-  const description = `Advance Corporate Services in ${cityName}, ${stateName} — PSARA-licensed security guards, facility management, manpower outsourcing, and horticulture. ISO 9001:2015 certified. Get free quote.`;
+  const description = `Advance Corporate Security in ${cityName}, ${stateName} — PSARA-licensed security guards, facility management, manpower outsourcing, and horticulture. ISO 9001:2015 certified. Get free quote.`;
   const canonical = `${siteConfig.url}/location/${citySlug}`;
   return {
     title, description,

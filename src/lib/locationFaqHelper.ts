@@ -27,10 +27,10 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
   const baseFaqs: FAQ[] = [
     // FAQ 1 — PSARA / Licensing (Security) OR ISO (Facility/Manpower)
     isSecurityService ? {
-      question: `Are Advance Corporate Services' security guards in ${cityName} PSARA licensed?`,
+      question: `Are Advance Corporate Security's security guards in ${cityName} PSARA licensed?`,
       answer: `Yes. All ACS security personnel deployed in ${cityName}, ${stateName} strictly adhere to PSARA (Private Security Agencies Regulation Act) guidelines. Every guard is licensed, background-verified, medically fit, and trained per Ministry of Home Affairs standards. ACS holds a valid PSARA license for all security deployments across India.`
     } : {
-      question: `Is Advance Corporate Services ISO 9001:2015 certified for ${serviceName} in ${cityName}?`,
+      question: `Is Advance Corporate Security ISO 9001:2015 certified for ${serviceName} in ${cityName}?`,
       answer: `Yes. ACS is ISO 9001:2015 certified, ensuring that all ${serviceName} delivered in ${cityName}, ${stateName} meet internationally recognized quality management standards. Our service delivery follows documented SOPs with regular internal audits, ensuring consistent quality for every client.`
     },
     // FAQ 2 — Deployment speed
@@ -82,7 +82,7 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
 export function generateCityHubFaqs(cityName: string, stateName: string): FAQ[] {
   return [
     {
-      question: `What services does Advance Corporate Services provide in ${cityName}?`,
+      question: `What services does Advance Corporate Security provide in ${cityName}?`,
       answer: `In ${cityName}, ACS provides a comprehensive range of B2B services: PSARA-licensed Security Guard Services (armed & unarmed), Facility Management (corporate housekeeping, pest control, MEP maintenance, facade cleaning), Manpower Outsourcing & Placement, Payroll Compliance Management, and Horticulture & Landscaping. All services come with full statutory compliance and ISO 9001:2015 quality assurance.`
     },
     {
@@ -95,7 +95,7 @@ export function generateCityHubFaqs(cityName: string, stateName: string): FAQ[] 
     },
     {
       question: `How do I get a quotation for services in ${cityName}?`,
-      answer: `You can request a free quotation for any ACS service in ${cityName} by calling +91 93399 88999 / +91 79801 47044 / +91 94770 06681 or emailing advancedcorporatesecurityj@gmail.com. Our team will conduct a free on-site assessment in ${cityName} and provide a detailed, all-inclusive service proposal within 24–48 hours.`
+      answer: `You can request a free quotation for any ACS service in ${cityName} by calling +91 93399 88999 / +91 79801 47044 / +91 94770 06681 or emailing admin@advancecorporatesecurity.com. Our team will conduct a free on-site assessment in ${cityName} and provide a detailed, all-inclusive service proposal within 24–48 hours.`
     },
     {
       question: `What government compliance certifications does ACS hold for services in ${stateName}?`,

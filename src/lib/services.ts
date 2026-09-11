@@ -27,7 +27,7 @@ export const ACS_SERVICES: ACSService[] = [
     category: 'security',
     parentSlug: 'security-safety',
     description: 'Professional PSARA-licensed security guard deployment for corporate, industrial, and government establishments.',
-    longDescription: 'Advance Corporate Services provides battle-tested, PSARA-licensed security guards for offices, factories, hospitals, banks, and government buildings across India. All personnel are background-verified, uniformed, trained in first aid, fire-fighting, and emergency response.',
+    longDescription: 'Advance Corporate Security provides battle-tested, PSARA-licensed security guards for offices, factories, hospitals, banks, and government buildings across India. All personnel are background-verified, uniformed, trained in first aid, fire-fighting, and emergency response.',
     keywords: [
       'PSARA licensed security services in [City]',
       'corporate security guard agency [City]',
@@ -738,7 +738,7 @@ export function generateServiceMeta(
 ): { title: string; description: string } {
   if (!cityName) {
     return {
-      title: `${service.name} | Advance Corporate Services`,
+      title: `${service.name} | Advance Corporate Security`,
       description: service.description,
     };
   }

@@ -3,6 +3,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { ACS_CITIES, ACS_STATES } from "@/lib/cities";
 import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
@@ -19,12 +20,6 @@ const footerLinks = [
 export default function Footer() {
   const [showAllCities, setShowAllCities] = useState(false);
 
-  // Group cities by state for the compact grid
-  const citiesByState = ACS_STATES.map((state) => ({
-    state,
-    cities: ACS_CITIES.filter((c) => c.state === state).sort((a, b) => a.tier - b.tier || a.name.localeCompare(b.name)),
-  })).filter((s) => s.cities.length > 0);
-
   // Top 60 tier-1 and tier-2 cities for compact view
   const topCities = ACS_CITIES.filter((c) => c.tier <= 2).slice(0, 60);
 
@@ -34,15 +29,17 @@ export default function Footer() {
       <div className="container-acs py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-white/10">
         {/* Brand column */}
         <div className="lg:col-span-1">
-          <div className="mb-4">
-            <div className="font-roboto font-black text-xl text-white">
-              Advance Corporate<br />
-              <span className="text-sky">Services</span>
+          <Link href="/" className="inline-block mb-4 group focus:outline-none" aria-label="ACS Home">
+            <div className="relative h-20 sm:h-24 md:h-26 w-56 sm:w-64 md:w-72 max-w-full transition-transform duration-200 group-hover:scale-[1.02]">
+              <Image
+                src="/images/acs-official-logo.avif"
+                alt={`${siteConfig.name} Logo`}
+                fill
+                className="object-contain object-left"
+                sizes="(max-width: 640px) 240px, 300px"
+              />
             </div>
-            <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1">
-              Quality Placement, 24/7
-            </div>
-          </div>
+          </Link>
           <p className="text-gray-400 text-sm leading-relaxed mb-5">
             PSARA Licensed · ISO 9001:2015 Certified · Pan India since {siteConfig.foundedYear}. Corporate Security, Facility Management & Manpower Outsourcing.
           </p>
@@ -172,7 +169,7 @@ export default function Footer() {
           </p>
           <span className="hidden sm:inline text-white/20">|</span>
           <p>
-            Made by{" "}
+            Developed by{" "}
             <a
               href="https://parthertech.com/"
               target="_blank"

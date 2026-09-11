@@ -13,7 +13,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
     title: "Security & Safety Services",
     shortName: "Security Services",
     heroImage: "/images/security-service-slider.jpg",
-    description: "Advance Corporate Services provides professional security guard services, 24×7 surveillance, CCTV monitoring, night patrolling, and fire fighting services across pan India.",
+    description: "Advance Corporate Security provides professional security guard services, 24×7 surveillance, CCTV monitoring, night patrolling, and fire fighting services across pan India.",
     longDescription: "Digital and manual safety and security are a matter of grave concern today in all organizations, industries, corporate houses, educational institutes, commercial complexes, malls, and government offices. ACS provides battle-tested, PSARA-licensed security guards for offices, factories, hospitals, banks, and government buildings across India.",
     features: [
       "Armed & Unarmed Security Guards",
@@ -36,7 +36,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
     shortName: "Facility Management",
     heroImage: "/images/facility-management-slider-new.jpg",
     description: "ACS provides comprehensive hard and soft facility management services including housekeeping, janitorial, building maintenance, and infrastructure management across pan India.",
-    longDescription: "Advance Corporate Services provides facility management services that ensure the comfort, functionality, efficiency, and safety of buildings, grounds, real estate, and infrastructure. We cover both Hard Facility Management (structural and mechanical maintenance) and Soft Facility Management (housekeeping, janitorial, and support services).",
+    longDescription: "Advance Corporate Security provides facility management services that ensure the comfort, functionality, efficiency, and safety of buildings, grounds, real estate, and infrastructure. We cover both Hard Facility Management (structural and mechanical maintenance) and Soft Facility Management (housekeeping, janitorial, and support services).",
     features: [
       "Professional Housekeeping & Cleaning",
       "Janitorial & Deep Cleaning Services",
@@ -58,7 +58,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
     shortName: "Placement Services",
     heroImage: "/images/placement-service-slider.jpg",
     description: "ACS provides expert manpower outsourcing and placement services — connecting qualified candidates with corporates, industries, and government organizations across pan India.",
-    longDescription: "Manpower is of primary importance in managing an organization. Advance Corporate Services plays an integral role in ensuring employers find the best person for the job. We supply skilled, semi-skilled, and unskilled contract manpower for industrial, logistics, and corporate operations with full PF and ESIC compliance.",
+    longDescription: "Manpower is of primary importance in managing an organization. Advance Corporate Security plays an integral role in ensuring employers find the best person for the job. We supply skilled, semi-skilled, and unskilled contract manpower for industrial, logistics, and corporate operations with full PF and ESIC compliance.",
     features: [
       "Skilled & Semi-Skilled Manpower Supply",
       "Blue Collar & White Collar Staffing",
@@ -80,7 +80,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
     shortName: "Horticulture",
     heroImage: "/images/horticulture-slider.jpg",
     description: "ACS provides professional landscaping, garden and lawn design, grounds keeping, and farm development services for corporates, hospitals, and institutions across India.",
-    longDescription: "Advance Corporate Services provides professional horticulture services designed to enhance the aesthetic value, functionality, and sustainability of outdoor spaces. Our skilled team delivers comprehensive landscaping, grounds management, and garden design to corporate campuses, hospitals, and government establishments across India.",
+    longDescription: "Advance Corporate Security provides professional horticulture services designed to enhance the aesthetic value, functionality, and sustainability of outdoor spaces. Our skilled team delivers comprehensive landscaping, grounds management, and garden design to corporate campuses, hospitals, and government establishments across India.",
     features: [
       "Landscape & Garden Design",
       "Lawn Development & Maintenance",
@@ -116,10 +116,10 @@ export async function generateMetadata({
   const category = categoryData[slug];
 
   const title = subService
-    ? `${subService.name} | Advance Corporate Services`
+    ? `${subService.name} | Advance Corporate Security`
     : category
-    ? `${category.title} | Advance Corporate Services`
-    : "Corporate Services | ACS";
+    ? `${category.title} | Advance Corporate Security`
+    : "Corporate Security | ACS";
 
   const description = subService?.description || category?.description || siteConfig.description;
   const heroImage = subService?.heroImage || category?.heroImage || "/images/security-service-slider.jpg";
@@ -159,7 +159,7 @@ export default async function ServicePage({
     ? [
         {
           question: `Is ACS licensed and certified for ${title}?`,
-          answer: `Yes. Advance Corporate Services is PSARA licensed (for security services) and ISO 9001:2015 certified across all operations. We have 25+ years of operational excellence.`,
+          answer: `Yes. Advance Corporate Security is PSARA licensed (for security services) and ISO 9001:2015 certified across all operations. We have 25+ years of operational excellence.`,
         },
         {
           question: `How quickly can ${shortName} be deployed?`,

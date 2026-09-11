@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "ISO 9001 security company India",
     "placement services India",
     "horticulture services India",
-    "Advance Corporate Services",
+    "Advance Corporate Security",
     "ACS security",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],

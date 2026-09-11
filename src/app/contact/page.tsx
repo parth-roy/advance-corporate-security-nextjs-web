@@ -6,7 +6,7 @@ import CityMap from "@/components/common/CityMap";
 
 export const metadata: Metadata = {
   title: "Contact Us — Get a Free Quote for Security & Facility Management",
-  description: "Contact Advance Corporate Services (ACS) for professional security guard services, facility management, and manpower outsourcing. Get a free consultation today.",
+  description: "Contact Advance Corporate Security (ACS) for professional security guard services, facility management, and manpower outsourcing. Get a free consultation today.",
   alternates: { canonical: `${siteConfig.url}/contact` },
 };
 

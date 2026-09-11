@@ -7,7 +7,7 @@ import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/li
 export const metadata: Metadata = {
   title: "About Us — 25 Years of Trusted Security & Facility Management",
   description:
-    "Learn about Advance Corporate Services (ACS) — founded in 2000, ISO 9001:2015 certified, and serving pan India with Security, Facility Management, and Manpower Outsourcing services.",
+    "Learn about Advance Corporate Security (ACS) — founded in 2000, ISO 9001:2015 certified, and serving pan India with Security, Facility Management, and Manpower Outsourcing services.",
   alternates: { canonical: `${siteConfig.url}/about` },
 };
 
@@ -17,7 +17,7 @@ export default function AboutPage() {
     { name: "About Us", url: `${siteConfig.url}/about` },
   ];
   const webPageSchema = buildWebPageSchema({
-    title: "About Advance Corporate Services | ACS",
+    title: "About Advance Corporate Security | ACS",
     description: metadata.description as string,
     url: `${siteConfig.url}/about`,
   });
@@ -29,7 +29,7 @@ export default function AboutPage() {
 
       {/* Hero */}
       <section className="relative h-56 md:h-72 flex items-end overflow-hidden bg-navy">
-        <Image src="/images/about-us-header.jpg" alt="About Advance Corporate Services" fill className="object-cover opacity-30" priority sizes="100vw" />
+        <Image src="/images/about-us-header.jpg" alt="About Advance Corporate Security" fill className="object-cover opacity-30" priority sizes="100vw" />
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" aria-hidden="true" />
         <div className="container-acs relative z-10 pb-8">
           <nav aria-label="Breadcrumb" className="mb-3">
@@ -52,9 +52,9 @@ export default function AboutPage() {
               <h2 id="about-heading" className="text-navy mb-4">One of the Best <span className="text-gold">Outsourcing & Facility Management</span> Companies in India</h2>
               <div className="divider-gold" />
               <div className="mt-4 space-y-4 text-gray-700 leading-relaxed">
-                <p>Advance Corporate Services is one of the best Outsourcing & Facility Management Company in pan India and is into manpower management services since inception in 2000. At Advance Corporate Services, we provide <strong>"one-stop innovative solutions"</strong> for the diverse requirements of the clients.</p>
+                <p>Advance Corporate Security is one of the best Outsourcing & Facility Management Company in pan India and is into manpower management services since inception in 2000. At Advance Corporate Security, we provide <strong>"one-stop innovative solutions"</strong> for the diverse requirements of the clients.</p>
                 <p>Today after 25 years in this sector, we have created a niche and top-most spot to offer the best manpower and facility management service in India.</p>
-                <p>Advance Corporate Services has grown to become one of the most reliable, recognized, and premier Manpower Outsourcing and Facility Management Companies not only in eastern India but at pan India level.</p>
+                <p>Advance Corporate Security has grown to become one of the most reliable, recognized, and premier Manpower Outsourcing and Facility Management Companies not only in eastern India but at pan India level.</p>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-4">
                 {siteConfig.stats.map((stat) => (
@@ -67,7 +67,7 @@ export default function AboutPage() {
             </div>
             <div className="relative">
               <div className="relative h-80 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
-                <Image src="/images/about-us.jpg" alt="Advance Corporate Services team" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                <Image src="/images/about-us.jpg" alt="Advance Corporate Security team" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-navy text-white font-roboto px-5 py-4 rounded-lg shadow-lg">
                 <div className="text-gold text-xs uppercase font-bold tracking-wider">Since</div>
@@ -147,11 +147,11 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-10 items-start">
             <div className="md:col-span-1">
               <div className="relative h-80 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
-                <Image src="/images/desk-of-ceo.jpg" alt="Founder of Advance Corporate Services" fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 33vw" />
+                <Image src="/images/desk-of-ceo.jpg" alt="Founder of Advance Corporate Security" fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <div className="mt-4 text-center">
                 <p className="font-roboto font-bold text-navy">Founder & Managing Director</p>
-                <p className="text-gray-500 text-sm">Advance Corporate Services</p>
+                <p className="text-gray-500 text-sm">Advance Corporate Security</p>
               </div>
             </div>
             <div className="md:col-span-2">
@@ -160,7 +160,7 @@ export default function AboutPage() {
               <div className="divider-gold" />
               <div className="mt-4 space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-lg italic text-gray-500">"Dear Friends,"</p>
-                <p>We introduce ourselves as a professionally managed and scientifically organized Facility Management Services Provider. Since its inception in 2000, Advance Corporate Services has been a name to reckon with in the outsourcing industry within a short period.</p>
+                <p>We introduce ourselves as a professionally managed and scientifically organized Facility Management Services Provider. Since its inception in 2000, Advance Corporate Security has been a name to reckon with in the outsourcing industry within a short period.</p>
                 <p>From a very humble beginning, the company has grown today to become one of the most reliable, recognized, and premier Manpower Outsourcing and Facility Management companies not only in eastern India but in pan India level.</p>
                 <p>We have made organizational growth in various sectors by providing intelligence/surveillance, fire fighting, and janitorial services in addition to security services. Today with 25 years of experience, we are providing Trained Workforce to organizations in various ranks and levels as per their requirement.</p>
                 <p>Our dedicated workforce is not only ranked No. 1 in reliability, ethics, speed of response, and adherence to rules and procedures but are also specifically recruited and trained to work in clients&apos; environments.</p>
@@ -178,7 +178,7 @@ export default function AboutPage() {
             <h2 id="team-heading" className="text-navy">Together We Achieve the <span className="text-gold">Extraordinary</span></h2>
             <div className="divider-gold mx-auto" />
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              Advance Corporate Services is committed to providing the best outsourcing & facility management services in India with a strong team working 24×7. Our team of extremely knowledgeable and qualified managers always create tailor-made pre-determined plans to conquer any requirements of the clients.
+              Advance Corporate Security is committed to providing the best outsourcing & facility management services in India with a strong team working 24×7. Our team of extremely knowledgeable and qualified managers always create tailor-made pre-determined plans to conquer any requirements of the clients.
             </p>
           </div>
           <div className="relative h-64 md:h-80 rounded-xl overflow-hidden shadow-[var(--shadow-card-hover)]">
