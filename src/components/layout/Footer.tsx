@@ -1,13 +1,10 @@
 // src/components/layout/Footer.tsx
-// Full city grid — all 580+ cities grouped by state
-"use client";
-
+// Full city grid — all 828+ cities grouped by state
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { ACS_CITIES, ACS_STATES } from "@/lib/cities";
 import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
-import { useState } from "react";
 
 const footerLinks = [
   { label: "About Us", href: "/about" },
@@ -18,10 +15,8 @@ const footerLinks = [
 ];
 
 export default function Footer() {
-  const [showAllCities, setShowAllCities] = useState(false);
-
-  // Top 60 tier-1 and tier-2 cities for compact view
-  const topCities = ACS_CITIES.filter((c) => c.tier <= 2).slice(0, 60);
+  // Top 50 tier-1 and tier-2 cities for compact footer preview
+  const topCities = ACS_CITIES.filter((c) => c.tier <= 2).slice(0, 50);
 
   return (
     <footer className="bg-navy-dark text-white" role="contentinfo">
@@ -134,29 +129,30 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Cities column — compact grid */}
+        {/* Cities column — compact preview grid + link to dedicated directory */}
         <div>
-          <h3 className="font-roboto font-bold text-white text-sm uppercase tracking-wider mb-5 pb-2 border-b border-white/10">
+          <h3 className="font-roboto font-bold text-white text-sm uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
             Cities We Serve ({ACS_CITIES.length}+)
           </h3>
           <div className="flex flex-wrap gap-1.5">
-            {(showAllCities ? ACS_CITIES : topCities).map((city) => (
+            {topCities.map((city) => (
               <Link
                 key={city.slug}
                 href={`/location/${city.slug}`}
                 className={`text-xs transition-colors hover:text-sky ${city.tier === 1 ? "text-gray-300 font-medium" : "text-gray-500"}`}
               >
                 {city.name}
-                {city !== (showAllCities ? ACS_CITIES : topCities)[showAllCities ? ACS_CITIES.length - 1 : topCities.length - 1] && <span className="text-white/20 ml-1">·</span>}
+                {city !== topCities[topCities.length - 1] && <span className="text-white/20 ml-1">·</span>}
               </Link>
             ))}
           </div>
-          <button
-            onClick={() => setShowAllCities(!showAllCities)}
-            className="mt-3 text-sky text-xs hover:underline"
+          <Link
+            href="/location"
+            className="inline-flex items-center gap-1.5 mt-3.5 text-sky text-xs font-bold hover:underline transition-all group cursor-pointer"
           >
-            {showAllCities ? "Show fewer cities ↑" : `Show all ${ACS_CITIES.length} cities ↓`}
-          </button>
+            <span>Show all {ACS_CITIES.length} cities</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </Link>
         </div>
       </div>
 
