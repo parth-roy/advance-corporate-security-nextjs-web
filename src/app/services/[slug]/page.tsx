@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug, ACS_SERVICE_CATEGORIES } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
@@ -11,7 +12,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
   "security-safety": {
     title: "Security & Safety Services",
     shortName: "Security Services",
-    heroImage: "/images/security-service-slider.jpg",
+    heroImage: "/images/guarding.jpg",
     description: "Advance Corporate Security provides professional security guard services, 24×7 surveillance, CCTV monitoring, night patrolling, and fire fighting services across pan India.",
     longDescription: "Digital and manual safety and security are a matter of grave concern today in all organizations, industries, corporate houses, educational institutes, commercial complexes, malls, and government offices. ACS provides battle-tested, PSARA-licensed security guards for offices, factories, hospitals, banks, and government buildings across India.",
     features: [
@@ -33,7 +34,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
   "facility-management": {
     title: "Facility Management Services",
     shortName: "Facility Management",
-    heroImage: "/images/facility-management-slider-new.jpg",
+    heroImage: "/images/facility-management-image.jpg",
     description: "ACS provides comprehensive hard and soft facility management services including housekeeping, janitorial, building maintenance, and infrastructure management across pan India.",
     longDescription: "Advance Corporate Security provides facility management services that ensure the comfort, functionality, efficiency, and safety of buildings, grounds, real estate, and infrastructure. We cover both Hard Facility Management (structural and mechanical maintenance) and Soft Facility Management (housekeeping, janitorial, and support services).",
     features: [
@@ -55,7 +56,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
   "placement-services": {
     title: "Placement & Manpower Outsourcing Services",
     shortName: "Placement Services",
-    heroImage: "/images/placement-service-slider.jpg",
+    heroImage: "/images/placement-servicesw.jpg",
     description: "ACS provides expert manpower outsourcing and placement services — connecting qualified candidates with corporates, industries, and government organizations across pan India.",
     longDescription: "Manpower is of primary importance in managing an organization. Advance Corporate Security plays an integral role in ensuring employers find the best person for the job. We supply skilled, semi-skilled, and unskilled contract manpower for industrial, logistics, and corporate operations with full PF and ESIC compliance.",
     features: [
@@ -77,7 +78,7 @@ const categoryData: Record<string, { title: string; shortName: string; heroImage
   horticulture: {
     title: "Horticulture Services",
     shortName: "Horticulture",
-    heroImage: "/images/horticulture-slider.jpg",
+    heroImage: "/images/horticulture.jpg",
     description: "ACS provides professional landscaping, garden and lawn design, grounds keeping, and farm development services for corporates, hospitals, and institutions across India.",
     longDescription: "Advance Corporate Security provides professional horticulture services designed to enhance the aesthetic value, functionality, and sustainability of outdoor spaces. Our skilled team delivers comprehensive landscaping, grounds management, and garden design to corporate campuses, hospitals, and government establishments across India.",
     features: [
@@ -242,6 +243,29 @@ export default async function ServicePage({
             <a href="tel:+919477006681" className="btn-secondary text-xs sm:text-sm px-5 py-3">
               📞 Call: +91 94770 06681
             </a>
+          </div>
+
+          {/* Hero Visual Showcase — Authentic Service Photography (1920x500 natural aspect ratio, zero clipping) */}
+          <div className="my-8 relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 group">
+            <div className="relative aspect-[1920/500] w-full">
+              <Image
+                src={heroImage}
+                alt={`${title} — Advance Corporate Security Pan-India Deployment`}
+                fill
+                priority
+                className="object-cover w-full h-full"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1140px"
+              />
+            </div>
+            {/* Subtle bottom gradient & info banner */}
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between">
+              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow">
+                {title} — Pan-India Professional Deployment
+              </span>
+              <span className="text-sky font-bold text-xs bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-sky/30">
+                ⚡ Rapid 24–48h SLA
+              </span>
+            </div>
           </div>
 
           {/* Enterprise Procurement SLA Matrix */}

@@ -68,8 +68,31 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* Hero Visual Showcase — Authentic ACS Team Panorama (1920x500 natural aspect ratio, zero clipping) */}
+          <div className="my-8 relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white group">
+            <div className="relative aspect-[1920/500] w-full">
+              <Image
+                src="/images/about-us-header.jpg"
+                alt="Advance Corporate Security Team — 25 Years of Pan-India Dedicated Workforce"
+                fill
+                priority
+                className="object-contain w-full h-full"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1140px"
+              />
+            </div>
+            {/* Subtle caption bar */}
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between">
+              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow">
+                Advance Corporate Security — Pan-India Professional Team
+              </span>
+              <span className="text-gold text-xs font-bold bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-gold/30">
+                25+ Years Excellence
+              </span>
+            </div>
+          </div>
+
           {/* Key Metrics Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10">
             <div>
               <div className="text-gold font-roboto font-black text-2xl sm:text-3xl">5,000+</div>
               <div className="text-gray-300 text-xs sm:text-sm font-medium mt-0.5">Deployed Staff</div>

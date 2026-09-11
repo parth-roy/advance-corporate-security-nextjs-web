@@ -7,6 +7,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug, ACS_SERVICE_CATEGORIES } from "@/lib/services";
@@ -190,6 +191,28 @@ export default async function ServiceCityPage({
             <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-xs sm:text-sm px-5 py-3">
               📞 {siteConfig.phone}
             </a>
+          </div>
+
+          {/* Local Service Visual Showcase (1920x500 panorama, zero clipping) */}
+          <div className="my-8 relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 group">
+            <div className="relative aspect-[1920/500] w-full">
+              <Image
+                src={service.heroImage}
+                alt={`${service.name} in ${cityName}, ${state} — Advance Corporate Security`}
+                fill
+                priority
+                className="object-cover w-full h-full"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1140px"
+              />
+            </div>
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between">
+              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow">
+                {service.name} — Deployed in {cityName}, {state}
+              </span>
+              <span className="text-gold font-bold text-xs bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-gold/30">
+                📍 {cityName} Service Hub
+              </span>
+            </div>
           </div>
 
           {/* Local Deployment SLA & Specification Grid */}
