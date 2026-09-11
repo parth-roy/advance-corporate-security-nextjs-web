@@ -96,7 +96,7 @@ export default function HeroSection() {
             {/* Subheadline tailored to active location */}
             <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed mb-2 font-normal">
               Deploy PSARA-licensed armed &amp; unarmed security guards, corporate housekeeping, and compliant workforce across{" "}
-              <strong className="text-navy font-semibold">
+              <strong suppressHydrationWarning className="text-navy font-semibold">
                 {currentCity.name}, {currentCity.state}
               </strong>
               . 25+ years of operational excellence with 100% statutory PF/ESIC compliance.
@@ -118,7 +118,7 @@ export default function HeroSection() {
                   height={16}
                   className="w-3.5 h-3.5 object-contain group-hover:scale-110 transition-transform shrink-0"
                 />
-                <span>
+                <span suppressHydrationWarning>
                   Deployment Hub:{" "}
                   <strong className="text-navy font-bold">{currentCity.name}</strong>
                 </span>

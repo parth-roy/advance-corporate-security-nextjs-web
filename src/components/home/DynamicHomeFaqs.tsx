@@ -20,12 +20,12 @@ export default function DynamicHomeFaqs() {
       <div className="container-acs max-w-4xl">
         <div className="text-center mb-5">
           <p className="section-label">Common Questions</p>
-          <h2 id="home-faqs-heading" className="text-navy">
+          <h2 id="home-faqs-heading" suppressHydrationWarning className="text-navy">
             Frequently Asked Questions —{" "}
             <span className="text-sky">{currentCity.name} Hub</span>
           </h2>
           <div className="divider-sky mx-auto" />
-          <p className="text-gray-600 mt-2 text-sm sm:text-base">
+          <p suppressHydrationWarning className="text-gray-600 mt-2 text-sm sm:text-base">
             Everything you need to know about PSARA licensing, ISO certification, statutory compliance, and deployments in {currentCity.name}, {currentCity.state}.
           </p>
         </div>

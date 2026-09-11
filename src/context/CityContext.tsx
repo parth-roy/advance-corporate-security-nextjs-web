@@ -109,27 +109,10 @@ export function resolveCityConfig(
 export function CityProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  // Initial city resolved synchronously (URL > Session > LocalStorage > Default)
+  // Hydration-safe initial city (URL > Default) to guarantee 100% match between server SSR and client hydration
   const [currentCity, setCurrentCity] = useState<ACSCity>(() => {
     const urlCity = extractCityFromUrl(pathname);
     if (urlCity) return urlCity;
-
-    if (typeof window !== "undefined") {
-      try {
-        const sessionRaw = sessionStorage.getItem(SESSION_CITY_KEY);
-        if (sessionRaw) {
-          const parsed = JSON.parse(sessionRaw);
-          if (parsed?.name && parsed?.slug) return parsed;
-        }
-        const localRaw = localStorage.getItem(STORAGE_CITY_KEY);
-        if (localRaw) {
-          const parsed = JSON.parse(localRaw);
-          if (parsed?.name && parsed?.slug) return parsed;
-        }
-      } catch {
-        // Storage restricted
-      }
-    }
     return DEFAULT_CITY;
   });
 
@@ -210,7 +193,7 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
         return activeUrlCity;
       }
 
-      // 1. Check if user already has an active session city (0ms, 0 API calls, ZERO BILLING)
+      // 1. Check if user already has an active session or saved city (0ms, 0 API calls, ZERO BILLING)
       if (!forceFresh) {
         try {
           const sessionRaw = sessionStorage.getItem(SESSION_CITY_KEY);
@@ -222,8 +205,17 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
               return parsed;
             }
           }
+          const localRaw = localStorage.getItem(STORAGE_CITY_KEY);
+          if (localRaw) {
+            const parsed = JSON.parse(localRaw);
+            if (parsed?.name && parsed?.slug) {
+              setCity(parsed, false);
+              setHasDetected(true);
+              return parsed;
+            }
+          }
         } catch {
-          // ignore session read errors
+          // ignore storage read errors
         }
       }
 

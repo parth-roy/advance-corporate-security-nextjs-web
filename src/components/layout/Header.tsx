@@ -201,7 +201,7 @@ export default function Header() {
                 height={16}
                 className="w-3.5 h-3.5 object-contain shrink-0 group-hover:scale-110 transition-transform"
               />
-              <span className="max-w-[75px] sm:max-w-[110px] truncate font-semibold text-slate-800">
+              <span suppressHydrationWarning className="max-w-[75px] sm:max-w-[110px] truncate font-semibold text-slate-800">
                 {currentCity?.name || "Kolkata"}
               </span>
               <svg
@@ -292,7 +292,7 @@ export default function Header() {
                   className="w-4 h-4 object-contain shrink-0"
                 />
                 <span className="text-xs text-slate-600 font-medium">Hub:</span>
-                <span className="text-xs font-bold text-navy">{currentCity?.name || "Kolkata"}</span>
+                <span suppressHydrationWarning className="text-xs font-bold text-navy">{currentCity?.name || "Kolkata"}</span>
               </div>
               <button
                 type="button"

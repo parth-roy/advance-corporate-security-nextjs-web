@@ -20,7 +20,7 @@ export default function DynamicGeoFactBox() {
   return (
     <section className="bg-sky-50/70 border-y border-sky-100 py-5" aria-label="Quick facts about ACS">
       <div className="container-acs">
-        <div className="geo-fact-box">
+        <div className="geo-fact-box" suppressHydrationWarning>
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
             <p className="text-xs font-bold text-sky-800 uppercase tracking-wider font-roboto flex items-center gap-1.5">
               <span>📋</span>
