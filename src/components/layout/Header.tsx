@@ -124,19 +124,19 @@ export default function Header() {
         role="banner"
       >
         <nav
-          className="container-acs flex items-center justify-between h-18 sm:h-20"
+          className="container-acs flex items-center justify-between h-20 sm:h-22 md:h-24"
           aria-label="Main navigation"
         >
-          {/* Logo (Fixed dimensions, zero resizing on scroll, zero jitter) */}
+          {/* Logo (Prominent, big, crystal-clear, zero layout shift) */}
           <Link href="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="ACS Home">
-            <div className="relative h-12 sm:h-13 w-40 sm:w-48 transform group-hover:scale-[1.02] transition-transform">
+            <div className="relative h-14 sm:h-16 md:h-18 w-48 sm:w-60 md:w-72 lg:w-80 transform group-hover:scale-[1.02] transition-transform duration-200">
               <Image
                 src="/images/acs-official-logo.avif"
                 alt={`${siteConfig.name} Logo`}
                 fill
                 className="object-contain object-left"
                 priority
-                sizes="(max-width: 640px) 180px, 240px"
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 300px, 360px"
               />
             </div>
           </Link>
@@ -260,13 +260,13 @@ export default function Header() {
           <nav className="relative w-80 max-w-full bg-white h-full overflow-y-auto shadow-2xl flex flex-col">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center py-1">
-                <div className="relative h-12 w-44">
+                <div className="relative h-14 w-52">
                   <Image
                     src="/images/acs-official-logo.avif"
                     alt={`${siteConfig.name} Logo`}
                     fill
                     className="object-contain object-left"
-                    sizes="180px"
+                    sizes="220px"
                   />
                 </div>
               </Link>

@@ -88,7 +88,7 @@ export default function HeroSection() {
               className="font-roboto font-black text-slate-900 leading-[1.15] mb-1.5 tracking-tight text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px]"
             >
               Corporate Security &amp; Facility Management in{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-navy">
+              <span className="text-sky-600 font-black">
                 {currentCity.name}
               </span>
             </h1>
@@ -108,7 +108,7 @@ export default function HeroSection() {
               <button
                 type="button"
                 onClick={() => setIsCityModalOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-sky-200 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-sky-50 hover:border-sky-300 transition-all shadow-2xs group cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-sky-50 hover:border-sky-300 transition-all shadow-2xs group cursor-pointer"
                 title="Change Deployment City"
               >
                 <Image
@@ -116,11 +116,10 @@ export default function HeroSection() {
                   alt="City"
                   width={16}
                   height={16}
-                  className="w-3.5 h-3.5 object-contain group-hover:scale-110 transition-transform shrink-0"
+                  className="w-4 h-4 object-contain group-hover:scale-110 transition-transform shrink-0"
                 />
-                <span suppressHydrationWarning>
-                  Deployment Hub:{" "}
-                  <strong className="text-navy font-bold">{currentCity.name}</strong>
+                <span suppressHydrationWarning className="text-navy font-bold">
+                  {currentCity.name}
                 </span>
                 <span className="text-sky-600 underline font-bold text-xs ml-0.5 group-hover:text-sky-800">
                   Change
@@ -181,12 +180,12 @@ export default function HeroSection() {
               {/* Dynamic Tab Header — Suitable B2B title */}
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <h2 className="text-xs sm:text-sm font-black text-navy uppercase tracking-wider">
+                  <h2 className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight">
                     {activeTab === "security"
                       ? `PSARA Security & Safety Deployments in ${currentCity.name}`
                       : `Corporate Facility Management & Manpower in ${currentCity.name}`}
                   </h2>
-                  <p className="text-[11px] text-slate-500">
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
                     {activeTab === "security"
                       ? `Background-verified armed & unarmed guards, CCTV & industrial security`
                       : `Corporate housekeeping, janitorial, pest control & compliant staffing`}
@@ -288,17 +287,17 @@ export default function HeroSection() {
             </div>
 
             {/* 24×7 Central Control Room Bar */}
-            <div className="w-full max-w-lg bg-gradient-to-r from-navy to-sky-950 rounded-xl p-3 px-4 text-white flex items-center justify-between shadow-xs">
+            <div className="w-full max-w-lg bg-[#0B1F3F] border border-slate-700/60 rounded-xl p-3 px-4 text-white flex items-center justify-between shadow-sm">
               <div className="flex items-center gap-2.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <div>
                   <p className="text-[10px] text-sky-200 font-medium">24×7 Central Control Room</p>
-                  <p className="text-xs sm:text-sm font-black text-white tracking-wide">{siteConfig.phones[0]}</p>
+                  <p className="text-xs sm:text-sm font-bold text-white tracking-wide">{siteConfig.phones[0]}</p>
                 </div>
               </div>
               <a
                 href={`tel:${siteConfig.phones[0].replace(/[^+\d]/g, "")}`}
-                className="px-3.5 py-1.5 bg-gold hover:bg-gold-light text-navy font-bold text-xs rounded-lg shadow-2xs transition-all active:scale-95"
+                className="px-3.5 py-1.5 bg-gold hover:bg-gold-light text-navy font-bold text-xs rounded-lg shadow-2xs transition-all active:scale-95 cursor-pointer"
               >
                 Call Now
               </a>

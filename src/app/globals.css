@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy: #0b1f3f;
+  --color-navy-dark: #071429;
+  --color-navy-light: #1a3660;
+  --color-sky: #0ea5e9;
+  --color-sky-light: #38bdf8;
+  --color-sky-dark: #0284c7;
+  --color-gold: #c8993a;
+  --color-gold-light: #e0b55a;
+  --color-gold-dark: #a07828;
+  --color-off-white: #f8f9fa;
+  --color-light-gray: #f1f3f5;
+  --color-mid-gray: #6b7280;
+  --color-dark-gray: #374151;
+  --color-text: #1a1a2e;
+}
+
 /* ============================================================
    ACS Design System — Global CSS Tokens
    Corporate Identity: Navy Blue + Sky Blue + Gold + White

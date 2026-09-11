@@ -161,8 +161,8 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
       try {
         if (isManual) {
           sessionStorage.setItem(SESSION_CITY_KEY, JSON.stringify(cityObj));
+          localStorage.setItem(STORAGE_CITY_KEY, JSON.stringify(cityObj));
         }
-        localStorage.setItem(STORAGE_CITY_KEY, JSON.stringify(cityObj));
         window.dispatchEvent(
           new CustomEvent("acs:city_change", { detail: cityObj })
         );
@@ -193,7 +193,7 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
         return activeUrlCity;
       }
 
-      // 1. Check if user already has an active session or saved city (0ms, 0 API calls, ZERO BILLING)
+      // 1. Check if user already has an active manual selection for this session
       if (!forceFresh) {
         try {
           const sessionRaw = sessionStorage.getItem(SESSION_CITY_KEY);
@@ -205,64 +205,71 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
               return parsed;
             }
           }
-          const localRaw = localStorage.getItem(STORAGE_CITY_KEY);
-          if (localRaw) {
-            const parsed = JSON.parse(localRaw);
-            if (parsed?.name && parsed?.slug) {
-              setCity(parsed, false);
-              setHasDetected(true);
-              return parsed;
-            }
-          }
         } catch {
-          // ignore storage read errors
+          // ignore session read errors
         }
       }
 
       setIsDetecting(true);
 
-      // Helper: Reverse-geocode coordinates using Google Maps API (strictly guarded & debounced)
-      const reverseGeocodeGoogle = async (
+      // Helper: Reverse-geocode coordinates using Google Maps API + BigDataCloud fallback
+      const reverseGeocode = async (
         lat: number,
         lng: number
       ): Promise<ACSCity | null> => {
+        // 1. Google Maps Geocoding
         const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
-        if (!apiKey) return null;
-
-        try {
-          const controller = new AbortController();
-          const timer = setTimeout(() => controller.abort(), 4000);
-          const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&result_type=locality|administrative_area_level_2|administrative_area_level_1`;
-          const res = await fetch(endpoint, { signal: controller.signal });
-          clearTimeout(timer);
-          if (!res.ok) return null;
-
-          const data = await res.json();
-          if (data && data.status === "OK" && data.results && data.results.length > 0) {
-            let cityName = "";
-            let stateName = "";
-
-            for (const result of data.results) {
-              for (const comp of result.address_components) {
-                if (comp.types.includes("locality") && !cityName) {
-                  cityName = comp.long_name;
+        if (apiKey) {
+          try {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 4000);
+            const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&result_type=locality|administrative_area_level_2|administrative_area_level_1`;
+            const res = await fetch(endpoint, { signal: controller.signal });
+            clearTimeout(timer);
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.status === "OK" && data.results?.length > 0) {
+                let cityName = "";
+                let stateName = "";
+                for (const result of data.results) {
+                  for (const comp of result.address_components) {
+                    if (comp.types.includes("locality") && !cityName) cityName = comp.long_name;
+                    if (comp.types.includes("administrative_area_level_2") && !cityName) cityName = comp.long_name;
+                    if (comp.types.includes("administrative_area_level_1") && !stateName) stateName = comp.long_name;
+                  }
                 }
-                if (comp.types.includes("administrative_area_level_2") && !cityName) {
-                  cityName = comp.long_name;
-                }
-                if (comp.types.includes("administrative_area_level_1") && !stateName) {
-                  stateName = comp.long_name;
+                if (cityName) {
+                  const resolved = resolveCityConfig(cityName, stateName);
+                  if (resolved) return resolved;
                 }
               }
             }
+          } catch (err) {
+            console.warn("Google Maps reverse geocoding error:", err);
+          }
+        }
 
+        // 2. High-precision BigDataCloud reverse geocode fallback (free, zero API key required, highly accurate in India)
+        try {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 3500);
+          const res = await fetch(
+            `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`,
+            { signal: controller.signal }
+          );
+          clearTimeout(timer);
+          if (res.ok) {
+            const data = await res.json();
+            const cityName = data.city || data.locality || data.principalSubdivision;
             if (cityName) {
-              return resolveCityConfig(cityName, stateName);
+              const resolved = resolveCityConfig(cityName, data.principalSubdivision);
+              if (resolved) return resolved;
             }
           }
-        } catch (err) {
-          console.warn("Google Maps reverse geocoding error:", err);
+        } catch {
+          // BDC fallback failed
         }
+
         return null;
       };
 
@@ -270,17 +277,16 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
       const detectViaBrowserGeo = async (): Promise<ACSCity | null> => {
         if (!navigator.geolocation) return null;
         return new Promise((resolve) => {
-          const timeout = setTimeout(() => resolve(null), 5000);
+          const timeout = setTimeout(() => resolve(null), 8000);
           navigator.geolocation.getCurrentPosition(
             async ({ coords }) => {
               clearTimeout(timeout);
               try {
-                // Call reverse geocode strictly once for coordinates
-                const googleCity = await reverseGeocodeGoogle(
+                const geoCity = await reverseGeocode(
                   coords.latitude,
                   coords.longitude
                 );
-                if (googleCity) return resolve(googleCity);
+                if (geoCity) return resolve(geoCity);
               } catch {
                 // Fallback to IP
               }
@@ -291,13 +297,14 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
               console.log("Browser geolocation not granted or timed out:", err.message);
               resolve(null);
             },
-            { timeout: 5000, maximumAge: 60000, enableHighAccuracy: false }
+            { timeout: 8000, maximumAge: 0, enableHighAccuracy: true }
           );
         });
       };
 
       // Strategy 2: 100% Free IP fallback if user blocks/dismisses GPS (ZERO GOOGLE BILLING)
       const detectViaIp = async (): Promise<ACSCity | null> => {
+        // Provider A: ipwho.is
         try {
           const controller = new AbortController();
           const timer = setTimeout(() => controller.abort(), 3500);
@@ -305,26 +312,48 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
             signal: controller.signal,
           });
           clearTimeout(timer);
-          if (!res.ok) return null;
-          const data = await res.json();
-          if (data && data.success && data.city) {
-            return resolveCityConfig(data.city, data.region);
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.success && data.city) {
+              const resolved = resolveCityConfig(data.city, data.region);
+              if (resolved) return resolved;
+            }
           }
         } catch {
-          // IP fallback failed
+          // ipwho failed
         }
+
+        // Provider B: ipapi.co
+        try {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 3500);
+          const res = await fetch("https://ipapi.co/json/", {
+            signal: controller.signal,
+          });
+          clearTimeout(timer);
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.city) {
+              const resolved = resolveCityConfig(data.city, data.region);
+              if (resolved) return resolved;
+            }
+          }
+        } catch {
+          // ipapi failed
+        }
+
         return null;
       };
 
       try {
-        // 1. Try browser GPS
+        // 1. Try browser GPS (triggers native permission prompt)
         const geoCity = await detectViaBrowserGeo();
         if (geoCity) {
-          setCity(geoCity, true);
+          setCity(geoCity, false);
           return geoCity;
         }
 
-        // 2. Fallback to IP detection
+        // 2. Fallback to IP detection (e.g. Kolkata, West Bengal)
         const ipCity = await detectViaIp();
         if (ipCity) {
           setCity(ipCity, false);
@@ -342,8 +371,28 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
     [setCity]
   );
 
-  // On initial mount: run auto-detection once
+  // On initial mount: purge stale indore lock if present and run fresh auto-detection
   useEffect(() => {
+    // 1. If URL has a city (e.g. /services/security-guard/mumbai), that specific city route takes precedence
+    const urlCity = extractCityFromUrl(window.location.pathname);
+    if (urlCity) {
+      setCity(urlCity, false);
+      setHasDetected(true);
+      return;
+    }
+
+    // 2. Clean any stale Indore localStorage lock so user gets their live Kolkata location
+    try {
+      const localRaw = localStorage.getItem(STORAGE_CITY_KEY);
+      if (localRaw) {
+        const parsed = JSON.parse(localRaw);
+        if (parsed?.slug === "indore" && !sessionStorage.getItem(SESSION_CITY_KEY)) {
+          localStorage.removeItem(STORAGE_CITY_KEY);
+        }
+      }
+    } catch {}
+
+    // 3. Run fresh detection on every new session / refresh
     detectLocation(false);
 
     const handleCustomChange = (e: Event) => {
