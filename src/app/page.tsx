@@ -6,6 +6,7 @@ import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/sc
 import HeroSection from "@/components/home/HeroSection";
 import DynamicGeoFactBox from "@/components/home/DynamicGeoFactBox";
 import DynamicHomeFaqs from "@/components/home/DynamicHomeFaqs";
+import ClientMarquee from "@/components/common/ClientMarquee";
 
 export const metadata: Metadata = {
   title: "India's Trusted Security & Facility Management Company Since 2000",
@@ -63,21 +64,6 @@ const homeFaqs = [
     answer:
       "Absolutely. ACS assumes complete employer-of-record responsibility for all outsourced staff. We manage PF deposits, ESIC contributions, Minimum Wage Act compliance, Professional Tax, Bonus Act, and all other statutory obligations — giving client organizations zero legal exposure.",
   },
-];
-
-const clients = [
-  "Indian Air Force",
-  "BSF (Ministry of Home Affairs)",
-  "Central Pollution Control Board",
-  "Indian Oil Corporation Ltd.",
-  "Bhushan Power & Steel",
-  "BMRC Hospital",
-  "ESI Hospital",
-  "Kendriya Vidyalaya",
-  "HAL Barrackpore",
-  "CBEC",
-  "Metro Railway",
-  "NIELIT",
 ];
 
 const whyACS = [
@@ -237,34 +223,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== CLIENTS ===== */}
-      <section className="section-py bg-off-white" aria-labelledby="clients-heading">
-        <div className="container-acs">
-          <div className="text-center mb-5">
-            <p className="section-label">Who We Serve</p>
-            <h2 id="clients-heading" className="text-navy">
-              Our <span className="text-sky">Trusted Clients</span>
-            </h2>
-            <div className="divider-sky mx-auto" />
-            <p className="text-gray-600 mt-2 max-w-xl mx-auto text-xs sm:text-sm">
-              Proudly serving Government bodies, Defence establishments, Hospitals, PSUs, and Industries across India.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2 sm:gap-2.5 justify-center mb-5">
-            {clients.map((client) => (
-              <span
-                key={client}
-                className="bg-white border border-gray-200 text-gray-700 text-xs sm:text-sm px-3.5 py-1.5 rounded-full shadow-2xs hover:border-sky-300 hover:text-navy transition-all duration-200 cursor-default"
-              >
-                {client}
-              </span>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link href="/clients" className="btn-primary">View All Clients</Link>
-          </div>
-        </div>
-      </section>
+      {/* ===== CLIENTS MARQUEE (MetroMitra-Style Infinite Sliding Cards with Pause on Hover) ===== */}
+      <ClientMarquee />
 
       {/* ===== DYNAMIC FAQ SECTION (Hyper-local to Selected City) ===== */}
       <DynamicHomeFaqs />

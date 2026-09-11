@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/lib/schema";
+import ClientMarquee from "@/components/common/ClientMarquee";
 
 export const metadata: Metadata = {
   title: "About Us — 25 Years of Trusted Security & Facility Management",
@@ -190,6 +191,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Our Esteemed Clients Marquee */}
+      <ClientMarquee bgClass="bg-off-white" />
 
       {/* CTA */}
       <section className="section-py bg-navy text-white text-center">

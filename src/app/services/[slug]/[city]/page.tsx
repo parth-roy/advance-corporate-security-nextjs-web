@@ -15,6 +15,7 @@ import { ACS_CITIES } from "@/lib/cities";
 import { generateServiceCityFaqs } from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
+import ClientMarquee from "@/components/common/ClientMarquee";
 
 interface Params {
   slug: string;
@@ -329,6 +330,9 @@ export default async function ServiceCityPage({
           <CityMap cityName={cityName} stateName={state} serviceName={service.shortName} />
         </div>
       </section>
+
+      {/* ── CLIENTS & PARTNERS MARQUEE ── */}
+      <ClientMarquee bgClass="bg-white" />
 
       {/* ── DYNAMIC FAQs (AEO / FAQPage Schema) ── */}
       <section className="section-py bg-off-white" aria-labelledby="faq-heading">

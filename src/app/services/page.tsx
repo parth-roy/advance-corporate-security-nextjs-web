@@ -5,6 +5,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
 import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
+import ClientMarquee from "@/components/common/ClientMarquee";
 
 export const metadata: Metadata = {
   title: "All Services | Security, Facility Management & Manpower | ACS",
@@ -83,6 +84,9 @@ export default function ServicesHubPage() {
           </div>
         </div>
       </section>
+
+      {/* Trusted Clients Marquee */}
+      <ClientMarquee bgClass="bg-white" />
 
       <section className="section-py bg-off-white">
         <div className="container-acs max-w-3xl">
