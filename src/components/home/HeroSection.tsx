@@ -292,11 +292,11 @@ export default function HeroSection() {
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <div>
                   <p className="text-[10px] text-sky-200 font-medium">24×7 Central Control Room</p>
-                  <p className="text-xs sm:text-sm font-bold text-white tracking-wide">{siteConfig.phones[0]}</p>
+                  <p className="text-xs sm:text-sm font-bold text-white tracking-wide">+91 94770 06681</p>
                 </div>
               </div>
               <a
-                href={`tel:${siteConfig.phones[0].replace(/[^+\d]/g, "")}`}
+                href="tel:+919477006681"
                 className="px-3.5 py-1.5 bg-gold hover:bg-gold-light text-navy font-bold text-xs rounded-lg shadow-2xs transition-all active:scale-95 cursor-pointer"
               >
                 Call Now
