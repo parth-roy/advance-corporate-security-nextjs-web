@@ -311,7 +311,7 @@ export default async function ServicePage({
 
           <div className="text-center mt-6">
             <Link href="/location" className="text-sky text-sm font-semibold hover:underline">
-              View All 580+ City Locations →
+              View All 800+ City Locations →
             </Link>
           </div>
         </div>

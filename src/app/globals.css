@@ -91,11 +91,11 @@ h4 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
 @media (min-width: 1280px) { .container-acs { padding-inline: 2.5rem; } }
 
 /* ============================================================
-   Section Spacing
+   Section Spacing (Reduced by 50% for crisp, modern pacing)
    ============================================================ */
-.section-py { padding-block: 4rem; }
-@media (min-width: 768px) { .section-py { padding-block: 5rem; } }
-@media (min-width: 1024px) { .section-py { padding-block: 6rem; } }
+.section-py { padding-block: 2rem; }
+@media (min-width: 768px) { .section-py { padding-block: 2.5rem; } }
+@media (min-width: 1024px) { .section-py { padding-block: 3rem; } }
 
 /* ============================================================
    Buttons

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
+import { useCity } from "@/context/CityContext";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -44,6 +45,7 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const { currentCity, setIsCityModalOpen } = useCity();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -53,7 +55,7 @@ export default function Header() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 40);
+          setIsScrolled(window.scrollY > 15);
           ticking = false;
         });
         ticking = true;
@@ -112,43 +114,35 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Nav — Silky Smooth Sticky Header (Zero Jitter, Zero Clipping) */}
+      {/* Main Nav — 100% Rock-Solid Fixed Height, Zero Layout Shift, Zero Glitch */}
       <header
-        className={`sticky top-0 z-50 w-full bg-white transition-all duration-300 ease-out ${
+        className={`sticky top-0 z-50 w-full bg-white transition-shadow duration-200 ${
           isScrolled
-            ? "shadow-[var(--shadow-nav)] bg-white/95 backdrop-blur-md border-b border-gray-200/70"
+            ? "shadow-[var(--shadow-nav)] bg-white/95 backdrop-blur-md border-b border-gray-200/80"
             : "border-b border-gray-100"
         }`}
         role="banner"
       >
         <nav
-          className={`container-acs flex items-center justify-between transition-all duration-300 ease-out ${
-            isScrolled ? "h-20 md:h-22" : "h-26 sm:h-28 md:h-32"
-          }`}
+          className="container-acs flex items-center justify-between h-18 sm:h-20"
           aria-label="Main navigation"
         >
-          {/* Logo — Big & Prominent */}
+          {/* Logo (Fixed dimensions, zero resizing on scroll, zero jitter) */}
           <Link href="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="ACS Home">
-            <div
-              className={`relative transition-all duration-300 ease-out transform group-hover:scale-[1.02] ${
-                isScrolled
-                  ? "h-14 sm:h-16 md:h-18 w-40 sm:w-48 md:w-54"
-                  : "h-20 sm:h-22 md:h-26 lg:h-28 xl:h-30 w-52 sm:w-60 md:w-72 lg:w-76 xl:w-84"
-              }`}
-            >
+            <div className="relative h-12 sm:h-13 w-40 sm:w-48 transform group-hover:scale-[1.02] transition-transform">
               <Image
                 src="/images/acs-official-logo.avif"
                 alt={`${siteConfig.name} Logo`}
                 fill
                 className="object-contain object-left"
                 priority
-                sizes="(max-width: 640px) 240px, (max-width: 1024px) 300px, 360px"
+                sizes="(max-width: 640px) 180px, 240px"
               />
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1" role="list">
+          <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1.5" role="list">
             {navLinks.map((link) => (
               <li
                 key={link.href}
@@ -158,7 +152,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="px-2.5 xl:px-3.5 py-2 rounded font-roboto font-500 text-[13px] xl:text-sm text-gray-700 hover:text-navy hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1 whitespace-nowrap"
+                  className="px-2 xl:px-3 py-2 rounded font-roboto font-500 text-[13px] xl:text-sm text-gray-700 hover:text-navy hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1 whitespace-nowrap"
                   aria-haspopup={link.children ? "true" : undefined}
                 >
                   {link.label}
@@ -190,31 +184,62 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* CTA Button (desktop) */}
-          <Link
-            href="/contact"
-            className="btn-primary hidden lg:inline-flex text-xs xl:text-sm py-2 xl:py-2.5 px-3.5 xl:px-5 shrink-0 whitespace-nowrap"
-            aria-label="Get a free quote"
-          >
-            Get Free Quote
-          </Link>
+          {/* Right Actions: City Selector + CTA + Mobile Hamburger */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* City Selector Pill Button (Desktop & Mobile) */}
+            <button
+              type="button"
+              onClick={() => setIsCityModalOpen(true)}
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold border border-sky-200 bg-sky-50/90 text-navy hover:bg-sky-100 hover:border-sky-300 transition-all active:scale-95 cursor-pointer shadow-2xs group shrink-0"
+              title="Change Deployment City"
+              aria-label="Change current city"
+            >
+              <Image
+                src="/google-maps-icon.webp"
+                alt="Location"
+                width={16}
+                height={16}
+                className="w-3.5 h-3.5 object-contain shrink-0 group-hover:scale-110 transition-transform"
+              />
+              <span className="max-w-[75px] sm:max-w-[110px] truncate font-semibold text-slate-800">
+                {currentCity?.name || "Kolkata"}
+              </span>
+              <svg
+                className="w-3 h-3 text-sky-600 shrink-0 transition-transform group-hover:translate-y-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="lg:hidden p-2 rounded text-navy hover:bg-gray-100 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-nav"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+            {/* CTA Button (desktop) */}
+            <Link
+              href="/contact"
+              className="btn-primary hidden lg:inline-flex text-xs xl:text-sm py-2 px-3.5 xl:px-4 shrink-0 whitespace-nowrap"
+              aria-label="Get a free quote"
+            >
+              Get Free Quote
+            </Link>
+
+            {/* Mobile Hamburger */}
+            <button
+              className="lg:hidden p-2 rounded text-navy hover:bg-gray-100 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                {mobileOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -235,13 +260,13 @@ export default function Header() {
           <nav className="relative w-80 max-w-full bg-white h-full overflow-y-auto shadow-2xl flex flex-col">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center py-1">
-                <div className="relative h-20 sm:h-22 w-56 sm:w-64">
+                <div className="relative h-12 w-44">
                   <Image
                     src="/images/acs-official-logo.avif"
                     alt={`${siteConfig.name} Logo`}
                     fill
                     className="object-contain object-left"
-                    sizes="260px"
+                    sizes="180px"
                   />
                 </div>
               </Link>
@@ -253,6 +278,31 @@ export default function Header() {
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
+              </button>
+            </div>
+
+            {/* Mobile City Selector Row */}
+            <div className="p-3 bg-sky-50/80 border-b border-sky-100 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/google-maps-icon.webp"
+                  alt="Location"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 object-contain shrink-0"
+                />
+                <span className="text-xs text-slate-600 font-medium">Hub:</span>
+                <span className="text-xs font-bold text-navy">{currentCity?.name || "Kolkata"}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setIsCityModalOpen(true);
+                }}
+                className="text-xs text-sky-600 font-bold underline hover:text-sky-800 cursor-pointer"
+              >
+                Change
               </button>
             </div>
 

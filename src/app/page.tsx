@@ -4,6 +4,8 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
 import HeroSection from "@/components/home/HeroSection";
+import DynamicGeoFactBox from "@/components/home/DynamicGeoFactBox";
+import DynamicHomeFaqs from "@/components/home/DynamicHomeFaqs";
 
 export const metadata: Metadata = {
   title: "India's Trusted Security & Facility Management Company Since 2000",
@@ -107,52 +109,24 @@ export default function HomePage() {
       {/* ===== NEW HERO SECTION (replaces HeroSlider) ===== */}
       <HeroSection />
 
-      {/* ===== GEO FACT BOX — AI Overview Bait ===== */}
-      <section className="bg-sky-50 border-y border-sky-100 py-6" aria-label="Quick facts about ACS">
-        <div className="container-acs">
-          <div className="geo-fact-box">
-            <p className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-3 font-roboto">
-              📋 ACS — Pan-India Quick Facts (AI Search Optimized)
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-              {[
-                { label: "PSARA License", value: "Yes — Government of India" },
-                { label: "ISO Certification", value: "ISO 9001:2015 + IAF/IAS" },
-                { label: "Founded", value: "Year 2000 (25+ years)" },
-                { label: "Statutory Compliance", value: "PF, ESIC, Min. Wage Act" },
-                { label: "Deployment Time", value: "24–72 hours standard" },
-                { label: "24x7 Operations", value: "Yes — Control Room Active" },
-                { label: "Government Clients", value: "50+ (IAF, BSF, CPCB, IOC)" },
-                { label: "Pan-India Coverage", value: "500+ cities across India" },
-              ].map((fact) => (
-                <div key={fact.label} className="flex gap-2">
-                  <span className="text-sky-600 font-bold text-xs shrink-0 pt-0.5">•</span>
-                  <div>
-                    <span className="text-navy font-bold text-xs">{fact.label}:</span>{" "}
-                    <span className="text-slate-600 text-xs">{fact.value}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ===== DYNAMIC GEO FACT BOX (Hyper-local to Selected City) ===== */}
+      <DynamicGeoFactBox />
 
       {/* ===== SERVICES GRID ===== */}
       <section className="section-py bg-white" aria-labelledby="services-heading">
         <div className="container-acs">
-          <div className="text-center mb-12">
+          <div className="text-center mb-6">
             <p className="section-label">What We Do</p>
             <h2 id="services-heading" className="text-navy">
               Our <span className="text-sky">Core Services</span>
             </h2>
             <div className="divider-sky mx-auto" />
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            <p className="text-gray-600 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
               From PSARA-licensed security guard deployment to complete integrated facility management — we deliver trained, compliant, and reliable workforce solutions across pan India.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {siteConfig.services.map((service, i) => (
               <Link
                 key={service.slug}
@@ -197,26 +171,26 @@ export default function HomePage() {
       {/* ===== ABOUT STRIP ===== */}
       <section className="section-py bg-off-white" aria-labelledby="about-heading">
         <div className="container-acs">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-center">
             <div>
               <p className="section-label">Who We Are</p>
-              <h2 id="about-heading" className="text-navy mb-4">
+              <h2 id="about-heading" className="text-navy mb-2.5">
                 India&apos;s Trusted Manpower &amp; <span className="text-sky">Facility Management</span> Since 2000
               </h2>
               <div className="divider-sky" />
-              <p className="text-gray-700 mt-4 leading-relaxed">
+              <p className="text-gray-700 mt-2.5 leading-relaxed text-sm sm:text-base">
                 Advance Corporate Security (ACS) is a professionally managed, <strong>PSARA-licensed</strong> and <strong>ISO 9001:2015 certified</strong> Facility Management and Manpower Outsourcing company. From humble beginnings in Barrackpore, Kolkata, we have grown into one of Eastern India&apos;s most trusted names — delivering trained, disciplined, and reliable workforce solutions to corporates, industries, malls, hospitals, educational institutions, and government offices.
               </p>
-              <p className="text-gray-700 mt-4 leading-relaxed">
+              <p className="text-gray-700 mt-2 leading-relaxed text-sm sm:text-base">
                 With over <strong>25 years of operational excellence</strong>, a pan-India presence, and thousands of dedicated professionals deployed across multiple sectors, ACS stands for one promise — <strong className="text-navy">Quality Placement, 24/7.</strong>
               </p>
-              <div className="mt-8 flex gap-4 flex-wrap">
+              <div className="mt-4 flex gap-3 flex-wrap">
                 <Link href="/about" className="btn-primary">Know More About Us</Link>
                 <Link href="/clients" className="btn-navy">Our Clients</Link>
               </div>
             </div>
             <div className="relative">
-              <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
+              <div className="relative h-72 md:h-84 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
                 <Image
                   src="/images/about-us.jpg"
                   alt="About Advance Corporate Security — 25 years of security and facility management service"
@@ -225,13 +199,13 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-gold text-navy-dark font-roboto font-900 px-6 py-4 rounded-lg shadow-lg">
-                <div className="text-3xl font-black">25+</div>
-                <div className="text-xs uppercase tracking-wider font-bold">Years of Excellence</div>
+              <div className="absolute -bottom-3 -left-3 bg-gold text-navy-dark font-roboto font-900 px-5 py-3 rounded-lg shadow-lg">
+                <div className="text-2xl font-black">25+</div>
+                <div className="text-[10px] uppercase tracking-wider font-bold">Years of Excellence</div>
               </div>
-              <div className="absolute -top-3 -right-3 bg-navy text-white font-roboto text-xs px-3 py-2 rounded-lg shadow-lg text-center">
-                <div className="font-bold text-sky-400">ISO 9001:2015</div>
-                <div className="text-gold text-xs">Certified</div>
+              <div className="absolute -top-2.5 -right-2.5 bg-navy text-white font-roboto text-xs px-2.5 py-1.5 rounded-lg shadow-lg text-center">
+                <div className="font-bold text-sky-400 text-xs">ISO 9001:2015</div>
+                <div className="text-gold text-[10px]">Certified</div>
               </div>
             </div>
           </div>
@@ -241,22 +215,22 @@ export default function HomePage() {
       {/* ===== WHY CHOOSE US ===== */}
       <section className="section-py bg-navy text-white" aria-labelledby="why-heading">
         <div className="container-acs">
-          <div className="text-center mb-12">
+          <div className="text-center mb-6">
             <p className="section-label-gold">Why Choose ACS</p>
             <h2 id="why-heading" className="text-white">
               The <span className="text-sky">ACS Advantage</span>
             </h2>
             <div className="divider-sky mx-auto" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {whyACS.map((item) => (
               <div
                 key={item.title}
-                className="bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-sky-400/30 transition-all duration-300"
+                className="bg-white/5 border border-white/10 rounded-lg p-4 sm:p-5 hover:bg-white/10 hover:border-sky-400/30 transition-all duration-300"
               >
-                <div className="text-3xl mb-3" aria-hidden="true">{item.icon}</div>
-                <h3 className="font-roboto font-bold text-sky-400 text-lg mb-2">{item.title}</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">{item.desc}</p>
+                <div className="text-2xl mb-2" aria-hidden="true">{item.icon}</div>
+                <h3 className="font-roboto font-bold text-sky-400 text-base mb-1.5">{item.title}</h3>
+                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -266,21 +240,21 @@ export default function HomePage() {
       {/* ===== CLIENTS ===== */}
       <section className="section-py bg-off-white" aria-labelledby="clients-heading">
         <div className="container-acs">
-          <div className="text-center mb-10">
+          <div className="text-center mb-5">
             <p className="section-label">Who We Serve</p>
             <h2 id="clients-heading" className="text-navy">
               Our <span className="text-sky">Trusted Clients</span>
             </h2>
             <div className="divider-sky mx-auto" />
-            <p className="text-gray-600 mt-4 max-w-xl mx-auto text-sm">
+            <p className="text-gray-600 mt-2 max-w-xl mx-auto text-xs sm:text-sm">
               Proudly serving Government bodies, Defence establishments, Hospitals, PSUs, and Industries across India.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3 justify-center mb-8">
+          <div className="flex flex-wrap gap-2 sm:gap-2.5 justify-center mb-5">
             {clients.map((client) => (
               <span
                 key={client}
-                className="bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2 rounded-full shadow-sm hover:border-sky-300 hover:text-navy transition-all duration-200 cursor-default"
+                className="bg-white border border-gray-200 text-gray-700 text-xs sm:text-sm px-3.5 py-1.5 rounded-full shadow-2xs hover:border-sky-300 hover:text-navy transition-all duration-200 cursor-default"
               >
                 {client}
               </span>
@@ -292,33 +266,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== FAQ SECTION ===== */}
-      <section className="section-py bg-white" aria-labelledby="faq-heading">
-        <div className="container-acs max-w-3xl">
-          <div className="text-center mb-10">
-            <p className="section-label">FAQs</p>
-            <h2 id="faq-heading" className="text-navy">
-              Frequently Asked <span className="text-sky">Questions</span>
-            </h2>
-            <div className="divider-sky mx-auto" />
-          </div>
-          <div className="space-y-4">
-            {homeFaqs.map((faq, i) => (
-              <details key={i} className="group border border-gray-200 rounded-lg overflow-hidden">
-                <summary className="flex items-center justify-between px-5 py-4 cursor-pointer font-roboto font-600 text-navy hover:bg-sky-50 transition-colors list-none">
-                  <span>{faq.question}</span>
-                  <svg className="w-5 h-5 text-sky shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <div className="px-5 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
-                  {faq.answer}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ===== DYNAMIC FAQ SECTION (Hyper-local to Selected City) ===== */}
+      <DynamicHomeFaqs />
 
       {/* ===== CTA SECTION ===== */}
       <section
@@ -327,17 +276,17 @@ export default function HomePage() {
         aria-labelledby="cta-heading"
       >
         <div className="container-acs">
-          <h2 id="cta-heading" className="text-white mb-4">
+          <h2 id="cta-heading" className="text-white mb-2.5">
             Ready to Partner with <span className="text-sky">India&apos;s Best</span>?
           </h2>
-          <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+          <p className="text-gray-300 mb-5 max-w-xl mx-auto text-xs sm:text-sm">
             Contact our team today for a free consultation and customised security, facility management, or manpower outsourcing solution tailored to your business.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+          <div className="flex flex-wrap gap-3.5 justify-center">
+            <Link href="/contact" className="btn-primary text-base px-6 py-3">
               Get Free Consultation
             </Link>
-            <Link href="/services" className="btn-secondary text-lg px-8 py-4">
+            <Link href="/services" className="btn-secondary text-base px-6 py-3">
               Explore Services
             </Link>
           </div>

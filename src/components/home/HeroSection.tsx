@@ -1,251 +1,338 @@
-﻿// src/components/home/HeroSection.tsx
+"use client";
+
+// src/components/home/HeroSection.tsx
 // ============================================================
-// ACS Hero Section — Static Split-Layout (Server Component)
-// Replaces the JS-heavy HeroSlider carousel
-// Design: MetroMitra-style split hero | ACS Navy+SkyBlue+Gold brand
-// SEO keywords: PSARA licensed security services India, facility management company India
+// ACS Hero Section — Dynamic Enterprise B2B Split-Layout
+// Optimized for zero UI disruptions, responsive proportions,
+// reactive to global CityContext, and animated stats strip.
 // ============================================================
 
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
+import { useCity } from "@/context/CityContext";
+import AnimatedStat from "@/components/common/AnimatedStat";
 
 const TRUST_BADGES = [
   { label: "PSARA Licensed", icon: "🛡️" },
   { label: "ISO 9001:2015", icon: "✅" },
-  { label: "25+ Years", icon: "🏆" },
-  { label: "Govt. Empanelled", icon: "🏛️" },
+  { label: "25+ Years Excellence", icon: "🏆" },
+  { label: "50+ Govt. Empanelled", icon: "🏛️" },
 ];
 
-const HERO_STATS = [
-  { value: "25+", label: "Years of Excellence" },
-  { value: "5000+", label: "Trained Professionals" },
-  { value: "50+", label: "Govt. Clients" },
-  { value: "Pan India", label: "Presence" },
+const SECURITY_SERVICES = [
+  { name: "Security Guards", slug: "security-guard", icon: "👮", badge: "PSARA" },
+  { name: "Armed Guards", slug: "armed-guard", icon: "🛡️", badge: "Bank & ATM" },
+  { name: "CCTV Surveillance", slug: "surveillance-cctv", icon: "📹", badge: "24×7 Active" },
+  { name: "Night Patrolling", slug: "night-patrol", icon: "🌙", badge: "Perimeter" },
+  { name: "Executive VIP", slug: "executive-protection", icon: "🕴️", badge: "Ex-Defence" },
+  { name: "Fire Safety", slug: "fire-fighting", icon: "🚒", badge: "NBC Norms" },
+  { name: "Event Security", slug: "event-security", icon: "🎪", badge: "Crowd Mgmt" },
+  { name: "Industrial Security", slug: "industrial-security", icon: "🏭", badge: "Plant / SEZ" },
+];
+
+const FACILITY_SERVICES = [
+  { name: "Housekeeping", slug: "housekeeping", icon: "🧹", badge: "ISO SOP" },
+  { name: "Janitorial Clean", slug: "janitorial", icon: "🧽", badge: "Deep Clean" },
+  { name: "Pest Control", slug: "pest-control", icon: "🐛", badge: "IPM / AMC" },
+  { name: "Facade Cleaning", slug: "facade-cleaning", icon: "🏢", badge: "High-Rise" },
+  { name: "MEP Maintenance", slug: "mep-maintenance", icon: "⚙️", badge: "HVAC / Elec" },
+  { name: "Manpower Supply", slug: "manpower-outsourcing", icon: "👷", badge: "PF / ESIC" },
+  { name: "Staffing & Hiring", slug: "placement-services", icon: "🤝", badge: "Recruitment" },
+  { name: "Horticulture", slug: "horticulture", icon: "🌿", badge: "Green Campus" },
 ];
 
 export default function HeroSection() {
+  const { currentCity, setIsCityModalOpen } = useCity();
+  const [activeTab, setActiveTab] = useState<"security" | "facility">("security");
+
+  const currentServices = activeTab === "security" ? SECURITY_SERVICES : FACILITY_SERVICES;
+
   return (
     <section
-      className="relative bg-gradient-to-br from-[#f0f9ff] via-white to-[#eef4fb] overflow-hidden border-b border-slate-200"
+      className="relative bg-gradient-to-br from-[#f2f8fc] via-white to-[#edf5fa] overflow-hidden border-b border-slate-200/80 pt-3 sm:pt-5 pb-3 sm:pb-4"
       aria-labelledby="hero-heading"
     >
-      {/* Subtle background pattern */}
+      {/* Subtle background grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         aria-hidden="true"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, #0b1f3f 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 1px 1px, #0b1f3f 1px, transparent 0)",
           backgroundSize: "40px 40px",
         }}
       />
 
       <div className="container-acs relative z-10">
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 xl:gap-16 items-center py-14 sm:py-16 lg:py-20 xl:py-24">
-
-          {/* ── LEFT: Text content ── */}
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.18fr_0.82fr] gap-6 xl:gap-8 items-start mb-4">
+          {/* ── LEFT COLUMN: Headline, Location Pill & Tabbed Services Box ── */}
           <div className="max-w-2xl">
-            {/* Trust badge row */}
-            <div className="flex flex-wrap gap-2 mb-6" role="list" aria-label="Certifications">
+            {/* Trust Badges */}
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5" role="list" aria-label="Certifications">
               {TRUST_BADGES.map((badge) => (
-                <span key={badge.label} className="badge-sky" role="listitem">
+                <span
+                  key={badge.label}
+                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sky-50 border border-sky-200 text-sky-950 text-[11px] font-bold shadow-2xs"
+                  role="listitem"
+                >
                   <span aria-hidden="true">{badge.icon}</span>
                   {badge.label}
                 </span>
               ))}
             </div>
 
-            {/* H1 */}
+            {/* Main H1 Heading */}
             <h1
               id="hero-heading"
-              className="font-roboto font-black text-slate-900 leading-[1.05] mb-5 tracking-tight"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
+              className="font-roboto font-black text-slate-900 leading-[1.15] mb-1.5 tracking-tight text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px]"
             >
-              India&apos;s Trusted{" "}
-              <span
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--color-sky), var(--color-sky-dark))",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Corporate Security
-              </span>{" "}
-              &amp;{" "}
-              <span className="text-navy">Facility Management</span>
+              Corporate Security &amp; Facility Management in{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-navy">
+                {currentCity.name}
+              </span>
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-lg text-slate-600 mb-3 leading-relaxed font-medium max-w-lg">
-              PSARA-licensed. ISO 9001:2015 certified. Serving Government,
-              Defence, Corporate &amp; Industrial clients across{" "}
-              <strong className="text-navy">Pan India</strong> since{" "}
-              {siteConfig.foundedYear}.
-            </p>
-            <p className="text-base text-slate-500 mb-8 max-w-md leading-relaxed">
-              Security Guards · Facility Management · Manpower Outsourcing ·
-              Horticulture — complete B2B workforce solutions with zero statutory exposure.
+            {/* Subheadline tailored to active location */}
+            <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed mb-2 font-normal">
+              Deploy PSARA-licensed armed &amp; unarmed security guards, corporate housekeeping, and compliant workforce across{" "}
+              <strong className="text-navy font-semibold">
+                {currentCity.name}, {currentCity.state}
+              </strong>
+              . 25+ years of operational excellence with 100% statutory PF/ESIC compliance.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mb-10">
+            {/* Action Bar: City Hub Button + Free Site Assessment CTA */}
+            <div className="flex flex-wrap items-center gap-2.5 mb-3">
+              {/* City Pill Button */}
+              <button
+                type="button"
+                onClick={() => setIsCityModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-sky-200 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-sky-50 hover:border-sky-300 transition-all shadow-2xs group cursor-pointer"
+                title="Change Deployment City"
+              >
+                <Image
+                  src="/google-maps-icon.webp"
+                  alt="City"
+                  width={16}
+                  height={16}
+                  className="w-3.5 h-3.5 object-contain group-hover:scale-110 transition-transform shrink-0"
+                />
+                <span>
+                  Deployment Hub:{" "}
+                  <strong className="text-navy font-bold">{currentCity.name}</strong>
+                </span>
+                <span className="text-sky-600 underline font-bold text-xs ml-0.5 group-hover:text-sky-800">
+                  Change
+                </span>
+              </button>
+
+              {/* Free Assessment CTA */}
               <Link
                 href="/contact"
-                className="btn-primary text-base px-7 py-3.5"
-                aria-label="Get a free consultation from ACS"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-bold text-xs sm:text-sm bg-navy text-white hover:bg-navy-dark hover:shadow-sm transition-all cursor-pointer shadow-2xs"
               >
-                Get Free Consultation
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
+                <span>Get Free Site Assessment</span>
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded font-roboto font-600 text-navy border-2 border-navy hover:bg-navy hover:text-white transition-all duration-200 text-base"
-                aria-label="Explore all ACS services"
-              >
-                Explore Services
-              </Link>
-              <a
-                href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded font-roboto font-600 text-sky-700 border-2 border-sky-200 hover:bg-sky-50 transition-all duration-200 text-base"
-                aria-label={`Call ACS at ${siteConfig.phone}`}
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                {siteConfig.phone}
-              </a>
             </div>
 
-            {/* Stats Strip (mobile — inline below CTAs) */}
-            <div
-              className="flex flex-wrap gap-6 lg:hidden"
-              role="list"
-              aria-label="Company statistics"
-            >
-              {HERO_STATS.map((stat) => (
-                <div key={stat.label} role="listitem">
-                  <div className="text-2xl font-black text-navy font-roboto">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-slate-500 font-medium uppercase tracking-wide">
-                    {stat.label}
-                  </div>
+            {/* ── B2B ENTERPRISE SERVICES BOX (Workforce Web Style with Category Tabs) ── */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-4 sm:p-5">
+              {/* Category Segmented Tabs */}
+              <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-slate-100">
+                <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("security")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      activeTab === "security"
+                        ? "bg-white text-navy shadow-xs"
+                        : "text-slate-600 hover:text-navy"
+                    }`}
+                  >
+                    <span>🛡️</span>
+                    <span>Security &amp; Safety</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("facility")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      activeTab === "facility"
+                        ? "bg-white text-navy shadow-xs"
+                        : "text-slate-600 hover:text-navy"
+                    }`}
+                  >
+                    <span>🏢</span>
+                    <span>Facility &amp; Manpower</span>
+                  </button>
                 </div>
-              ))}
+
+                <Link
+                  href={activeTab === "security" ? "/services/security-safety" : "/services/facility-management"}
+                  className="text-xs font-bold text-sky-700 hover:text-navy underline hidden sm:inline-flex shrink-0"
+                >
+                  {activeTab === "security" ? "All Security (8) →" : "All Facility (9) →"}
+                </Link>
+              </div>
+
+              {/* Dynamic Tab Header — Suitable B2B title */}
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <h2 className="text-xs sm:text-sm font-black text-navy uppercase tracking-wider">
+                    {activeTab === "security"
+                      ? `PSARA Security & Safety Deployments in ${currentCity.name}`
+                      : `Corporate Facility Management & Manpower in ${currentCity.name}`}
+                  </h2>
+                  <p className="text-[11px] text-slate-500">
+                    {activeTab === "security"
+                      ? `Background-verified armed & unarmed guards, CCTV & industrial security`
+                      : `Corporate housekeeping, janitorial, pest control & compliant staffing`}
+                  </p>
+                </div>
+              </div>
+
+              {/* 8-Grid of Active Services */}
+              <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
+                {currentServices.map((svc) => (
+                  <Link
+                    key={svc.slug}
+                    href={`/services/${svc.slug}/${currentCity.slug}`}
+                    className="group flex flex-col items-center text-center p-1.5 rounded-xl hover:bg-sky-50/70 border border-transparent hover:border-sky-200/80 transition-all duration-150 cursor-pointer"
+                  >
+                    <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-white group-hover:shadow-xs transition-all">
+                      {svc.badge && (
+                        <span className={`absolute -top-1.5 px-1 py-0.2 rounded-full text-[7px] sm:text-[8px] font-bold shadow-2xs whitespace-nowrap ${
+                          activeTab === "security"
+                            ? "bg-sky-100 text-sky-800 border border-sky-200"
+                            : "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                        }`}>
+                          {svc.badge}
+                        </span>
+                      )}
+                      <span className="text-lg sm:text-xl transition-transform group-hover:scale-110 duration-150">
+                        {svc.icon}
+                      </span>
+                    </div>
+                    <span className="mt-1 text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-navy leading-tight line-clamp-1">
+                      {svc.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* ── RIGHT: Hero Image + floating badges ── */}
-          <div className="relative flex items-center justify-center lg:justify-end">
-            {/* Main image */}
-            <div className="relative w-full max-w-lg aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(11,31,63,0.18)]">
+          {/* ── RIGHT COLUMN: Photography, Trust Credentials & 24×7 Control Room ── */}
+          <div className="relative flex flex-col items-center lg:items-end justify-start gap-3 w-full">
+            {/* Visual Hero Image Card with Floating Trust Badges */}
+            <div className="relative w-full max-w-lg aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_16px_40px_rgba(11,31,63,0.12)] border border-slate-200/80">
               <Image
-                src="/images/security-service-slider.jpg"
-                alt="ACS security and facility management professionals on duty"
+                src="/images/guarding.jpg"
+                alt={`ACS security and facility management officers on duty in ${currentCity.name}`}
                 fill
                 priority
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 45vw"
               />
-              {/* Gradient overlay — bottom only for text legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-navy/10 to-transparent" />
-              {/* Bottom label */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white font-roboto font-bold text-sm">
-                  Serving 50+ Government &amp; Defence clients across India
-                </p>
+              {/* Subtle gradient vignette for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent pointer-events-none" />
+
+              {/* Floating Badge 1: Top Right ISO */}
+              <div className="absolute top-3 right-3 bg-navy/95 backdrop-blur-xs text-white px-3 py-1.5 rounded-lg shadow-lg border border-sky-400/30 text-center">
+                <div className="text-[10px] text-gold font-bold uppercase tracking-wider">ISO 9001:2015</div>
+                <div className="text-xs font-black text-white">CERTIFIED</div>
+              </div>
+
+              {/* Floating Badge 2: Bottom Left Experience */}
+              <div className="absolute bottom-3 left-3 bg-gold text-navy font-roboto px-3.5 py-2 rounded-lg shadow-lg">
+                <div className="text-xl font-black leading-none">25+</div>
+                <div className="text-[9px] uppercase tracking-wider font-extrabold mt-0.5">
+                  Years Excellence
+                </div>
+              </div>
+
+              {/* Floating Badge 3: Bottom Right PSARA */}
+              <div className="absolute bottom-3 right-3 bg-sky-600/95 backdrop-blur-xs text-white px-3 py-1.5 rounded-lg shadow-lg text-center">
+                <div className="text-xs font-black">PSARA</div>
+                <div className="text-[9px] font-medium opacity-90">Govt. Licensed</div>
               </div>
             </div>
 
-            {/* Floating: 25+ Years badge */}
-            <div className="absolute -bottom-4 -left-4 bg-gold text-navy-dark font-roboto px-5 py-4 rounded-xl shadow-xl z-10">
-              <div className="text-3xl font-black leading-none">25+</div>
-              <div className="text-xs uppercase tracking-wider font-bold mt-0.5">
-                Years of Excellence
+            {/* Client Empanelment Chips */}
+            <div className="w-full max-w-lg bg-white rounded-xl border border-slate-200/80 p-3 shadow-2xs">
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                <span>Prestigious Institutional Clients</span>
+                <span className="text-navy font-extrabold">50+ Govt. Empanelled</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
+                {[
+                  "Indian Air Force",
+                  "BSF (MHA)",
+                  "Central Pollution Board",
+                  "Indian Oil Corporation",
+                  "HAL Barrackpore",
+                  "ESI Hospital",
+                  "Metro Railway",
+                ].map((c) => (
+                  <span
+                    key={c}
+                    className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200/80 text-slate-700"
+                  >
+                    {c}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* Floating: ISO badge */}
-            <div className="absolute -top-3 -right-3 bg-navy text-white font-roboto text-xs px-3.5 py-2.5 rounded-xl shadow-lg text-center z-10 border border-sky-400/20">
-              <div className="font-black text-sky-400 text-base">ISO</div>
-              <div className="font-bold text-[11px]">9001:2015</div>
-              <div className="text-gold text-[10px] font-bold mt-0.5">
-                CERTIFIED
+            {/* 24×7 Central Control Room Bar */}
+            <div className="w-full max-w-lg bg-gradient-to-r from-navy to-sky-950 rounded-xl p-3 px-4 text-white flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <div>
+                  <p className="text-[10px] text-sky-200 font-medium">24×7 Central Control Room</p>
+                  <p className="text-xs sm:text-sm font-black text-white tracking-wide">{siteConfig.phones[0]}</p>
+                </div>
               </div>
-            </div>
-
-            {/* Floating: PSARA badge */}
-            <div className="absolute top-1/2 -right-4 -translate-y-1/2 bg-sky-600 text-white font-roboto text-xs px-3 py-2 rounded-xl shadow-lg text-center z-10 hidden sm:block">
-              <div className="font-black text-sm">PSARA</div>
-              <div className="text-[10px] font-medium opacity-90">Licensed</div>
+              <a
+                href={`tel:${siteConfig.phones[0].replace(/[^+\d]/g, "")}`}
+                className="px-3.5 py-1.5 bg-gold hover:bg-gold-light text-navy font-bold text-xs rounded-lg shadow-2xs transition-all active:scale-95"
+              >
+                Call Now
+              </a>
             </div>
           </div>
         </div>
 
-        {/* ── STATS STRIP (desktop only — full width below content) ── */}
+        {/* ── STATS STRIP WITH COUNT-UP ANIMATION (Image reference portion) ── */}
         <div
-          className="hidden lg:grid grid-cols-4 gap-0 border-t border-slate-200 py-6 mb-0"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-0 border-t border-slate-200 pt-3 pb-1.5"
           role="list"
           aria-label="Company statistics"
         >
-          {HERO_STATS.map((stat, i) => (
-            <div
-              key={stat.label}
-              role="listitem"
-              className={`text-center px-6 ${i < HERO_STATS.length - 1 ? "border-r border-slate-200" : ""}`}
-            >
-              <div className="text-3xl xl:text-4xl font-black text-navy font-roboto">
-                {stat.value}
-              </div>
-              <div className="text-xs text-slate-500 font-medium uppercase tracking-wider mt-1">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+          <AnimatedStat
+            value="25+"
+            label="Years of Excellence"
+            className="text-center px-4 md:border-r border-slate-200"
+          />
+          <AnimatedStat
+            value="5000+"
+            label="Trained Professionals"
+            className="text-center px-4 md:border-r border-slate-200"
+          />
+          <AnimatedStat
+            value="50+"
+            label="Govt. Clients"
+            className="text-center px-4 md:border-r border-slate-200"
+          />
+          <AnimatedStat
+            value="Pan India"
+            label="Presence (800+ Cities)"
+            className="text-center px-4"
+          />
         </div>
-      </div>
-
-      {/* Bottom wave shape break */}
-      <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        aria-hidden="true"
-      >
-        <svg
-          viewBox="0 0 1440 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          className="w-full h-8 sm:h-10 md:h-12 block align-bottom"
-        >
-          <path d="M0 48L1440 0V48H0Z" fill="white" />
-        </svg>
       </div>
     </section>
   );

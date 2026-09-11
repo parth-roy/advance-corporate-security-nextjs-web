@@ -5,6 +5,8 @@ import { siteConfig } from "@/lib/config";
 import { buildOrganizationSchema, serializeJsonLd } from "@/lib/schema";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CityProviderWrapper from "@/components/common/CityProviderWrapper";
+import FloatingContact from "@/components/layout/FloatingContact";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -102,11 +104,14 @@ export default function RootLayout({
         />
       </head>
       <body className="font-inter antialiased bg-white text-gray-900">
-        <Header />
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
+        <CityProviderWrapper>
+          <Header />
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
+          <FloatingContact />
+        </CityProviderWrapper>
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-﻿// src/app/location/page.tsx
+// src/app/location/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
@@ -6,7 +6,7 @@ import { ACS_CITIES, ACS_STATES } from "@/lib/cities";
 
 export const metadata: Metadata = {
   title: "Security & Facility Management Services Pan India | All Cities | ACS",
-  description: "ACS provides PSARA-licensed security and facility management services across 580+ cities in India. Find your city and get a free quote.",
+  description: "ACS provides PSARA-licensed security and facility management services across 800+ cities in India. Find your city and get a free quote.",
   alternates: { canonical: `${siteConfig.url}/location` },
 };
 
@@ -25,7 +25,7 @@ export default function LocationHubPage() {
             ACS Services Across <span className="text-sky">Pan India</span>
           </h1>
           <p className="text-sky-200 text-lg max-w-2xl mx-auto">
-            PSARA-licensed security, facility management &amp; manpower outsourcing in 580+ cities.
+            PSARA-licensed security, facility management &amp; manpower outsourcing in 800+ cities.
           </p>
         </div>
       </section>
