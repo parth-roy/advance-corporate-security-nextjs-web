@@ -120,19 +120,13 @@ export default function HomePage() {
                 className="card-acs group overflow-hidden block"
                 aria-label={`Learn about ${service.name}`}
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={service.heroImage}
-                    alt={service.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    loading={i < 2 ? "eager" : "lazy"}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <span className="text-white font-roboto font-bold text-sm">{service.shortName}</span>
+                <div className="p-5 bg-gradient-to-br from-slate-50 via-sky-50/30 to-slate-100/60 border-b border-slate-100 flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-xl bg-white shadow-xs border border-slate-200/80 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
+                    {service.icon}
                   </div>
+                  <span className="text-[11px] font-bold text-sky-800 bg-sky-100/80 border border-sky-200 px-2.5 py-0.5 rounded-full">
+                    {service.category === "security" ? "PSARA Licensed" : service.category === "facility" ? "ISO 9001" : "Verified B2B"}
+                  </span>
                 </div>
                 <div className="p-5">
                   <h3 className="font-roboto font-bold text-navy text-base mb-2 group-hover:text-sky transition-colors">

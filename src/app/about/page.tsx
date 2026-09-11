@@ -50,26 +50,21 @@ export default function AboutPage() {
               <span className="badge-navy border border-white/20">✅ ISO 9001:2015</span>
             </div>
 
-            <h1 className="font-roboto font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-3">
-              About Advance Corporate Security
+            <h1 className="font-roboto font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
+              25 Years of Trusted <span className="text-sky">Security &amp; Facility</span> Leadership
             </h1>
 
-            <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-              25 years of operational excellence delivering government-empanelled workforce outsourcing, PSARA-licensed security guards, and integrated facility management across 800+ cities pan India.
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-3xl mb-6">
+              Advance Corporate Security (ACS) provides comprehensive, government-empanelled workforce outsourcing, PSARA-licensed armed &amp; unarmed security guards, and integrated facility management across 800+ cities pan India.
             </p>
-          </div>
 
-          {/* Panoramic Visual Banner Showcase — 100% Unclipped, Exact 1920:500 aspect ratio, White Card */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white p-2 sm:p-3">
-            <div className="relative w-full aspect-[1920/500] rounded-xl overflow-hidden bg-white flex items-center justify-center">
-              <Image
-                src="/images/about-us-header.jpg"
-                alt="Advance Corporate Security Team — About Us"
-                fill
-                priority
-                className="object-contain"
-                sizes="(max-width: 1280px) 100vw, 1200px"
-              />
+            <div className="flex flex-wrap gap-3 items-center">
+              <Link href="/contact" className="btn-primary text-xs sm:text-sm px-6 py-3">
+                Get Free Consultation
+              </Link>
+              <Link href="/clients" className="btn-secondary text-xs sm:text-sm px-5 py-3">
+                Our Esteemed Clients
+              </Link>
             </div>
           </div>
 

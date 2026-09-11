@@ -7,7 +7,6 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug, ACS_SERVICE_CATEGORIES } from "@/lib/services";
@@ -146,70 +145,70 @@ export default async function ServiceCityPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />}
 
-      {/* ── HERO BANNER — 2-Column Enterprise Split with Framed Visual Card ── */}
+      {/* ── HERO BANNER — Authoritative B2B Enterprise Header ── */}
       <section className="bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white py-12 md:py-16 relative overflow-hidden">
         <div className="absolute -top-32 -right-32 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", backgroundSize: "32px 32px" }} aria-hidden="true" />
         <div className="container-acs relative z-10">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left 7 cols: Content & Badges */}
-            <div className="lg:col-span-7">
-              <nav aria-label="Breadcrumb" className="mb-4">
-                <ol className="flex flex-wrap items-center gap-1.5 text-xs text-gray-400">
-                  {breadcrumbs.map((crumb, i) => (
-                    <li key={crumb.url} className="flex items-center gap-1.5">
-                      {i < breadcrumbs.length - 1 ? (
-                        <>
-                          <Link href={crumb.url} className="hover:text-sky transition-colors">{crumb.name}</Link>
-                          <span aria-hidden="true" className="text-gray-600">/</span>
-                        </>
-                      ) : (
-                        <span className="text-sky font-medium">{crumb.name}</span>
-                      )}
-                    </li>
-                  ))}
-                </ol>
-              </nav>
+          <nav aria-label="Breadcrumb" className="mb-4">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-gray-400">
+              {breadcrumbs.map((crumb, i) => (
+                <li key={crumb.url} className="flex items-center gap-1.5">
+                  {i < breadcrumbs.length - 1 ? (
+                    <>
+                      <Link href={crumb.url} className="hover:text-sky transition-colors">{crumb.name}</Link>
+                      <span aria-hidden="true" className="text-gray-600">/</span>
+                    </>
+                  ) : (
+                    <span className="text-sky font-medium">{crumb.name}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
 
-              <div className="flex flex-wrap gap-2 mb-3">
-                <span className="badge-sky">{service.icon} {service.shortName}</span>
-                <span className="badge-gold">📍 {cityName}, {state}</span>
-                <span className="badge-navy border border-white/20">PSARA Licensed</span>
-              </div>
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="badge-sky">{service.icon} {service.shortName}</span>
+            <span className="badge-gold">📍 {cityName}, {state}</span>
+            <span className="badge-navy border border-white/20">PSARA Licensed</span>
+            <span className="badge-navy border border-white/20">ISO 9001:2015</span>
+          </div>
 
-              <h1 className="text-white font-roboto font-black text-3xl sm:text-4xl lg:text-5xl leading-tight mb-3">
-                {h1}
-              </h1>
+          <h1 className="text-white font-roboto font-black text-3xl sm:text-4xl lg:text-5xl leading-tight mb-3 max-w-4xl">
+            {h1}
+          </h1>
 
-              <h2 className="text-sky-300 font-roboto text-base sm:text-lg font-normal mb-6 leading-relaxed">
-                {h2}
-              </h2>
+          <h2 className="text-sky-300 font-roboto text-base sm:text-lg md:text-xl font-normal mb-8 max-w-3xl leading-relaxed">
+            {h2}
+          </h2>
 
-              <div className="flex flex-wrap gap-3 items-center">
-                <Link href="/contact" className="btn-primary text-xs sm:text-sm px-6 py-2.5">
-                  Get Quotation in {cityName}
-                  <svg className="w-4 h-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </Link>
-                <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-xs sm:text-sm px-5 py-2.5">
-                  📞 {siteConfig.phone}
-                </a>
-              </div>
+          <div className="flex flex-wrap gap-3 items-center mb-8">
+            <Link href="/contact" className="btn-primary text-xs sm:text-sm px-6 py-3">
+              Get Quotation in {cityName}
+              <svg className="w-4 h-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </Link>
+            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-xs sm:text-sm px-5 py-3">
+              📞 {siteConfig.phone}
+            </a>
+          </div>
+
+          {/* Local Deployment SLA & Specification Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/10 max-w-4xl">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+              <div className="text-gold font-bold text-sm mb-0.5">⚡ 24–48 Hours</div>
+              <div className="text-gray-400 text-xs">Mobilization in {cityName}</div>
             </div>
-
-            {/* Right 5 cols: Dedicated Framed Visual Card — Exact 1920:900 native aspect ratio */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white/5 backdrop-blur-xs p-2">
-                <div className="relative w-full aspect-[1920/900] rounded-xl overflow-hidden bg-slate-900 flex items-center justify-center">
-                  <Image
-                    src={service.heroImage || "/images/security-service-slider.jpg"}
-                    alt={`${service.name} deployment in ${cityName}`}
-                    fill
-                    className="object-contain hover:scale-102 transition-transform duration-500"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                </div>
-              </div>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+              <div className="text-sky font-bold text-sm mb-0.5">📋 100% Compliant</div>
+              <div className="text-gray-400 text-xs">{state} Minimum Wages &amp; PF</div>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+              <div className="text-white font-bold text-sm mb-0.5">👮 Police Verified</div>
+              <div className="text-gray-400 text-xs">Trained &amp; Uniformed Staff</div>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+              <div className="text-gold font-bold text-sm mb-0.5">🛡️ 24×7 Operations</div>
+              <div className="text-gray-400 text-xs">Round-the-Clock Support</div>
             </div>
           </div>
         </div>
