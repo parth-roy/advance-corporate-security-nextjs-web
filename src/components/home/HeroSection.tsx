@@ -22,7 +22,7 @@ const TRUST_BADGES = [
 ];
 
 const SECURITY_SERVICES = [
-  { name: "Security Guards", slug: "security-guard", icon: "👮", badge: "PSARA" },
+  { name: "Security Guards", slug: "security-guard", icon: "👮", badge: "Verified" },
   { name: "Armed Guards", slug: "armed-guard", icon: "🛡️", badge: "Bank & ATM" },
   { name: "CCTV Surveillance", slug: "surveillance-cctv", icon: "📹", badge: "24×7 Active" },
   { name: "Night Patrolling", slug: "night-patrol", icon: "🌙", badge: "Perimeter" },
