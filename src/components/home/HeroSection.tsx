@@ -233,7 +233,7 @@ export default function HeroSection() {
                 alt={`ACS security and facility management officers on duty in ${currentCity.name}`}
                 fill
                 priority
-                className="object-cover"
+                className="object-cover object-[center_35%]"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
               {/* Subtle gradient vignette for depth */}

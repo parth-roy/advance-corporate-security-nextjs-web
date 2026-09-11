@@ -28,19 +28,70 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildBreadcrumbSchema(breadcrumbs)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(webPageSchema) }} />
 
-      {/* Hero */}
-      <section className="relative h-56 md:h-72 flex items-end overflow-hidden bg-navy">
-        <Image src="/images/about-us-header.jpg" alt="About Advance Corporate Security" fill className="object-cover opacity-30" priority sizes="100vw" />
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" aria-hidden="true" />
-        <div className="container-acs relative z-10 pb-8">
-          <nav aria-label="Breadcrumb" className="mb-3">
-            <ol className="flex items-center gap-2 text-sm text-gray-400" role="list">
-              <li><Link href="/" className="hover:text-gold transition-colors">Home</Link></li>
-              <li aria-hidden="true"><span>/</span></li>
-              <li className="text-gold" aria-current="page">About Us</li>
-            </ol>
-          </nav>
-          <h1 className="font-roboto font-900 text-white text-3xl md:text-5xl">About Us</h1>
+      {/* Hero Header */}
+      <section className="bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white pt-12 md:pt-16 pb-12 md:pb-16 relative overflow-hidden">
+        {/* Subtle decorative glow & pattern */}
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", backgroundSize: "32px 32px" }} aria-hidden="true" />
+
+        <div className="container-acs relative z-10">
+          <div className="max-w-3xl mb-8">
+            <nav aria-label="Breadcrumb" className="mb-3">
+              <ol className="flex items-center gap-2 text-xs sm:text-sm text-gray-400" role="list">
+                <li><Link href="/" className="hover:text-gold transition-colors">Home</Link></li>
+                <li aria-hidden="true"><span>/</span></li>
+                <li className="text-gold font-medium" aria-current="page">About Us</li>
+              </ol>
+            </nav>
+
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="badge-gold">🎖️ Founded in 2000</span>
+              <span className="badge-sky">🛡️ PSARA Licensed</span>
+              <span className="badge-navy border border-white/20">✅ ISO 9001:2015</span>
+            </div>
+
+            <h1 className="font-roboto font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-3">
+              About Advance Corporate Security
+            </h1>
+
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+              25 years of operational excellence delivering government-empanelled workforce outsourcing, PSARA-licensed security guards, and integrated facility management across 800+ cities pan India.
+            </p>
+          </div>
+
+          {/* Panoramic Visual Banner Showcase — 100% Unclipped, Exact 1920:500 aspect ratio, White Card */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white p-2 sm:p-3">
+            <div className="relative w-full aspect-[1920/500] rounded-xl overflow-hidden bg-white flex items-center justify-center">
+              <Image
+                src="/images/about-us-header.jpg"
+                alt="Advance Corporate Security Team — About Us"
+                fill
+                priority
+                className="object-contain"
+                sizes="(max-width: 1280px) 100vw, 1200px"
+              />
+            </div>
+          </div>
+
+          {/* Key Metrics Strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/10">
+            <div>
+              <div className="text-gold font-roboto font-black text-2xl sm:text-3xl">5,000+</div>
+              <div className="text-gray-300 text-xs sm:text-sm font-medium mt-0.5">Deployed Staff</div>
+            </div>
+            <div>
+              <div className="text-sky font-roboto font-black text-2xl sm:text-3xl">25+ Years</div>
+              <div className="text-gray-300 text-xs sm:text-sm font-medium mt-0.5">Industry Track Record</div>
+            </div>
+            <div>
+              <div className="text-white font-roboto font-black text-2xl sm:text-3xl">100%</div>
+              <div className="text-gray-300 text-xs sm:text-sm font-medium mt-0.5">Statutory Compliant</div>
+            </div>
+            <div>
+              <div className="text-gold font-roboto font-black text-2xl sm:text-3xl">800+ Cities</div>
+              <div className="text-gray-300 text-xs sm:text-sm font-medium mt-0.5">Pan-India Network</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -67,10 +118,16 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="relative h-80 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
-                <Image src="/images/about-us.jpg" alt="Advance Corporate Security team" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+                <Image
+                  src="/images/welcome-to-our-website.jpg"
+                  alt="Advance Corporate Security staff during emergency response & fire safety training"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-navy text-white font-roboto px-5 py-4 rounded-lg shadow-lg">
+              <div className="absolute -bottom-3 -right-3 bg-navy text-white font-roboto px-5 py-3.5 rounded-xl shadow-lg border border-white/15">
                 <div className="text-gold text-xs uppercase font-bold tracking-wider">Since</div>
                 <div className="font-black text-3xl">2000</div>
               </div>
@@ -147,12 +204,19 @@ export default function AboutPage() {
         <div className="container-acs">
           <div className="grid md:grid-cols-3 gap-10 items-start">
             <div className="md:col-span-1">
-              <div className="relative h-80 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
-                <Image src="/images/desk-of-ceo.jpg" alt="Founder of Advance Corporate Security" fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 33vw" />
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl border-2 border-slate-200 bg-slate-50">
+                <Image
+                  src="/images/jai-gopal.jpg"
+                  alt="Mr. Jai Gopal — Founder & Managing Director, Advance Corporate Security"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
               </div>
               <div className="mt-4 text-center">
-                <p className="font-roboto font-bold text-navy">Founder & Managing Director</p>
-                <p className="text-gray-500 text-sm">Advance Corporate Security</p>
+                <p className="font-roboto font-bold text-navy text-base">Mr. Jai Gopal</p>
+                <p className="text-gold font-semibold text-xs uppercase tracking-wider">Founder &amp; Managing Director</p>
+                <p className="text-gray-500 text-xs mt-0.5">Advance Corporate Security</p>
               </div>
             </div>
             <div className="md:col-span-2">
@@ -182,11 +246,16 @@ export default function AboutPage() {
               Advance Corporate Security is committed to providing the best outsourcing & facility management services in India with a strong team working 24×7. Our team of extremely knowledgeable and qualified managers always create tailor-made pre-determined plans to conquer any requirements of the clients.
             </p>
           </div>
-          <div className="relative h-64 md:h-80 rounded-xl overflow-hidden shadow-[var(--shadow-card-hover)]">
-            <Image src="/images/team.jpg" alt="ACS Management Team" fill className="object-cover" sizes="100vw" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white text-center">
-              <p className="font-roboto font-bold text-xl">5000+ Trained Professionals Across India</p>
+          <div className="relative w-full aspect-[1920/500] rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-slate-900">
+            <Image
+              src="/images/team.jpg"
+              alt="Advance Corporate Security Deployed Guard Squad on Duty"
+              fill
+              className="object-contain"
+              sizes="100vw"
+            />
+            <div className="absolute bottom-0 left-0 right-0 py-2 px-4 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent text-white text-center">
+              <p className="font-roboto font-bold text-xs sm:text-sm md:text-base text-gold">5,000+ Trained Professionals Deployed Across Pan-India</p>
             </div>
           </div>
         </div>

@@ -176,20 +176,20 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative">
-              <div className="relative h-72 md:h-84 rounded-lg overflow-hidden shadow-[var(--shadow-card-hover)]">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-slate-200">
                 <Image
-                  src="/images/about-us.jpg"
+                  src="/images/welcome-to-our-website.jpg"
                   alt="About Advance Corporate Security — 25 years of security and facility management service"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-              <div className="absolute -bottom-3 -left-3 bg-gold text-navy-dark font-roboto font-900 px-5 py-3 rounded-lg shadow-lg">
+              <div className="absolute -bottom-3 -left-3 bg-gold text-navy-dark font-roboto font-900 px-5 py-3 rounded-xl shadow-lg">
                 <div className="text-2xl font-black">25+</div>
                 <div className="text-[10px] uppercase tracking-wider font-bold">Years of Excellence</div>
               </div>
-              <div className="absolute -top-2.5 -right-2.5 bg-navy text-white font-roboto text-xs px-2.5 py-1.5 rounded-lg shadow-lg text-center">
+              <div className="absolute -top-2.5 -right-2.5 bg-navy text-white font-roboto text-xs px-3 py-1.5 rounded-xl shadow-lg border border-white/20 text-center">
                 <div className="font-bold text-sky-400 text-xs">ISO 9001:2015</div>
                 <div className="text-gold text-[10px]">Certified</div>
               </div>
