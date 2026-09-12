@@ -29,65 +29,61 @@ const INTENTS: IntentItem[] = [
     badge: "Security & Safety",
     badgeColor: "bg-sky-100 text-sky-800 border-sky-200",
     icon: Shield,
-    subtitle: "Armed & unarmed guards, CCTV monitoring, night patrolling, plant security",
+    subtitle: "PSARA licensed security guards, surveillance, VIP protection & cash management",
     defaultService: "Security Guards",
     options: [
       "Security Guards",
-      "Armed Guards",
-      "CCTV Surveillance",
-      "Night Patrolling",
-      "Industrial Security",
-      "Event Security",
-      "Executive VIP",
-      "Fire Safety",
+      "Investigation & Surveillance",
+      "Executive Protection",
+      "Cash Management",
+      "Event Assignments",
     ],
   },
   {
     id: "FACILITY",
-    title: "Corporate Facility & Housekeeping",
-    badge: "Facility & Cleaning",
+    title: "Corporate Facility Management",
+    badge: "Facility Management",
     badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
     icon: Building2,
-    subtitle: "ISO-certified corporate housekeeping, deep cleaning, pest control & MEP",
-    defaultService: "Corporate Housekeeping",
+    subtitle: "Housekeeping, payroll services, building maintenance, janitorial & waste management",
+    defaultService: "Housekeeping",
     options: [
-      "Corporate Housekeeping",
-      "Janitorial Clean",
-      "Commercial Pest Control",
-      "Facade Cleaning",
-      "MEP Maintenance",
-      "Horticulture & Landscaping",
+      "Housekeeping",
+      "PayRoll Services",
+      "Building Maintenance",
+      "Cleaning & Janitorial",
+      "Waste Management",
+      "Event Management",
     ],
   },
   {
     id: "MANPOWER",
-    title: "Contract Labour & Manpower Supply",
-    badge: "Contract Workforce",
+    title: "Placement Services & Staffing",
+    badge: "Placement Services",
     badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
     icon: Users,
-    subtitle: "Skilled & semi-skilled workforce with 100% statutory PF/ESIC compliance",
-    defaultService: "Manpower Outsourcing",
+    subtitle: "Career, employment, executive, and direct placement staffing solutions",
+    defaultService: "Career Placement Services",
     options: [
-      "Manpower Outsourcing",
-      "Factory Labour",
-      "Warehouse Loading Crew",
-      "Office Staff & Peons",
-      "Placement Services",
-      "Payroll & Compliance",
+      "Career Placement Services",
+      "Employment Placement Services",
+      "Executive Placement Services",
+      "Direct Placement Services",
     ],
   },
   {
     id: "SUPPORT",
-    title: "24×7 Central Control Room",
-    badge: "24×7 Active",
+    title: "Horticulture & 24×7 Support",
+    badge: "Horticulture & Help",
     badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
     icon: PhoneCall,
-    subtitle: "Emergency mobilization (12–24h), existing contract support, or billing",
-    defaultService: "Emergency Deployment",
+    subtitle: "Landscaping, groundskeeping, garden planning, and 24×7 control room help",
+    defaultService: "Landscaping & Groundskeeping",
     options: [
+      "Landscaping & Groundskeeping",
+      "Space Planning & Designing of Garden or Lawns",
+      "Development of Farms",
       "Emergency Deployment",
-      "Existing Contract Support",
-      "Site Inspection Request",
       "Billing & Quotation",
     ],
   },
@@ -114,15 +110,15 @@ export default function WhatsAppIntentModal({
   const [secGuardsCount, setSecGuardsCount] = useState("3 - 5 Guards (24x7)");
   const [secLocation, setSecLocation] = useState("");
 
-  const [facService, setFacService] = useState("Corporate Housekeeping");
+  const [facService, setFacService] = useState("Housekeeping");
   const [facPremises, setFacPremises] = useState("Corporate Office / IT Park");
   const [facLocation, setFacLocation] = useState("");
 
-  const [manService, setManService] = useState("Manpower Outsourcing");
+  const [manService, setManService] = useState("Career Placement Services");
   const [manCount, setManCount] = useState("10 - 25 Workers");
   const [manLocation, setManLocation] = useState("");
 
-  const [supportTopic, setSupportTopic] = useState("Emergency Deployment");
+  const [supportTopic, setSupportTopic] = useState("Landscaping & Groundskeeping");
   const [supportPhone, setSupportPhone] = useState("");
   const [supportOrg, setSupportOrg] = useState("");
 

@@ -21,33 +21,91 @@ const TRUST_BADGES = [
   { label: "50+ Govt. Empanelled", icon: "🏛️" },
 ];
 
-const SECURITY_SERVICES = [
-  { name: "Security Guards", slug: "security-guard", icon: "👮", badge: "Verified" },
-  { name: "Armed Guards", slug: "armed-guard", icon: "🛡️", badge: "Bank & ATM" },
-  { name: "CCTV Surveillance", slug: "surveillance-cctv", icon: "📹", badge: "24×7 Active" },
-  { name: "Night Patrolling", slug: "night-patrol", icon: "🌙", badge: "Perimeter" },
-  { name: "Executive VIP", slug: "executive-protection", icon: "🕴️", badge: "Ex-Defence" },
-  { name: "Fire Safety", slug: "fire-fighting", icon: "🚒", badge: "NBC Norms" },
-  { name: "Event Security", slug: "event-security", icon: "🎪", badge: "Crowd Mgmt" },
-  { name: "Industrial Security", slug: "industrial-security", icon: "🏭", badge: "Plant / SEZ" },
-];
+type TabType = "security" | "facility" | "placement" | "horticulture";
 
-const FACILITY_SERVICES = [
-  { name: "Housekeeping", slug: "housekeeping", icon: "🧹", badge: "ISO SOP" },
-  { name: "Janitorial Clean", slug: "janitorial", icon: "🧽", badge: "Deep Clean" },
-  { name: "Pest Control", slug: "pest-control", icon: "🐛", badge: "IPM / AMC" },
-  { name: "Facade Cleaning", slug: "facade-cleaning", icon: "🏢", badge: "High-Rise" },
-  { name: "MEP Maintenance", slug: "mep-maintenance", icon: "⚙️", badge: "HVAC / Elec" },
-  { name: "Manpower Supply", slug: "manpower-outsourcing", icon: "👷", badge: "PF / ESIC" },
-  { name: "Staffing & Hiring", slug: "placement-services", icon: "🤝", badge: "Recruitment" },
-  { name: "Horticulture", slug: "horticulture", icon: "🌿", badge: "Green Campus" },
-];
+interface TabMeta {
+  label: string;
+  icon: string;
+  title: (city: string) => string;
+  subtitle: string;
+  allLink: string;
+  allText: string;
+  services: { name: string; slug: string; icon: string; badge?: string }[];
+}
+
+const TAB_DATA: Record<TabType, TabMeta> = {
+  security: {
+    label: "Security & Safety",
+    icon: "🛡️",
+    title: (city) => `PSARA Security & Safety Deployments in ${city}`,
+    subtitle: "Background-verified security guards, surveillance & executive protection",
+    allLink: "/services/security-safety",
+    allText: "All Security (5)",
+    services: [
+      { name: "Security Guards", slug: "security-guard", icon: "👮", badge: "Verified" },
+      { name: "Investigation & Surveillance", slug: "surveillance-cctv", icon: "📹", badge: "24×7 Active" },
+      { name: "Executive Protection", slug: "executive-protection", icon: "🕴️", badge: "VIP / PSO" },
+      { name: "Cash Management", slug: "security-guard", icon: "💼", badge: "Secure Transit" },
+      { name: "Event Assignments", slug: "event-security", icon: "🎪", badge: "Crowd Control" },
+    ],
+  },
+  facility: {
+    label: "Facility Management",
+    icon: "🏢",
+    title: (city) => `Corporate Facility Management in ${city}`,
+    subtitle: "Housekeeping, payroll services, building maintenance & waste management",
+    allLink: "/services/facility-management",
+    allText: "All Facility (6)",
+    services: [
+      { name: "Housekeeping", slug: "housekeeping", icon: "🧹", badge: "ISO SOP" },
+      { name: "PayRoll Services", slug: "payroll-management", icon: "📊", badge: "Statutory" },
+      { name: "Building Maintenance", slug: "mep-maintenance", icon: "⚙️", badge: "HVAC & MEP" },
+      { name: "Cleaning & Janitorial", slug: "janitorial", icon: "🧽", badge: "Deep Clean" },
+      { name: "Waste Management", slug: "facility-management", icon: "♻️", badge: "Eco SOP" },
+      { name: "Event Management", slug: "event-security", icon: "🎪", badge: "Operations" },
+    ],
+  },
+  placement: {
+    label: "Placement Services",
+    icon: "💼",
+    title: (city) => `Corporate Placement & Manpower in ${city}`,
+    subtitle: "Career, employment, executive, and direct placement staffing solutions",
+    allLink: "/services/placement-services",
+    allText: "All Placement (4)",
+    services: [
+      { name: "Career Placement Services", slug: "placement-services", icon: "🎯", badge: "Career" },
+      { name: "Employment Placement Services", slug: "placement-services", icon: "🤝", badge: "Staffing" },
+      { name: "Executive Placement Services", slug: "manpower-outsourcing", icon: "👔", badge: "Leadership" },
+      { name: "Direct Placement Services", slug: "manpower-outsourcing", icon: "📋", badge: "On-Demand" },
+    ],
+  },
+  horticulture: {
+    label: "Horticulture",
+    icon: "🌿",
+    title: (city) => `Horticulture & Landscape Services in ${city}`,
+    subtitle: "Landscaping, garden & lawn space planning, groundskeeping & farm development",
+    allLink: "/services/horticulture",
+    allText: "All Horticulture (3)",
+    services: [
+      { name: "Landscaping & Groundskeeping", slug: "horticulture", icon: "🌱", badge: "Green Campus" },
+      { name: "Space Planning & Designing", slug: "horticulture", icon: "🏡", badge: "Garden / Lawns" },
+      { name: "Development of Farms", slug: "horticulture", icon: "🌾", badge: "Agri / Estate" },
+    ],
+  },
+};
 
 export default function HeroSection() {
   const { currentCity, setIsCityModalOpen } = useCity();
-  const [activeTab, setActiveTab] = useState<"security" | "facility">("security");
+  const [activeTab, setActiveTab] = useState<TabType>("security");
 
-  const currentServices = activeTab === "security" ? SECURITY_SERVICES : FACILITY_SERVICES;
+  const gridColsClass =
+    activeTab === "security"
+      ? "grid-cols-3 sm:grid-cols-5"
+      : activeTab === "facility"
+      ? "grid-cols-3 sm:grid-cols-3 md:grid-cols-6"
+      : activeTab === "placement"
+      ? "grid-cols-2 sm:grid-cols-4"
+      : "grid-cols-3";
 
   return (
     <section
@@ -141,39 +199,34 @@ export default function HeroSection() {
             {/* ── B2B ENTERPRISE SERVICES BOX (Workforce Web Style with Category Tabs) ── */}
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-4 sm:p-5">
               {/* Category Segmented Tabs */}
-              <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-slate-100">
-                <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab("security")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                      activeTab === "security"
-                        ? "bg-white text-navy shadow-xs"
-                        : "text-slate-600 hover:text-navy"
-                    }`}
-                  >
-                    <span>🛡️</span>
-                    <span>Security &amp; Safety</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab("facility")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                      activeTab === "facility"
-                        ? "bg-white text-navy shadow-xs"
-                        : "text-slate-600 hover:text-navy"
-                    }`}
-                  >
-                    <span>🏢</span>
-                    <span>Facility &amp; Manpower</span>
-                  </button>
+              <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100">
+                <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl overflow-x-auto scrollbar-none max-w-full">
+                  {(Object.keys(TAB_DATA) as TabType[]).map((tabKey) => {
+                    const tab = TAB_DATA[tabKey];
+                    const isActive = activeTab === tabKey;
+                    return (
+                      <button
+                        key={tabKey}
+                        type="button"
+                        onClick={() => setActiveTab(tabKey)}
+                        className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                          isActive
+                            ? "bg-white text-navy shadow-xs"
+                            : "text-slate-600 hover:text-navy"
+                        }`}
+                      >
+                        <span>{tab.icon}</span>
+                        <span>{tab.label}</span>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 <Link
-                  href={activeTab === "security" ? "/services/security-safety" : "/services/facility-management"}
-                  className="text-xs font-bold text-sky-700 hover:text-navy underline hidden sm:inline-flex shrink-0"
+                  href={TAB_DATA[activeTab].allLink}
+                  className="text-xs font-bold text-sky-700 hover:text-navy underline hidden xl:inline-flex shrink-0"
                 >
-                  {activeTab === "security" ? "All Security (8) →" : "All Facility (9) →"}
+                  {TAB_DATA[activeTab].allText} →
                 </Link>
               </div>
 
@@ -181,33 +234,35 @@ export default function HeroSection() {
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <h2 className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight">
-                    {activeTab === "security"
-                      ? `PSARA Security & Safety Deployments in ${currentCity.name}`
-                      : `Corporate Facility Management & Manpower in ${currentCity.name}`}
+                    {TAB_DATA[activeTab].title(currentCity.name)}
                   </h2>
                   <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
-                    {activeTab === "security"
-                      ? `Background-verified armed & unarmed guards, CCTV & industrial security`
-                      : `Corporate housekeeping, janitorial, pest control & compliant staffing`}
+                    {TAB_DATA[activeTab].subtitle}
                   </p>
                 </div>
               </div>
 
-              {/* 8-Grid of Active Services */}
-              <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
-                {currentServices.map((svc) => (
+              {/* Grid of Active Brochure Services */}
+              <div className={`grid ${gridColsClass} gap-2 sm:gap-2.5`}>
+                {TAB_DATA[activeTab].services.map((svc) => (
                   <Link
-                    key={svc.slug}
+                    key={svc.name}
                     href={`/services/${svc.slug}/${currentCity.slug}`}
                     className="group flex flex-col items-center text-center p-1.5 rounded-xl hover:bg-sky-50/70 border border-transparent hover:border-sky-200/80 transition-all duration-150 cursor-pointer"
                   >
                     <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-white group-hover:shadow-xs transition-all">
                       {svc.badge && (
-                        <span className={`absolute -top-1.5 px-1 py-0.2 rounded-full text-[7px] sm:text-[8px] font-bold shadow-2xs whitespace-nowrap ${
-                          activeTab === "security"
-                            ? "bg-sky-100 text-sky-800 border border-sky-200"
-                            : "bg-emerald-100 text-emerald-800 border border-emerald-200"
-                        }`}>
+                        <span
+                          className={`absolute -top-1.5 px-1 py-0.2 rounded-full text-[7px] sm:text-[8px] font-bold shadow-2xs whitespace-nowrap ${
+                            activeTab === "security"
+                              ? "bg-sky-100 text-sky-800 border border-sky-200"
+                              : activeTab === "facility"
+                              ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                              : activeTab === "placement"
+                              ? "bg-amber-100 text-amber-800 border border-amber-200"
+                              : "bg-teal-100 text-teal-800 border border-teal-200"
+                          }`}
+                        >
                           {svc.badge}
                         </span>
                       )}
@@ -215,7 +270,7 @@ export default function HeroSection() {
                         {svc.icon}
                       </span>
                     </div>
-                    <span className="mt-1 text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-navy leading-tight line-clamp-1">
+                    <span className="mt-1 text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-navy leading-tight line-clamp-2">
                       {svc.name}
                     </span>
                   </Link>

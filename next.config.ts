@@ -59,6 +59,10 @@ const nextConfig: NextConfig = {
       { source: "/our-gallery", destination: "/gallery", permanent: true },
       { source: "/contact-us-2/", destination: "/contact", permanent: true },
       { source: "/contact-us-2", destination: "/contact", permanent: true },
+      { source: "/quote", destination: "/contact", permanent: true },
+      { source: "/quote/", destination: "/contact", permanent: true },
+      { source: "/career", destination: "/careers", permanent: true },
+      { source: "/career/", destination: "/careers", permanent: true },
     ];
   },
 };
