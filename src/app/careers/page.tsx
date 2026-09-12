@@ -229,12 +229,12 @@ export default function CareersPage() {
                     </a>
                   ))}
                   <a
-                    href={`https://wa.me/919477006681?text=${encodeURIComponent("Hello ACS HR, I want to inquire about upcoming security/facility job opportunities.")}`}
+                    href={`https://wa.me/919339988999?text=${encodeURIComponent("Hello ACS HR, I want to inquire about upcoming security/facility job opportunities.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 text-emerald-700 hover:text-emerald-800 font-semibold transition-colors"
                   >
-                    <span>💬</span> WhatsApp HR: +91 94770 06681
+                    <span>💬</span> WhatsApp HR: +91 93399 88999
                   </a>
                   <a
                     href={`mailto:${siteConfig.email}`}

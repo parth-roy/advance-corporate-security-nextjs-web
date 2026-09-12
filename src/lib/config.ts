@@ -48,7 +48,7 @@ export const siteConfig = {
     twitter: "",
     instagram: "",
     youtube: "",
-    whatsapp: "+919477006681",
+    whatsapp: "+919339988999",
   },
 
   // --- Geographic Coordinates (for LocalBusiness schema) ---

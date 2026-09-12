@@ -209,8 +209,8 @@ Kindly attend to this request promptly. Thank you!`;
 
   const handleOpenWhatsApp = () => {
     const text = getWhatsAppMessage();
-    // ACS WhatsApp contact number: +91 79801 47044
-    const url = `https://wa.me/917980147044?text=${encodeURIComponent(text)}`;
+    // ACS WhatsApp contact number: +91 93399 88999
+    const url = `https://wa.me/919339988999?text=${encodeURIComponent(text)}`;
     if (typeof window !== "undefined") {
       window.open(url, "_blank", "noopener,noreferrer");
     }
@@ -584,7 +584,7 @@ Kindly attend to this request promptly. Thank you!`;
         <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
           <div className="text-center sm:text-left">
             <span className="text-xs font-bold text-slate-800 block">
-              Official Desk: +91 79801 47044
+              Official Desk: +91 93399 88999
             </span>
             <span className="text-[11px] text-slate-500">
               Average WhatsApp response time: &lt; 5 minutes
