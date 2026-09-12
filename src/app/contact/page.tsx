@@ -3,6 +3,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
+import ContactForm from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us — Get a Free Quote for Security & Facility Management",
@@ -48,144 +49,7 @@ export default function ContactPage() {
               <p className="section-label">Send a Message</p>
               <h2 className="text-navy mb-6">Get a <span className="text-gold">Free Quote</span></h2>
               <div className="divider-gold mb-8" />
-              <form
-                id="contact-form"
-                action={`${siteConfig.apiUrl}/api/contact`}
-                method="POST"
-                className="space-y-5"
-                noValidate
-              >
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1.5">
-                      First Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      required
-                      autoComplete="given-name"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                      placeholder="Your first name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Last Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      required
-                      autoComplete="family-name"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                      placeholder="Your last name"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    autoComplete="email"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                    placeholder="your@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Phone Number <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    autoComplete="tel"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                    placeholder="+91 XXXXX XXXXX"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Organisation / Company
-                  </label>
-                  <input
-                    type="text"
-                    id="organization"
-                    name="organization"
-                    autoComplete="organization"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                    placeholder="Company or Organisation name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Service Required
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all bg-white"
-                  >
-                    <option value="">Select a service</option>
-                    {siteConfig.services.map((s) => (
-                      <option key={s.slug} value={s.slug}>{s.name}</option>
-                    ))}
-                    <option value="multiple">Multiple Services</option>
-                    <option value="other">Other / Not Sure</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    City / Location
-                  </label>
-                  <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                    placeholder="City where service is required"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">
-                    Message / Requirements <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all resize-none"
-                    placeholder="Describe your requirements in detail..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  id="contact-submit-btn"
-                  className="btn-primary w-full justify-center text-base py-4"
-                >
-                  Send Message
-                </button>
-                <p className="text-xs text-gray-500 text-center">
-                  We will respond within 24 hours. Your information is kept confidential.
-                </p>
-              </form>
+              <ContactForm />
             </div>
 
             {/* Contact Info */}
