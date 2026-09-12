@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
 import HeroSection from "@/components/home/HeroSection";
 import DynamicGeoFactBox from "@/components/home/DynamicGeoFactBox";
+import CoreServicesAccordionGrid from "@/components/home/CoreServicesAccordionGrid";
 import DynamicHomeFaqs from "@/components/home/DynamicHomeFaqs";
 import ClientMarquee from "@/components/common/ClientMarquee";
 
@@ -75,62 +76,7 @@ const whyACS = [
   { title: "Full Statutory Compliance", desc: "Complete PF, ESIC, Minimum Wage, Contract Labour Act compliance — zero legal exposure for your organization.", icon: "📋" },
 ];
 
-const BROCHURE_SERVICES = [
-  {
-    title: "Placement Services",
-    slug: "placement-services",
-    icon: "💼",
-    badge: "Pan India",
-    description: "End-to-end recruitment, executive placement, staffing solutions, and skilled workforce placement.",
-    items: [
-      "Career Placement Services",
-      "Employment Placement Services",
-      "Executive Placement Services",
-      "Direct Placement Services",
-    ],
-  },
-  {
-    title: "Facility Management Services",
-    slug: "facility-management",
-    icon: "🏢",
-    badge: "ISO 9001:2015",
-    description: "Complete corporate housekeeping, mechanized cleaning, building maintenance, and facility operations.",
-    items: [
-      "Housekeeping",
-      "PayRoll Services",
-      "Building Maintenance",
-      "Cleaning & Janitorial",
-      "Waste Management",
-      "Event Management",
-    ],
-  },
-  {
-    title: "Security & Safety Services",
-    slug: "security-safety",
-    icon: "🛡️",
-    badge: "PSARA Licensed",
-    description: "Professional armed & unarmed security guards, executive VIP protection, and high-vigilance surveillance.",
-    items: [
-      "Security Guards",
-      "Investigation & Surveillance",
-      "Executive Protection",
-      "Cash Management",
-      "Event Assignments",
-    ],
-  },
-  {
-    title: "Horticulture",
-    slug: "horticulture",
-    icon: "🌿",
-    badge: "Eco-Certified",
-    description: "Professional landscaping, garden & lawn space planning, groundskeeping, and farm development.",
-    items: [
-      "Landscaping & Groundskeeping",
-      "Space Planning & Designing of Garden or Lawns",
-      "Development of Farms",
-    ],
-  },
-];
+
 
 export default function HomePage() {
   const breadcrumbs = [{ name: "Home", url: siteConfig.url }];
@@ -155,77 +101,8 @@ export default function HomePage() {
       {/* ===== DYNAMIC GEO FACT BOX (Hyper-local to Selected City) ===== */}
       <DynamicGeoFactBox />
 
-      {/* ===== SERVICES GRID ===== */}
-      <section className="section-py bg-white" aria-labelledby="services-heading">
-        <div className="container-acs">
-          <div className="text-center mb-6">
-            <p className="section-label">What We Do</p>
-            <h2 id="services-heading" className="text-navy">
-              Our <span className="text-sky">Core Services</span>
-            </h2>
-            <div className="divider-sky mx-auto" />
-            <p className="text-gray-600 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
-              From PSARA-licensed security guard deployment to complete integrated facility management — we deliver trained, compliant, and reliable workforce solutions across pan India.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {BROCHURE_SERVICES.map((service) => (
-              <div
-                key={service.slug}
-                className="bg-white rounded-2xl border border-gray-200/90 shadow-xs hover:shadow-xl hover:border-sky/40 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
-              >
-                <div>
-                  {/* Top Bar with Icon & Badge */}
-                  <div className="p-5 bg-gradient-to-br from-slate-50 via-sky-50/20 to-slate-100/50 border-b border-slate-100 flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-xl bg-white shadow-xs border border-slate-200/80 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
-                      {service.icon}
-                    </div>
-                    <span className="text-[11px] font-bold text-sky-800 bg-sky-100/80 border border-sky-200 px-2.5 py-0.5 rounded-full">
-                      {service.badge}
-                    </span>
-                  </div>
-
-                  <div className="p-5">
-                    <h3 className="font-roboto font-bold text-navy text-lg mb-2 group-hover:text-sky transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
-                      {service.description}
-                    </p>
-
-                    <div className="pt-3 border-t border-gray-100 mb-4">
-                      <p className="text-[11px] font-bold text-navy/70 uppercase tracking-wider mb-2.5">
-                        Key Offerings
-                      </p>
-                      <ul className="space-y-2">
-                        {service.items.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-xs sm:text-[13px] text-gray-700 leading-snug">
-                            <span className="text-red-500 font-bold shrink-0 text-sm leading-none mt-0.5">◎</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-5 pt-0">
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="w-full py-2.5 px-4 rounded-xl text-center font-semibold text-xs transition-colors bg-navy/5 text-navy hover:bg-navy hover:text-white border border-navy/10 flex items-center justify-center gap-1.5 group-hover:bg-navy group-hover:text-white"
-                  >
-                    Learn More
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ===== ACCENTURE-STYLE CORE SERVICES ACCORDION GRID (White Mode) ===== */}
+      <CoreServicesAccordionGrid />
 
       {/* ===== ABOUT STRIP ===== */}
       <section className="section-py bg-off-white" aria-labelledby="about-heading">

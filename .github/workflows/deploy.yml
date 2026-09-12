@@ -26,8 +26,8 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             npm install
-            # Clean compiler cache safely without deleting active PM2 standalone runtime files
-            rm -rf .next/cache 2>/dev/null || true
+            # Clean previous .next build directory completely to prevent ENOTEMPTY standalone conflicts
+            rm -rf .next 2>/dev/null || true
             npm run build
             # Copy static assets into standalone folder
             cp -r .next/static .next/standalone/.next/static

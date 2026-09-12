@@ -6,7 +6,7 @@
     "dev": "next dev",
     "clean": "node -e \"const fs=require('fs'); try{fs.rmSync('.next', {recursive:true, force:true});}catch(e){}\"",
     "sitemap": "node --experimental-strip-types scripts/generate-sitemaps.ts",
-    "build": "npm run sitemap && next build",
+    "build": "npm run clean && npm run sitemap && next build",
     "start": "next start",
     "lint": "eslint"
   },
