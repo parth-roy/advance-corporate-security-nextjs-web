@@ -14,25 +14,31 @@ const navLinks = [
     children: [
       { label: "About Us", href: "/about" },
       { label: "Our Mission", href: "/about#mission" },
-      { label: "Our Vision", href: "/about#vision" },
-      { label: "Core Values", href: "/about#values" },
-      { label: "From The Desk of Founder", href: "/about#founder" },
-      { label: "Our Team", href: "/about#team" },
+      { label: "Leadership Team", href: "/about#team" },
+      { label: "Compliance & PSARA", href: "/about/compliance-and-psara" },
     ],
   },
   {
     label: "Services",
     href: "/services",
     children: [
-      { label: "Security & Safety Services", href: "/services/security-safety" },
-      { label: "Facility Management Services", href: "/services/facility-management" },
-      { label: "Placement Services", href: "/services/placement-services" },
-      { label: "Horticulture", href: "/services/horticulture" },
+      { label: "Manned Guarding", href: "/services/security-safety" },
+      { label: "Facility Management", href: "/services/facility-management" },
+      { label: "Workforce Outsourcing", href: "/services/placement-services" },
     ],
   },
-  { label: "Locations", href: "/location" },
+  {
+    label: "Industries",
+    href: "/industries",
+    children: [
+      { label: "Manufacturing", href: "/industries/manufacturing" },
+      { label: "Corporate / IT", href: "/industries/corporate-it" },
+      { label: "Healthcare", href: "/industries/healthcare" },
+      { label: "Govt / PSU", href: "/industries/government" },
+    ],
+  },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "Our Clients", href: "/clients" },
-  { label: "Gallery", href: "/gallery" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
@@ -213,7 +219,7 @@ export default function Header() {
               className="btn-primary hidden lg:inline-flex text-xs xl:text-sm py-2 px-3.5 xl:px-4 shrink-0 whitespace-nowrap"
               aria-label="Get a free quote"
             >
-              Get Free Quote
+              Request Security Audit
             </Link>
 
             {/* Mobile Hamburger */}
@@ -334,7 +340,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="btn-primary w-full justify-center"
               >
-                Get Free Quote
+                Request Security Audit
               </Link>
               <div className="mt-4 space-y-2 text-sm text-gray-600">
                 <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 hover:text-navy">

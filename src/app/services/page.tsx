@@ -114,7 +114,7 @@ export default function ServicesHubPage() {
           <h2 className="text-white font-roboto font-bold text-2xl mb-3">Ready to Get Started?</h2>
           <p className="text-gray-300 mb-6 max-w-lg mx-auto text-sm">Get a free consultation. Our team responds within 24 hours.</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="btn-primary">Get Free Quote</Link>
+            <Link href="/contact" className="btn-primary">Request Security Audit</Link>
             <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary">📞 {siteConfig.phone}</a>
           </div>
         </div>

@@ -145,7 +145,7 @@ export default function HeroSection() {
               id="hero-heading"
               className="font-roboto font-black text-slate-900 leading-[1.15] mb-1.5 tracking-tight text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px]"
             >
-              Corporate Security &amp; Facility Management in{" "}
+              The Compliance-First Security &amp; Facility Partner for High-Risk Enterprises in{" "}
               <span className="text-sky-600 font-black">
                 {currentCity.name}
               </span>
@@ -153,11 +153,11 @@ export default function HeroSection() {
 
             {/* Subheadline tailored to active location */}
             <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed mb-2 font-normal">
-              Deploy PSARA-licensed armed &amp; unarmed security guards, corporate housekeeping, and compliant workforce across{" "}
+              <strong className="text-navy font-semibold">100% PSARA Licensed. Zero Statutory Risk.</strong> Protecting India&apos;s critical infrastructure for 25+ years. Deploy compliant workforce across{" "}
               <strong suppressHydrationWarning className="text-navy font-semibold">
                 {currentCity.name}, {currentCity.state}
               </strong>
-              . 25+ years of operational excellence with 100% statutory PF/ESIC compliance.
+              .
             </p>
 
             {/* Action Bar: City Hub Button + Free Site Assessment CTA */}
@@ -189,7 +189,7 @@ export default function HeroSection() {
                 href="/contact"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-bold text-xs sm:text-sm bg-navy text-white hover:bg-navy-dark hover:shadow-sm transition-all cursor-pointer shadow-2xs"
               >
-                <span>Get Free Site Assessment</span>
+                <span>Request Site Security Audit</span>
                 <svg className="w-3.5 h-3.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                 </svg>

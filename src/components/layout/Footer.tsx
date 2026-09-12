@@ -8,8 +8,10 @@ import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
 
 const footerLinks = [
   { label: "About Us", href: "/about" },
+  { label: "Compliance & PSARA", href: "/about/compliance-and-psara" },
   { label: "Our Clients", href: "/clients" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Industries Served", href: "/industries" },
   { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
 ];
