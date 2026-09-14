@@ -127,6 +127,10 @@ export default function HeroSection() {
           <div className="max-w-2xl">
             {/* Trust Badges */}
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5" role="list" aria-label="Certifications">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-950 text-[11px] font-bold shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
+                Security Guard Company &amp; ISO Facility Management
+              </span>
               {TRUST_BADGES.map((badge) => (
                 <span
                   key={badge.label}
@@ -144,7 +148,7 @@ export default function HeroSection() {
               id="hero-heading"
               className="font-roboto font-black text-slate-900 leading-[1.25] mb-2 tracking-tight text-[15px] sm:text-[18px] lg:text-[22px] xl:text-[24px]"
             >
-              The Compliance-First Security &amp; Facility Partner for High-Risk Enterprises in{" "}
+              The Compliance-First Corporate Security &amp; Facilities Management Company in{" "}
               <span className="text-sky-600 font-black">
                 {currentCity.name}
               </span>
@@ -152,7 +156,7 @@ export default function HeroSection() {
 
             {/* Subheadline tailored to active location */}
             <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed mb-2 font-normal">
-              <strong className="text-navy font-semibold">100% PSARA Licensed. Zero Statutory Risk.</strong> Protecting India&apos;s critical infrastructure for 25+ years. Deploy compliant workforce across{" "}
+              Ranked among India&apos;s trusted <strong className="text-navy font-semibold">business security companies</strong> and <strong className="text-navy font-semibold">building maintenance company</strong> partners. We deploy PSARA-certified <strong className="text-navy font-semibold">security guards</strong>, integrated <strong className="text-navy font-semibold">facility management services</strong>, and end-to-end <strong className="text-navy font-semibold">facility maintenance company</strong> solutions across{" "}
               <strong suppressHydrationWarning className="text-navy font-semibold">
                 {currentCity.name}, {currentCity.state}
               </strong>
@@ -160,7 +164,7 @@ export default function HeroSection() {
             </p>
 
             {/* Action Bar: City Hub Button + Free Site Assessment CTA */}
-            <div className="flex flex-wrap items-center gap-2.5 mb-3">
+            <div className="flex flex-wrap items-center gap-2.5 mb-2.5">
               {/* City Pill Button */}
               <button
                 type="button"
@@ -193,6 +197,25 @@ export default function HeroSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
+            </div>
+
+            {/* Top Keyword Badges Strip (Google Ads / PPC Ad Strength Alignment) */}
+            <div className="flex flex-wrap items-center gap-1.5 mb-3 text-[10px] sm:text-[11px] font-semibold text-slate-600">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+                Security Guard Company
+              </span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+                Corporate Security
+              </span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+                Facility Management Company
+              </span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+                Building Maintenance Company
+              </span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+                ISO Facility Management
+              </span>
             </div>
 
             {/* ── B2B ENTERPRISE SERVICES BOX (Workforce Web Style with Category Tabs) ── */}

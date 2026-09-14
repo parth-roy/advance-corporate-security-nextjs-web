@@ -128,19 +128,17 @@ export default function CoreServicesAccordionGrid() {
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12">
           <p className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-sky-700 mb-1.5 font-roboto">
-            What We Do
+            Security Guard Company &amp; Facility Maintenance Company
           </p>
           <h2
             id="services-heading"
             className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight font-roboto"
           >
-            Our <span className="text-sky-600">Core Services</span>
+            Corporate Security &amp; <span className="text-sky-600">Facilities Management Services</span>
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-sky-500 to-navy mx-auto mt-2.5 rounded-full" />
           <p className="text-slate-600 mt-3 max-w-2xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed">
-            From PSARA-licensed security guard deployment to complete integrated
-            facility management — we deliver trained, compliant, and reliable
-            workforce solutions across pan India.
+            As one of India&apos;s leading business security companies and building maintenance company providers with ISO facility management standards, we deliver PSARA security guards, commercial cleaning, and statutory workforce solutions nationwide.
           </p>
         </div>
 

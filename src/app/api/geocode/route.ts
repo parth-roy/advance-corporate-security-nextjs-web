@@ -287,9 +287,120 @@ async function detectCityFromIp(
   return null;
 }
 
+interface ForwardCoordResult {
+  lat: number;
+  lng: number;
+  bbox: [number, number, number, number]; // [min_lng, min_lat, max_lng, max_lat]
+  provider: string;
+}
+
+const FORWARD_GEO_CACHE = new Map<string, { result: ForwardCoordResult; timestamp: number }>();
+
+async function forwardGeocodeAddress(address: string): Promise<ForwardCoordResult | null> {
+  const cleanKey = address.trim().toLowerCase();
+  const cached = FORWARD_GEO_CACHE.get(cleanKey);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    return cached.result;
+  }
+
+  const googleKey = process.env.GOOGLE_MAPS_API_KEY;
+
+  // 1. Google Maps Geocoding API
+  if (googleKey) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 4500);
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${googleKey}`;
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timer);
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.status === "OK" && Array.isArray(data.results) && data.results[0]?.geometry?.location) {
+          const loc = data.results[0].geometry.location;
+          const vp = data.results[0].geometry.viewport || {
+            southwest: { lat: loc.lat - 0.08, lng: loc.lng - 0.08 },
+            northeast: { lat: loc.lat + 0.08, lng: loc.lng + 0.08 },
+          };
+          const result: ForwardCoordResult = {
+            lat: loc.lat,
+            lng: loc.lng,
+            bbox: [vp.southwest.lng, vp.southwest.lat, vp.northeast.lng, vp.northeast.lat],
+            provider: "google",
+          };
+          FORWARD_GEO_CACHE.set(cleanKey, { result, timestamp: Date.now() });
+          return result;
+        }
+      }
+    } catch (e) {
+      console.warn("Google forward geocoding failed, falling back to Nominatim:", e);
+    }
+  }
+
+  // 2. OpenStreetMap Nominatim Fallback
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4500);
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: { "User-Agent": "AdvanceCorporateSecurity/1.0" },
+    });
+    clearTimeout(timer);
+
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data[0]) {
+        const item = data[0];
+        const lat = parseFloat(item.lat);
+        const lng = parseFloat(item.lon);
+        const bb = item.boundingbox; // [min_lat, max_lat, min_lng, max_lng]
+        const bbox: [number, number, number, number] = bb
+          ? [parseFloat(bb[2]), parseFloat(bb[0]), parseFloat(bb[3]), parseFloat(bb[1])]
+          : [lng - 0.08, lat - 0.08, lng + 0.08, lat + 0.08];
+
+        const result: ForwardCoordResult = {
+          lat,
+          lng,
+          bbox,
+          provider: "nominatim",
+        };
+        FORWARD_GEO_CACHE.set(cleanKey, { result, timestamp: Date.now() });
+        return result;
+      }
+    }
+  } catch (e) {
+    console.warn("Nominatim forward geocoding failed:", e);
+  }
+
+  return null;
+}
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
+
+    // Case 0: Forward Geocoding for City Coordinates / Maps
+    const addressQuery =
+      searchParams.get("address") ||
+      searchParams.get("q") ||
+      (searchParams.get("city")
+        ? `${searchParams.get("city")}, ${searchParams.get("state") || ""}, India`
+        : null);
+
+    if (addressQuery) {
+      const coords = await forwardGeocodeAddress(addressQuery);
+      if (coords) {
+        return NextResponse.json({
+          success: true,
+          lat: coords.lat,
+          lng: coords.lng,
+          bbox: coords.bbox,
+          provider: coords.provider,
+        });
+      }
+    }
+
     const latStr = searchParams.get("lat");
     const lngStr = searchParams.get("lng");
 
@@ -337,11 +448,11 @@ export async function GET(req: NextRequest) {
       provider: "default",
       mode: "fallback",
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Geocode API error:", error);
     const defaultCity = ACS_CITIES.find((c) => c.slug === "kolkata") || ACS_CITIES[0];
     return NextResponse.json(
-      { success: false, city: defaultCity, error: error?.message || "Unknown error" },
+      { success: false, city: defaultCity, error: error instanceof Error ? error.message : "Unknown error" },
       { status: 500 }
     );
   }

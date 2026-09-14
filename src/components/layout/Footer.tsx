@@ -39,7 +39,7 @@ export default function Footer() {
             </div>
           </Link>
           <p className="text-gray-400 text-sm leading-relaxed mb-5">
-            PSARA Licensed · ISO 9001:2015 Certified · Pan India since {siteConfig.foundedYear}. Corporate Security, Facility Management & Manpower Outsourcing.
+            Advance Corporate Security is India&apos;s trusted <strong className="text-gray-300 font-semibold">security guard company</strong> and <strong className="text-gray-300 font-semibold">facility management company</strong>. Deploying PSARA-licensed <strong className="text-gray-300 font-semibold">security guards</strong>, comprehensive <strong className="text-gray-300 font-semibold">facilities management</strong>, <strong className="text-gray-300 font-semibold">corporate security</strong>, and certified <strong className="text-gray-300 font-semibold">ISO facility management</strong> services across 828+ cities since {siteConfig.foundedYear}.
           </p>
           <div className="space-y-2 text-sm">
             {siteConfig.phones.map((p) => (
@@ -66,6 +66,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-2 mt-5">
             <span className="badge-sky text-xs">PSARA Licensed</span>
             <span className="badge-gold text-xs">ISO 9001:2015</span>
+            <span className="badge-sky text-xs">ISO Facility Management</span>
           </div>
         </div>
 
@@ -156,6 +157,86 @@ export default function Footer() {
             <span>Show all {ACS_CITIES.length} cities</span>
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
+        </div>
+      </div>
+
+      {/* Enterprise Keywords & Popular Solutions Index */}
+      <div className="container-acs py-8 border-b border-white/10 text-xs">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div className="shrink-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-2 h-2 rounded-full bg-gold"></span>
+              <h4 className="font-roboto font-bold text-white uppercase tracking-wider text-xs">
+                Popular Enterprise Solutions &amp; Industry Searches
+              </h4>
+            </div>
+            <p className="text-gray-400 text-xs">
+              Fast-track corporate procurement &amp; statutory facility operations for high-risk enterprises
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href="/services/security-guard"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Security Guards
+            </Link>
+            <Link
+              href="/services/facility-management"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Facilities Management
+            </Link>
+            <Link
+              href="/about"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Security Guard Company
+            </Link>
+            <Link
+              href="/services/facility-management"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Facility Management Services
+            </Link>
+            <Link
+              href="/services/facility-management"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Building Maintenance Company
+            </Link>
+            <Link
+              href="/services/facility-management"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Facility Maintenance Company
+            </Link>
+            <Link
+              href="/services/security-safety"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Corporate Security
+            </Link>
+            <Link
+              href="/about"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Facility Management Company
+            </Link>
+            <Link
+              href="/contact"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Business Security Companies
+            </Link>
+            <Link
+              href="/about#compliance"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              ISO Facility Management
+            </Link>
+          </div>
         </div>
       </div>
 

@@ -45,7 +45,7 @@ export default function ContactPage() {
         <div className="container-acs">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div>
+            <div id="contact-form">
               <p className="section-label">Send a Message</p>
               <h2 className="text-navy mb-6">Get a <span className="text-gold">Free Quote</span></h2>
               <div className="divider-gold mb-8" />
@@ -66,7 +66,7 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-roboto font-bold text-navy text-sm mb-1">Head Office</h3>
+                    <h3 className="font-roboto font-bold text-navy text-sm mb-1">Registered Corporate Head Office</h3>
                     <address className="not-italic text-gray-600 text-sm">
                       {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality},<br />
                       {siteConfig.address.addressRegion} — {siteConfig.address.postalCode}
@@ -113,9 +113,9 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Dynamic Interactive Head Office Map */}
+              {/* Dynamic Interactive Regional Deployment Map */}
               <div className="mt-8">
-                <CityMap cityName="Barrackpore" stateName="West Bengal" />
+                <CityMap />
               </div>
             </div>
           </div>

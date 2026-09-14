@@ -211,7 +211,7 @@ export default function Header() {
               className="btn-primary hidden lg:inline-flex text-xs xl:text-sm py-2 px-3.5 xl:px-4 shrink-0 whitespace-nowrap"
               aria-label="Get a free quote"
             >
-              Request Security Audit
+              Get Quote
             </Link>
 
             {/* Mobile Hamburger */}
@@ -332,7 +332,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="btn-primary w-full justify-center"
               >
-                Request Security Audit
+                Get Quote
               </Link>
               <div className="mt-4 space-y-2 text-sm text-gray-600">
                 <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 hover:text-navy">

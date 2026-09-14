@@ -14,16 +14,18 @@ export const metadata: Metadata = {
   description:
     "Advance Corporate Security (ACS) — PSARA licensed, ISO 9001:2015 certified. Security Guard Services, Corporate Housekeeping, Manpower Outsourcing & Facility Management across pan India since 2000. Get free consultation.",
   keywords: [
+    "security guards",
+    "facilities management",
+    "security guard company",
+    "facility management services",
+    "building maintenance company",
+    "facility maintenance company",
+    "corporate security",
+    "facility management company",
+    "business security companies",
+    "iso facility management",
     "PSARA licensed security services India",
-    "corporate security guard agency India",
-    "ISO 9001 facility management company India",
-    "manpower outsourcing India",
-    "security guard services India",
-    "corporate housekeeping services India",
-    "B2B security services India",
-    "government empanelled security company",
     "Advance Corporate Security",
-    "ACS security India",
   ],
   alternates: { canonical: siteConfig.url },
   openGraph: {
@@ -111,7 +113,7 @@ export default function HomePage() {
             <div>
               <p className="section-label">Who We Are</p>
               <h2 id="about-heading" className="text-navy mb-2.5">
-                India&apos;s Trusted Manpower &amp; <span className="text-sky">Facility Management</span> Since 2000
+                India&apos;s Trusted <span className="text-sky">Security Guard Company</span> &amp; Facility Management Company
               </h2>
               <div className="divider-sky" />
               <p className="text-gray-700 mt-2.5 leading-relaxed text-sm sm:text-base">

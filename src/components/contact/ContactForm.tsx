@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { siteConfig } from "@/lib/config";
+import { useCity } from "@/context/CityContext";
 
 interface FormData {
   name: string;
@@ -22,6 +23,8 @@ interface FormErrors {
 }
 
 export default function ContactForm() {
+  const { currentCity } = useCity();
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -166,7 +169,7 @@ export default function ContactForm() {
           phone: formData.phone.trim(),
           organization: formData.organization.trim(),
           service: formData.service.trim() || "General Enquiry",
-          city: formData.city.trim(),
+          city: formData.city.trim() || currentCity?.name || "",
           message: formData.message.trim(),
         }),
         signal: controller.signal,
@@ -211,9 +214,9 @@ export default function ContactForm() {
           message: errorMessage,
         });
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("[ContactForm] Submit error:", err);
-      const isTimeout = err?.name === "AbortError";
+      const isTimeout = (err as Error)?.name === "AbortError";
       setToast({
         type: "error",
         message: isTimeout
@@ -391,9 +394,14 @@ export default function ContactForm() {
               value={formData.city}
               onChange={handleChange}
               disabled={isSubmitting}
-              placeholder="e.g. Kolkata, Barrackpore, Delhi"
+              placeholder={currentCity?.name ? `Selected: ${currentCity.name} (or enter other city)` : "e.g. Kolkata, Barrackpore, Delhi"}
               className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all bg-white"
             />
+            {!formData.city && currentCity?.name && (
+              <p className="text-[11px] text-gray-500 mt-1">
+                📍 Defaulting to <span className="font-semibold text-navy">{currentCity.name}</span> (change in header selector)
+              </p>
+            )}
           </div>
         </div>
 
