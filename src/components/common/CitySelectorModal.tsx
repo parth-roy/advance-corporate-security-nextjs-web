@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { Search, X, LocateFixed, Check } from "lucide-react";
@@ -40,6 +40,8 @@ export default function CitySelectorModal({
 }: CitySelectorModalProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDetecting, setIsDetecting] = useState(false);
+  const [detectStatus, setDetectStatus] = useState<string | null>(null);
+  const [showAllCities, setShowAllCities] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const {
@@ -52,7 +54,16 @@ export default function CitySelectorModal({
 
   // Support controlled or context-driven state
   const isOpen = propIsOpen !== undefined ? propIsOpen : isCityModalOpen;
-  const handleClose = propOnClose || (() => setIsCityModalOpen(false));
+  const handleClose = useCallback(() => {
+    setSearchQuery("");
+    setDetectStatus(null);
+    setShowAllCities(false);
+    if (propOnClose) {
+      propOnClose();
+    } else {
+      setIsCityModalOpen(false);
+    }
+  }, [propOnClose, setIsCityModalOpen]);
 
   const activeSlug = currentCitySlug || currentCity?.slug || "kolkata";
 
@@ -78,9 +89,7 @@ export default function CitySelectorModal({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, handleClose]);
 
-  if (!isOpen) return null;
-
-  const handleCitySelect = (citySlug: string, cityName?: string) => {
+  const handleCitySelect = useCallback((citySlug: string, cityName?: string) => {
     const matched = ACS_CITIES.find((c) => c.slug === citySlug) || {
       slug: citySlug,
       name: cityName || citySlug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
@@ -116,11 +125,9 @@ export default function CitySelectorModal({
     }
 
     handleClose();
-  };
+  }, [handleClose, onCitySelect, pathname, router, setCity]);
 
-  const [detectStatus, setDetectStatus] = useState<string | null>(null);
-
-  const handleAutoDetect = async () => {
+  const handleAutoDetect = useCallback(async () => {
     setIsDetecting(true);
     setDetectStatus("Pinpointing location via Google Maps...");
     try {
@@ -142,13 +149,20 @@ export default function CitySelectorModal({
     } finally {
       setIsDetecting(false);
     }
-  };
+  }, [detectLocation, handleCitySelect]);
+
+  if (!isOpen) return null;
 
   const filteredCities = ACS_CITIES.filter(
     (c) =>
       c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (c.state && c.state.toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
+  const displayedCities =
+    searchQuery.trim() || showAllCities
+      ? filteredCities
+      : filteredCities.slice(0, 48);
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 font-sans">
@@ -293,47 +307,62 @@ export default function CitySelectorModal({
                 ? `Matching Locations (${filteredCities.length})`
                 : "All Operational Locations (828 Pan-India Cities)"}
             </h3>
-            {filteredCities.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                {filteredCities.map((city) => {
-                  const isSelected = activeSlug === city.slug;
-                  return (
-                    <button
-                      key={city.slug}
-                      onClick={() => handleCitySelect(city.slug, city.name)}
-                      className={`flex items-center gap-3 w-full text-left p-3 rounded-xl transition-all group cursor-pointer ${
-                        isSelected
-                          ? "bg-sky-50 text-navy font-semibold border border-sky-200"
-                          : "hover:bg-slate-50 text-slate-700 hover:text-navy border border-transparent"
-                      }`}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+            {displayedCities.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                  {displayedCities.map((city) => {
+                    const isSelected = activeSlug === city.slug;
+                    return (
+                      <button
+                        key={city.slug}
+                        onClick={() => handleCitySelect(city.slug, city.name)}
+                        className={`flex items-center gap-3 w-full text-left p-3 rounded-xl transition-all group cursor-pointer ${
                           isSelected
-                            ? "bg-sky-200/70 text-navy"
-                            : "bg-slate-100 text-slate-400 group-hover:bg-sky-100 group-hover:text-sky-700"
+                            ? "bg-sky-50 text-navy font-semibold border border-sky-200"
+                            : "hover:bg-slate-50 text-slate-700 hover:text-navy border border-transparent"
                         }`}
                       >
-                        <Image
-                          src="/google-maps-icon.webp"
-                          alt="City"
-                          width={16}
-                          height={16}
-                          className="w-4 h-4 object-contain"
-                        />
-                      </div>
-                      <div className="truncate">
-                        <p className="text-xs sm:text-sm font-semibold truncate leading-tight">
-                          {city.name}
-                        </p>
-                        <p className="text-[10px] text-slate-400 truncate">
-                          {city.state}
-                        </p>
-                      </div>
+                        <div
+                          className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                            isSelected
+                              ? "bg-sky-200/70 text-navy"
+                              : "bg-slate-100 text-slate-400 group-hover:bg-sky-100 group-hover:text-sky-700"
+                          }`}
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src="/google-maps-icon.webp"
+                            alt=""
+                            width={16}
+                            height={16}
+                            loading="lazy"
+                            className="w-4 h-4 object-contain"
+                          />
+                        </div>
+                        <div className="truncate">
+                          <p className="text-xs sm:text-sm font-semibold truncate leading-tight">
+                            {city.name}
+                          </p>
+                          <p className="text-[10px] text-slate-400 truncate">
+                            {city.state}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+                {!searchQuery && !showAllCities && filteredCities.length > 48 && (
+                  <div className="mt-4 text-center">
+                    <button
+                      type="button"
+                      onClick={() => setShowAllCities(true)}
+                      className="px-6 py-2.5 bg-slate-100 hover:bg-sky-50 text-navy font-bold text-xs rounded-xl border border-slate-200 hover:border-sky-300 transition-all cursor-pointer shadow-2xs"
+                    >
+                      Show all {filteredCities.length} operational cities across India
                     </button>
-                  );
-                })}
-              </div>
+                  </div>
+                )}
+              </>
             ) : (
               <div className="text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
                 <Image

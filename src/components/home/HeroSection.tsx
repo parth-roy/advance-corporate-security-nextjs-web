@@ -10,7 +10,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { siteConfig } from "@/lib/config";
 import { useCity } from "@/context/CityContext";
 import AnimatedStat from "@/components/common/AnimatedStat";
 
@@ -143,7 +142,7 @@ export default function HeroSection() {
             {/* Main H1 Heading */}
             <h1
               id="hero-heading"
-              className="font-roboto font-black text-slate-900 leading-[1.15] mb-1.5 tracking-tight text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px]"
+              className="font-roboto font-black text-slate-900 leading-[1.25] mb-2 tracking-tight text-[15px] sm:text-[18px] lg:text-[22px] xl:text-[24px]"
             >
               The Compliance-First Security &amp; Facility Partner for High-Risk Enterprises in{" "}
               <span className="text-sky-600 font-black">
