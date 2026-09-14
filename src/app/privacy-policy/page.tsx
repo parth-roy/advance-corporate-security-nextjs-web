@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Advance Corporate Security (ACS)",
+  title: "Privacy Policy",
   description:
     "Privacy Policy of Advance Corporate Security (ACS). Learn how we protect, handle, and safeguard customer, client, and employee data in accordance with applicable Indian laws.",
   alternates: { canonical: `${siteConfig.url}/privacy-policy` },

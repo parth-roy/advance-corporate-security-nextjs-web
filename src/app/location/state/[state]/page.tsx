@@ -1,4 +1,4 @@
-﻿// src/app/location/state/[state]/page.tsx
+// src/app/location/state/[state]/page.tsx
 // State Hub PSEO pages — 28 routes
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { state: stateSlug } = await params;
   const stateName = STATE_NAMES[stateSlug] ?? stateSlug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  const title = `Security & Facility Management Services in ${stateName} | ACS`;
+  const title = `Security & Facility Management Services in ${stateName}`;
   const description = `ACS provides PSARA-licensed security guard services, facility management, and manpower outsourcing across all major cities in ${stateName}. ISO 9001:2015 certified. 25+ years. Get free quote.`;
   return {
     title, description,

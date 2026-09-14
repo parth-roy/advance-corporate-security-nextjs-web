@@ -25,7 +25,7 @@ export const siteConfig = {
 
   // --- NAP (Name, Address, Phone) — DO NOT change format, used in JSON-LD ---
   address: {
-    streetAddress: "Barrackpore",
+    streetAddress: "1/2, Bhattacharjee Para, Barrackpore",
     addressLocality: "Kolkata",
     addressRegion: "West Bengal",
     postalCode: "700120",

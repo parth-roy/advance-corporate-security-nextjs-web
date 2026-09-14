@@ -5,7 +5,7 @@ import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/li
 import GalleryClient from "@/components/gallery/GalleryClient";
 
 export const metadata: Metadata = {
-  title: "Official Photo Gallery — Operations, Training & Drills | Advance Corporate Security (ACS)",
+  title: "Official Photo Gallery — Operations, Training & Drills",
   description:
     "Explore real on-ground photos of Advance Corporate Security (ACS). View security guard deployments, PSARA training drills, VIP protection details, facility management, and awards across India.",
   alternates: { canonical: `${siteConfig.url}/gallery` },

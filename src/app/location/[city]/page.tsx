@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const cityData = ACS_CITIES.find((c) => c.slug === citySlug);
   if (!cityData) return {};
   const { name: cityName, state: stateName } = cityData;
-  const title = `Security & Facility Management Services in ${cityName} | PSARA Licensed - ACS`;
+  const title = `Security & Facility Management Services in ${cityName} | PSARA Licensed`;
   const description = `Advance Corporate Security in ${cityName}, ${stateName} — PSARA-licensed security guards, facility management, manpower outsourcing, and horticulture. ISO 9001:2015 certified. Get free quote.`;
   const canonical = `${siteConfig.url}/location/${citySlug}`;
   return {

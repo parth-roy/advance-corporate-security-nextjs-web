@@ -38,6 +38,14 @@ const nextConfig: NextConfig = {
             value: "1; mode=block",
           },
           {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(self)",
+          },
+          {
             key: "Content-Security-Policy",
             value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://maps.gstatic.com https://maps.googleapis.com; connect-src 'self' https://maps.googleapis.com; frame-src 'self' https://www.google.com https://maps.google.com https://*.openstreetmap.org https://openstreetmap.org;",
           },
@@ -56,6 +64,16 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Core alias redirects (prevent 404 on plural/shorthand URLs)
+      { source: "/locations", destination: "/location", permanent: true },
+      { source: "/locations/", destination: "/location", permanent: true },
+      { source: "/privacy", destination: "/privacy-policy", permanent: true },
+      { source: "/privacy/", destination: "/privacy-policy", permanent: true },
+      { source: "/terms", destination: "/terms-of-service", permanent: true },
+      { source: "/terms/", destination: "/terms-of-service", permanent: true },
+      { source: "/service", destination: "/services", permanent: true },
+      { source: "/service/", destination: "/services", permanent: true },
+
       // WordPress legacy URL → New clean URLs (301 Permanent)
       { source: "/home/", destination: "/", permanent: true },
       { source: "/home", destination: "/", permanent: true },

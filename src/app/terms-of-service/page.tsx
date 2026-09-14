@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Advance Corporate Security (ACS)",
+  title: "Terms of Service",
   description:
     "Terms and Conditions governing the security guard services, facility management, and workforce outsourcing provided by Advance Corporate Security (ACS).",
   alternates: { canonical: `${siteConfig.url}/terms-of-service` },

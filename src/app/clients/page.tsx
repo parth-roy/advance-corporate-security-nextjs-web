@@ -6,7 +6,7 @@ import ClientMarquee from "@/components/common/ClientMarquee";
 import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Our Trusted Clients & Partners | Advance Corporate Security (ACS)",
+  title: "Our Trusted Clients & Partners",
   description:
     "Explore the esteemed client portfolio of Advance Corporate Security (ACS). Trusted by the Indian Air Force, Indian Navy, HAL, CPCB, ICMR, BSNL, Kendriya Vidyalaya, and leading industries across India.",
   alternates: { canonical: `${siteConfig.url}/clients` },

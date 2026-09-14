@@ -5,7 +5,7 @@ import { ACS_CITIES, ACS_STATES } from "@/lib/cities";
 import LocationDirectoryClient from "@/components/location/LocationDirectoryClient";
 
 export const metadata: Metadata = {
-  title: "Pan-India Security & Facility Management Directory (828+ Cities) | ACS",
+  title: "Pan-India Security & Facility Management Directory (828+ Cities)",
   description:
     "Explore ACS's pan-India deployment directory covering 828+ cities across all 31 Indian States and Union Territories. PSARA-licensed security guards, facility management, and contract workforce.",
   alternates: { canonical: `${siteConfig.url}/location` },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
-import { ACS_SERVICES, getServiceBySlug, ACS_SERVICE_CATEGORIES } from "@/lib/services";
+import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
 import { buildBreadcrumbSchema, buildServiceSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
 import { notFound } from "next/navigation";
@@ -116,10 +116,10 @@ export async function generateMetadata({
   const category = categoryData[slug];
 
   const title = subService
-    ? `${subService.name} | Advance Corporate Security`
+    ? subService.name
     : category
-    ? `${category.title} | Advance Corporate Security`
-    : "Corporate Security | ACS";
+    ? category.title
+    : "Corporate Security & Facility Management";
 
   const description = subService?.description || category?.description || siteConfig.description;
   const heroImage = subService?.heroImage || category?.heroImage || "/images/security-service-slider.jpg";

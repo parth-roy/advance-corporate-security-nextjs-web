@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { siteConfig } from "@/lib/config";
 import { useCity } from "@/context/CityContext";
 
 interface FormData {
@@ -42,6 +41,7 @@ export default function ContactForm() {
   const [submittedLead, setSubmittedLead] = useState<{ name: string; service: string; phone: string; id?: string } | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [honeypot, setHoneypot] = useState("");
 
   // Field refs for auto-focusing the first error
   const nameRef = useRef<HTMLInputElement>(null);
@@ -145,13 +145,19 @@ export default function ContactForm() {
       return;
     }
 
+    // Bot spam trap check
+    if (honeypot) {
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+      setShowSuccessModal(true);
+      return;
+    }
+
     setIsSubmitting(true);
     setToast(null);
 
-    // Dynamic endpoint fallback (supports local dev and live production API)
-    const isLocalhost = typeof window !== "undefined" && window.location.hostname === "localhost";
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || (isLocalhost ? "http://localhost:4000" : siteConfig.apiUrl);
-    const endpoint = `${apiBase}/api/contact`;
+    // Route through internal Next.js API route with resilient backend fallback
+    const endpoint = "/api/contact";
 
     try {
       const controller = new AbortController();
@@ -171,6 +177,7 @@ export default function ContactForm() {
           service: formData.service.trim() || "General Enquiry",
           city: formData.city.trim() || currentCity?.name || "",
           message: formData.message.trim(),
+          fax_or_website: honeypot,
         }),
         signal: controller.signal,
       });
@@ -270,6 +277,20 @@ export default function ContactForm() {
 
       {/* ── Form Container ── */}
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+        {/* Anti-spam Honeypot Field (invisible to real visitors) */}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="fax_or_website">Website or Fax</label>
+          <input
+            type="text"
+            id="fax_or_website"
+            name="fax_or_website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
         {/* Full Name */}
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-1.5">

@@ -8,7 +8,7 @@ import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/sc
 import ClientMarquee from "@/components/common/ClientMarquee";
 
 export const metadata: Metadata = {
-  title: "All Services | Security, Facility Management & Manpower | ACS",
+  title: "All Services — Security, Facility Management & Manpower",
   description:
     "Explore all Advance Corporate Security offerings — PSARA-licensed security guards, facility management, manpower outsourcing, pest control, MEP maintenance, fire fighting, horticulture across pan India.",
   keywords: [

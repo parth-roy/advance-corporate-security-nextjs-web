@@ -5,7 +5,7 @@ import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/li
 import CareersForm from "@/components/careers/CareersForm";
 
 export const metadata: Metadata = {
-  title: "Careers & Future Opportunities | Advance Corporate Security (ACS)",
+  title: "Careers & Future Opportunities",
   description:
     "Explore career opportunities with Advance Corporate Security (ACS). Register your profile with our talent database for upcoming security guard, supervisor, and facility management deployments across India.",
   alternates: { canonical: `${siteConfig.url}/careers` },

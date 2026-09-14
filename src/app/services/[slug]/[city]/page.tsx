@@ -10,7 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config";
-import { ACS_SERVICES, getServiceBySlug, ACS_SERVICE_CATEGORIES } from "@/lib/services";
+import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
 import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, serializeJsonLd } from "@/lib/schema";
@@ -47,9 +47,10 @@ export async function generateMetadata({
   const cityName = cityObj.name;
   const state = cityObj.state;
 
-  const title = service.metaTitleTemplate
+  const rawTitle = service.metaTitleTemplate
     ? service.metaTitleTemplate.replace(/\[City\]/g, cityName)
-    : `Reliable ${service.name} in ${cityName}, ${state} | PSARA Licensed - ACS`;
+    : `Reliable ${service.name} in ${cityName}, ${state} | PSARA Licensed`;
+  const title = rawTitle.replace(/\s*[|\-]\s*ACS\s*$/i, "").trim();
 
   const description = service.metaDescTemplate
     ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
