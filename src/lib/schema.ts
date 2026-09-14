@@ -214,9 +214,12 @@ export function buildServiceSchema(service: {
   description: string;
   slug: string;
   cityName?: string;
+  citySlug?: string;
   schemaType?: string;
 }) {
-  const url = service.cityName
+  const url = service.citySlug
+    ? `${siteConfig.url}/services/${service.slug}/${service.citySlug}`
+    : service.cityName
     ? `${siteConfig.url}/services/${service.slug}/${service.cityName.toLowerCase().replace(/\s+/g, "-")}`
     : `${siteConfig.url}/services/${service.slug}`;
 

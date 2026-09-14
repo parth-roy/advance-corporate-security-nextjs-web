@@ -46,7 +46,7 @@ ${items}
 async function main() {
   console.log("Generating XML sitemaps for ACS...");
 
-  // 1. Core pages (9 URLs)
+  // 1. Core pages (8 clean URLs)
   const coreUrls = [
     { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${BASE_URL}/about`, priority: "0.8" },
@@ -55,8 +55,7 @@ async function main() {
     { loc: `${BASE_URL}/clients`, priority: "0.7" },
     { loc: `${BASE_URL}/careers`, priority: "0.7", changefreq: "weekly" },
     { loc: `${BASE_URL}/gallery`, priority: "0.6" },
-    { loc: `${BASE_URL}/location`, priority: "0.8", changefreq: "weekly" },
-    { loc: `${BASE_URL}/quote`, priority: "0.8" },
+    { loc: `${BASE_URL}/location`, priority: "0.85", changefreq: "weekly" },
   ];
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-core.xml"), generateUrlXml(coreUrls), "utf8");
   console.log(`✅ sitemap-core.xml generated (${coreUrls.length} URLs)`);
@@ -70,9 +69,8 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-states.xml"), generateUrlXml(stateUrls), "utf8");
   console.log(`✅ sitemap-states.xml generated (${stateUrls.length} URLs)`);
 
-  // 3. City deployment hubs (829 URLs = 828 cities + /location)
+  // 3. City deployment hubs (828 cities)
   const cityUrls = [
-    { loc: `${BASE_URL}/location`, priority: "0.85", changefreq: "weekly" },
     ...ACS_CITIES.map((c) => ({
       loc: `${BASE_URL}/location/${c.slug}`,
       priority: c.tier === 1 ? "0.8" : c.tier === 2 ? "0.7" : "0.6",
@@ -133,11 +131,10 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-manpower.xml"), generateUrlXml(manpowerUrls), "utf8");
   console.log(`✅ sitemap-manpower.xml generated (${manpowerUrls.length} URLs)`);
 
-  // 7. Horticulture & Green (830 URLs)
+  // 7. Horticulture & Green (829 URLs)
   const horticultureServices = ACS_SERVICES.filter((s) => s.category === "horticulture");
   const horticultureUrls = [
     { loc: `${BASE_URL}/services/horticulture`, priority: "0.85" },
-    { loc: `${BASE_URL}/services/horticulture-landscaping`, priority: "0.8" },
   ];
   for (const s of horticultureServices) {
     for (const city of ACS_CITIES) {

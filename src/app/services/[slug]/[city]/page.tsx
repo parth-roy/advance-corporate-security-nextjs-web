@@ -12,7 +12,7 @@ import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug, ACS_SERVICE_CATEGORIES } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
-import { generateServiceCityFaqs } from "@/lib/locationFaqHelper";
+import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
 import ClientMarquee from "@/components/common/ClientMarquee";
@@ -40,9 +40,9 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug, city: citySlug } = await params;
-  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug) || ACS_SERVICES[0];
+  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug);
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
-  if (!cityObj) return {};
+  if (!service || !cityObj) return {};
 
   const cityName = cityObj.name;
   const state = cityObj.state;
@@ -87,9 +87,9 @@ export default async function ServiceCityPage({
   params: Promise<Params>;
 }) {
   const { slug, city: citySlug } = await params;
-  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug) || ACS_SERVICES.find(s => s.slug === "security-guard")!;
+  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug);
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
-  if (!cityObj) notFound();
+  if (!service || !cityObj) notFound();
 
   const { name: cityName, state, stateSlug } = cityObj;
   const pageUrl = `${siteConfig.url}/services/${slug}/${citySlug}`;
@@ -112,6 +112,7 @@ export default async function ServiceCityPage({
     schemaType: service.schemaType,
   });
 
+  const localZones = getLocalDeploymentZones(cityName, state);
   const faqSchema = buildFaqSchema(faqs);
   const breadcrumbs = [
     { name: "Home", url: siteConfig.url },
@@ -125,6 +126,7 @@ export default async function ServiceCityPage({
     description: service.description,
     slug,
     cityName,
+    citySlug,
     schemaType: service.schemaType,
   });
 
@@ -358,8 +360,48 @@ export default async function ServiceCityPage({
         </div>
       </section>
 
+      {/* ── LOCAL COMMERCIAL & INDUSTRIAL HUBS (Anti-Doorway GEO Enrichment) ── */}
+      <section className="py-12 bg-slate-50 border-t border-slate-200/80">
+        <div className="container-acs">
+          <div className="text-center mb-8">
+            <p className="section-label">Local Deployment Corridors</p>
+            <h2 className="text-navy text-xl sm:text-2xl font-roboto font-bold">
+              Key Industrial Hubs &amp; Operational Belts in <span className="text-sky">{cityName}</span>
+            </h2>
+            <div className="divider-sky mx-auto" />
+            <p className="text-gray-600 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+              ACS maintains active supervisor patrols and rapid-response manpower deployment across {cityName}&apos;s core commercial and manufacturing zones.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            {localZones.map((zone) => (
+              <div
+                key={zone.name}
+                className="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs hover:border-sky-300 hover:shadow-xs transition-all"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">
+                    {zone.type}
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-semibold">
+                    📍 {zone.distance}
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-slate-900 text-sm mb-1 leading-snug">
+                  {zone.name}
+                </h3>
+                <p className="text-slate-500 text-xs">
+                  24×7 statutory compliant {service.shortName.toLowerCase()} coverage with on-demand reserve staff.
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── DYNAMIC CITY DEPLOYMENT MAP (URL-Driven) ── */}
-      <section className="section-py bg-gray-50 border-t border-gray-200/70" aria-label={`Operational footprint in ${cityName}`}>
+      <section className="section-py bg-white border-t border-gray-200/70" aria-label={`Operational footprint in ${cityName}`}>
         <div className="container-acs">
           <div className="text-center mb-10">
             <p className="section-label">Deployment Footprint</p>

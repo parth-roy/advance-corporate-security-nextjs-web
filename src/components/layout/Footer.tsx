@@ -8,10 +8,11 @@ import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
 
 const footerLinks = [
   { label: "About Us", href: "/about" },
-  { label: "Compliance & PSARA", href: "/about/compliance-and-psara" },
+  { label: "Our Mission", href: "/about#mission" },
+  { label: "Leadership Team", href: "/about#team" },
+  { label: "Founder's Desk", href: "/about#founder" },
   { label: "Our Clients", href: "/clients" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Industries Served", href: "/industries" },
+  { label: "Pan-India Directory", href: "/location" },
   { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
 ];

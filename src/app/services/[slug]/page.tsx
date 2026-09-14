@@ -187,8 +187,25 @@ export default async function ServicePage({
     schemaType: subService?.schemaType,
   });
 
-  // Top cities to feature for this service
-  const topCities = ACS_CITIES.filter(c => c.tier === 1).slice(0, 16);
+  // Key metro and industrial deployment hubs to feature for this service
+  const keyHubSlugs = [
+    "kolkata", "barrackpore", "howrah", "mumbai", "pune", "delhi", "bengaluru", "hyderabad",
+    "chennai", "ahmedabad", "surat", "jaipur", "lucknow", "kanpur", "patna", "ranchi",
+    "bhubaneswar", "bhopal", "indore", "chandigarh", "ludhiana", "dehradun", "guwahati",
+    "raipur", "nagpur", "vadodara", "visakhapatnam", "kochi", "coimbatore", "varanasi",
+    "agra", "noida", "gurgaon", "faridabad", "ghaziabad", "jamshedpur"
+  ];
+  const featuredCities = keyHubSlugs
+    .map((s) => ACS_CITIES.find((c) => c.slug === s))
+    .filter((c): c is (typeof ACS_CITIES)[0] => Boolean(c));
+
+  // Distinct states for complete internal crawl equity
+  const stateList = Array.from(new Set(ACS_CITIES.map((c) => c.stateSlug)))
+    .map((sSlug) => {
+      const city = ACS_CITIES.find((c) => c.stateSlug === sSlug);
+      return { slug: sSlug, name: city?.state || sSlug };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <>
@@ -377,22 +394,44 @@ export default async function ServicePage({
             <p className="text-gray-600 text-sm mt-3">Select a city to view local deployment specifications, pricing, and PSARA compliance.</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2.5">
-            {topCities.map((city) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+            {featuredCities.map((city) => (
               <Link
                 key={city.slug}
                 href={`/services/${slug}/${city.slug}`}
                 className="p-2.5 bg-white border border-gray-200 rounded-lg text-center hover:border-sky hover:bg-sky-50 transition-all text-xs font-medium text-navy group"
               >
-                <div className="group-hover:text-sky transition-colors">{city.name}</div>
+                <div className="group-hover:text-sky transition-colors font-bold">{city.name}</div>
                 <div className="text-[10px] text-gray-400 mt-0.5">{city.state}</div>
               </Link>
             ))}
           </div>
 
-          <div className="text-center mt-6">
-            <Link href="/location" className="text-sky text-sm font-semibold hover:underline">
-              View All 800+ City Locations →
+          {/* All 31 States Internal Crawl Matrix */}
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider text-center mb-3 font-roboto">
+              Browse Operations by State &amp; Union Territory
+            </h3>
+            <div className="flex flex-wrap gap-1.5 justify-center max-w-4xl mx-auto">
+              {stateList.map((st) => (
+                <Link
+                  key={st.slug}
+                  href={`/location/state/${st.slug}`}
+                  className="text-xs px-2.5 py-1 bg-white border border-gray-200 text-gray-700 hover:border-sky hover:text-navy rounded-full transition-colors font-medium shadow-2xs"
+                >
+                  {st.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              href="/location"
+              className="btn-primary text-xs px-6 py-2.5 inline-flex items-center gap-2"
+            >
+              <span>Explore All 828+ City Deployment Hubs</span>
+              <span>→</span>
             </Link>
           </div>
         </div>

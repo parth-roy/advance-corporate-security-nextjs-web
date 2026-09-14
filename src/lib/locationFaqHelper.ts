@@ -103,3 +103,101 @@ export function generateCityHubFaqs(cityName: string, stateName: string): FAQ[] 
     },
   ];
 }
+
+export interface LocalZone {
+  name: string;
+  type: string;
+  distance: string;
+}
+
+const KNOWN_CITY_ZONES: Record<string, LocalZone[]> = {
+  barrackpore: [
+    { name: "Barrackpore Cantonment & Defence Base", type: "Defence & Administrative", distance: "Within Sector" },
+    { name: "BT Road Industrial & Warehousing Corridor", type: "Industrial Corridor", distance: "1–3 km" },
+    { name: "Titagarh & Khardaha Industrial Belt", type: "Heavy Engineering & Manufacturing", distance: "3–5 km" },
+    { name: "Shyamnagar & Naihati Manufacturing Link", type: "Textile & Manufacturing", distance: "6–8 km" },
+    { name: "Kalyani Expressway Logistics Link", type: "Logistics & Distribution", distance: "4–6 km" },
+  ],
+  kolkata: [
+    { name: "Salt Lake Sector V Tech Park", type: "IT / ITES Commercial Hub", distance: "Primary Core" },
+    { name: "New Town Rajarhat Business Zone", type: "Corporate & Financial Hub", distance: "Within City" },
+    { name: "Taratala & Hyde Road Industrial Area", type: "Manufacturing & Logistics", distance: "South Core" },
+    { name: "Kasba Industrial Estate", type: "Commercial & Light Industrial", distance: "East Core" },
+    { name: "Dankuni Multi-Modal Freight Terminal", type: "Logistics & Inland Container Hub", distance: "12 km" },
+  ],
+  howrah: [
+    { name: "Baltikuri & Dasnagar Engineering Hub", type: "Engineering & Foundry", distance: "Core Zone" },
+    { name: "Dhulagarh Industrial & Freight Park", type: "Logistics & Warehousing", distance: "8 km" },
+    { name: "Uluberia Industrial Growth Centre", type: "Heavy Industry & Food Processing", distance: "15 km" },
+    { name: "Kona Expressway Commercial Corridor", type: "Commercial Transport", distance: "4 km" },
+  ],
+  mumbai: [
+    { name: "Bandra Kurla Complex (BKC)", type: "Financial & Corporate HQ", distance: "Primary Hub" },
+    { name: "Andheri East MIDC & SEEPZ", type: "IT / Electronics SEZ", distance: "Western Hub" },
+    { name: "Lower Parel Commercial Mills District", type: "Corporate Offices & Banking", distance: "Central Hub" },
+    { name: "Taloja & Navi Mumbai Industrial Corridor", type: "Chemical & Manufacturing", distance: "Extended Zone" },
+  ],
+  pune: [
+    { name: "Hinjawadi Rajiv Gandhi Infotech Park", type: "IT / ITES Park", distance: "Phase 1–3" },
+    { name: "Chakan Industrial Area", type: "Automotive & Heavy Engineering", distance: "Auto Cluster" },
+    { name: "Bhosari & Pimpri MIDC", type: "Industrial & Manufacturing", distance: "Pimpri-Chinchwad" },
+    { name: "Magarpatta Cybercity & Kharadi", type: "IT Special Economic Zone", distance: "East Hub" },
+  ],
+  bengaluru: [
+    { name: "Electronic City Phase 1 & 2", type: "IT & Electronics Cluster", distance: "South Hub" },
+    { name: "Whitefield EPIP & ITPL Zone", type: "Tech Park & R&D Center", distance: "East Hub" },
+    { name: "Peenya Industrial Area", type: "Manufacturing & Small Scale Hub", distance: "North-West Hub" },
+    { name: "Outer Ring Road (ORR) Tech Corridor", type: "Enterprise Corporate Hub", distance: "Central Belt" },
+  ],
+  delhi: [
+    { name: "Okhla Industrial Area Phases I-III", type: "Manufacturing & Export Hub", distance: "South Delhi" },
+    { name: "Connaught Place Financial District", type: "Corporate & Banking HQ", distance: "Central Delhi" },
+    { name: "Naraina & Mayapuri Industrial Area", type: "Light Industrial & Metal Works", distance: "West Delhi" },
+    { name: "Patparganj Industrial Estate", type: "Commercial & Packaging", distance: "East Delhi" },
+  ],
+  gurugram: [
+    { name: "DLF Cyber City & Cyber Hub", type: "MNC Corporate Towers", distance: "Phase 2 & 3" },
+    { name: "Udyog Vihar Phases I-V", type: "Commercial & IT Corridor", distance: "Adjacent NH-48" },
+    { name: "IMT Manesar Industrial Township", type: "Automotive & Manufacturing SEZ", distance: "Manesar Belt" },
+    { name: "Golf Course Road Corporate Belt", type: "Executive Business Centers", distance: "South Gurugram" },
+  ],
+  noida: [
+    { name: "Noida Sector 62 & 63 IT Cluster", type: "Technology & Software Parks", distance: "Core Zone" },
+    { name: "Noida-Greater Noida Expressway Zone", type: "Corporate Institutional Belt", distance: "Expressway" },
+    { name: "Greater Noida Ecotech Industrial Hub", type: "Electronics & Heavy Manufacturing", distance: "Greater Noida" },
+    { name: "Hosiery Complex Phase-II", type: "Textile & Garment SEZ", distance: "Phase 2" },
+  ],
+  hyderabad: [
+    { name: "HITEC City & Madhapur", type: "IT / ITES Software Hub", distance: "Cyberabad" },
+    { name: "Gachibowli Financial District", type: "Banking & Global Financial Centers", distance: "West Zone" },
+    { name: "Patancheru Industrial Area", type: "Pharma & Chemical Corridor", distance: "NH-65 Belt" },
+    { name: "Jeedimetla Industrial Development Area", type: "Engineering & Heavy Industry", distance: "North Zone" },
+  ],
+  chennai: [
+    { name: "OMR (Old Mahabalipuram Road) IT Expressway", type: "IT / ITES Corridor", distance: "South Chennai" },
+    { name: "Sriperumbudur Industrial Hub", type: "Electronics & Automotive SEZ", distance: "West Corridor" },
+    { name: "Ambattur Industrial Estate", type: "Manufacturing & Engineering", distance: "North-West" },
+    { name: "Guindy Industrial Estate", type: "Commercial & Light Manufacturing", distance: "Central Zone" },
+  ],
+  ahmedabad: [
+    { name: "Sanand GIDC Automotive Corridor", type: "Automotive & Engineering", distance: "West Belt" },
+    { name: "Changodar Industrial Area", type: "Pharma & Heavy Engineering", distance: "NH-8A" },
+    { name: "SG Highway Corporate Corridor", type: "Financial & Corporate Offices", distance: "City Core" },
+    { name: "Vatva & Naroda GIDC", type: "Chemical & Industrial Estate", distance: "East Ahmedabad" },
+  ],
+};
+
+export function getLocalDeploymentZones(cityName: string, stateName: string): LocalZone[] {
+  const slug = cityName.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-");
+  if (KNOWN_CITY_ZONES[slug]) {
+    return KNOWN_CITY_ZONES[slug];
+  }
+
+  return [
+    { name: `${cityName} Commercial & Administrative Center`, type: "Corporate & Banking", distance: "Core Sector" },
+    { name: `${cityName} Industrial Area & Growth Center`, type: "Manufacturing & Warehousing", distance: "2–5 km" },
+    { name: `${stateName} State Highway Logistics Corridor`, type: "Freight & Distribution", distance: "Transit Belt" },
+    { name: `${cityName} Healthcare & Institutional Complex`, type: "Hospitals & Education", distance: "City Limits" },
+  ];
+}
+
