@@ -118,15 +118,27 @@ export default function CitySelectorModal({
     handleClose();
   };
 
+  const [detectStatus, setDetectStatus] = useState<string | null>(null);
+
   const handleAutoDetect = async () => {
     setIsDetecting(true);
+    setDetectStatus("Pinpointing location via Google Maps...");
     try {
       const detected = await detectLocation(true);
       if (detected && detected.slug) {
-        handleCitySelect(detected.slug, detected.name);
+        setDetectStatus(`Detected: ${detected.name}, ${detected.state}`);
+        setTimeout(() => {
+          handleCitySelect(detected.slug, detected.name);
+          setDetectStatus(null);
+        }, 800);
+      } else {
+        setDetectStatus("Could not determine precise location");
+        setTimeout(() => setDetectStatus(null), 2500);
       }
     } catch (e) {
       console.warn("Auto-detect failed:", e);
+      setDetectStatus("Detection failed. Please choose your city below.");
+      setTimeout(() => setDetectStatus(null), 2500);
     } finally {
       setIsDetecting(false);
     }
@@ -208,6 +220,17 @@ export default function CitySelectorModal({
               <span>{isDetecting ? "Detecting..." : "Auto Detect City"}</span>
             </button>
           </div>
+
+          {/* Status Feedback Banner */}
+          {detectStatus && (
+            <div className="flex items-center gap-2.5 px-4 py-3 bg-sky-50 border border-sky-200/80 rounded-2xl text-xs font-bold text-sky-900 animate-in fade-in duration-200">
+              <LocateFixed
+                size={16}
+                className={isDetecting ? "animate-spin text-sky-600 shrink-0" : "text-emerald-600 shrink-0"}
+              />
+              <span>{detectStatus}</span>
+            </div>
+          )}
 
           {/* Top Cities Grid (Only when not actively searching) */}
           {!searchQuery && (
