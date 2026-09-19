@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
 import ContactForm from "@/components/contact/ContactForm";
+import BrochureDownloadButton from "@/components/contact/BrochureDownloadButton";
 
 export const metadata: Metadata = {
   title: "Contact Us — Get a Free Quote for Security & Facility Management",
@@ -22,8 +23,8 @@ export default function ContactPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildBreadcrumbSchema(breadcrumbs)) }} />
 
       {/* Hero */}
-      <section className="bg-navy text-white py-16">
-        <div className="container-acs">
+      <section className="bg-navy text-white py-14 sm:py-16 relative overflow-hidden">
+        <div className="container-acs relative z-10">
           <nav aria-label="Breadcrumb" className="mb-4">
             <ol className="flex items-center gap-2 text-sm text-gray-400" role="list">
               <li><Link href="/" className="hover:text-gold transition-colors">Home</Link></li>
@@ -34,9 +35,12 @@ export default function ContactPage() {
           <h1 className="font-roboto font-900 text-white text-3xl md:text-5xl mb-4">
             Contact <span className="text-gold">Us</span>
           </h1>
-          <p className="text-gray-300 max-w-xl">
+          <p className="text-gray-300 max-w-xl text-sm sm:text-base leading-relaxed">
             Reach out to our team for a free consultation and customised security or facility management solution for your organisation.
           </p>
+
+          {/* Big Glossy 'Download Our Brochure' Button in Hero */}
+          <BrochureDownloadButton variant="hero" />
         </div>
       </section>
 
@@ -57,6 +61,10 @@ export default function ContactPage() {
               <p className="section-label">Get in Touch</p>
               <h2 className="text-navy mb-6">Our <span className="text-gold">Contact Details</span></h2>
               <div className="divider-gold mb-8" />
+
+              {/* Featured Corporate Brochure Card */}
+              <BrochureDownloadButton variant="card" className="mb-6" />
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4 p-5 bg-off-white rounded-lg">
                   <div className="w-10 h-10 bg-gold rounded-lg flex items-center justify-center shrink-0">
