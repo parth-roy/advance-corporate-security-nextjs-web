@@ -10,8 +10,8 @@ import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
-import { generateCityHubFaqs } from "@/lib/locationFaqHelper";
-import { buildFaqSchema, buildBreadcrumbSchema, serializeJsonLd } from "@/lib/schema";
+import { generateCityHubFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
+import { buildFaqSchema, buildBreadcrumbSchema, buildCityLocalBusinessSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
 
 interface Params { city: string; }
@@ -45,6 +45,12 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
 
   const faqs = generateCityHubFaqs(cityName, stateName);
   const faqSchema = buildFaqSchema(faqs);
+  const localBusinessSchema = buildCityLocalBusinessSchema({
+    cityName,
+    stateName,
+    citySlug,
+  });
+  const localZones = getLocalDeploymentZones(cityName, stateName);
   const breadcrumbs = [
     { name: "Home", url: siteConfig.url },
     { name: "Locations", url: `${siteConfig.url}/location` },
@@ -55,6 +61,7 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildBreadcrumbSchema(breadcrumbs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(localBusinessSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />}
 
       {/* Hero */}
@@ -109,6 +116,43 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+      {/* Hyper-Local Industrial & Commercial Deployment Zones (Prevents Scaled Content Abuse) */}
+      <section className="py-8 bg-slate-50 border-b border-slate-200/80" aria-label={`Operational sectors in ${cityName}`}>
+        <div className="container-acs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+            <div>
+              <p className="section-label">Verified Regional Presence</p>
+              <h2 className="text-navy text-xl sm:text-2xl font-bold font-roboto">
+                Key Industrial Corridors &amp; Commercial Hubs in <span className="text-sky">{cityName}</span>
+              </h2>
+            </div>
+            <span className="badge-sky self-start sm:self-auto text-xs">
+              ⚡ 24×7 Rapid SLA Mobilization
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {localZones.map((zone, idx) => (
+              <div
+                key={idx}
+                className="bg-white p-4 rounded-xl border border-slate-200/90 shadow-2xs hover:border-sky-300 hover:shadow-xs transition-all"
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-sky-700 font-roboto">
+                    {zone.type}
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-navy font-roboto line-clamp-1">{zone.name}</h3>
+                <p className="text-xs text-slate-500 mt-1 flex items-center justify-between">
+                  <span>Coverage Range:</span>
+                  <span className="font-semibold text-slate-700">{zone.distance}</span>
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

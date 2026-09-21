@@ -13,7 +13,7 @@ import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
 import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
-import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, serializeJsonLd } from "@/lib/schema";
+import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
 import ClientMarquee from "@/components/common/ClientMarquee";
 
@@ -131,6 +131,13 @@ export default async function ServiceCityPage({
     schemaType: service.schemaType,
   });
 
+  const localBusinessSchema = buildCityLocalBusinessSchema({
+    cityName,
+    stateName: state,
+    citySlug,
+    serviceName: service.name,
+  });
+
   // Nearby & related cities for SEO crawl graph
   const sameStateCities = ACS_CITIES
     .filter((c) => c.slug !== citySlug && c.state === state)
@@ -147,6 +154,7 @@ export default async function ServiceCityPage({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildBreadcrumbSchema(breadcrumbs)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(localBusinessSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />}
 
       {/* ── HERO BANNER — Authoritative B2B Enterprise Header ── */}

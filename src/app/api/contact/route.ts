@@ -8,8 +8,46 @@
 import { NextRequest, NextResponse } from "next/server";
 import { siteConfig } from "@/lib/config";
 
+// In-memory sliding window rate limiter (OWASP API04:2023 mitigation)
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 5;
+const ipRequestCounts = new Map<string, { count: number; expiresAt: number }>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = ipRequestCounts.get(ip);
+
+  if (!record || now > record.expiresAt) {
+    ipRequestCounts.set(ip, { count: 1, expiresAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return true;
+  }
+
+  record.count += 1;
+  return false;
+}
+
 export async function POST(req: NextRequest) {
   try {
+    const clientIp =
+      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      req.headers.get("x-real-ip") ||
+      "anonymous";
+
+    // ─── 0. Rate Limiting Check (OWASP API04:2023) ────────────
+    if (isRateLimited(clientIp)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Too many submission attempts. Please wait a minute or call our 24×7 hotline at +91 94770 06681.",
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const { name, email, phone, organization, service, city, message, fax_or_website } = body;
 

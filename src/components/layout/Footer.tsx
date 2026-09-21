@@ -75,21 +75,21 @@ export default function Footer() {
           <h3 className="font-roboto font-bold text-white text-sm uppercase tracking-wider mb-5 pb-2 border-b border-white/10">
             Our Services
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-1">
             {ACS_SERVICE_CATEGORIES.map((cat) => (
               <li key={cat.slug}>
-                <Link href={`/services/${cat.slug}`} className="text-gray-400 text-sm hover:text-sky transition-colors flex items-center gap-1.5">
+                <Link href={`/services/${cat.slug}`} className="text-gray-400 text-sm hover:text-sky transition-colors inline-flex items-center min-h-[32px] py-1 gap-1.5">
                   <span className="text-sky text-xs">›</span>
                   {cat.name}
                 </Link>
               </li>
             ))}
-            <li className="pt-2 border-t border-white/10 mt-3">
-              <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Sub-Services</p>
+            <li className="pt-2 border-t border-white/10 mt-2">
+              <p className="text-xs text-gray-500 mb-1 uppercase tracking-wide">Sub-Services</p>
             </li>
             {siteConfig.services.slice(0, 8).map((s) => (
               <li key={s.slug}>
-                <Link href={`/services/${s.slug}`} className="text-gray-400 text-xs hover:text-sky transition-colors flex items-center gap-1.5">
+                <Link href={`/services/${s.slug}`} className="text-gray-400 text-xs hover:text-sky transition-colors inline-flex items-center min-h-[28px] py-0.5 gap-1.5">
                   <span className="text-sky/60 text-xs">›</span>
                   {s.shortName}
                 </Link>
@@ -103,10 +103,10 @@ export default function Footer() {
           <h3 className="font-roboto font-bold text-white text-sm uppercase tracking-wider mb-5 pb-2 border-b border-white/10">
             Company
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-1">
             {footerLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-gray-400 text-sm hover:text-sky transition-colors flex items-center gap-1.5">
+                <Link href={link.href} className="text-gray-400 text-sm hover:text-sky transition-colors inline-flex items-center min-h-[32px] py-1 gap-1.5">
                   <span className="text-sky text-xs">›</span>
                   {link.label}
                 </Link>
@@ -119,16 +119,16 @@ export default function Footer() {
             <h4 className="font-roboto font-bold text-white text-xs uppercase tracking-wider mb-3">
               States We Serve
             </h4>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-2">
               {ACS_STATES.slice(0, 12).map((state) => {
                 const stateSlug = ACS_CITIES.find((c) => c.state === state)?.stateSlug ?? state.toLowerCase().replace(/\s+/g, "-");
                 return (
-                  <Link key={state} href={`/location/state/${stateSlug}`} className="text-gray-500 text-xs hover:text-sky transition-colors bg-white/5 px-2 py-1 rounded">
+                  <Link key={state} href={`/location/state/${stateSlug}`} className="text-gray-400 text-xs hover:text-sky transition-colors bg-white/5 hover:bg-white/10 px-2.5 py-1.5 rounded min-h-[28px] inline-flex items-center">
                     {state}
                   </Link>
                 );
               })}
-              <Link href="/location" className="text-sky text-xs hover:underline px-2 py-1">+{ACS_STATES.length - 12} more →</Link>
+              <Link href="/location" className="text-sky text-xs hover:underline px-2.5 py-1.5 min-h-[28px] inline-flex items-center">+{ACS_STATES.length - 12} more →</Link>
             </div>
           </div>
         </div>
@@ -260,10 +260,10 @@ export default function Footer() {
             </a>
           </p>
         </div>
-        <div className="flex gap-4">
-          <Link href="/privacy-policy" className="hover:text-sky transition-colors">Privacy Policy</Link>
-          <Link href="/terms-of-service" className="hover:text-sky transition-colors">Terms of Service</Link>
-          <Link href="/sitemap.xml" className="hover:text-sky transition-colors">Sitemap</Link>
+        <div className="flex flex-wrap gap-4">
+          <Link href="/privacy-policy" className="hover:text-sky transition-colors min-h-[32px] inline-flex items-center py-1">Privacy Policy</Link>
+          <Link href="/terms-of-service" className="hover:text-sky transition-colors min-h-[32px] inline-flex items-center py-1">Terms of Service</Link>
+          <Link href="/sitemap.xml" className="hover:text-sky transition-colors min-h-[32px] inline-flex items-center py-1">Sitemap</Link>
         </div>
       </div>
     </footer>

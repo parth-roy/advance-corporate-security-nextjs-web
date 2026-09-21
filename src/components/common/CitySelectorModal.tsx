@@ -6,6 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { Search, X, LocateFixed, Check } from "lucide-react";
 import { ACS_CITIES, type ACSCity } from "@/lib/cities";
 import { useCity } from "@/context/CityContext";
+import { trackEvent } from "@/lib/analytics";
 
 export const TOP_CITIES = [
   { name: "Mumbai", slug: "mumbai", image: "/cities/mumbai.webp", state: "Maharashtra" },
@@ -100,6 +101,11 @@ export default function CitySelectorModal({
 
     // Update global CityContext
     setCity(matched, true);
+    trackEvent("city_change", {
+      city: matched.slug,
+      name: matched.name,
+      state: matched.state,
+    });
 
     if (onCitySelect) {
       onCitySelect(matched);

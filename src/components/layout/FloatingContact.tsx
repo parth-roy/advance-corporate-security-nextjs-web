@@ -11,6 +11,7 @@
 import React, { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
 import WhatsAppIntentModal from "@/components/common/WhatsAppIntentModal";
+import { trackEvent } from "@/lib/analytics";
 
 export default function FloatingContact() {
   const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function FloatingContact() {
       <div className="fixed inset-x-0 bottom-0 z-[70] grid grid-cols-2 gap-2 border-t border-slate-200 bg-white p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-[0_-6px_20px_rgba(11,31,63,0.14)] md:hidden">
         <a
           href="tel:+917980147044"
+          onClick={() => trackEvent("phone_click", { source: "floating_mobile", phone: "+917980147044" })}
           className="flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-navy bg-white px-3 py-2.5 text-xs sm:text-sm font-extrabold text-navy active:scale-95 transition-transform"
           aria-label="Call ACS Central Desk"
         >
@@ -50,6 +52,7 @@ export default function FloatingContact() {
         <button
           type="button"
           onClick={() => {
+            trackEvent("whatsapp_click", { source: "floating_mobile", intent: "SECURITY" });
             setWhatsAppIntent("SECURITY");
             setIsWhatsAppModalOpen(true);
           }}
@@ -73,6 +76,7 @@ export default function FloatingContact() {
           <button
             type="button"
             onClick={() => {
+              trackEvent("whatsapp_click", { source: "floating_desktop", intent: "SECURITY" });
               setWhatsAppIntent("SECURITY");
               setIsWhatsAppModalOpen(true);
             }}
@@ -92,6 +96,7 @@ export default function FloatingContact() {
           </span>
           <a
             href="tel:+917980147044"
+            onClick={() => trackEvent("phone_click", { source: "floating_desktop", phone: "+917980147044" })}
             className="w-13 h-13 sm:w-14 sm:h-14 bg-navy text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_rgba(11,31,63,0.35)] hover:bg-navy-dark hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(11,31,63,0.5)] border border-sky-400/30 transition-all duration-200 cursor-pointer"
             aria-label="Call ACS: +91 79801 47044"
           >

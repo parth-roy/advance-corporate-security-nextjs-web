@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
 import { useCity } from "@/context/CityContext";
+import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -118,16 +119,16 @@ export default function Header() {
           className="container-acs flex items-center justify-between h-20 sm:h-22 md:h-24"
           aria-label="Main navigation"
         >
-          {/* Logo (Prominent, big, crystal-clear, zero layout shift) */}
+          {/* Logo (Prominent, crystal-clear, zero mobile overflow) */}
           <Link href="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="ACS Home">
-            <div className="relative h-14 sm:h-16 md:h-18 w-48 sm:w-60 md:w-72 lg:w-80 transform group-hover:scale-[1.02] transition-transform duration-200">
+            <div className="relative h-11 sm:h-14 md:h-16 lg:h-18 w-36 sm:w-48 md:w-64 lg:w-80 transform group-hover:scale-[1.02] transition-transform duration-200">
               <Image
                 src="/images/acs-official-logo.avif"
                 alt={`${siteConfig.name} Logo`}
                 fill
                 className="object-contain object-left"
                 priority
-                sizes="(max-width: 640px) 240px, (max-width: 1024px) 300px, 360px"
+                sizes="(max-width: 640px) 180px, (max-width: 1024px) 260px, 320px"
               />
             </div>
           </Link>
@@ -176,27 +177,27 @@ export default function Header() {
           </ul>
 
           {/* Right Actions: City Selector + CTA + Mobile Hamburger */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* City Selector Pill Button (Desktop & Mobile) */}
             <button
               type="button"
               onClick={() => setIsCityModalOpen(true)}
-              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold border border-sky-200 bg-sky-50/90 text-navy hover:bg-sky-100 hover:border-sky-300 transition-all active:scale-95 cursor-pointer shadow-2xs group shrink-0"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold border border-sky-200 bg-sky-50/90 text-navy hover:bg-sky-100 hover:border-sky-300 transition-all active:scale-95 cursor-pointer shadow-2xs group shrink-0"
               title="Change Deployment City"
               aria-label="Change current city"
             >
               <Image
                 src="/google-maps-icon.webp"
                 alt="Location"
-                width={16}
-                height={16}
-                className="w-3.5 h-3.5 object-contain shrink-0 group-hover:scale-110 transition-transform"
+                width={14}
+                height={14}
+                className="w-3 h-3 sm:w-3.5 sm:h-3.5 object-contain shrink-0 group-hover:scale-110 transition-transform"
               />
-              <span suppressHydrationWarning className="max-w-[75px] sm:max-w-[110px] truncate font-semibold text-slate-800">
+              <span suppressHydrationWarning className="max-w-[58px] sm:max-w-[110px] truncate font-semibold text-slate-800">
                 {currentCity?.name || "Kolkata"}
               </span>
               <svg
-                className="w-3 h-3 text-sky-600 shrink-0 transition-transform group-hover:translate-y-0.5"
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-sky-600 shrink-0 transition-transform group-hover:translate-y-0.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -208,6 +209,7 @@ export default function Header() {
             {/* CTA Button (desktop) */}
             <Link
               href="/contact"
+              onClick={() => trackEvent("quote_request", { source: "header_desktop" })}
               className="btn-primary hidden lg:inline-flex text-xs xl:text-sm py-2 px-3.5 xl:px-4 shrink-0 whitespace-nowrap"
               aria-label="Get a free quote"
             >

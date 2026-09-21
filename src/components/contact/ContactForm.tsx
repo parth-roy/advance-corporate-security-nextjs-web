@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { useCity } from "@/context/CityContext";
+import { trackEvent } from "@/lib/analytics";
 
 interface FormData {
   name: string;
@@ -188,6 +189,11 @@ export default function ContactForm() {
 
       if (res.ok && data.success) {
         // Success State
+        trackEvent("quote_request", {
+          service: formData.service || "General Enquiry",
+          city: formData.city.trim() || currentCity?.name || "",
+          source: "contact_page",
+        });
         setSubmitSuccess(true);
         setSubmittedLead({
           name: formData.name,

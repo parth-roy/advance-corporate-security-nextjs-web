@@ -276,3 +276,77 @@ export function buildWebPageSchema({
     inLanguage: "en-IN",
   };
 }
+
+/** LocalBusiness Schema for Programmatic City Pages — mitigates Scaled Content Abuse by attaching local entity attributes */
+export function buildCityLocalBusinessSchema({
+  cityName,
+  stateName,
+  citySlug,
+  serviceName,
+  lat,
+  lng,
+}: {
+  cityName: string;
+  stateName: string;
+  citySlug: string;
+  serviceName?: string;
+  lat?: number;
+  lng?: number;
+}) {
+  const pageUrl = serviceName
+    ? `${siteConfig.url}/services/${serviceName.toLowerCase().replace(/\s+/g, "-")}/${citySlug}`
+    : `${siteConfig.url}/location/${citySlug}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "SecurityService"],
+    "@id": `${pageUrl}#localbusiness`,
+    name: serviceName
+      ? `Advance Corporate Security - ${serviceName} in ${cityName}`
+      : `Advance Corporate Security - ${cityName} Hub`,
+    image: `${siteConfig.url}/images/acs-official-logo.avif`,
+    url: pageUrl,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    priceRange: "₹₹",
+    currenciesAccepted: "INR",
+    paymentAccepted: "Bank Transfer, Cheque, NEFT/RTGS",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: cityName,
+      addressRegion: stateName,
+      addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: lat || siteConfig.geo.lat,
+      longitude: lng || siteConfig.geo.lng,
+    },
+    areaServed: {
+      "@type": "City",
+      name: cityName,
+    },
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: `PSARA License (${stateName} Jurisdiction)`,
+        credentialCategory: "Government Security License",
+        recognizedBy: {
+          "@type": "GovernmentOrganization",
+          name: `Controlling Authority, Private Security Agencies, ${stateName}`,
+        },
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "ISO 9001:2015 Quality Management System",
+        credentialCategory: "Quality Management Certification",
+      },
+    ],
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "00:00",
+      closes: "23:59",
+    },
+  };
+}

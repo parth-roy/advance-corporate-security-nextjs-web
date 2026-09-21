@@ -10,6 +10,7 @@
 import React, { useState, useEffect } from "react";
 import { X, Shield, Building2, Users, PhoneCall, Check } from "lucide-react";
 import { useCity } from "@/context/CityContext";
+import { trackEvent } from "@/lib/analytics";
 
 export interface IntentItem {
   id: "SECURITY" | "FACILITY" | "MANPOWER" | "SUPPORT";
@@ -208,6 +209,11 @@ Kindly attend to this request promptly. Thank you!`;
   };
 
   const handleOpenWhatsApp = () => {
+    trackEvent("whatsapp_click", {
+      intent: selectedIntent,
+      city: currentCity.name,
+      source: "whatsapp_intent_modal",
+    });
     const text = getWhatsAppMessage();
     // ACS WhatsApp contact number: +91 93399 88999
     const url = `https://wa.me/919339988999?text=${encodeURIComponent(text)}`;

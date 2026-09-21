@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Download, FileText, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import PdfViewerModal from "./PdfViewerModal";
+import { trackEvent } from "@/lib/analytics";
 
 interface BrochureDownloadButtonProps {
   variant?: "hero" | "card" | "inline";
@@ -19,7 +20,13 @@ export default function BrochureDownloadButton({
   const renderGlossyButton = (size: "large" | "medium" = "large") => (
     <button
       type="button"
-      onClick={() => setIsModalOpen(true)}
+      onClick={() => {
+        trackEvent("document_download", {
+          label: "ACS Official Company Brochure PDF",
+          source: variant,
+        });
+        setIsModalOpen(true);
+      }}
       className={`group relative inline-flex items-center justify-center gap-3 rounded-2xl font-roboto font-black text-navy-dark tracking-wide cursor-pointer select-none transition-all duration-300 transform active:scale-[0.98] overflow-hidden ${
         size === "large"
           ? "px-6 sm:px-8 py-4 sm:py-4.5 text-base sm:text-lg min-h-[60px] w-full sm:w-auto"

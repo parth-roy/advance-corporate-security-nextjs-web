@@ -4,6 +4,7 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/lib/schema";
 import ClientMarquee from "@/components/common/ClientMarquee";
+import ComplianceTrustSection from "@/components/common/ComplianceTrustSection";
 
 export const metadata: Metadata = {
   title: "About Us — 25 Years of Trusted Security & Facility Management",
@@ -281,6 +282,9 @@ export default function AboutPage() {
 
       {/* Our Esteemed Clients Marquee */}
       <ClientMarquee bgClass="bg-off-white" />
+
+      {/* Enterprise Statutory Compliance & Trust Architecture */}
+      <ComplianceTrustSection />
 
       {/* CTA */}
       <section className="section-py bg-navy text-white text-center">

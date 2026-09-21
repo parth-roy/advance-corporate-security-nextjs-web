@@ -188,8 +188,8 @@ export default function CityMap({ cityName: propCityName, stateName: propStateNa
       </div>
 
       {/* Map Footer Bar */}
-      <div className="bg-sky-50 p-4 border-t border-sky-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-4 text-gray-700">
+      <div className="bg-sky-50 p-4 border-t border-sky-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-gray-700">
           <span className="flex items-center gap-1">
             <strong className="text-navy">Control Room:</strong> 24×7 Active
           </span>
