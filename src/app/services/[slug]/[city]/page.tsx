@@ -227,22 +227,22 @@ export default async function ServiceCityPage({
           </div>
 
           {/* Local Deployment SLA & Specification Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/10 max-w-4xl">
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/15 max-w-4xl">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-gold font-bold text-sm mb-0.5">⚡ 24–48 Hours</div>
-              <div className="text-gray-400 text-xs">Mobilization in {cityName}</div>
+              <div className="text-slate-200 text-xs font-medium">Mobilization in {cityName}</div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-sky font-bold text-sm mb-0.5">📋 100% Compliant</div>
-              <div className="text-gray-400 text-xs">{state} Minimum Wages &amp; PF</div>
+              <div className="text-slate-200 text-xs font-medium">{state} Minimum Wages &amp; PF</div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-white font-bold text-sm mb-0.5">👮 Police Verified</div>
-              <div className="text-gray-400 text-xs">Trained &amp; Uniformed Staff</div>
+              <div className="text-slate-200 text-xs font-medium">Trained &amp; Uniformed Staff</div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-gold font-bold text-sm mb-0.5">🛡️ 24×7 Operations</div>
-              <div className="text-gray-400 text-xs">Round-the-Clock Support</div>
+              <div className="text-slate-200 text-xs font-medium">Round-the-Clock Support</div>
             </div>
           </div>
         </div>

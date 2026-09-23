@@ -180,20 +180,20 @@ export default function AboutPage() {
       </section>
 
       {/* Vision */}
-      <section id="vision" className="section-py bg-navy text-white" aria-labelledby="vision-heading">
+      <section id="vision" className="section-py bg-slate-50 border-y border-slate-200/80 text-navy" aria-labelledby="vision-heading">
         <div className="container-acs max-w-4xl text-center">
           <p className="section-label">Our Vision</p>
-          <h2 id="vision-heading" className="text-white mb-6">Where We <span className="text-gold">Are Headed</span></h2>
-          <div className="divider-gold mx-auto mb-8" />
+          <h2 id="vision-heading" className="text-navy font-roboto font-black text-2xl sm:text-3xl mb-4">Where We <span className="text-sky">Are Headed</span></h2>
+          <div className="divider-sky mx-auto mb-8" />
           <div className="grid sm:grid-cols-3 gap-6 text-left">
             {[
               "To be the most valued and respected Manpower Outsourcing & Facility Management Company in pan India.",
               "To ensure that we deliver best of the services and meet our clients' expectations at every step.",
               "To make our clients and our employees feel secure with us — building long-term trust and relationships.",
             ].map((vision, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-lg p-6">
+              <div key={i} className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-xs hover:border-sky-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                 <div className="text-gold font-roboto font-black text-3xl mb-3">0{i + 1}</div>
-                <p className="text-gray-300 text-sm leading-relaxed">{vision}</p>
+                <p className="text-slate-700 text-sm leading-relaxed font-normal">{vision}</p>
               </div>
             ))}
           </div>

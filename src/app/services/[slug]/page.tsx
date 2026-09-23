@@ -308,22 +308,22 @@ export default async function ServicePage({
           </div>
 
           {/* Enterprise Procurement SLA Matrix */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/10 max-w-4xl">
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/15 max-w-4xl">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-gold font-bold text-sm mb-0.5">⚡ 24–48 Hours</div>
-              <div className="text-gray-400 text-xs">Rapid Mobilization SLA</div>
+              <div className="text-slate-200 text-xs font-medium">Rapid Mobilization SLA</div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-sky font-bold text-sm mb-0.5">📋 100% Compliant</div>
-              <div className="text-gray-400 text-xs">PF, ESIC &amp; Min. Wages</div>
+              <div className="text-slate-200 text-xs font-medium">PF, ESIC &amp; Min. Wages</div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-white font-bold text-sm mb-0.5">👮 Police Verified</div>
-              <div className="text-gray-400 text-xs">Trained &amp; Uniformed</div>
+              <div className="text-slate-200 text-xs font-medium">Trained &amp; Uniformed</div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 backdrop-blur-xs">
+            <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs shadow-xs">
               <div className="text-gold font-bold text-sm mb-0.5">🛡️ 24×7 Operations</div>
-              <div className="text-gray-400 text-xs">Active Command &amp; Patrol</div>
+              <div className="text-slate-200 text-xs font-medium">Active Command &amp; Patrol</div>
             </div>
           </div>
         </div>

@@ -267,23 +267,23 @@ export default function CareersPage() {
           </div>
 
           {/* Recruitment Process */}
-          <div className="bg-navy rounded-3xl p-8 sm:p-10 text-white">
+          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm text-navy">
             <div className="text-center max-w-2xl mx-auto mb-8">
               <span className="badge-gold text-xs mb-2 inline-block">Standard Onboarding</span>
-              <h3 className="font-roboto font-black text-2xl sm:text-3xl text-white">
+              <h3 className="font-roboto font-black text-2xl sm:text-3xl text-navy">
                 Our 4-Step Onboarding Process
               </h3>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {PROCESS_STEPS.map((s) => (
-                <div key={s.step} className="bg-white/5 rounded-2xl p-5 border border-white/10">
+                <div key={s.step} className="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80 hover:border-sky-300 hover:bg-white hover:shadow-xs transition-all duration-200">
                   <div className="text-gold font-roboto font-black text-2xl mb-2">
                     {s.step}
                   </div>
-                  <h4 className="font-roboto font-bold text-white text-base mb-2">
+                  <h4 className="font-roboto font-bold text-navy text-base mb-2">
                     {s.title}
                   </h4>
-                  <p className="text-gray-300 text-xs leading-relaxed">
+                  <p className="text-slate-600 text-xs leading-relaxed">
                     {s.desc}
                   </p>
                 </div>

@@ -56,12 +56,12 @@ export default function ComplianceTrustSection({ className = "", cityName }: Com
   ];
 
   return (
-    <section className={`section-py bg-slate-900 text-white relative overflow-hidden ${className}`} aria-labelledby="compliance-trust-heading">
+    <section className={`section-py bg-slate-50 border-y border-slate-200/80 text-navy relative overflow-hidden ${className}`} aria-labelledby="compliance-trust-heading">
       {/* Decorative subtle background grid */}
       <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 1px 1px, #0b1f3f 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }}
         aria-hidden="true"
@@ -69,16 +69,16 @@ export default function ComplianceTrustSection({ className = "", cityName }: Com
 
       <div className="container-acs relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold text-xs font-bold uppercase tracking-wider mb-3">
-            <ShieldCheck className="w-4 h-4 text-gold" />
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold-dark text-xs font-bold uppercase tracking-wider mb-3">
+            <ShieldCheck className="w-4 h-4 text-gold-dark" />
             <span>Statutory Immunity &amp; Enterprise Trust</span>
           </div>
-          <h2 id="compliance-trust-heading" className="text-white font-roboto font-black text-2xl sm:text-3xl lg:text-4xl leading-tight">
+          <h2 id="compliance-trust-heading" className="text-navy font-roboto font-black text-2xl sm:text-3xl lg:text-4xl leading-tight">
             Zero Legal Liability for {cityName ? `${cityName} Enterprises` : "Principal Employers"}
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-gold to-sky mx-auto my-4 rounded-full" />
-          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          <div className="w-16 h-1 bg-gradient-to-r from-gold to-sky mx-auto my-3.5 rounded-full" />
+          <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
             In corporate security and facility outsourcing, compliance failure directly exposes your management to prosecution under Indian labour laws. Advance Corporate Security delivers bulletproof, audit-ready statutory compliance.
           </p>
         </div>
@@ -90,26 +90,26 @@ export default function ComplianceTrustSection({ className = "", cityName }: Com
             return (
               <div
                 key={idx}
-                className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 hover:border-gold/50 hover:bg-slate-800 transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs hover:border-sky-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-navy-light/90 border border-slate-700 flex items-center justify-center text-gold group-hover:scale-105 group-hover:bg-gold group-hover:text-navy transition-all shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-700 group-hover:scale-105 group-hover:bg-sky group-hover:text-white transition-all shrink-0">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-bold text-sky-300 bg-sky-950/80 px-2.5 py-1 rounded-full border border-sky-800/60 uppercase tracking-wide">
+                    <span className="text-[10px] font-bold text-sky-800 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-100 uppercase tracking-wide">
                       {item.tag}
                     </span>
                   </div>
-                  <h3 className="text-white font-roboto font-bold text-base sm:text-lg mb-2 group-hover:text-gold transition-colors">
+                  <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2 group-hover:text-sky transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-700/60 flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-emerald-700 font-semibold">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>100% Verifiable Documentation</span>
                 </div>
               </div>

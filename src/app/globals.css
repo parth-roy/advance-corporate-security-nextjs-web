@@ -91,17 +91,19 @@ body {
 /* ============================================================
    Typography
    ============================================================ */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-roboto);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--color-navy);
-}
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-roboto);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-navy);
+  }
 
-h1 { font-size: clamp(2rem, 4vw, 3.5rem); }
-h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
-h3 { font-size: clamp(1.25rem, 2.5vw, 1.875rem); }
-h4 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
+  h1 { font-size: clamp(2rem, 4vw, 3.5rem); }
+  h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+  h3 { font-size: clamp(1.25rem, 2.5vw, 1.875rem); }
+  h4 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
+}
 
 /* ============================================================
    Layout Utilities

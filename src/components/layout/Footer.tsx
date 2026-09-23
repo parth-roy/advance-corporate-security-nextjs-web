@@ -123,7 +123,7 @@ export default function Footer() {
               {ACS_STATES.slice(0, 12).map((state) => {
                 const stateSlug = ACS_CITIES.find((c) => c.state === state)?.stateSlug ?? state.toLowerCase().replace(/\s+/g, "-");
                 return (
-                  <Link key={state} href={`/location/state/${stateSlug}`} className="text-gray-400 text-xs hover:text-sky transition-colors bg-white/5 hover:bg-white/10 px-2.5 py-1.5 rounded min-h-[28px] inline-flex items-center">
+                  <Link key={state} href={`/location/state/${stateSlug}`} className="text-slate-300 text-xs hover:text-sky transition-colors bg-white/10 hover:bg-white/20 border border-white/10 px-2.5 py-1.5 rounded min-h-[28px] inline-flex items-center">
                     {state}
                   </Link>
                 );
