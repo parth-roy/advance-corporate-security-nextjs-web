@@ -83,7 +83,7 @@ export default function Header() {
       <div className="bg-navy text-white text-sm py-2 hidden md:block">
         <div className="container-acs flex justify-between items-center">
           <span className="text-gray-300">
-            India&apos;s Trusted Security &amp; Facility Management Since {siteConfig.foundedYear} | PSARA Licensed in West Bengal, Delhi &amp; Jharkhand
+            India&apos;s Trusted Security &amp; Facility Management Since {siteConfig.foundedYear} | PSARA Licensed
           </span>
           <div className="flex items-center gap-6">
             <a
