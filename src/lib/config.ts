@@ -12,9 +12,9 @@ export const siteConfig = {
   // --- Brand Identity ---
   name: "Advance Corporate Security",
   shortName: "ACS",
-  tagline: "India's Trusted Manpower & Facility Management Since 2000",
+  tagline: "Eastern India's Trusted Manpower & Facility Management Since 2000",
   description:
-    "Advance Corporate Security (ACS) is a professionally managed, PSARA-licensed and ISO 9001:2015 certified Facility Management and Manpower Outsourcing company serving pan India since 2000. We provide Security Guard Services, Corporate Housekeeping, Manpower Outsourcing, Pest Control, MEP Maintenance, Fire Fighting, Surveillance, Placement, Payroll Management, and Horticulture services.",
+    "Advance Corporate Security (ACS) is a professionally managed, PSARA-licensed and ISO 9001:2015 certified Facility Management and Manpower Outsourcing company serving Eastern India, NCR & 500+ cities since 2000. We provide Security Guard Services, Corporate Housekeeping, Manpower Outsourcing, Pest Control, MEP Maintenance, Fire Fighting, Surveillance, Placement, Payroll Management, and Horticulture services.",
   foundedYear: 2000,
   certification: "ISO 9001:2015",
 

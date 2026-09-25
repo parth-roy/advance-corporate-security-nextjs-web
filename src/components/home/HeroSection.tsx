@@ -156,7 +156,7 @@ export default function HeroSection() {
 
             {/* Subheadline tailored to active location */}
             <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed mb-2 font-normal">
-              Ranked among India&apos;s trusted <strong className="text-navy font-semibold">business security companies</strong> and <strong className="text-navy font-semibold">building maintenance company</strong> partners. We deploy PSARA-certified <strong className="text-navy font-semibold">security guards</strong>, integrated <strong className="text-navy font-semibold">facility management services</strong>, and end-to-end <strong className="text-navy font-semibold">facility maintenance company</strong> solutions across{" "}
+              Ranked among Eastern India&apos;s most trusted <strong className="text-navy font-semibold">business security companies</strong> and <strong className="text-navy font-semibold">building maintenance company</strong> partners. We deploy PSARA-licensed (West Bengal, Delhi, NCR) <strong className="text-navy font-semibold">security guards</strong>, integrated <strong className="text-navy font-semibold">facility management services</strong>, and end-to-end <strong className="text-navy font-semibold">facility maintenance company</strong> solutions across{" "}
               <strong suppressHydrationWarning className="text-navy font-semibold">
                 {currentCity.name}, {currentCity.state}
               </strong>

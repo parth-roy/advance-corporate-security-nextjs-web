@@ -28,15 +28,24 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { city: citySlug } = await params;
   const cityData = ACS_CITIES.find((c) => c.slug === citySlug);
   if (!cityData) return {};
-  const { name: cityName, state: stateName } = cityData;
+  const { name: cityName, state: stateName, tier } = cityData;
   const title = `Security & Facility Management Services in ${cityName} | PSARA Licensed`;
   const description = `Advance Corporate Security in ${cityName}, ${stateName} — PSARA-licensed security guards, facility management, manpower outsourcing, and horticulture. ISO 9001:2015 certified. Get free quote.`;
   const canonical = `${siteConfig.url}/location/${citySlug}`;
+
+  // Tier-based indexing strategy (anti-Scaled Content Abuse)
+  // Tier 1–3: sufficient search volume → inherit layout default (index: true)
+  // Tier 4+:  very low-tier / thin-content risk → explicitly noindex
+  const robotsMeta: Metadata['robots'] = tier >= 4
+    ? { index: false, follow: true, googleBot: { index: false, follow: true } }
+    : undefined;
+
   return {
     title, description,
     keywords: [`security services in ${cityName}`, `facility management ${cityName}`, `manpower outsourcing ${cityName}`, `security guard agency ${cityName}`, `corporate housekeeping ${cityName}`, `PSARA licensed security ${cityName}`],
     alternates: { canonical },
     openGraph: { title, description, url: canonical },
+    ...(robotsMeta !== undefined && { robots: robotsMeta }),
   };
 }
 

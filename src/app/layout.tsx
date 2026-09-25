@@ -24,7 +24,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | India's Trusted Security & Facility Management Company`,
+    default: `${siteConfig.name} | ISO 9001:2015 Certified Security & Facility Management`,
     template: `%s | ${siteConfig.shortName}`,
   },
   description: siteConfig.description,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} | India's Trusted Security & Facility Management`,
+    title: `${siteConfig.name} | ISO 9001:2015 Certified Security & Facility Management`,
     description: siteConfig.description,
     images: [
       {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Security & Facility Management`,
+    title: `${siteConfig.name} | ISO 9001:2015 Certified Security & Facility Management`,
     description: siteConfig.description,
     images: ["/images/og-default.jpg"],
   },

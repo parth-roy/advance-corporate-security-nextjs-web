@@ -28,7 +28,7 @@ export default function EvidenceTrustEngine({
       id: 1,
       name: "PSARA Jurisdiction",
       badge: "Form-V Licensed",
-      summary: `Compliant under Private Security Agencies (Regulation) Act 2005. Recognized by the Controlling Authority & Home Department for ${stateContext} and Pan-India operations.`,
+      summary: `Compliant under Private Security Agencies (Regulation) Act 2005. Recognized by the Controlling Authority & Home Department for verified states (WB, Delhi, Jharkhand) with state-wise statutory deployment in ${stateContext}.`,
       category: "authority",
     },
     {

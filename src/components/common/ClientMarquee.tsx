@@ -116,7 +116,7 @@ export default function ClientMarquee({
         {/* Trust Badges Strip */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-6 text-xs text-gray-600 font-medium">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
-            <span className="text-gold font-bold">✓</span> PSARA Licensed Pan-India
+            <span className="text-gold font-bold">✓</span> PSARA Licensed (Multi-State)
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
             <span className="text-sky font-bold">✓</span> ISO 9001:2015 Certified

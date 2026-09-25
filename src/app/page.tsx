@@ -10,9 +10,9 @@ import DynamicHomeFaqs from "@/components/home/DynamicHomeFaqs";
 import ClientMarquee from "@/components/common/ClientMarquee";
 
 export const metadata: Metadata = {
-  title: "India's Trusted Security & Facility Management Company Since 2000",
+  title: "ISO 9001:2015 Certified Corporate Security & Facility Management in Eastern India & NCR",
   description:
-    "Advance Corporate Security (ACS) — PSARA licensed, ISO 9001:2015 certified. Security Guard Services, Corporate Housekeeping, Manpower Outsourcing & Facility Management across pan India since 2000. Get free consultation.",
+    "Advance Corporate Security (ACS) — PSARA Licensed in West Bengal, Delhi, Jharkhand with nationwide deployment. ISO 9001:2015 certified. Security Guard Services, Corporate Housekeeping, Manpower Outsourcing across Eastern India, NCR & 500+ cities. Get free consultation.",
   keywords: [
     "security guards",
     "facilities management",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   alternates: { canonical: siteConfig.url },
   openGraph: {
     title: "Advance Corporate Security | PSARA Licensed Security & Facility Management",
-    description: "25+ years of trusted PSARA-licensed security and ISO-certified facility management services across pan India. Serving Govt, Defence, Hospitals & Corporates.",
+    description: "25+ years of trusted PSARA-licensed security and ISO-certified facility management services across Eastern India, NCR & 500+ cities. Serving Govt, Defence, Hospitals & Corporates.",
     url: siteConfig.url,
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
   },
@@ -45,7 +45,7 @@ const homeFaqs = [
   {
     question: "Is Advance Corporate Security PSARA licensed?",
     answer:
-      "Yes. Advance Corporate Security holds a valid PSARA (Private Security Agencies Regulation Act) license issued by the Government of India. All our security personnel are licensed, background-verified, and trained per Ministry of Home Affairs standards. This makes ACS fully compliant for corporate, industrial, and government security deployments.",
+      "Yes. Advance Corporate Security holds valid PSARA licenses in West Bengal, Delhi, Jharkhand and other key states, issued by the respective State Governments as per the Private Security Agencies Regulation Act. All our security personnel are licensed, background-verified, and trained per Ministry of Home Affairs standards — with operational reach across 500+ Indian cities through our state-wise compliance framework.",
   },
   {
     question: "Is ACS ISO 9001:2015 certified?",
@@ -55,7 +55,7 @@ const homeFaqs = [
   {
     question: "Does ACS provide security and facility services across India?",
     answer:
-      "Yes. ACS provides services across all major Indian cities including Kolkata, Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Patna, Bhubaneswar, Ahmedabad, Pune, and 500+ other cities. We are one of Eastern India's most experienced B2B service companies with 25+ years of pan-India operations.",
+      "ACS provides services across all major Indian cities including Kolkata, Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Patna, Bhubaneswar, Ahmedabad, Pune, and 500+ other cities. We hold PSARA licenses in key states with full deployment capability and statutory compliance across India.",
   },
   {
     question: "Who are the major clients of Advance Corporate Security?",
@@ -120,7 +120,7 @@ export default function HomePage() {
                 Advance Corporate Security (ACS) is a professionally managed, <strong>PSARA-licensed</strong> and <strong>ISO 9001:2015 certified</strong> Facility Management and Manpower Outsourcing company. From humble beginnings in Barrackpore, Kolkata, we have grown into one of Eastern India&apos;s most trusted names — delivering trained, disciplined, and reliable workforce solutions to corporates, industries, malls, hospitals, educational institutions, and government offices.
               </p>
               <p className="text-gray-700 mt-2 leading-relaxed text-sm sm:text-base">
-                With over <strong>25 years of operational excellence</strong>, a pan-India presence, and thousands of dedicated professionals deployed across multiple sectors, ACS stands for one promise — <strong className="text-navy">Quality Placement, 24/7.</strong>
+                With over <strong>25 years of operational excellence</strong>, a verified multi-state presence and thousands of dedicated professionals deployed across multiple sectors, ACS stands for one promise — <strong className="text-navy">Quality Placement, 24/7.</strong>
               </p>
               <div className="mt-4 flex gap-3 flex-wrap">
                 <Link href="/about" className="btn-primary">Know More About Us</Link>

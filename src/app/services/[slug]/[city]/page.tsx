@@ -65,6 +65,13 @@ export async function generateMetadata({
         `contract labor in ${cityName}`,
       ];
 
+  // Tier-based indexing strategy (anti-Scaled Content Abuse)
+  // Tier 1–3: sufficient search volume → inherit layout default (index: true)
+  // Tier 4+:  very low-tier / thin-content risk → explicitly noindex
+  const robotsMeta: Metadata['robots'] = cityObj.tier >= 4
+    ? { index: false, follow: true, googleBot: { index: false, follow: true } }
+    : undefined;
+
   return {
     title,
     description,
@@ -76,6 +83,7 @@ export async function generateMetadata({
       url,
       images: [{ url: service.heroImage || "/images/security-service-slider.jpg", width: 1200, height: 630 }],
     },
+    ...(robotsMeta !== undefined && { robots: robotsMeta }),
   };
 }
 

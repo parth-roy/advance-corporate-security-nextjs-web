@@ -21,7 +21,7 @@ export default function ComplianceTrustSection({ className = "", cityName }: Com
       icon: ShieldCheck,
       title: "PSARA Government License",
       tag: "Controlling Authority Certified",
-      desc: "Fully licensed under the Private Security Agencies (Regulation) Act across pan-India state jurisdictions. All deployed guards undergo mandatory police verification and training per MHA guidelines.",
+      desc: "Fully licensed under the Private Security Agencies (Regulation) Act in West Bengal, Delhi & Jharkhand — with operational reach across India. All deployed guards undergo mandatory police verification and training per MHA guidelines.",
     },
     {
       icon: Scale,

@@ -31,7 +31,16 @@ const navLinks = [
     ],
   },
   { label: "Sectors", href: "/sectors" },
-  { label: "Govt & PSU", href: "/procurement" },
+  {
+    label: "Govt & PSU",
+    href: "/procurement",
+    children: [
+      { label: "Procurement Center", href: "/procurement" },
+      { label: "Tender Bids & Alerts", href: "/tenders" },
+      { label: "Statutory Compliance", href: "/compliance" },
+      { label: "GeM Security Guide", href: "/procurement#gem" },
+    ],
+  },
   { label: "Locations", href: "/location" },
   { label: "Our Clients", href: "/clients" },
   { label: "Careers", href: "/careers" },
@@ -74,7 +83,7 @@ export default function Header() {
       <div className="bg-navy text-white text-sm py-2 hidden md:block">
         <div className="container-acs flex justify-between items-center">
           <span className="text-gray-300">
-            India&apos;s Trusted Security & Facility Management Since {siteConfig.foundedYear}
+            India&apos;s Trusted Security &amp; Facility Management Since {siteConfig.foundedYear} | PSARA Licensed in West Bengal, Delhi &amp; Jharkhand
           </span>
           <div className="flex items-center gap-6">
             <a

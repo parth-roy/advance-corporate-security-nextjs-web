@@ -9,7 +9,7 @@ import ComplianceTrustSection from "@/components/common/ComplianceTrustSection";
 export const metadata: Metadata = {
   title: "About Us — 25 Years of Trusted Security & Facility Management",
   description:
-    "Learn about Advance Corporate Security (ACS) — founded in 2000, ISO 9001:2015 certified, and serving pan India with Security, Facility Management, and Manpower Outsourcing services.",
+    "Learn about Advance Corporate Security (ACS) — founded in 2000, ISO 9001:2015 certified, PSARA licensed in West Bengal, Delhi & Jharkhand. Serving Eastern India, NCR & 500+ cities with Security, Facility Management, and Manpower Outsourcing services.",
   alternates: { canonical: `${siteConfig.url}/about` },
 };
 
@@ -56,7 +56,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-3xl mb-6">
-              Advance Corporate Security (ACS) provides comprehensive, government-empanelled workforce outsourcing, PSARA-licensed armed &amp; unarmed security guards, and integrated facility management across 800+ cities pan India.
+              Advance Corporate Security (ACS) provides comprehensive, government-empanelled workforce outsourcing, PSARA-licensed armed &amp; unarmed security guards, and integrated facility management across 800+ cities — PSARA licensed in West Bengal, Delhi &amp; Jharkhand, with deployment capability across India.
             </p>
 
             <div className="flex flex-wrap gap-3 items-center">
@@ -84,7 +84,7 @@ export default function AboutPage() {
             {/* Subtle caption bar */}
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between">
               <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow">
-                Advance Corporate Security — Pan-India Professional Team
+                Advance Corporate Security — Multi-State Professional Team
               </span>
               <span className="text-gold text-xs font-bold bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-gold/30">
                 25+ Years Excellence
@@ -108,7 +108,7 @@ export default function AboutPage() {
             </div>
             <div>
               <div className="text-gold font-roboto font-black text-2xl sm:text-3xl">800+ Cities</div>
-              <div className="text-gray-300 text-xs sm:text-sm font-medium mt-0.5">Pan-India Network</div>
+              <div className="text-gray-300 text-xs sm:text-sm font-medium mt-0.5">Multi-State Network</div>
             </div>
           </div>
         </div>
@@ -123,9 +123,9 @@ export default function AboutPage() {
               <h2 id="about-heading" className="text-navy mb-4">One of the Best <span className="text-gold">Outsourcing & Facility Management</span> Companies in India</h2>
               <div className="divider-gold" />
               <div className="mt-4 space-y-4 text-gray-700 leading-relaxed">
-                <p>Advance Corporate Security is one of the best Outsourcing & Facility Management Company in pan India and is into manpower management services since inception in 2000. At Advance Corporate Security, we provide <strong>"one-stop innovative solutions"</strong> for the diverse requirements of the clients.</p>
+                <p>Advance Corporate Security is one of the best Outsourcing &amp; Facility Management Company across Eastern India, NCR &amp; key cities, and is into manpower management services since inception in 2000. At Advance Corporate Security, we provide <strong>&quot;one-stop innovative solutions&quot;</strong> for the diverse requirements of the clients.</p>
                 <p>Today after 25 years in this sector, we have created a niche and top-most spot to offer the best manpower and facility management service in India.</p>
-                <p>Advance Corporate Security has grown to become one of the most reliable, recognized, and premier Manpower Outsourcing and Facility Management Companies not only in eastern India but at pan India level.</p>
+                <p>Advance Corporate Security has grown to become one of the most reliable, recognized, and premier Manpower Outsourcing and Facility Management Companies in eastern India and multiple states — with nationwide deployment capabilities.</p>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-4">
                 {siteConfig.stats.map((stat) => (
@@ -274,7 +274,7 @@ export default function AboutPage() {
               sizes="100vw"
             />
             <div className="absolute bottom-0 left-0 right-0 py-2 px-4 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent text-white text-center">
-              <p className="font-roboto font-bold text-xs sm:text-sm md:text-base text-gold">5,000+ Trained Professionals Deployed Across Pan-India</p>
+              <p className="font-roboto font-bold text-xs sm:text-sm md:text-base text-gold">5,000+ Trained Professionals Deployed Across Eastern India, NCR & 500+ Cities</p>
             </div>
           </div>
         </div>

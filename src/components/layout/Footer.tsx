@@ -11,6 +11,9 @@ const footerLinks = [
   { label: "Our Mission", href: "/about#mission" },
   { label: "Leadership Team", href: "/about#team" },
   { label: "Govt & PSU Procurement", href: "/procurement" },
+  { label: "Tender Bids & Alerts", href: "/tenders" },
+  { label: "Statutory Compliance", href: "/compliance" },
+  { label: "Get a Quote", href: "/quote" },
   { label: "Specialized Industry Sectors", href: "/sectors" },
   { label: "Our Clients", href: "/clients" },
   { label: "Pan-India Directory", href: "/location" },
@@ -40,7 +43,7 @@ export default function Footer() {
             </div>
           </Link>
           <p className="text-gray-400 text-sm leading-relaxed mb-5">
-            Advance Corporate Security is India&apos;s trusted <strong className="text-gray-300 font-semibold">security guard company</strong> and <strong className="text-gray-300 font-semibold">facility management company</strong>. Deploying PSARA-licensed <strong className="text-gray-300 font-semibold">security guards</strong>, comprehensive <strong className="text-gray-300 font-semibold">facilities management</strong>, <strong className="text-gray-300 font-semibold">corporate security</strong>, and certified <strong className="text-gray-300 font-semibold">ISO facility management</strong> services across 828+ cities since {siteConfig.foundedYear}.
+            Advance Corporate Security is India&apos;s trusted <strong className="text-gray-300 font-semibold">security guard company</strong> and <strong className="text-gray-300 font-semibold">facility management company</strong>. Deploying PSARA-licensed (WB, Delhi, Jharkhand) <strong className="text-gray-300 font-semibold">security guards</strong>, comprehensive <strong className="text-gray-300 font-semibold">facilities management</strong>, <strong className="text-gray-300 font-semibold">corporate security</strong>, and certified <strong className="text-gray-300 font-semibold">ISO facility management</strong> services across 828+ cities since {siteConfig.foundedYear}.
           </p>
           <div className="space-y-2 text-sm">
             {siteConfig.phones.map((p) => (
@@ -246,7 +249,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-            {" · "}PSARA Licensed · ISO 9001:2015 Certified
+            {" · "}PSARA Licensed (Multi-State) · ISO 9001:2015 Certified
           </p>
           <span className="hidden sm:inline text-white/20">|</span>
           <p>
