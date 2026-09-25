@@ -13,13 +13,16 @@ import { ACS_CITIES } from "@/lib/cities";
 import { generateCityHubFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildCityLocalBusinessSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
+import EvidenceTrustEngine from "@/components/common/EvidenceTrustEngine";
 
 interface Params { city: string; }
 
 export async function generateStaticParams(): Promise<Params[]> {
-  return ACS_CITIES.map((c) => ({ city: c.slug }));
+  // Prerendering 828 cities at build time is disabled for fast deployment.
+  // Pages are rendered dynamically on-demand at request time.
+  return [];
 }
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { city: citySlug } = await params;
@@ -204,6 +207,9 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
           <CityMap cityName={cityName} stateName={stateName} />
         </div>
       </section>
+
+      {/* 15-Parameter Enterprise Trust & Evidence Engine */}
+      <EvidenceTrustEngine cityName={cityName} stateName={stateName} />
 
       {/* FAQ */}
       <section className="section-py bg-off-white">

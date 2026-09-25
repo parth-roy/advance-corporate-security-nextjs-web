@@ -16,6 +16,7 @@ import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/location
 import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
 import ClientMarquee from "@/components/common/ClientMarquee";
+import EvidenceTrustEngine from "@/components/common/EvidenceTrustEngine";
 
 interface Params {
   slug: string;
@@ -23,13 +24,9 @@ interface Params {
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-  // Generate static routes across all brochure services and cities
-  return ACS_SERVICES.flatMap((service) =>
-    ACS_CITIES.map((city) => ({
-      slug: service.slug,
-      city: city.slug,
-    }))
-  );
+  // Prerendering 14,000+ pages at build time is disabled for fast deployment.
+  // Pages are generated dynamically on-demand at request time.
+  return [];
 }
 
 export const dynamicParams = true;
@@ -425,6 +422,9 @@ export default async function ServiceCityPage({
           <CityMap cityName={cityName} stateName={state} serviceName={service.shortName} />
         </div>
       </section>
+
+      {/* ── 15-PARAMETER ENTERPRISE TRUST & EVIDENCE ENGINE ── */}
+      <EvidenceTrustEngine cityName={cityName} stateName={state} serviceName={service.name} />
 
       {/* ── CLIENTS & PARTNERS MARQUEE ── */}
       <ClientMarquee bgClass="bg-white" />

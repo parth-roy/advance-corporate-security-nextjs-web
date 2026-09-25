@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { ACS_CITIES } from "../src/lib/cities.ts";
 import { ACS_SERVICES } from "../src/lib/services.ts";
+import { ACS_INDUSTRIES } from "../src/lib/industries.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.resolve(__dirname, "../public");
@@ -46,11 +47,18 @@ ${items}
 async function main() {
   console.log("Generating XML sitemaps for ACS...");
 
-  // 1. Core pages (8 clean URLs)
+  // 1. Core pages & Sector hubs
   const coreUrls = [
     { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${BASE_URL}/about`, priority: "0.8" },
     { loc: `${BASE_URL}/services`, priority: "0.9", changefreq: "weekly" },
+    { loc: `${BASE_URL}/procurement`, priority: "0.95", changefreq: "weekly" },
+    { loc: `${BASE_URL}/sectors`, priority: "0.9", changefreq: "weekly" },
+    ...ACS_INDUSTRIES.map((ind) => ({
+      loc: `${BASE_URL}/sectors/${ind.slug}`,
+      priority: "0.85",
+      changefreq: "monthly",
+    })),
     { loc: `${BASE_URL}/contact`, priority: "0.8" },
     { loc: `${BASE_URL}/clients`, priority: "0.7" },
     { loc: `${BASE_URL}/careers`, priority: "0.7", changefreq: "weekly" },

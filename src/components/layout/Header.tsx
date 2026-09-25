@@ -30,6 +30,8 @@ const navLinks = [
       { label: "Horticulture Services", href: "/services/horticulture" },
     ],
   },
+  { label: "Sectors", href: "/sectors" },
+  { label: "Govt & PSU", href: "/procurement" },
   { label: "Locations", href: "/location" },
   { label: "Our Clients", href: "/clients" },
   { label: "Careers", href: "/careers" },
