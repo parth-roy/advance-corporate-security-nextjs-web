@@ -38,8 +38,8 @@ export const siteConfig = {
     "+91 94770 06681",
   ],
   phoneDisplay: "+91 93399 88999 / +91 79801 47044 / +91 94770 06681",
-  email: "admin@advancecorporatesecurity.com",
-  adminEmail: "admin@advancecorporatesecurity.com",
+  email: "advancedsecurityj@gmail.com",
+  adminEmail: "advancedsecurityj@gmail.com",
 
   // --- Social ---
   social: {

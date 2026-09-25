@@ -9,6 +9,7 @@ export type AnalyticsEventType =
   | "quote_request"
   | "whatsapp_click"
   | "phone_click"
+  | "email_click"
   | "document_download"
   | "city_change";
 
