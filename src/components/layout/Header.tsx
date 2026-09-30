@@ -44,7 +44,7 @@ const navLinks = [
   { label: "Locations", href: "/location" },
   { label: "Our Clients", href: "/clients" },
   { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
+  // { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -130,16 +130,16 @@ export default function Header() {
           className="container-acs flex items-center justify-between h-20 sm:h-22 md:h-24"
           aria-label="Main navigation"
         >
-          {/* Logo (Prominent, crystal-clear, zero mobile overflow) */}
+          {/* Logo (Responsive, crystal-clear, zero mobile overflow) */}
           <Link href="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="ACS Home">
-            <div className="relative h-11 sm:h-14 md:h-16 lg:h-18 w-36 sm:w-48 md:w-64 lg:w-80 transform group-hover:scale-[1.02] transition-transform duration-200">
+            <div className="relative h-9 xs:h-10 sm:h-13 md:h-16 lg:h-18 w-28 xs:w-32 sm:w-44 md:w-60 lg:w-76 transform group-hover:scale-[1.02] transition-transform duration-200">
               <Image
                 src="/images/acs-official-logo.avif"
                 alt={`${siteConfig.name} Logo`}
                 fill
                 className="object-contain object-left"
                 priority
-                sizes="(max-width: 640px) 180px, (max-width: 1024px) 260px, 320px"
+                sizes="(max-width: 480px) 120px, (max-width: 640px) 160px, (max-width: 1024px) 240px, 320px"
               />
             </div>
           </Link>
@@ -188,23 +188,23 @@ export default function Header() {
           </ul>
 
           {/* Right Actions: City Selector + CTA + Mobile Hamburger */}
-          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
             {/* City Selector Pill Button (Desktop & Mobile) */}
             <button
               type="button"
               onClick={() => setIsCityModalOpen(true)}
-              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold border border-sky-200 bg-sky-50/90 text-navy hover:bg-sky-100 hover:border-sky-300 transition-all active:scale-95 cursor-pointer shadow-2xs group shrink-0"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold border border-sky-200 bg-sky-50/90 text-navy hover:bg-sky-100 hover:border-sky-300 transition-all active:scale-95 cursor-pointer shadow-2xs group shrink-0"
               title="Change Deployment City"
               aria-label="Change current city"
             >
               <Image
                 src="/google-maps-icon.webp"
                 alt="Location"
-                width={14}
-                height={14}
+                width={13}
+                height={13}
                 className="w-3 h-3 sm:w-3.5 sm:h-3.5 object-contain shrink-0 group-hover:scale-110 transition-transform"
               />
-              <span suppressHydrationWarning className="max-w-[58px] sm:max-w-[110px] truncate font-semibold text-slate-800">
+              <span suppressHydrationWarning className="max-w-[46px] xs:max-w-[70px] sm:max-w-[110px] truncate font-semibold text-slate-800">
                 {currentCity?.name || "Kolkata"}
               </span>
               <svg
@@ -217,7 +217,20 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* CTA Button (desktop) */}
+            {/* Post Job Button (Desktop & Tablet) */}
+            <Link
+              href="/post-job"
+              onClick={() => trackEvent("post_job_click", { source: "header_desktop" })}
+              className="hidden sm:inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-700 text-white font-roboto font-semibold text-xs xl:text-sm py-2 px-3 xl:px-4 rounded-xl shadow-xs border border-sky-400/40 transition-all duration-200 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer"
+              aria-label="Post a Job"
+            >
+              <svg className="w-3.5 h-3.5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Post Job</span>
+            </Link>
+
+            {/* CTA Button (desktop only) */}
             <Link
               href="/contact"
               onClick={() => trackEvent("quote_request", { source: "header_desktop" })}
@@ -229,13 +242,13 @@ export default function Header() {
 
             {/* Mobile Hamburger */}
             <button
-              className="lg:hidden p-2 rounded text-navy hover:bg-gray-100 transition-colors"
+              className="lg:hidden p-1.5 sm:p-2 rounded-lg text-navy hover:bg-gray-100 transition-colors shrink-0 cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <svg className="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 {mobileOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -339,7 +352,14 @@ export default function Header() {
               ))}
             </ul>
 
-            <div className="p-4 border-t border-gray-100">
+            <div className="p-4 border-t border-gray-100 space-y-2.5">
+              <Link
+                href="/post-job"
+                onClick={() => setMobileOpen(false)}
+                className="w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-roboto font-bold py-2.5 px-4 rounded-xl text-sm transition-all shadow-xs"
+              >
+                <span>💼</span> Post Job
+              </Link>
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}

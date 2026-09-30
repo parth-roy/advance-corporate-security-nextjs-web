@@ -179,31 +179,31 @@ export default function CitySelectorModal({
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[88vh] animate-in fade-in zoom-in-95 duration-200 z-10 border border-slate-100">
+      <div className="relative w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[88vh] animate-in fade-in zoom-in-95 duration-200 z-10 border border-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white shadow-xs border border-slate-100 flex items-center justify-center p-1.5 shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 bg-slate-50/50">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white shadow-xs border border-slate-100 flex items-center justify-center p-1.5 shrink-0">
               <Image
                 src="/google-maps-icon.webp"
                 alt="Location"
                 width={22}
                 height={22}
-                className="w-5 h-5 object-contain"
+                className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
               />
             </div>
-            <div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
+            <div className="min-w-0">
+              <h2 className="text-base sm:text-xl md:text-2xl font-black text-slate-900 leading-tight truncate">
                 Choose your city or location
               </h2>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Covering <strong className="text-navy font-bold">800+</strong> cities, industrial SEZs, defence hubs &amp; deployment zones across India
+              <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">
+                Covering <strong className="text-navy font-bold">800+</strong> cities, industrial SEZs &amp; deployment zones across India
               </p>
             </div>
           </div>
           <button
             onClick={handleClose}
-            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+            className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer shrink-0 ml-2"
             aria-label="Close modal"
           >
             <X size={20} />

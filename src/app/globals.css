@@ -73,7 +73,8 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
-  max-width: 100vw;
+  max-width: 100%;
+  width: 100%;
 }
 
 body {
@@ -84,8 +85,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  max-width: 100vw;
+  max-width: 100%;
+  width: 100%;
   position: relative;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 4.5rem;
+  }
 }
 
 /* ============================================================
@@ -97,12 +105,19 @@ body {
     font-weight: 700;
     line-height: 1.2;
     color: var(--color-navy);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
-  h1 { font-size: clamp(2rem, 4vw, 3.5rem); }
-  h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
-  h3 { font-size: clamp(1.25rem, 2.5vw, 1.875rem); }
-  h4 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
+  h1 { font-size: clamp(1.75rem, 4vw, 3.5rem); }
+  h2 { font-size: clamp(1.35rem, 3vw, 2.5rem); }
+  h3 { font-size: clamp(1.15rem, 2.5vw, 1.875rem); }
+  h4 { font-size: clamp(1rem, 2vw, 1.5rem); }
+
+  img, svg, video, canvas, audio, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* ============================================================
@@ -110,6 +125,7 @@ body {
    ============================================================ */
 .container-acs {
   max-width: 1280px;
+  width: 100%;
   margin-inline: auto;
   padding-inline: 1rem;
 }
@@ -126,73 +142,89 @@ body {
 @media (min-width: 1024px) { .section-py { padding-block: 3rem; } }
 
 /* ============================================================
-   Buttons
+   Buttons & Cards (Layered so Tailwind utilities like 'hidden' work)
    ============================================================ */
-.btn-primary,
-.btn-gold {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background-color: var(--color-gold); color: var(--color-navy-dark);
-  font-weight: 700; font-family: var(--font-roboto);
-  padding: 0.75rem 2rem; border-radius: 6px;
-  text-decoration: none; border: none; cursor: pointer; white-space: nowrap;
-  transition: background-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
-}
-.btn-primary:hover,
-.btn-gold:hover {
-  background-color: var(--color-gold-light);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(200, 153, 58, 0.35);
-}
+@layer components {
+  .btn-primary,
+  .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    background-color: var(--color-gold); color: var(--color-navy-dark);
+    font-weight: 700; font-family: var(--font-roboto);
+    padding: 0.65rem 1.25rem; border-radius: 6px;
+    text-decoration: none; border: none; cursor: pointer;
+    white-space: normal; text-align: center;
+    max-width: 100%;
+    transition: background-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  }
+  @media (min-width: 640px) {
+    .btn-primary, .btn-gold { padding: 0.75rem 2rem; white-space: nowrap; }
+  }
+  .btn-primary:hover,
+  .btn-gold:hover {
+    background-color: var(--color-gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200, 153, 58, 0.35);
+  }
 
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background-color: transparent; color: var(--color-white);
-  font-weight: 600; font-family: var(--font-roboto);
-  padding: 0.75rem 2rem; border-radius: 4px;
-  text-decoration: none; border: 2px solid var(--color-gold);
-  cursor: pointer; white-space: nowrap;
-  transition: all var(--transition-base);
-}
-.btn-secondary:hover {
-  background-color: var(--color-gold); color: var(--color-navy-dark);
-  transform: translateY(-2px);
-}
+  .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    background-color: transparent; color: var(--color-white);
+    font-weight: 600; font-family: var(--font-roboto);
+    padding: 0.65rem 1.25rem; border-radius: 4px;
+    text-decoration: none; border: 2px solid var(--color-gold);
+    cursor: pointer; white-space: normal; text-align: center; max-width: 100%;
+    transition: all var(--transition-base);
+  }
+  @media (min-width: 640px) {
+    .btn-secondary { padding: 0.75rem 2rem; white-space: nowrap; }
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-gold); color: var(--color-navy-dark);
+    transform: translateY(-2px);
+  }
 
-.btn-navy {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background-color: var(--color-navy); color: var(--color-white);
-  font-weight: 700; font-family: var(--font-roboto);
-  padding: 0.75rem 2rem; border-radius: 4px;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: all var(--transition-base);
-}
-.btn-navy:hover {
-  background-color: var(--color-navy-light);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card-hover);
-}
+  .btn-navy {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    background-color: var(--color-navy); color: var(--color-white);
+    font-weight: 700; font-family: var(--font-roboto);
+    padding: 0.65rem 1.25rem; border-radius: 4px;
+    text-decoration: none; border: none; cursor: pointer;
+    white-space: normal; text-align: center; max-width: 100%;
+    transition: all var(--transition-base);
+  }
+  @media (min-width: 640px) {
+    .btn-navy { padding: 0.75rem 2rem; white-space: nowrap; }
+  }
+  .btn-navy:hover {
+    background-color: var(--color-navy-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+  }
 
-.btn-sky {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background-color: var(--color-sky); color: var(--color-white);
-  font-weight: 700; font-family: var(--font-roboto);
-  padding: 0.75rem 2rem; border-radius: 4px;
-  text-decoration: none; border: none; cursor: pointer; white-space: nowrap;
-  transition: all var(--transition-base);
-}
-.btn-sky:hover {
-  background-color: var(--color-sky-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sky);
-}
+  .btn-sky {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    background-color: var(--color-sky); color: var(--color-white);
+    font-weight: 700; font-family: var(--font-roboto);
+    padding: 0.65rem 1.25rem; border-radius: 4px;
+    text-decoration: none; border: none; cursor: pointer;
+    white-space: normal; text-align: center; max-width: 100%;
+    transition: all var(--transition-base);
+  }
+  @media (min-width: 640px) {
+    .btn-sky { padding: 0.75rem 2rem; white-space: nowrap; }
+  }
+  .btn-sky:hover {
+    background-color: var(--color-sky-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sky);
+  }
 
-/* ============================================================
-   Cards
-   ============================================================ */
-.card-acs {
-  background-color: var(--color-white); border-radius: 8px;
-  box-shadow: var(--shadow-card); overflow: hidden;
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  .card-acs {
+    background-color: var(--color-white); border-radius: 8px;
+    box-shadow: var(--shadow-card); overflow: hidden;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+  .card-acs:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-4px); }
 }
 .card-acs:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-4px); }
 

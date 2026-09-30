@@ -115,7 +115,7 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
         <div className="container-acs">
           <div className="geo-fact-box">
             <p className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-3 font-roboto">📋 ACS in {cityName} — Quick Facts</p>
-            <div className="grid sm:grid-cols-4 gap-3 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
               {[
                 { label: "PSARA License", value: "Government of India" },
                 { label: "ISO Certification", value: "9001:2015 + IAF/IAS" },

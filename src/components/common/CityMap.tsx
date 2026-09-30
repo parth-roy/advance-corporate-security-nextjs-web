@@ -181,9 +181,9 @@ export default function CityMap({ cityName: propCityName, stateName: propStateNa
         />
 
         {/* Floating Coverage Pill */}
-        <div className="absolute top-3 left-3 bg-navy/90 backdrop-blur-xs text-white px-3 py-1.5 rounded-lg text-xs font-medium border border-sky-400/30 shadow-lg pointer-events-none flex items-center gap-2">
-          <span className="text-sky font-bold">📍</span>
-          <span>Coverage: {cityName} &amp; 50km Surrounding Industrial Belt</span>
+        <div className="absolute top-3 left-3 max-w-[calc(100%-1.5rem)] bg-navy/90 backdrop-blur-xs text-white px-3 py-1.5 rounded-lg text-xs font-medium border border-sky-400/30 shadow-lg pointer-events-none flex items-center gap-2">
+          <span className="text-sky font-bold shrink-0">📍</span>
+          <span className="truncate">Coverage: {cityName} &amp; 50km Surrounding Industrial Belt</span>
         </div>
       </div>
 
