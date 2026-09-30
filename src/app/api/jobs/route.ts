@@ -1,6 +1,7 @@
 // src/app/api/jobs/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { siteConfig } from "@/lib/config";
+import { syncToGoogleSheetsBackground } from "@/lib/sheetsSync";
 
 // In-memory store for newly posted jobs on Next.js side for zero-latency localhost rendering
 let localPostedJobs: any[] = [
@@ -206,6 +207,35 @@ export async function POST(req: NextRequest) {
 
     // Store in local memory immediately
     localPostedJobs.unshift(newJob);
+
+    // Sync to Google Sheets "Posted Jobs" Tab
+    syncToGoogleSheetsBackground({
+      type: "job_post",
+      id: newJob._id,
+      jobTitle: newJob.title,
+      jobCategory: newJob.category,
+      city: newJob.city,
+      locality: newJob.locality,
+      workLocationType: newJob.workLocationType,
+      vacancy: newJob.vacancy,
+      jobType: newJob.jobType,
+      isContractual: newJob.isContractual,
+      salaryMin: newJob.salaryMin,
+      salaryMax: newJob.salaryMax,
+      incentives: newJob.incentivesText || (newJob.hasIncentives ? "Yes" : "None"),
+      shift: newJob.shift,
+      workingDays: newJob.workingDays,
+      requiresDeposit: newJob.requiresDeposit,
+      depositDetails: newJob.depositDetails,
+      gender: newJob.gender,
+      qualification: newJob.qualification,
+      experience: `${newJob.expMin} - ${newJob.expMax} Years`,
+      skills: Array.isArray(newJob.skills) ? newJob.skills.join(", ") : newJob.skills,
+      assetsNeeded: Array.isArray(newJob.assetsNeeded) ? newJob.assetsNeeded.join(", ") : newJob.assetsNeeded,
+      documentsRequired: Array.isArray(newJob.documentsRequired) ? newJob.documentsRequired.join(", ") : newJob.documentsRequired,
+      description: newJob.description,
+      source: "ACS Post Job Portal",
+    });
 
     // Forward to backend API asynchronously
     const backendUrl = process.env.BACKEND_INTERNAL_URL || "http://localhost:4000";

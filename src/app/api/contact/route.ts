@@ -7,6 +7,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { siteConfig } from "@/lib/config";
+import { syncToGoogleSheetsBackground } from "@/lib/sheetsSync";
 
 // In-memory sliding window rate limiter (OWASP API04:2023 mitigation)
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
@@ -87,7 +88,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ─── 3. Forward to Backend API ───────────────────────────
+    // ─── 3. Sync to Google Sheets (Contact Leads or Service Inquiries) ─
+    const isServiceInquiry =
+      Boolean(body.manpowerCount) ||
+      body.formType === "enterprise_quotation" ||
+      Boolean(body.contractDuration) ||
+      Boolean(body.duration) ||
+      (body.service && body.service !== "General Enquiry" && body.service !== "General Contact");
+
+    const sheetLeadPayload = {
+      type: isServiceInquiry ? "inquiry" : "contact",
+      id: `lead-${Date.now()}`,
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone.trim(),
+      organization: organization?.trim() || "",
+      service: service?.trim() || (isServiceInquiry ? "Enterprise Service Quotation" : "General Enquiry"),
+      city: city?.trim() || "",
+      manpowerCount: body.manpowerCount || "",
+      duration: body.contractDuration || body.duration || "",
+      message: message.trim(),
+      source: isServiceInquiry ? "Enterprise Quotation / Service Form" : "Website Contact Form",
+    };
+
+    syncToGoogleSheetsBackground(sheetLeadPayload);
+
+    // ─── 4. Forward to Backend API ───────────────────────────
     const backendUrl = process.env.BACKEND_INTERNAL_URL || "http://localhost:4000";
     let backendRes: Response | null = null;
 

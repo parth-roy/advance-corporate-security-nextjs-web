@@ -1,5 +1,6 @@
 // src/app/api/jobs/apply/route.ts
 import { NextRequest, NextResponse } from "next/server";
+import { syncToGoogleSheetsBackground } from "@/lib/sheetsSync";
 
 export async function POST(req: NextRequest) {
   try {
@@ -40,34 +41,23 @@ export async function POST(req: NextRequest) {
       submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) + " IST",
     };
 
-    // 1. Forward to Google Sheets Webhook if configured
-    const googleSheetsUrl =
-      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
-      process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL;
-
-    if (googleSheetsUrl && !googleSheetsUrl.includes("YOUR_APPS_SCRIPT_DEPLOYMENT_ID")) {
-      fetch(googleSheetsUrl, {
-        method: "POST",
-        redirect: "follow",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({
-          type: "job_application",
-          id: applicationRecord.id,
-          jobId: jobId || "general",
-          jobTitle: applicationRecord.jobTitle,
-          jobCity: applicationRecord.jobCity,
-          applicantName: applicationRecord.applicantName,
-          applicantPhone: applicationRecord.applicantPhone,
-          applicantEmail: applicationRecord.applicantEmail,
-          applicantCity: applicationRecord.applicantCity,
-          applicantExperience: applicationRecord.applicantExperience,
-          applicantQualification: applicationRecord.applicantQualification,
-          message: applicationRecord.message,
-          source: "ACS Careers Hub",
-          submittedAt: applicationRecord.submittedAt,
-        }),
-      }).catch((e) => console.warn("[GoogleSheets] Direct webhook call failed:", e));
-    }
+    // 1. Forward to Google Sheets Webhook
+    syncToGoogleSheetsBackground({
+      type: "job_application",
+      id: applicationRecord.id,
+      jobId: jobId || "general",
+      jobTitle: applicationRecord.jobTitle,
+      jobCity: applicationRecord.jobCity,
+      applicantName: applicationRecord.applicantName,
+      applicantPhone: applicationRecord.applicantPhone,
+      applicantEmail: applicationRecord.applicantEmail,
+      applicantCity: applicationRecord.applicantCity,
+      applicantExperience: applicationRecord.applicantExperience,
+      applicantQualification: applicationRecord.applicantQualification,
+      message: applicationRecord.message,
+      source: "ACS Careers Hub",
+      submittedAt: applicationRecord.submittedAt,
+    });
 
     // 2. Forward to backend API asynchronously (DB persistence & Email notifications)
     const backendUrl = process.env.BACKEND_INTERNAL_URL || "http://localhost:4000";
@@ -81,6 +71,7 @@ export async function POST(req: NextRequest) {
       success: true,
       message: "Application submitted successfully! Our recruitment desk will contact you within 24 hours.",
       data: applicationRecord,
+      googleSheets: { status: "dispatched" },
     });
   } catch (err: any) {
     return NextResponse.json(

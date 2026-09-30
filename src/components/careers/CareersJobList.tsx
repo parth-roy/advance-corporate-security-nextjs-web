@@ -105,24 +105,57 @@ export default function CareersJobList() {
     if (!activeJob) return;
     setApplying(true);
 
+    const sheetsWebhookUrl =
+      process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL ||
+      "https://script.google.com/macros/s/AKfycbwqvCAdwMy-eJDymjoJJh1nLyzueTY5g-CxLNddBFUAA073FXji5BLqGoXdMkhzR2Vi-Q/exec";
+
     try {
+      const payload = {
+        jobId: activeJob._id,
+        jobTitle: activeJob.title,
+        jobCity: activeJob.city,
+        ...appData,
+      };
+
+      // 1. Direct browser fire-and-forget dispatch to Google Apps Script
+      try {
+        fetch(sheetsWebhookUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            type: "job_application",
+            jobId: activeJob._id,
+            jobTitle: activeJob.title,
+            jobCity: activeJob.city,
+            applicantName: appData.applicantName.trim(),
+            applicantPhone: appData.applicantPhone.trim(),
+            applicantEmail: appData.applicantEmail.trim(),
+            applicantCity: appData.applicantCity.trim(),
+            applicantExperience: appData.applicantExperience,
+            applicantQualification: appData.applicantQualification,
+            message: appData.message.trim(),
+            source: "ACS Careers Hub (Direct Client)",
+          }),
+        }).catch((sheetErr) => console.log("[GoogleSheets] Direct client dispatch notice:", sheetErr));
+      } catch {}
+
+      // 2. Server API call (persists in DB, sends email alerts, server-side backup sync)
       const res = await fetch("/api/jobs/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jobId: activeJob._id,
-          jobTitle: activeJob.title,
-          jobCity: activeJob.city,
-          ...appData,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (res.ok) {
+        const data = await res.json();
+        console.log("[Careers] Application submitted:", data);
         setAppSubmitted(true);
       } else {
         setAppSubmitted(true);
       }
-    } catch {
+    } catch (err) {
+      console.warn("[Careers] Submission network error:", err);
       setAppSubmitted(true);
     } finally {
       setApplying(false);
