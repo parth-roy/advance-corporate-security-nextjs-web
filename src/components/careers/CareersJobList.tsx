@@ -103,12 +103,6 @@ export default function CareersJobList() {
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!activeJob) return;
-    setApplying(true);
-
-    const sheetsWebhookUrl =
-      process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL ||
-      "https://script.google.com/macros/s/AKfycbwqvCAdwMy-eJDymjoJJh1nLyzueTY5g-CxLNddBFUAA073FXji5BLqGoXdMkhzR2Vi-Q/exec";
-
     try {
       const payload = {
         jobId: activeJob._id,
@@ -117,30 +111,7 @@ export default function CareersJobList() {
         ...appData,
       };
 
-      // 1. Direct browser fire-and-forget dispatch to Google Apps Script
-      try {
-        fetch(sheetsWebhookUrl, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({
-            type: "job_application",
-            jobId: activeJob._id,
-            jobTitle: activeJob.title,
-            jobCity: activeJob.city,
-            applicantName: appData.applicantName.trim(),
-            applicantPhone: appData.applicantPhone.trim(),
-            applicantEmail: appData.applicantEmail.trim(),
-            applicantCity: appData.applicantCity.trim(),
-            applicantExperience: appData.applicantExperience,
-            applicantQualification: appData.applicantQualification,
-            message: appData.message.trim(),
-            source: "ACS Careers Hub (Direct Client)",
-          }),
-        }).catch((sheetErr) => console.log("[GoogleSheets] Direct client dispatch notice:", sheetErr));
-      } catch {}
-
-      // 2. Server API call (persists in DB, sends email alerts, server-side backup sync)
+      // Submit to internal Next.js API route (persists in DB and syncs to Google Sheets via server)
       const res = await fetch("/api/jobs/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

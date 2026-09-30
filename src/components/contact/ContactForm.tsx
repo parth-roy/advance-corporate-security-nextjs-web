@@ -160,30 +160,6 @@ export default function ContactForm() {
     // Route through internal Next.js API route with resilient backend fallback
     const endpoint = "/api/contact";
 
-    const sheetsWebhookUrl =
-      process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL ||
-      "https://script.google.com/macros/s/AKfycbwqvCAdwMy-eJDymjoJJh1nLyzueTY5g-CxLNddBFUAA073FXji5BLqGoXdMkhzR2Vi-Q/exec";
-
-    // Direct browser dispatch to Google Sheets "Contact Leads" tab
-    try {
-      fetch(sheetsWebhookUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({
-          type: "contact",
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim(),
-          organization: formData.organization.trim(),
-          service: formData.service.trim() || "General Enquiry",
-          city: formData.city.trim() || currentCity?.name || "",
-          message: formData.message.trim(),
-          source: "Contact Page (Direct Client)",
-        }),
-      }).catch(() => null);
-    } catch {}
-
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout

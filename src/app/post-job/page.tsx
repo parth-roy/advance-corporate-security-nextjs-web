@@ -476,26 +476,6 @@ export default function PostJobPage() {
       description: formData.description || "Full-time position with ACS client deployments.",
     };
 
-    const sheetsWebhookUrl =
-      process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL ||
-      "https://script.google.com/macros/s/AKfycbwqvCAdwMy-eJDymjoJJh1nLyzueTY5g-CxLNddBFUAA073FXji5BLqGoXdMkhzR2Vi-Q/exec";
-
-    // Direct browser dispatch to Google Sheets "Posted Jobs" tab
-    try {
-      fetch(sheetsWebhookUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({
-          type: "job_post",
-          ...payload,
-          jobTitle: payload.title,
-          jobCategory: payload.category,
-          source: "ACS Post Job Portal (Direct Client)",
-        }),
-      }).catch(() => null);
-    } catch {}
-
     try {
       const res = await fetch("/api/jobs", {
         method: "POST",
