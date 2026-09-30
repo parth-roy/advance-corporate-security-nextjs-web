@@ -253,7 +253,7 @@ export function EnterpriseQuotationForm() {
     setIsSubmitting(true);
     setToast(null);
 
-    const endpoint = `${resolveApiBase()}/api/contact`;
+    const endpoint = "/api/contact";
 
     const sheetsWebhookUrl =
       process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL ||
