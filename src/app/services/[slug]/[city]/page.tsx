@@ -8,7 +8,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
@@ -37,7 +37,12 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug, city: citySlug } = await params;
-  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug);
+  let service = getServiceBySlug(slug);
+  if (!service) {
+    const fallback = ACS_SERVICES.find(s => s.parentSlug === slug);
+    if (fallback) return {}; // Let the page component handle the redirect
+    return {};
+  }
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
   if (!service || !cityObj) return {};
 
@@ -93,7 +98,14 @@ export default async function ServiceCityPage({
   params: Promise<Params>;
 }) {
   const { slug, city: citySlug } = await params;
-  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug);
+  let service = getServiceBySlug(slug);
+  if (!service) {
+    const fallback = ACS_SERVICES.find(s => s.parentSlug === slug);
+    if (fallback) {
+      redirect(`/services/${fallback.slug}/${citySlug}`);
+    }
+    notFound();
+  }
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
   if (!service || !cityObj) notFound();
 
