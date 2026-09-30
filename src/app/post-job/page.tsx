@@ -1120,30 +1120,30 @@ export default function PostJobPage() {
               )}
             </div>
 
-            {/* Salary Breakdown Calculation Display Box */}
-            <div className="bg-gradient-to-br from-slate-900 to-navy text-white p-5 rounded-2xl shadow-md">
-              <div className="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
-                <span className="text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-1.5">
+            {/* Salary Breakdown Calculation Display Box (White Mode) */}
+            <div className="bg-white border-2 border-sky-100 p-5 rounded-2xl shadow-xs space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-1 border-b border-slate-100 pb-2.5">
+                <span className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5">
                   <span>📊</span> Estimated Monthly Salary Breakdown (Standard Indian Labour Norms)
                 </span>
-                <span className="text-[10px] text-slate-300">PF + ESIC Deductions Estimated</span>
+                <span className="text-[11px] text-slate-500 font-medium">PF + ESIC Deductions Estimated</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs">
-                <div className="bg-white/10 p-2.5 rounded-xl border border-white/10">
-                  <span className="text-slate-300 block text-[10px]">Basic Fixed Pay</span>
-                  <strong className="text-sm text-white font-bold">₹{salaryBreakdown.basePay.toLocaleString()}</strong>
+                <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                  <span className="text-slate-500 block text-[10px] font-semibold">Basic Fixed Pay</span>
+                  <strong className="text-sm font-black text-navy">₹{salaryBreakdown.basePay.toLocaleString()}</strong>
                 </div>
-                <div className="bg-white/10 p-2.5 rounded-xl border border-white/10">
-                  <span className="text-slate-300 block text-[10px]">EPF (12% Deduction)</span>
-                  <strong className="text-sm text-amber-300 font-bold">-₹{salaryBreakdown.pfDeduction.toLocaleString()}</strong>
+                <div className="bg-amber-50/80 p-3 rounded-xl border border-amber-200/80">
+                  <span className="text-amber-800 block text-[10px] font-semibold">EPF (12% Deduction)</span>
+                  <strong className="text-sm font-black text-amber-700">-₹{salaryBreakdown.pfDeduction.toLocaleString()}</strong>
                 </div>
-                <div className="bg-white/10 p-2.5 rounded-xl border border-white/10">
-                  <span className="text-slate-300 block text-[10px]">ESIC (0.75%)</span>
-                  <strong className="text-sm text-amber-300 font-bold">-₹{salaryBreakdown.esicDeduction.toLocaleString()}</strong>
+                <div className="bg-amber-50/80 p-3 rounded-xl border border-amber-200/80">
+                  <span className="text-amber-800 block text-[10px] font-semibold">ESIC (0.75%)</span>
+                  <strong className="text-sm font-black text-amber-700">-₹{salaryBreakdown.esicDeduction.toLocaleString()}</strong>
                 </div>
-                <div className="bg-emerald-500/20 p-2.5 rounded-xl border border-emerald-400/30">
-                  <span className="text-emerald-300 block text-[10px]">Est. Monthly In-Hand</span>
-                  <strong className="text-sm text-emerald-400 font-bold">₹{salaryBreakdown.inHandEstimated.toLocaleString()}</strong>
+                <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                  <span className="text-emerald-800 block text-[10px] font-semibold">Est. Monthly In-Hand</span>
+                  <strong className="text-sm font-black text-emerald-700">₹{salaryBreakdown.inHandEstimated.toLocaleString()}</strong>
                 </div>
               </div>
             </div>

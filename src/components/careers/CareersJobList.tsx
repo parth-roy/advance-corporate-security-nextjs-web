@@ -359,33 +359,33 @@ export default function CareersJobList() {
 
             {/* Modal Body (Scrollable) */}
             <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-700">
-              {/* Compensation Box */}
-              <div className="bg-slate-900 text-white rounded-2xl p-4 sm:p-5">
-                <span className="text-gold text-[10px] uppercase font-bold tracking-wider block mb-1">
+              {/* Compensation Box (White Mode) */}
+              <div className="bg-white border-2 border-emerald-100 rounded-2xl p-4 sm:p-5 shadow-xs">
+                <span className="text-amber-800 text-[10px] uppercase font-bold tracking-wider block mb-1">
                   Statutory Monthly Payout Band
                 </span>
-                <div className="text-2xl sm:text-3xl font-roboto font-black text-emerald-400 mb-2">
+                <div className="text-2xl sm:text-3xl font-roboto font-black text-emerald-600 mb-2">
                   ₹{activeJob.salaryMin.toLocaleString()} - ₹{activeJob.salaryMax.toLocaleString()}
-                  <span className="text-xs text-slate-300 font-normal"> / month</span>
+                  <span className="text-xs text-slate-500 font-normal"> / month</span>
                 </div>
                 {activeJob.hasIncentives && activeJob.incentivesText && (
-                  <p className="text-xs text-amber-300 font-medium">
+                  <p className="text-xs text-amber-700 font-semibold mb-2">
                     ⚡ {activeJob.incentivesText}
                   </p>
                 )}
                 {activeJob.salaryBreakdown && (
-                  <div className="mt-3 pt-3 border-t border-white/10 grid grid-cols-3 gap-2 text-center text-[11px]">
-                    <div className="bg-white/5 p-2 rounded-lg">
-                      <span className="text-slate-400 block text-[9px]">Base Pay</span>
-                      <strong>₹{(activeJob.salaryBreakdown.basePay || activeJob.salaryMin).toLocaleString()}</strong>
+                  <div className="mt-3 pt-3 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-[11px]">
+                    <div className="bg-slate-50 border border-slate-200/80 p-2.5 rounded-xl">
+                      <span className="text-slate-500 block text-[9px] font-semibold">Base Pay</span>
+                      <strong className="text-navy text-xs sm:text-sm font-black">₹{(activeJob.salaryBreakdown.basePay || activeJob.salaryMin).toLocaleString()}</strong>
                     </div>
-                    <div className="bg-white/5 p-2 rounded-lg">
-                      <span className="text-slate-400 block text-[9px]">EPF &amp; ESIC</span>
-                      <strong className="text-amber-300">100% Covered</strong>
+                    <div className="bg-amber-50/70 border border-amber-200/80 p-2.5 rounded-xl">
+                      <span className="text-amber-800 block text-[9px] font-semibold">EPF &amp; ESIC</span>
+                      <strong className="text-amber-700 text-xs sm:text-sm font-bold">100% Covered</strong>
                     </div>
-                    <div className="bg-emerald-500/20 p-2 rounded-lg">
-                      <span className="text-emerald-300 block text-[9px]">Est. Take-Home</span>
-                      <strong className="text-emerald-400 font-bold">
+                    <div className="bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl">
+                      <span className="text-emerald-800 block text-[9px] font-semibold">Est. Take-Home</span>
+                      <strong className="text-emerald-700 font-black text-xs sm:text-sm">
                         ₹{((activeJob.salaryBreakdown.basePay || activeJob.salaryMin) * 0.87).toFixed(0)}
                       </strong>
                     </div>

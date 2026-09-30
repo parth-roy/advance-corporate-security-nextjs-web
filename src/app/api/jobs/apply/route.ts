@@ -40,7 +40,36 @@ export async function POST(req: NextRequest) {
       submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) + " IST",
     };
 
-    // Forward to backend API asynchronously
+    // 1. Forward to Google Sheets Webhook if configured
+    const googleSheetsUrl =
+      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
+      process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK_URL;
+
+    if (googleSheetsUrl && !googleSheetsUrl.includes("YOUR_APPS_SCRIPT_DEPLOYMENT_ID")) {
+      fetch(googleSheetsUrl, {
+        method: "POST",
+        redirect: "follow",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          type: "job_application",
+          id: applicationRecord.id,
+          jobId: jobId || "general",
+          jobTitle: applicationRecord.jobTitle,
+          jobCity: applicationRecord.jobCity,
+          applicantName: applicationRecord.applicantName,
+          applicantPhone: applicationRecord.applicantPhone,
+          applicantEmail: applicationRecord.applicantEmail,
+          applicantCity: applicationRecord.applicantCity,
+          applicantExperience: applicationRecord.applicantExperience,
+          applicantQualification: applicationRecord.applicantQualification,
+          message: applicationRecord.message,
+          source: "ACS Careers Hub",
+          submittedAt: applicationRecord.submittedAt,
+        }),
+      }).catch((e) => console.warn("[GoogleSheets] Direct webhook call failed:", e));
+    }
+
+    // 2. Forward to backend API asynchronously (DB persistence & Email notifications)
     const backendUrl = process.env.BACKEND_INTERNAL_URL || "http://localhost:4000";
     fetch(`${backendUrl}/api/jobs/${jobId || "general"}/apply`, {
       method: "POST",
