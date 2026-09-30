@@ -383,31 +383,30 @@ export default function PostJobPage() {
           </ol>
         </nav>
 
-        {/* Main Header Box */}
-        <div className="bg-gradient-to-r from-navy via-navy-dark to-slate-900 text-white rounded-3xl p-6 sm:p-10 mb-8 shadow-xl relative overflow-hidden">
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-sky-500/20 rounded-full blur-2xl pointer-events-none" />
+        {/* Main Header Box — Clean White Mode */}
+        <div className="bg-white text-slate-900 rounded-3xl p-5 sm:p-8 md:p-10 mb-8 border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden">
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-400/30 mb-2">
-                💼 Enterprise & Vendor Recruitment
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-sky-800 border border-sky-200 shadow-2xs mb-2">
+                💼 Enterprise &amp; Vendor Recruitment
               </span>
-              <h1 className="font-roboto font-black text-2xl sm:text-4xl text-white tracking-tight">
+              <h1 className="font-roboto font-black text-2xl sm:text-4xl text-navy tracking-tight">
                 Post a Verified Job Opening
               </h1>
-              <p className="text-slate-300 text-xs sm:text-sm mt-1.5 max-w-xl leading-relaxed">
+              <p className="text-slate-600 text-xs sm:text-sm mt-1.5 max-w-xl leading-relaxed">
                 Publish openings for Security Guards, Supervisors, Housekeepers, and Technicians across India. Automatically listed on the Careers hub and synced to central HR databases.
               </p>
             </div>
             <Link
               href="/careers"
-              className="text-xs text-sky-300 hover:text-white underline self-start sm:self-center font-medium"
+              className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 hover:text-navy hover:underline self-start sm:self-center shrink-0 transition-colors"
             >
               ← Back to Careers
             </Link>
           </div>
 
           {/* Stepper Progress Bar */}
-          <div className="mt-8 pt-6 border-t border-white/15 grid grid-cols-4 gap-2 text-center text-xs">
+          <div className="mt-8 pt-6 border-t border-slate-100 grid grid-cols-4 gap-2 text-center text-xs">
             {[
               { num: 1, label: "Role & Location" },
               { num: 2, label: "Salary & Shift" },
@@ -418,21 +417,21 @@ export default function PostJobPage() {
                 key={s.num}
                 type="button"
                 onClick={() => setCurrentStep(s.num)}
-                className={`flex flex-col items-center gap-1 transition-all cursor-pointer ${
+                className={`flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
                   currentStep === s.num
-                    ? "text-gold font-bold scale-105"
+                    ? "text-navy font-black scale-105"
                     : currentStep > s.num
-                    ? "text-sky-300"
-                    : "text-slate-400"
+                    ? "text-emerald-700 font-bold"
+                    : "text-slate-400 font-medium"
                 }`}
               >
                 <div
                   className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                     currentStep === s.num
-                      ? "bg-gold text-navy shadow-md ring-2 ring-white/50"
+                      ? "bg-navy text-white shadow-md ring-4 ring-sky-100 font-black"
                       : currentStep > s.num
-                      ? "bg-sky-500 text-white"
-                      : "bg-white/10 text-slate-400"
+                      ? "bg-emerald-600 text-white shadow-xs"
+                      : "bg-slate-100 text-slate-500 border border-slate-200"
                   }`}
                 >
                   {currentStep > s.num ? "✓" : s.num}
