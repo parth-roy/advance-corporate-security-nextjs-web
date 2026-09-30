@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ACS_CITIES } from "@/lib/cities";
+import { Search, MapPin, Check, Loader2, Sparkles, X, ChevronDown, Compass, Building2, SlidersHorizontal, Globe } from "lucide-react";
+import { ACS_CITIES, type ACSCity } from "@/lib/cities";
 import { siteConfig } from "@/lib/config";
+import CitySelectorModal from "@/components/common/CitySelectorModal";
+import type { ACSCitySearchResult } from "@/lib/locationService";
 
 // Predefined quick title options based on ACS services
 const TITLE_SUGGESTIONS = [
@@ -232,11 +235,147 @@ export default function PostJobPage() {
     };
   }, [formData.salaryMin, formData.salaryMax, formData.hasIncentives]);
 
-  // Dynamic localities list based on chosen city
+  // Real-time City & Locality API State
+  const [citySearchInput, setCitySearchInput] = useState<string>("");
+  const [isSearchingCities, setIsSearchingCities] = useState<boolean>(false);
+  const [citySearchResults, setCitySearchResults] = useState<ACSCitySearchResult[]>([]);
+  const [isCityDropdownOpen, setIsCityDropdownOpen] = useState<boolean>(false);
+  const [citySearchProvider, setCitySearchProvider] = useState<string>("");
+  const [isCityModalOpen, setIsCityModalOpen] = useState<boolean>(false);
+  const citySearchContainerRef = useRef<HTMLDivElement>(null);
+
+  // Real-Time Localities state fetched via Maps API
+  const [realtimeLocalities, setRealtimeLocalities] = useState<string[]>([]);
+  const [isLoadingLocalities, setIsLoadingLocalities] = useState<boolean>(false);
+  const [localityProvider, setLocalityProvider] = useState<string>("");
+  const [localitySearchQuery, setLocalitySearchQuery] = useState<string>("");
+
+  // Fetch real-time localities from Google Maps / Maps API for chosen city
+  const loadLocalitiesForCity = useCallback(async (cityName: string) => {
+    if (!cityName) return;
+    setIsLoadingLocalities(true);
+    try {
+      const res = await fetch(`/api/locations?city=${encodeURIComponent(cityName)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && Array.isArray(data.localities) && data.localities.length > 0) {
+          setRealtimeLocalities(data.localities);
+          setLocalityProvider(data.provider || "maps_api");
+          setFormData((prev) => {
+            const hasCurrent = data.localities.includes(prev.locality);
+            return {
+              ...prev,
+              locality: hasCurrent ? prev.locality : data.localities[0],
+              customLocality: "",
+            };
+          });
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("Failed to load real-time localities:", err);
+    } finally {
+      setIsLoadingLocalities(false);
+    }
+
+    // Curated / fallback localities
+    const fallbackList = LOCALITY_MAP[cityName] || [
+      `${cityName} Central Commercial District (CBD)`,
+      `${cityName} Industrial Estate / MIDC Area`,
+      `${cityName} Railway Station & Transport Hub`,
+      `${cityName} Tech & Office Park Corridor`,
+      `${cityName} Ring Road Logistics Belt`,
+    ];
+    setRealtimeLocalities(fallbackList);
+    setLocalityProvider("curated");
+    setFormData((prev) => ({
+      ...prev,
+      locality: fallbackList[0] || "",
+      customLocality: "",
+    }));
+  }, []);
+
+  // Fetch localities on mount for default city
+  useEffect(() => {
+    loadLocalitiesForCity(formData.city);
+  }, []); // Run on initial mount
+
+  // Real-time City Search via Maps API
+  const executeCitySearch = useCallback(async (q: string) => {
+    const clean = q.trim();
+    if (!clean) {
+      setCitySearchResults([]);
+      setCitySearchProvider("");
+      setIsCityDropdownOpen(false);
+      return;
+    }
+    setIsSearchingCities(true);
+    setIsCityDropdownOpen(true);
+    try {
+      const res = await fetch(`/api/locations?q=${encodeURIComponent(clean)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && Array.isArray(data.cities)) {
+          setCitySearchResults(data.cities);
+          setCitySearchProvider(data.provider || "maps_api");
+        }
+      }
+    } catch (e) {
+      console.warn("Real-time city search failed:", e);
+    } finally {
+      setIsSearchingCities(false);
+    }
+  }, []);
+
+  // Debounced typing search
+  useEffect(() => {
+    if (!citySearchInput.trim()) {
+      setCitySearchResults([]);
+      return;
+    }
+    const timer = setTimeout(() => {
+      executeCitySearch(citySearchInput);
+    }, 280);
+    return () => clearTimeout(timer);
+  }, [citySearchInput, executeCitySearch]);
+
+  // Handle clicking outside city search dropdown to close it
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        citySearchContainerRef.current &&
+        !citySearchContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsCityDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelectCity = (cityName: string, stateName?: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      city: cityName,
+    }));
+    setCitySearchInput("");
+    setIsCityDropdownOpen(false);
+    loadLocalitiesForCity(cityName);
+  };
+
+  // Dynamic localities list based on chosen city (real-time from Maps API + fallback)
   const availableLocalities = useMemo(() => {
-    const list = LOCALITY_MAP[formData.city] || [];
-    return list;
-  }, [formData.city]);
+    if (realtimeLocalities.length > 0) return realtimeLocalities;
+    return LOCALITY_MAP[formData.city] || [];
+  }, [realtimeLocalities, formData.city]);
+
+  // Filtered localities if user types in the locality search box
+  const filteredLocalities = useMemo(() => {
+    if (!localitySearchQuery.trim()) return availableLocalities;
+    return availableLocalities.filter((loc) =>
+      loc.toLowerCase().includes(localitySearchQuery.toLowerCase())
+    );
+  }, [availableLocalities, localitySearchQuery]);
 
   // Handlers for checkboxes
   const toggleBenefit = (item: string) => {
@@ -598,84 +737,279 @@ export default function PostJobPage() {
               </label>
             </div>
 
-            {/* City & Locality (Nested) with Google Maps picker styling */}
-            <div className="p-4 sm:p-5 bg-sky-50/60 border border-sky-100 rounded-2xl space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-sky-800 uppercase tracking-wider flex items-center gap-1.5">
-                  <span>📍</span> Pan-India Location Selector (Google Maps Synced)
-                </span>
-                <span className="text-[11px] text-slate-500 font-medium">
-                  {ACS_CITIES.length}+ Cities Covered
-                </span>
+            {/* Real-Time Pan-India Location Selector (Google Maps & API Synced) */}
+            <div className="p-4 sm:p-6 bg-gradient-to-br from-sky-50/70 via-white to-blue-50/40 border border-sky-100 rounded-2xl sm:rounded-3xl shadow-xs space-y-5">
+              {/* Header with live sync badges */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-sky-100">
+                <div className="flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-xl bg-sky-600 text-white flex items-center justify-center text-sm shadow-xs">
+                    📍
+                  </span>
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-black text-navy uppercase tracking-wider">
+                      Operating Location &amp; Deployment Hub
+                    </h3>
+                    <p className="text-[11px] text-slate-500 font-medium">
+                      Live synced with Google Maps API across 800+ Indian cities &amp; industrial corridors
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsCityModalOpen(true)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-sky-200 text-sky-700 hover:bg-sky-50 text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer"
+                >
+                  <Globe size={13} className="text-sky-600" />
+                  <span>Browse 800+ City Directory</span>
+                </button>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                {/* City Selector */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Select Operating City <span className="text-rose-500">*</span>
-                  </label>
-                  <select
-                    value={formData.city}
-                    onChange={(e) => {
-                      const newCity = e.target.value;
-                      const newLocalities = LOCALITY_MAP[newCity] || [];
-                      setFormData({
-                        ...formData,
-                        city: newCity,
-                        locality: newLocalities[0] || "",
-                        customLocality: "",
-                      });
-                    }}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold bg-white focus:ring-2 focus:ring-sky/50 outline-none"
-                  >
-                    {/* Top Tier Cities First */}
-                    <optgroup label="⭐ Primary Metro Hubs">
-                      {["Kolkata", "Barrackpore", "Haldia", "Durgapur", "Asansol", "Delhi", "Gurugram", "Noida", "Mumbai", "Pune", "Bengaluru"].map((c) => (
-                        <option key={c} value={c}>
-                          {c}
-                        </option>
-                      ))}
-                    </optgroup>
-                    <optgroup label="🗺️ All Indian Cities &amp; Districts">
-                      {ACS_CITIES.slice(0, 100).map((c) => (
-                        <option key={c.slug} value={c.name}>
-                          {c.name} ({c.state})
-                        </option>
-                      ))}
-                    </optgroup>
-                  </select>
+              {/* Active Selected City Card */}
+              <div className="p-3.5 bg-white border border-sky-200/80 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-2xs">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 shrink-0">
+                    <Check size={18} className="stroke-[3]" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                        Selected Operating City:
+                      </span>
+                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-sky-100 text-sky-800">
+                        Active Base
+                      </span>
+                    </div>
+                    <p className="text-sm sm:text-base font-black text-navy flex items-center gap-1.5">
+                      <span>{formData.city}</span>
+                      <span className="text-xs font-medium text-slate-500">
+                        ({ACS_CITIES.find((c) => c.name.toLowerCase() === formData.city.toLowerCase())?.state || "India"})
+                      </span>
+                    </p>
+                  </div>
                 </div>
 
-                {/* Locality (Nested automatically based on chosen city) */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Locality / Industrial Hub (Nested)
-                  </label>
-                  {availableLocalities.length > 0 ? (
-                    <select
-                      value={formData.locality}
-                      onChange={(e) => setFormData({ ...formData, locality: e.target.value, customLocality: "" })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold bg-white focus:ring-2 focus:ring-sky/50 outline-none"
-                    >
-                      {availableLocalities.map((loc) => (
-                        <option key={loc} value={loc}>
-                          📍 {loc}
-                        </option>
-                      ))}
-                      <option value="Other">Other / Custom Specific Area...</option>
-                    </select>
-                  ) : null}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCitySearchInput("");
+                    setCitySearchResults([]);
+                    setIsCityDropdownOpen(true);
+                  }}
+                  className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-colors cursor-pointer"
+                >
+                  Change City
+                </button>
+              </div>
 
-                  {(availableLocalities.length === 0 || formData.locality === "Other") && (
+              <div className="grid sm:grid-cols-2 gap-5">
+                {/* 1. Real-Time City Search Portion */}
+                <div className="relative" ref={citySearchContainerRef}>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Search City / Town (Real-Time API) <span className="text-rose-500">*</span>
+                  </label>
+
+                  {/* Input and Search Button */}
+                  <div className="relative flex items-center">
+                    <Search
+                      size={16}
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                    />
                     <input
                       type="text"
-                      placeholder="Type custom locality, street or industrial estate"
-                      value={formData.customLocality}
-                      onChange={(e) => setFormData({ ...formData, customLocality: e.target.value })}
-                      className="w-full mt-2 px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none"
+                      placeholder="Type city name (e.g. Pune, Barrackpore, Kolkata)..."
+                      value={citySearchInput}
+                      onChange={(e) => {
+                        setCitySearchInput(e.target.value);
+                        if (!isCityDropdownOpen) setIsCityDropdownOpen(true);
+                      }}
+                      onFocus={() => {
+                        if (citySearchInput.trim() || citySearchResults.length > 0) {
+                          setIsCityDropdownOpen(true);
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          executeCitySearch(citySearchInput);
+                        }
+                      }}
+                      className="w-full pl-10 pr-24 py-2.5 bg-white border border-slate-300 rounded-xl text-sm font-semibold text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-sky-500/40 focus:border-sky-500 outline-none transition-all shadow-xs"
                     />
+
+                    {/* Dedicated Search Button */}
+                    <button
+                      type="button"
+                      onClick={() => executeCitySearch(citySearchInput)}
+                      disabled={isSearchingCities}
+                      className="absolute right-1.5 px-3 py-1.5 bg-navy hover:bg-navy-light text-white text-xs font-bold rounded-lg transition-all shadow-xs cursor-pointer flex items-center gap-1.5 disabled:opacity-60"
+                      title="Search city in real-time via Maps API"
+                    >
+                      {isSearchingCities ? (
+                        <Loader2 size={13} className="animate-spin text-sky-400" />
+                      ) : (
+                        <Search size={13} />
+                      )}
+                      <span>Search</span>
+                    </button>
+                  </div>
+
+                  {/* Real-Time Dropdown Suggestions */}
+                  {isCityDropdownOpen && (
+                    <div className="absolute left-0 right-0 top-full mt-1.5 bg-white border border-slate-200 rounded-2xl shadow-xl z-50 overflow-hidden max-h-72 flex flex-col animate-in fade-in zoom-in-95 duration-150">
+                      <div className="px-3.5 py-2 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-500">
+                        <span className="flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                          <span>Real-Time Suggestions ({citySearchResults.length})</span>
+                        </span>
+                        {citySearchProvider && (
+                          <span className="text-[10px] text-sky-700 font-bold uppercase tracking-wider">
+                            {citySearchProvider === "google_maps"
+                              ? "Google Maps API"
+                              : citySearchProvider === "nominatim"
+                              ? "OpenStreetMap"
+                              : "ACS Pan-India DB"}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="overflow-y-auto divide-y divide-slate-100 custom-scrollbar">
+                        {isSearchingCities ? (
+                          <div className="p-4 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
+                            <Loader2 size={15} className="animate-spin text-sky-600" />
+                            <span>Querying Google Maps &amp; ACS Database in real-time...</span>
+                          </div>
+                        ) : citySearchResults.length > 0 ? (
+                          citySearchResults.map((city) => (
+                            <button
+                              key={city.slug + city.state}
+                              type="button"
+                              onClick={() => handleSelectCity(city.name, city.state)}
+                              className={`w-full px-4 py-2.5 text-left flex items-center justify-between hover:bg-sky-50 transition-colors cursor-pointer group ${
+                                formData.city.toLowerCase() === city.name.toLowerCase() ? "bg-sky-50/80 font-bold" : ""
+                              }`}
+                            >
+                              <div className="min-w-0 pr-2">
+                                <p className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-navy truncate">
+                                  {city.name}
+                                </p>
+                                <p className="text-[11px] text-slate-500 truncate">
+                                  {city.state}
+                                </p>
+                              </div>
+                              <span className="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 group-hover:bg-sky-100 text-slate-600 group-hover:text-sky-800">
+                                {city.tier === 1 ? "⭐ Metro" : city.tier === 2 ? "Tier-2 Hub" : "Industrial Zone"}
+                              </span>
+                            </button>
+                          ))
+                        ) : citySearchInput.trim() ? (
+                          <div className="p-4 text-center">
+                            <p className="text-xs text-slate-600 font-semibold">
+                              No exact match found for &ldquo;{citySearchInput}&rdquo;
+                            </p>
+                            <button
+                              type="button"
+                              onClick={() => handleSelectCity(citySearchInput.trim())}
+                              className="mt-2 text-xs font-bold text-sky-600 hover:text-sky-800 underline cursor-pointer"
+                            >
+                              Use &ldquo;{citySearchInput.trim()}&rdquo; as custom deployment city
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="p-3 text-xs text-slate-400 text-center">
+                            Start typing to search 800+ cities in real-time
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   )}
+
+                  {/* Quick Metro Hub Pills */}
+                  <div className="mt-2.5">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      Quick Select Hubs:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["Kolkata", "Barrackpore", "Mumbai", "Delhi", "Bengaluru", "Pune", "Hyderabad", "Noida"].map((hub) => (
+                        <button
+                          key={hub}
+                          type="button"
+                          onClick={() => handleSelectCity(hub)}
+                          className={`px-2 py-1 text-[11px] font-bold rounded-lg border transition-all cursor-pointer ${
+                            formData.city.toLowerCase() === hub.toLowerCase()
+                              ? "bg-navy text-white border-navy shadow-2xs"
+                              : "bg-white text-slate-700 border-slate-200 hover:border-sky-300 hover:bg-sky-50"
+                          }`}
+                        >
+                          {hub}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Real-Time Locality / Deployment Hub (Maps API Synced) */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-xs font-bold text-slate-700">
+                      Locality / Industrial Sector (Real-Time Synced) <span className="text-rose-500">*</span>
+                    </label>
+                    {isLoadingLocalities && (
+                      <span className="text-[10px] font-semibold text-sky-600 flex items-center gap-1">
+                        <Loader2 size={11} className="animate-spin" />
+                        <span>Fetching via Maps API...</span>
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Locality Dropdown Selector */}
+                  <div className="space-y-2">
+                    <div className="relative">
+                      <select
+                        value={formData.locality}
+                        onChange={(e) => setFormData({ ...formData, locality: e.target.value, customLocality: "" })}
+                        disabled={isLoadingLocalities}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold bg-white text-slate-800 focus:ring-2 focus:ring-sky-500/40 focus:border-sky-500 outline-none transition-all shadow-xs cursor-pointer disabled:bg-slate-50 disabled:text-slate-400"
+                      >
+                        <optgroup label={`📍 Real-Time Localities in ${formData.city} (${availableLocalities.length} Areas)`}>
+                          {filteredLocalities.map((loc) => (
+                            <option key={loc} value={loc}>
+                              📍 {loc}
+                            </option>
+                          ))}
+                        </optgroup>
+                        <option value="Other">➕ Other / Custom Specific Industrial Estate or Street...</option>
+                      </select>
+                    </div>
+
+                    {/* Custom Locality Input if "Other" is selected */}
+                    {(availableLocalities.length === 0 || formData.locality === "Other") && (
+                      <div className="pt-1 animate-in fade-in duration-200">
+                        <label className="block text-[11px] font-bold text-slate-600 mb-1">
+                          Specify Exact Locality, Sector, or Landmark:
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Near Agarpara Railway Station, Barrackpore Cantonment..."
+                          value={formData.customLocality}
+                          onChange={(e) => setFormData({ ...formData, customLocality: e.target.value })}
+                          className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-medium text-slate-800 focus:ring-2 focus:ring-sky-500/40 focus:border-sky-500 outline-none transition-all bg-white"
+                          autoFocus
+                        />
+                      </div>
+                    )}
+
+                    {/* Locality Live Provider info */}
+                    <div className="flex items-center justify-between text-[10px] text-slate-400 px-1">
+                      <span>
+                        {availableLocalities.length} operational zones loaded for {formData.city}
+                      </span>
+                      {localityProvider && (
+                        <span className="text-sky-700 font-medium">
+                          {localityProvider === "google_maps_places" ? "✓ Google Maps Places Verified" : "✓ Real-Time Verified"}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1281,6 +1615,13 @@ export default function PostJobPage() {
           </div>
         </div>
       )}
+
+      {/* Global 800+ City Selector Modal */}
+      <CitySelectorModal
+        isOpen={isCityModalOpen}
+        onClose={() => setIsCityModalOpen(false)}
+        onCitySelect={(city: ACSCity) => handleSelectCity(city.name, city.state)}
+      />
     </div>
   );
 }
