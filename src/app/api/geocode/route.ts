@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ACS_CITIES, type ACSCity } from "@/lib/cities";
+import { searchCitiesRealtime, fetchLocalitiesRealtime } from "@/lib/locationService";
 
 // In-memory cache for coordinates and IP lookups to prevent duplicate external API calls
 // Coordinate cache key: rounded to 2 decimals (~1.1km grid)
@@ -379,11 +380,29 @@ async function forwardGeocodeAddress(address: string): Promise<ForwardCoordResul
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
+    const type = searchParams.get("type");
+
+    // Case -1: Real-time City Search via API
+    if (type === "cities" || type === "city") {
+      const q = searchParams.get("q") || searchParams.get("query") || "";
+      const limitParam = searchParams.get("limit");
+      const limit = limitParam ? parseInt(limitParam, 10) : 20;
+      const res = await searchCitiesRealtime(q, limit);
+      return NextResponse.json(res);
+    }
+
+    // Case -2: Real-time Locality Fetch via Maps API
+    if (type === "localities" || type === "locality") {
+      const city = searchParams.get("city") || searchParams.get("q") || "Kolkata";
+      const res = await fetchLocalitiesRealtime(city);
+      return NextResponse.json(res);
+    }
 
     // Case 0: Forward Geocoding for City Coordinates / Maps
     const addressQuery =
       searchParams.get("address") ||
-      searchParams.get("q") ||
+      (type === "forward" ? searchParams.get("q") : null) ||
+      (searchParams.get("address") ? searchParams.get("q") : null) ||
       (searchParams.get("city")
         ? `${searchParams.get("city")}, ${searchParams.get("state") || ""}, India`
         : null);

@@ -99,9 +99,9 @@ export default function HeroSection() {
 
   const gridColsClass =
     activeTab === "security"
-      ? "grid-cols-3 sm:grid-cols-5"
+      ? "grid-cols-2 xs:grid-cols-3 sm:grid-cols-5"
       : activeTab === "facility"
-      ? "grid-cols-3 sm:grid-cols-3 md:grid-cols-6"
+      ? "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-6"
       : activeTab === "placement"
       ? "grid-cols-2 sm:grid-cols-4"
       : "grid-cols-3";
@@ -126,15 +126,15 @@ export default function HeroSection() {
           {/* ── LEFT COLUMN: Headline, Location Pill & Tabbed Services Box ── */}
           <div className="w-full min-w-0 max-w-2xl">
             {/* Trust Badges */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5" role="list" aria-label="Certifications">
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-950 text-[11px] font-bold shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
-                Security & ISO Certified
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2" role="list" aria-label="Certifications">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-950 text-[10px] sm:text-[11px] font-bold shadow-2xs max-w-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" aria-hidden="true" />
+                <span className="truncate sm:whitespace-normal">Security & ISO Certified</span>
               </span>
               {TRUST_BADGES.map((badge) => (
                 <span
                   key={badge.label}
-                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sky-50 border border-sky-200 text-sky-950 text-[11px] font-bold shadow-2xs"
+                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sky-50 border border-sky-200 text-sky-950 text-[10px] sm:text-[11px] font-bold shadow-2xs"
                   role="listitem"
                 >
                   <span aria-hidden="true">{badge.icon}</span>
@@ -146,7 +146,7 @@ export default function HeroSection() {
             {/* Main H1 Heading */}
             <h1
               id="hero-heading"
-              className="font-roboto font-black text-slate-900 leading-[1.25] mb-2 tracking-tight text-[15px] sm:text-[18px] lg:text-[22px] xl:text-[24px]"
+              className="font-roboto font-black text-slate-900 leading-[1.25] mb-2 tracking-tight text-lg sm:text-xl lg:text-2xl xl:text-3xl break-words"
             >
               The Compliance-First Corporate Security &amp; Facilities Management Company in{" "}
               <span className="text-sky-600 font-black">
@@ -164,22 +164,22 @@ export default function HeroSection() {
             </p>
 
             {/* Action Bar: City Hub Button + Free Site Assessment CTA */}
-            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2 mb-2.5">
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2 mb-2.5 w-full">
               {/* City Pill Button */}
               <button
                 type="button"
                 onClick={() => setIsCityModalOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-sky-50 hover:border-sky-300 transition-all shadow-2xs group cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-sky-200 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-sky-50 hover:border-sky-300 transition-all shadow-2xs group cursor-pointer shrink-0"
                 title="Change Deployment City"
               >
                 <Image
                   src="/google-maps-icon.webp"
                   alt="City"
-                  width={16}
-                  height={16}
-                  className="w-4 h-4 object-contain group-hover:scale-110 transition-transform shrink-0"
+                  width={15}
+                  height={15}
+                  className="w-3.5 h-3.5 object-contain group-hover:scale-110 transition-transform shrink-0"
                 />
-                <span suppressHydrationWarning className="text-navy font-bold">
+                <span suppressHydrationWarning className="text-navy font-bold max-w-[100px] xs:max-w-[130px] truncate">
                   {currentCity.name}
                 </span>
                 <span className="text-sky-600 underline font-bold text-xs ml-0.5 group-hover:text-sky-800">
@@ -190,17 +190,17 @@ export default function HeroSection() {
               {/* Free Assessment CTA */}
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full font-bold text-xs sm:text-sm bg-navy text-white hover:bg-navy-dark hover:shadow-sm transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold text-xs sm:text-sm bg-navy text-white hover:bg-navy-dark hover:shadow-sm transition-all cursor-pointer shadow-2xs max-w-full"
               >
-                <span>Request Site Security Audit</span>
-                <svg className="w-3.5 h-3.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span className="truncate">Request Site Security Audit</span>
+                <svg className="w-3.5 h-3.5 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
 
             {/* ── B2B ENTERPRISE SERVICES BOX (Workforce Web Style with Category Tabs) ── */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-4 sm:p-5 w-full overflow-hidden">
+            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-3 sm:p-5 w-full overflow-hidden">
               {/* Category Segmented Tabs */}
               <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100 overflow-hidden min-w-0">
                 <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl overflow-x-auto scrollbar-none max-w-full">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { Search, X, LocateFixed, Check } from "lucide-react";
@@ -43,6 +43,9 @@ export default function CitySelectorModal({
   const [isDetecting, setIsDetecting] = useState(false);
   const [detectStatus, setDetectStatus] = useState<string | null>(null);
   const [showAllCities, setShowAllCities] = useState(false);
+  const [isSearchingApi, setIsSearchingApi] = useState(false);
+  const [apiResults, setApiResults] = useState<ACSCity[]>([]);
+  const [apiProvider, setApiProvider] = useState<string>("");
   const router = useRouter();
   const pathname = usePathname();
   const {
@@ -55,10 +58,49 @@ export default function CitySelectorModal({
 
   // Support controlled or context-driven state
   const isOpen = propIsOpen !== undefined ? propIsOpen : isCityModalOpen;
+
+  const executeApiCitySearch = useCallback(async (query: string) => {
+    if (!query.trim()) {
+      setApiResults([]);
+      setApiProvider("");
+      return;
+    }
+    setIsSearchingApi(true);
+    try {
+      const res = await fetch(`/api/locations?q=${encodeURIComponent(query.trim())}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && Array.isArray(data.cities)) {
+          setApiResults(data.cities);
+          setApiProvider(data.provider || "maps_api");
+        }
+      }
+    } catch (e) {
+      console.warn("Real-time city API query failed:", e);
+    } finally {
+      setIsSearchingApi(false);
+    }
+  }, []);
+
+  // Debounced auto-search when query changes
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setApiResults([]);
+      setApiProvider("");
+      return;
+    }
+    const timer = setTimeout(() => {
+      executeApiCitySearch(searchQuery);
+    }, 280);
+    return () => clearTimeout(timer);
+  }, [searchQuery, executeApiCitySearch]);
+
   const handleClose = useCallback(() => {
     setSearchQuery("");
     setDetectStatus(null);
     setShowAllCities(false);
+    setApiResults([]);
+    setApiProvider("");
     if (propOnClose) {
       propOnClose();
     } else {
@@ -159,16 +201,20 @@ export default function CitySelectorModal({
 
   if (!isOpen) return null;
 
-  const filteredCities = ACS_CITIES.filter(
-    (c) =>
-      c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (c.state && c.state.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const filteredCities = useMemo<ACSCity[]>(() => {
+    if (!searchQuery.trim()) return ACS_CITIES;
+    if (apiResults.length > 0) return apiResults;
+    return ACS_CITIES.filter(
+      (c) =>
+        c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (c.state && c.state.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+  }, [searchQuery, apiResults]);
 
-  const displayedCities =
-    searchQuery.trim() || showAllCities
-      ? filteredCities
-      : filteredCities.slice(0, 48);
+  const displayedCities = useMemo<ACSCity[]>(() => {
+    if (searchQuery.trim() || showAllCities) return filteredCities;
+    return filteredCities.slice(0, 48);
+  }, [searchQuery, showAllCities, filteredCities]);
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 font-sans">
@@ -179,31 +225,31 @@ export default function CitySelectorModal({
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[88vh] animate-in fade-in zoom-in-95 duration-200 z-10 border border-slate-100">
+      <div className="relative w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[88vh] animate-in fade-in zoom-in-95 duration-200 z-10 border border-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white shadow-xs border border-slate-100 flex items-center justify-center p-1.5 shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 bg-slate-50/50">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white shadow-xs border border-slate-100 flex items-center justify-center p-1.5 shrink-0">
               <Image
                 src="/google-maps-icon.webp"
                 alt="Location"
                 width={22}
                 height={22}
-                className="w-5 h-5 object-contain"
+                className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
               />
             </div>
-            <div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
+            <div className="min-w-0">
+              <h2 className="text-base sm:text-xl md:text-2xl font-black text-slate-900 leading-tight truncate">
                 Choose your city or location
               </h2>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Covering <strong className="text-navy font-bold">800+</strong> cities, industrial SEZs, defence hubs &amp; deployment zones across India
+              <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">
+                Covering <strong className="text-navy font-bold">800+</strong> cities, industrial SEZs &amp; deployment zones across India
               </p>
             </div>
           </div>
           <button
             onClick={handleClose}
-            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+            className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer shrink-0 ml-2"
             aria-label="Close modal"
           >
             <X size={20} />
@@ -212,33 +258,77 @@ export default function CitySelectorModal({
 
         {/* Content Scroll Area */}
         <div className="overflow-y-auto p-5 sm:p-7 custom-scrollbar space-y-7">
-          {/* Auto-detect button & Search Bar */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1">
-              <Search
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
-                size={18}
-              />
-              <input
-                type="text"
-                placeholder="Search your city or state (e.g. Mumbai, Delhi, Kolkata, Gujarat)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-sky-500/40 focus:bg-white transition-all text-slate-800 text-sm placeholder:text-slate-400 font-medium"
-                autoFocus
-              />
+          {/* Auto-detect button & Search Bar with Real-time API button */}
+          <div className="space-y-2">
+            <div className="flex flex-col sm:flex-row gap-2.5">
+              <div className="relative flex-1 flex items-center">
+                <Search
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                  size={18}
+                />
+                <input
+                  type="text"
+                  placeholder="Search city, district, or town in real-time (e.g. Pune, Kolkata, Barrackpore)..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      executeApiCitySearch(searchQuery);
+                    }
+                  }}
+                  className="w-full pl-11 pr-24 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-sky-500/40 focus:bg-white transition-all text-slate-800 text-sm placeholder:text-slate-400 font-medium"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={() => executeApiCitySearch(searchQuery)}
+                  className="absolute right-2 px-3 py-1.5 bg-navy hover:bg-navy-light text-white text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer flex items-center gap-1.5"
+                  title="Search City in Real-time via Maps API"
+                >
+                  {isSearchingApi ? (
+                    <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin inline-block" />
+                  ) : (
+                    <Search size={13} />
+                  )}
+                  <span>Search</span>
+                </button>
+              </div>
+              <button
+                onClick={handleAutoDetect}
+                disabled={isDetecting}
+                className="flex items-center justify-center gap-2 px-4 py-3.5 bg-sky-50 border border-sky-200/90 text-navy hover:bg-sky-100/80 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-xs shrink-0 cursor-pointer"
+              >
+                <LocateFixed
+                  size={16}
+                  className={isDetecting ? "animate-spin text-sky-600" : "text-sky-600"}
+                />
+                <span>{isDetecting ? "Detecting..." : "Auto Detect City"}</span>
+              </button>
             </div>
-            <button
-              onClick={handleAutoDetect}
-              disabled={isDetecting}
-              className="flex items-center justify-center gap-2 px-5 py-3.5 bg-sky-50 border border-sky-200/90 text-navy hover:bg-sky-100/80 rounded-2xl text-xs sm:text-sm font-bold transition-all shadow-xs shrink-0 cursor-pointer"
-            >
-              <LocateFixed
-                size={16}
-                className={isDetecting ? "animate-spin text-sky-600" : "text-sky-600"}
-              />
-              <span>{isDetecting ? "Detecting..." : "Auto Detect City"}</span>
-            </button>
+
+            {/* Real-time API Feedback Indicator */}
+            {searchQuery.trim() && (
+              <div className="flex items-center justify-between text-xs px-2 pt-1 text-slate-500">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-[11px] sm:text-xs font-medium">
+                    {isSearchingApi
+                      ? "Searching Google Maps API & Pan-India database in real-time..."
+                      : `Found ${filteredCities.length} real-time matches for "${searchQuery}"`}
+                  </span>
+                </span>
+                {apiProvider && (
+                  <span className="text-[10px] font-semibold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                    {apiProvider === "google_maps"
+                      ? "Google Maps API"
+                      : apiProvider === "nominatim"
+                      ? "OpenStreetMap API"
+                      : "ACS Pan-India DB"}
+                  </span>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Status Feedback Banner */}

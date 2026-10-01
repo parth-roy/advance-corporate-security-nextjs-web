@@ -145,10 +145,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
     setToast(null);
 
-    // Dynamic endpoint fallback (supports local dev and live production API)
-    const isLocalhost = typeof window !== "undefined" && window.location.hostname === "localhost";
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || (isLocalhost ? "http://localhost:4000" : siteConfig.apiUrl);
-    const endpoint = `${apiBase}/api/contact`;
+    const endpoint = "/api/contact";
 
     try {
       const controller = new AbortController();

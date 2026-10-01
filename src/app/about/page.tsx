@@ -69,9 +69,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Hero Visual Showcase — Authentic ACS Team Panorama (1920x500 natural aspect ratio, zero clipping) */}
+          {/* Hero Visual Showcase — Authentic ACS Team Panorama (Responsive aspect ratio, zero clipping) */}
           <div className="my-8 relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white group">
-            <div className="relative aspect-[1920/500] w-full">
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] md:aspect-[1920/500] w-full">
               <Image
                 src="/images/about-us-header.jpg"
                 alt="Advance Corporate Security Team — 25 Years of Pan-India Dedicated Workforce"
@@ -82,11 +82,11 @@ export default function AboutPage() {
               />
             </div>
             {/* Subtle caption bar */}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between">
-              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between gap-2">
+              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow truncate">
                 Advance Corporate Security — Multi-State Professional Team
               </span>
-              <span className="text-gold text-xs font-bold bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-gold/30">
+              <span className="text-gold text-[10px] sm:text-xs font-bold bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-gold/30 shrink-0">
                 25+ Years Excellence
               </span>
             </div>

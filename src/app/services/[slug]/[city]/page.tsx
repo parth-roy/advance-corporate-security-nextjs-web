@@ -8,7 +8,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
@@ -37,7 +37,12 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug, city: citySlug } = await params;
-  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug);
+  let service = getServiceBySlug(slug);
+  if (!service) {
+    const fallback = ACS_SERVICES.find(s => s.parentSlug === slug);
+    if (fallback) return {}; // Let the page component handle the redirect
+    return {};
+  }
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
   if (!service || !cityObj) return {};
 
@@ -93,7 +98,14 @@ export default async function ServiceCityPage({
   params: Promise<Params>;
 }) {
   const { slug, city: citySlug } = await params;
-  const service = getServiceBySlug(slug) || ACS_SERVICES.find(s => s.category === slug);
+  let service = getServiceBySlug(slug);
+  if (!service) {
+    const fallback = ACS_SERVICES.find(s => s.parentSlug === slug);
+    if (fallback) {
+      redirect(`/services/${fallback.slug}/${citySlug}`);
+    }
+    notFound();
+  }
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
   if (!service || !cityObj) notFound();
 
@@ -209,9 +221,9 @@ export default async function ServiceCityPage({
             </a>
           </div>
 
-          {/* Local Service Visual Showcase (1920x500 panorama, zero clipping) */}
+          {/* Local Service Visual Showcase (Responsive aspect ratio, zero clipping) */}
           <div className="my-8 relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 group">
-            <div className="relative aspect-[1920/500] w-full">
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] md:aspect-[1920/500] w-full">
               <Image
                 src={service.heroImage}
                 alt={`${service.name} in ${cityName}, ${state} — Advance Corporate Security`}
@@ -221,11 +233,11 @@ export default async function ServiceCityPage({
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1140px"
               />
             </div>
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between">
-              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between gap-2">
+              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow truncate">
                 {service.name} — Deployed in {cityName}, {state}
               </span>
-              <span className="text-gold font-bold text-xs bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-gold/30">
+              <span className="text-gold font-bold text-[10px] sm:text-xs bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-gold/30 shrink-0">
                 📍 {cityName} Service Hub
               </span>
             </div>

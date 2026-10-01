@@ -11,7 +11,9 @@ export type AnalyticsEventType =
   | "phone_click"
   | "email_click"
   | "document_download"
-  | "city_change";
+  | "city_change"
+  | "post_job_click"
+  | "job_apply";
 
 export interface AnalyticsEventParams {
   category?: string;

@@ -253,7 +253,7 @@ export function EnterpriseQuotationForm() {
     setIsSubmitting(true);
     setToast(null);
 
-    const endpoint = `${resolveApiBase()}/api/contact`;
+    const endpoint = "/api/contact";
 
     try {
       const controller = new AbortController();

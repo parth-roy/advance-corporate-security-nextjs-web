@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false, // Suppress X-Powered-By: Next.js
+  devIndicators: false, // Hide dev status badge that blocks mobile bottom buttons
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [

@@ -262,9 +262,9 @@ export default async function ServicePage({
             </a>
           </div>
 
-          {/* Hero Visual Showcase — Authentic Service Photography (1920x500 natural aspect ratio, zero clipping) */}
+          {/* Hero Visual Showcase — Authentic Service Photography (Responsive aspect ratio, zero clipping) */}
           <div className="my-8 relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 group">
-            <div className="relative aspect-[1920/500] w-full">
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] md:aspect-[1920/500] w-full">
               <Image
                 src={heroImage}
                 alt={`${title} — Advance Corporate Security Pan-India Deployment`}
@@ -275,11 +275,11 @@ export default async function ServicePage({
               />
             </div>
             {/* Subtle bottom gradient & info banner */}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between">
-              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/60 to-transparent py-2.5 px-4 flex items-center justify-between gap-2">
+              <span className="text-white text-xs sm:text-sm font-semibold tracking-wide drop-shadow truncate">
                 {title} — Pan-India Professional Deployment
               </span>
-              <span className="text-sky font-bold text-xs bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-sky/30">
+              <span className="text-sky font-bold text-[10px] sm:text-xs bg-navy-dark/80 px-2.5 py-0.5 rounded-full border border-sky/30 shrink-0">
                 ⚡ Rapid 24–48h SLA
               </span>
             </div>

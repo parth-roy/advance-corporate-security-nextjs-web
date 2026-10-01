@@ -3,6 +3,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildWebPageSchema, serializeJsonLd } from "@/lib/schema";
 import CareersForm from "@/components/careers/CareersForm";
+import CareersJobList from "@/components/careers/CareersJobList";
 
 export const metadata: Metadata = {
   title: "Careers & Future Opportunities",
@@ -114,44 +115,8 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Status: No Current Openings Notice */}
-      <section className="section-py bg-off-white" aria-labelledby="status-heading">
-        <div className="container-acs">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-3xl p-8 sm:p-12 border border-gray-200/80 shadow-xs text-center">
-              <div className="w-16 h-16 bg-sky-50 text-sky rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl">
-                📢
-              </div>
-              <span className="badge-sky text-xs font-semibold mb-3 inline-block">
-                Recruitment Status
-              </span>
-              <h2 id="status-heading" className="text-navy font-roboto font-black text-2xl sm:text-3xl md:text-4xl mb-3">
-                No Active Openings Currently
-              </h2>
-              <div className="divider-sky mx-auto" />
-              <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-6">
-                All operational security, supervisory, and facility management positions across our client deployments are currently fulfilled.
-              </p>
-
-              <div className="bg-sky-50/70 border border-sky-100 rounded-2xl p-5 max-w-2xl mx-auto mb-8 text-left text-xs sm:text-sm text-gray-700 space-y-2">
-                <p className="font-semibold text-navy flex items-center gap-2">
-                  <span className="text-sky text-base">💡</span> Join Our Talent Pipeline
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  We regularly recruit personnel as new government, PSU, and corporate contracts are launched. You can register your profile below or submit your resume directly to our recruitment team via WhatsApp. When a vacancy arises in your preferred city, talent pool candidates are given first priority.
-                </p>
-              </div>
-
-              <a
-                href="#profile-form"
-                className="btn-primary bg-navy hover:bg-navy-light text-white font-bold px-8 py-3 rounded-xl transition-colors shadow-md text-sm inline-flex items-center gap-2"
-              >
-                Register Your Profile Below ↓
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Active Verified Job Openings List & Modal Application Engine */}
+      <CareersJobList />
 
       {/* Why Work with ACS */}
       <section className="section-py bg-white">
