@@ -77,7 +77,7 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />}
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-navy to-navy-light text-white py-16 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-navy to-navy-light text-white py-10 sm:py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", backgroundSize: "32px 32px" }} aria-hidden="true" />
         <div className="container-acs relative z-10">
           <nav aria-label="Breadcrumb" className="mb-5">
@@ -97,15 +97,15 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
             <span className="badge-sky">📍 {cityName}</span>
             <span className="badge-gold">🏛️ {stateName}</span>
           </div>
-          <h1 className="text-white font-roboto font-black text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4 max-w-4xl">
+          <h1 className="text-white font-roboto font-black text-2xl sm:text-4xl lg:text-5xl leading-tight mb-4 max-w-4xl break-words">
             PSARA Licensed Security &amp; Facility Management Services in {cityName}
           </h1>
-          <p className="text-sky-200 text-lg mb-8 max-w-2xl">
+          <p className="text-sky-200 text-sm sm:text-lg mb-5 sm:mb-8 max-w-2xl">
             ISO 9001:2015 certified B2B services — Security Guards, Corporate Housekeeping, Manpower Outsourcing &amp; more — deployed across {cityName}, {stateName}.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/contact" className="btn-primary">Get Free Quote in {cityName}</Link>
-            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary">📞 {siteConfig.phone}</a>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+            <Link href="/quote" className="btn-primary text-center">Get Free Quote in {cityName}</Link>
+            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-center">📞 {siteConfig.phone}</a>
           </div>
         </div>
       </section>

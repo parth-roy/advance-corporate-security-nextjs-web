@@ -88,6 +88,9 @@ body {
   position: relative;
 }
 
+/* Prevent content overflow on mobile */
+img, video, table { max-width: 100%; }
+
 /* ============================================================
    Typography
    ============================================================ */

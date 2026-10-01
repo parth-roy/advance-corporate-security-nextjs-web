@@ -122,14 +122,14 @@ export default function HeroSection() {
       />
 
       <div className="container-acs relative z-10">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.18fr_0.82fr] gap-6 xl:gap-8 items-start mb-4">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.18fr_0.82fr] gap-6 xl:gap-8 items-start mb-4 w-full min-w-0">
           {/* ── LEFT COLUMN: Headline, Location Pill & Tabbed Services Box ── */}
-          <div className="max-w-2xl">
+          <div className="w-full min-w-0 max-w-2xl">
             {/* Trust Badges */}
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5" role="list" aria-label="Certifications">
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-950 text-[11px] font-bold shadow-2xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
-                Security Guard Company &amp; ISO Facility Management
+                Security & ISO Certified
               </span>
               {TRUST_BADGES.map((badge) => (
                 <span
@@ -164,7 +164,7 @@ export default function HeroSection() {
             </p>
 
             {/* Action Bar: City Hub Button + Free Site Assessment CTA */}
-            <div className="flex flex-wrap items-center gap-2.5 mb-2.5">
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2 mb-2.5">
               {/* City Pill Button */}
               <button
                 type="button"
@@ -190,7 +190,7 @@ export default function HeroSection() {
               {/* Free Assessment CTA */}
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-bold text-xs sm:text-sm bg-navy text-white hover:bg-navy-dark hover:shadow-sm transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full font-bold text-xs sm:text-sm bg-navy text-white hover:bg-navy-dark hover:shadow-sm transition-all cursor-pointer shadow-2xs"
               >
                 <span>Request Site Security Audit</span>
                 <svg className="w-3.5 h-3.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -200,9 +200,9 @@ export default function HeroSection() {
             </div>
 
             {/* ── B2B ENTERPRISE SERVICES BOX (Workforce Web Style with Category Tabs) ── */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-4 sm:p-5">
+            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-4 sm:p-5 w-full overflow-hidden">
               {/* Category Segmented Tabs */}
-              <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100">
+              <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100 overflow-hidden min-w-0">
                 <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl overflow-x-auto scrollbar-none max-w-full">
                   {(Object.keys(TAB_DATA) as TabType[]).map((tabKey) => {
                     const tab = TAB_DATA[tabKey];

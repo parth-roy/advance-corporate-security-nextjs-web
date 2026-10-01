@@ -191,20 +191,20 @@ export default async function ServiceCityPage({
             <span className="badge-navy border border-white/20">ISO 9001:2015</span>
           </div>
 
-          <h1 className="text-white font-roboto font-black text-3xl sm:text-4xl lg:text-5xl leading-tight mb-3 max-w-4xl">
+          <h1 className="text-white font-roboto font-black text-2xl sm:text-4xl lg:text-5xl leading-tight mb-3 max-w-4xl break-words">
             {h1}
           </h1>
 
-          <h2 className="text-sky-300 font-roboto text-base sm:text-lg md:text-xl font-normal mb-8 max-w-3xl leading-relaxed">
+          <h2 className="text-sky-300 font-roboto text-sm sm:text-lg md:text-xl font-normal mb-5 sm:mb-8 max-w-3xl leading-relaxed">
             {h2}
           </h2>
 
-          <div className="flex flex-wrap gap-3 items-center mb-8">
-            <Link href="/contact" className="btn-primary text-xs sm:text-sm px-6 py-3">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
+            <Link href="/quote" className="btn-primary text-xs sm:text-sm px-6 py-3 text-center justify-center">
               Get Quotation in {cityName}
               <svg className="w-4 h-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>
-            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-xs sm:text-sm px-5 py-3">
+            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-xs sm:text-sm px-5 py-3 text-center">
               📞 {siteConfig.phone}
             </a>
           </div>
@@ -534,19 +534,19 @@ export default async function ServiceCityPage({
       </section>
 
       {/* ── BOTTOM CTA ── */}
-      <section className="py-14 text-center bg-navy text-white">
+      <section className="py-10 sm:py-14 text-center bg-navy text-white">
         <div className="container-acs max-w-2xl">
-          <h2 className="text-white font-roboto font-black text-2xl sm:text-3xl mb-3">
+          <h2 className="text-white font-roboto font-black text-xl sm:text-2xl sm:text-3xl mb-3">
             Hire PSARA-Licensed {service.shortName} in {cityName}
           </h2>
-          <p className="text-gray-300 mb-8 text-sm leading-relaxed">
+          <p className="text-gray-300 mb-6 sm:mb-8 text-sm leading-relaxed">
             Get an instant commercial quote with transparent per-shift or monthly billing. ISO 9001:2015 certified operations with zero compliance friction.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="btn-primary text-base px-8 py-3.5">
-              Contact {cityName} Branch
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/quote" className="btn-primary text-base px-8 py-3.5 text-center">
+              Get Instant Quotation
             </Link>
-            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-base px-8 py-3.5">
+            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-base px-8 py-3.5 text-center">
               Call Support: {siteConfig.phone}
             </a>
           </div>
