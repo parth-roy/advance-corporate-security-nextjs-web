@@ -31,8 +31,8 @@ export function getGoogleSheetsWebhookUrl(): string {
       path.resolve(process.cwd(), "../advance-corporate-security-nodejs-backend/.env"),
     ];
     for (const p of envPaths) {
-      if (fs.existsSync(p)) {
-        const raw = fs.readFileSync(p, "utf-8");
+      if (fs.existsSync(/*turbopackIgnore: true*/ p)) {
+        const raw = fs.readFileSync(/*turbopackIgnore: true*/ p, "utf-8");
         const match = raw.match(/GOOGLE_SHEETS_WEBHOOK_URL\s*=\s*["']?([^"'\r\n]+)/);
         if (match && match[1] && !match[1].includes("YOUR_APPS_SCRIPT_DEPLOYMENT_ID")) {
           return match[1].trim();
