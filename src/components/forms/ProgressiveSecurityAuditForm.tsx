@@ -278,6 +278,10 @@ export default function ContactForm() {
               type="text"
               id="name"
               name="name"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.name && touched.name)}
+              aria-describedby={errors.name && touched.name ? "name-error" : undefined}
               value={formData.name}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -292,8 +296,8 @@ export default function ContactForm() {
             />
           </div>
           {errors.name && touched.name && (
-            <p className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
-              <span>⚠️</span> {errors.name}
+            <p id="name-error" role="alert" className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
+              <span aria-hidden="true">⚠️</span> {errors.name}
             </p>
           )}
         </div>
@@ -310,6 +314,10 @@ export default function ContactForm() {
               type="email"
               id="email"
               name="email"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.email && touched.email)}
+              aria-describedby={errors.email && touched.email ? "email-error" : undefined}
               value={formData.email}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -323,8 +331,8 @@ export default function ContactForm() {
               }`}
             />
             {errors.email && touched.email && (
-              <p className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
-                <span>⚠️</span> {errors.email}
+              <p id="email-error" role="alert" className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
+                <span aria-hidden="true">⚠️</span> {errors.email}
               </p>
             )}
           </div>
@@ -340,6 +348,10 @@ export default function ContactForm() {
                 type="tel"
                 id="phone"
                 name="phone"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.phone && touched.phone)}
+                aria-describedby={errors.phone && touched.phone ? "phone-error" : undefined}
                 value={formData.phone}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -354,8 +366,8 @@ export default function ContactForm() {
               />
             </div>
             {errors.phone && touched.phone && (
-              <p className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
-                <span>⚠️</span> {errors.phone}
+              <p id="phone-error" role="alert" className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
+                <span aria-hidden="true">⚠️</span> {errors.phone}
               </p>
             )}
           </div>
@@ -450,6 +462,10 @@ export default function ContactForm() {
             ref={messageRef}
             id="message"
             name="message"
+            required
+            aria-required="true"
+            aria-invalid={!!(errors.message && touched.message)}
+            aria-describedby={errors.message && touched.message ? "message-error" : undefined}
             rows={4}
             value={formData.message}
             onChange={handleChange}
@@ -463,8 +479,8 @@ export default function ContactForm() {
             }`}
           />
           {errors.message && touched.message && (
-            <p className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
-              <span>⚠️</span> {errors.message}
+            <p id="message-error" role="alert" className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
+              <span aria-hidden="true">⚠️</span> {errors.message}
             </p>
           )}
         </div>

@@ -41,14 +41,14 @@ export const siteConfig = {
   email: "advancedcorporatesecurityj@gmail.com",
   adminEmail: "advancedcorporatesecurityj@gmail.com",
 
-  // --- Social ---
+  // --- Social (Official profile URLs only, never raw phone numbers) ---
   social: {
     facebook: "",
     linkedin: "",
     twitter: "",
     instagram: "",
     youtube: "",
-    whatsapp: "+919339988999",
+    whatsapp: "",
   },
 
   // --- Geographic Coordinates (for LocalBusiness schema) ---
@@ -58,8 +58,8 @@ export const siteConfig = {
   },
 
   // --- JSON-LD Entity IDs ---
-  entityId: "https://www.advancecorporatesecurity.com/#organization",
-  websiteId: "https://www.advancecorporatesecurity.com/#website",
+  entityId: "https://advancecorporatesecurity.com/#organization",
+  websiteId: "https://advancecorporatesecurity.com/#website",
 
   // --- All 17 Services from ACS Brochure (imported from services.ts) ---
   services: ACS_SERVICES,

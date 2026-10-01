@@ -93,10 +93,10 @@ function Toast({
 
 // ─── Field Error Message ───────────────────────────────────────────────────────
 
-function FieldError({ message }: { message: string | undefined }) {
+function FieldError({ id, message }: { id?: string; message: string | undefined }) {
   if (!message) return null;
   return (
-    <p className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
+    <p id={id} role="alert" className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
       <span aria-hidden="true">⚠️</span> {message}
     </p>
   );
@@ -365,6 +365,10 @@ export function EnterpriseQuotationForm() {
               type="text"
               id="companyName"
               name="companyName"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.companyName && touched.companyName)}
+              aria-describedby={errors.companyName && touched.companyName ? "companyName-error" : undefined}
               value={formData.companyName}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -373,7 +377,7 @@ export function EnterpriseQuotationForm() {
               placeholder="e.g. Tata Steel Ltd., Apollo Hospitals, Delhi Metro Rail"
               className={inputCls(!!(errors.companyName && touched.companyName))}
             />
-            {touched.companyName && <FieldError message={errors.companyName} />}
+            {touched.companyName && <FieldError id="companyName-error" message={errors.companyName} />}
           </div>
 
           {/* Pin Code */}
@@ -386,6 +390,10 @@ export function EnterpriseQuotationForm() {
               type="text"
               id="pinCode"
               name="pinCode"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.pinCode && touched.pinCode)}
+              aria-describedby={errors.pinCode && touched.pinCode ? "pinCode-error" : undefined}
               value={formData.pinCode}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -394,7 +402,7 @@ export function EnterpriseQuotationForm() {
               placeholder="e.g. 700120 or Barrackpore, West Bengal"
               className={inputCls(!!(errors.pinCode && touched.pinCode))}
             />
-            {touched.pinCode && <FieldError message={errors.pinCode} />}
+            {touched.pinCode && <FieldError id="pinCode-error" message={errors.pinCode} />}
           </div>
         </fieldset>
 
@@ -413,6 +421,10 @@ export function EnterpriseQuotationForm() {
             <select
               id="serviceType"
               name="serviceType"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.serviceType && touched.serviceType)}
+              aria-describedby={errors.serviceType && touched.serviceType ? "serviceType-error" : undefined}
               value={formData.serviceType}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -449,7 +461,7 @@ export function EnterpriseQuotationForm() {
               <option value="Integrated Multi-Service">Integrated Security + Facility Contract</option>
               <option value="Other Consultation">Other / General Consultation</option>
             </select>
-            {touched.serviceType && <FieldError message={errors.serviceType} />}
+            {touched.serviceType && <FieldError id="serviceType-error" message={errors.serviceType} />}
           </div>
 
           {/* Manpower Count + Shift Type grid */}
@@ -463,6 +475,10 @@ export function EnterpriseQuotationForm() {
                 ref={manpowerCountRef}
                 id="manpowerCount"
                 name="manpowerCount"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.manpowerCount && touched.manpowerCount)}
+                aria-describedby={errors.manpowerCount && touched.manpowerCount ? "manpowerCount-error" : undefined}
                 value={formData.manpowerCount}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -477,7 +493,7 @@ export function EnterpriseQuotationForm() {
                 <option value="100-500">100 – 500 personnel</option>
                 <option value="500+">500+ personnel</option>
               </select>
-              {touched.manpowerCount && <FieldError message={errors.manpowerCount} />}
+              {touched.manpowerCount && <FieldError id="manpowerCount-error" message={errors.manpowerCount} />}
             </div>
 
             {/* Shift Type */}
@@ -542,6 +558,10 @@ export function EnterpriseQuotationForm() {
               type="text"
               id="contactName"
               name="contactName"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.contactName && touched.contactName)}
+              aria-describedby={errors.contactName && touched.contactName ? "contactName-error" : undefined}
               value={formData.contactName}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -550,7 +570,7 @@ export function EnterpriseQuotationForm() {
               placeholder="e.g. Rajesh Kumar (HR Manager / Admin)"
               className={inputCls(!!(errors.contactName && touched.contactName))}
             />
-            {touched.contactName && <FieldError message={errors.contactName} />}
+            {touched.contactName && <FieldError id="contactName-error" message={errors.contactName} />}
           </div>
 
           {/* Phone + Email grid */}
@@ -564,6 +584,10 @@ export function EnterpriseQuotationForm() {
                 type="tel"
                 id="phone"
                 name="phone"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.phone && touched.phone)}
+                aria-describedby={errors.phone && touched.phone ? "phone-error" : undefined}
                 value={formData.phone}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -572,7 +596,7 @@ export function EnterpriseQuotationForm() {
                 placeholder="+91 98765 43210"
                 className={inputCls(!!(errors.phone && touched.phone))}
               />
-              {touched.phone && <FieldError message={errors.phone} />}
+              {touched.phone && <FieldError id="phone-error" message={errors.phone} />}
             </div>
 
             <div>
@@ -938,6 +962,10 @@ export function FreeSiteAuditForm() {
               type="text"
               id="audit-name"
               name="name"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.name && touched.name)}
+              aria-describedby={errors.name && touched.name ? "audit-name-error" : undefined}
               value={formData.name}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -946,7 +974,7 @@ export function FreeSiteAuditForm() {
               placeholder="Full name"
               className={inputCls(!!(errors.name && touched.name))}
             />
-            {touched.name && <FieldError message={errors.name} />}
+            {touched.name && <FieldError id="audit-name-error" message={errors.name} />}
           </div>
 
           <div>
@@ -958,6 +986,10 @@ export function FreeSiteAuditForm() {
               type="tel"
               id="audit-phone"
               name="phone"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.phone && touched.phone)}
+              aria-describedby={errors.phone && touched.phone ? "audit-phone-error" : undefined}
               value={formData.phone}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -966,7 +998,7 @@ export function FreeSiteAuditForm() {
               placeholder="+91 98765 43210"
               className={inputCls(!!(errors.phone && touched.phone))}
             />
-            {touched.phone && <FieldError message={errors.phone} />}
+            {touched.phone && <FieldError id="audit-phone-error" message={errors.phone} />}
           </div>
         </div>
 
@@ -981,6 +1013,10 @@ export function FreeSiteAuditForm() {
               type="text"
               id="audit-city"
               name="city"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.city && touched.city)}
+              aria-describedby={errors.city && touched.city ? "audit-city-error" : undefined}
               value={formData.city}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -988,7 +1024,7 @@ export function FreeSiteAuditForm() {
               placeholder="e.g. Kolkata, Delhi, Ranchi"
               className={inputCls(!!(errors.city && touched.city))}
             />
-            {touched.city && <FieldError message={errors.city} />}
+            {touched.city && <FieldError id="audit-city-error" message={errors.city} />}
           </div>
 
           <div>

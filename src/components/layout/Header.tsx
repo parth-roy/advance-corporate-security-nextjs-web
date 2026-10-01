@@ -7,7 +7,14 @@ import { siteConfig } from "@/lib/config";
 import { useCity } from "@/context/CityContext";
 import { trackEvent } from "@/lib/analytics";
 
-const navLinks = [
+interface NavLinkItem {
+  label: string;
+  href: string;
+  mobileOnly?: boolean;
+  children?: { label: string; href: string }[];
+}
+
+const navLinks: NavLinkItem[] = [
   { label: "Home", href: "/" },
   {
     label: "About",
@@ -18,6 +25,7 @@ const navLinks = [
       { label: "Our Vision", href: "/about#vision" },
       { label: "Leadership Team", href: "/about#team" },
       { label: "Founder's Desk", href: "/about#founder" },
+      { label: "Careers & Hiring", href: "/careers" },
     ],
   },
   {
@@ -43,8 +51,8 @@ const navLinks = [
   },
   { label: "Locations", href: "/location" },
   { label: "Our Clients", href: "/clients" },
-  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
+  { label: "Careers", href: "/careers", mobileOnly: true },
 ];
 
 export default function Header() {
@@ -132,21 +140,21 @@ export default function Header() {
         >
           {/* Logo (Prominent, crystal-clear, zero mobile overflow) */}
           <Link href="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="ACS Home">
-            <div className="relative h-11 sm:h-14 md:h-16 lg:h-18 w-36 sm:w-48 md:w-64 lg:w-80 transform group-hover:scale-[1.02] transition-transform duration-200">
+            <div className="relative h-11 sm:h-14 md:h-16 w-36 sm:w-48 md:w-56 lg:w-60 xl:w-64 transform group-hover:scale-[1.02] transition-transform duration-200">
               <Image
                 src="/images/acs-official-logo.avif"
                 alt={`${siteConfig.name} Logo`}
                 fill
                 className="object-contain object-left"
                 priority
-                sizes="(max-width: 640px) 180px, (max-width: 1024px) 260px, 320px"
+                sizes="(max-width: 640px) 180px, (max-width: 1024px) 240px, 280px"
               />
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1.5" role="list">
-            {navLinks.map((link) => (
+          {/* Desktop Nav Links (Visible from xl: 1280px breakpoint) */}
+          <ul className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5" role="list">
+            {navLinks.filter((link) => !link.mobileOnly).map((link) => (
               <li
                 key={link.href}
                 className="relative group"
@@ -155,7 +163,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="px-2 xl:px-3 py-2 rounded font-roboto font-500 text-[13px] xl:text-sm text-gray-700 hover:text-navy hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1 whitespace-nowrap"
+                  className="px-2 xl:px-2.5 2xl:px-3 py-2 rounded font-roboto font-500 text-[13px] xl:text-[13.5px] 2xl:text-sm text-gray-700 hover:text-navy hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1 whitespace-nowrap"
                   aria-haspopup={link.children ? "true" : undefined}
                 >
                   {link.label}
@@ -217,19 +225,19 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* CTA Button (desktop) */}
+            {/* CTA Button (desktop & tablet) - Never clipped */}
             <Link
-              href="/contact"
-              onClick={() => trackEvent("quote_request", { source: "header_desktop" })}
-              className="btn-primary hidden lg:inline-flex text-xs xl:text-sm py-2 px-3.5 xl:px-4 shrink-0 whitespace-nowrap"
-              aria-label="Get a free quote"
+              href="/quote"
+              onClick={() => trackEvent("quote_request", { source: "header_cta" })}
+              className="btn-primary hidden sm:inline-flex text-xs xl:text-sm py-2 px-3.5 sm:px-4 xl:px-5 shrink-0 whitespace-nowrap font-bold shadow-xs hover:shadow-md transition-all active:scale-95"
+              aria-label="Get a free corporate quote"
             >
               Get Quote
             </Link>
 
-            {/* Mobile Hamburger */}
+            {/* Mobile / Tablet Hamburger (visible below xl: 1280px) */}
             <button
-              className="lg:hidden p-2 rounded text-navy hover:bg-gray-100 transition-colors"
+              className="xl:hidden p-2 rounded text-navy hover:bg-gray-100 transition-colors cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
@@ -251,7 +259,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           id="mobile-nav"
-          className="fixed inset-0 z-40 flex lg:hidden"
+          className="fixed inset-0 z-40 flex xl:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"
@@ -341,7 +349,7 @@ export default function Header() {
 
             <div className="p-4 border-t border-gray-100">
               <Link
-                href="/contact"
+                href="/quote"
                 onClick={() => setMobileOpen(false)}
                 className="btn-primary w-full justify-center"
               >

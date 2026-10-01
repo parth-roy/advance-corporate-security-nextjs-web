@@ -9,7 +9,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES } from "@/lib/services";
-import { ACS_CITIES } from "@/lib/cities";
+import { ACS_CITIES, getCityBySlug } from "@/lib/cities";
 import { generateCityHubFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildCityLocalBusinessSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
@@ -26,7 +26,7 @@ export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { city: citySlug } = await params;
-  const cityData = ACS_CITIES.find((c) => c.slug === citySlug);
+  const cityData = getCityBySlug(citySlug) || ACS_CITIES.find((c) => c.slug === citySlug);
   if (!cityData) return {};
   const { name: cityName, state: stateName, tier } = cityData;
   const title = `Security & Facility Management Services in ${cityName} | PSARA Licensed`;

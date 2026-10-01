@@ -74,7 +74,15 @@ export function buildOrganizationSchema() {
             areaServed: "IN",
           },
         ],
-        sameAs: Object.values(siteConfig.social).filter(Boolean),
+        sameAs: (Object.values(siteConfig.social) as unknown as string[]).filter((url: string): boolean => {
+          if (!url || typeof url !== "string") return false;
+          try {
+            const parsed = new URL(url);
+            return parsed.protocol === "http:" || parsed.protocol === "https:";
+          } catch {
+            return false;
+          }
+        }),
         // PSARA License — critical for B2G/B2B trust signals
         hasCredential: [
           {
@@ -114,12 +122,6 @@ export function buildOrganizationSchema() {
           name: "India",
         },
         priceRange: "₹₹",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.8",
-          reviewCount: "120",
-          bestRating: "5",
-        },
       },
       {
         "@type": "WebSite",
@@ -166,12 +168,6 @@ export function buildOrganizationSchema() {
           opens: "00:00",
           closes: "23:59",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.8",
-          reviewCount: "120",
-          bestRating: "5",
-        },
       },
     ],
   };
@@ -191,13 +187,43 @@ export function buildBreadcrumbSchema(crumbs: { name: string; url: string }[]) {
   };
 }
 
-/** FAQPage schema — only output when FAQs are visible on the page */
-export function buildFaqSchema(faqs: ReadonlyArray<{ readonly question: string; readonly answer: string }>) {
-  if (!faqs.length) return null;
+/**
+ * FAQPage schema — only output when FAQs are visible on the page.
+ * Sanitized, lightweight, and conditional to avoid spammy markup on programmatic/thin pages
+ * following Google's deprecation of FAQ rich results for commercial pages.
+ */
+export function buildFaqSchema(
+  faqs: ReadonlyArray<{ readonly question: string; readonly answer: string }>,
+  options?: { maxItems?: number }
+) {
+  if (!faqs || !faqs.length) return null;
+
+  const maxItems = options?.maxItems ?? 6;
+  const cleanFaqs: Array<{ question: string; answer: string }> = [];
+  const seenQuestions = new Set<string>();
+
+  for (const faq of faqs) {
+    if (!faq?.question || !faq?.answer) continue;
+    const q = faq.question.trim().replace(/<[^>]*>/g, "");
+    const a = faq.answer.trim().replace(/<[^>]*>/g, "");
+
+    // Avoid empty, trivial, or thin content fragments
+    if (q.length < 8 || a.length < 15) continue;
+
+    const normalized = q.toLowerCase();
+    if (seenQuestions.has(normalized)) continue;
+    seenQuestions.add(normalized);
+
+    cleanFaqs.push({ question: q, answer: a });
+    if (cleanFaqs.length >= maxItems) break;
+  }
+
+  if (cleanFaqs.length === 0) return null;
+
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: cleanFaqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -317,11 +343,17 @@ export function buildCityLocalBusinessSchema({
       addressRegion: stateName,
       addressCountry: "IN",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: lat || siteConfig.geo.lat,
-      longitude: lng || siteConfig.geo.lng,
-    },
+    // Only include geo coordinates when verified local coordinates are explicitly provided for this city;
+    // never fallback to Barrackpore HQ coordinates to prevent duplicate coordinate spam across programmatic pages.
+    ...(typeof lat === "number" && typeof lng === "number" && !isNaN(lat) && !isNaN(lng)
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: lat,
+            longitude: lng,
+          },
+        }
+      : {}),
     areaServed: {
       "@type": "City",
       name: cityName,

@@ -199,25 +199,6 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Top Keyword Badges Strip (Google Ads / PPC Ad Strength Alignment) */}
-            <div className="flex flex-wrap items-center gap-1.5 mb-3 text-[10px] sm:text-[11px] font-semibold text-slate-600">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
-                Security Guard Company
-              </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
-                Corporate Security
-              </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
-                Facility Management Company
-              </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
-                Building Maintenance Company
-              </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
-                ISO Facility Management
-              </span>
-            </div>
-
             {/* ── B2B ENTERPRISE SERVICES BOX (Workforce Web Style with Category Tabs) ── */}
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-4 sm:p-5">
               {/* Category Segmented Tabs */}
@@ -399,13 +380,13 @@ export default function HeroSection() {
             className="text-center px-4 md:border-r border-slate-200"
           />
           <AnimatedStat
-            value="50+"
-            label="Govt. Clients"
+            value="500+"
+            label="Cities Pan-India"
             className="text-center px-4 md:border-r border-slate-200"
           />
           <AnimatedStat
-            value="Pan India"
-            label="Presence (800+ Cities)"
+            value="50+"
+            label="Govt. & PSU Clients"
             className="text-center px-4"
           />
         </div>

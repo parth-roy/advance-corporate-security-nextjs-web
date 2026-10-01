@@ -6,15 +6,18 @@ interface AnimatedStatProps {
   value: string;
   label: string;
   className?: string;
+  disableAnimation?: boolean;
 }
 
 export default function AnimatedStat({
   value,
   label,
   className = "",
+  disableAnimation = false,
 }: AnimatedStatProps) {
-  const [displayValue, setDisplayValue] = useState<string>("0");
-  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  // Server-render the actual value directly so SSR and slow-loading JS never display 0
+  const [displayValue, setDisplayValue] = useState<string>(value);
+  const hasAnimatedRef = useRef<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
   // Parse number and suffix e.g. "5000+" -> number: 5000, suffix: "+"
@@ -24,17 +27,19 @@ export default function AnimatedStat({
   const isNumeric = targetNumber !== null;
 
   useEffect(() => {
-    if (!isNumeric) {
-      setDisplayValue(value);
+    if (!isNumeric || disableAnimation) return;
+
+    // Respect prefers-reduced-motion setting
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
+        if (entry.isIntersecting && !hasAnimatedRef.current) {
+          hasAnimatedRef.current = true;
 
-          const duration = 1600; // ms
+          const duration = 1400; // ms
           const startTimestamp = performance.now();
 
           const step = (now: number) => {
@@ -69,12 +74,12 @@ export default function AnimatedStat({
         observer.unobserve(currentElem);
       }
     };
-  }, [targetNumber, suffix, isNumeric, hasAnimated, value]);
+  }, [targetNumber, suffix, isNumeric, disableAnimation]);
 
   return (
-    <div ref={elementRef} className={className}>
+    <div ref={elementRef} className={className} role="listitem">
       <div className="text-3xl xl:text-4xl font-black text-navy font-roboto tracking-tight">
-        {isNumeric ? displayValue : value}
+        {displayValue}
       </div>
       <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">
         {label}

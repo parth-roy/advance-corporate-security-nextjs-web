@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { X, Download, ExternalLink, FileText, ShieldCheck } from "lucide-react";
 
 interface PdfViewerModalProps {
@@ -16,12 +16,70 @@ export default function PdfViewerModal({
   pdfUrl = "/downloads/ACS-Company-Brochure.pdf",
   fileName = "ACS-Company-Brochure.pdf",
 }: PdfViewerModalProps) {
-  // ESC key to close modal
+  const triggerElementRef = useRef<HTMLElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Capture trigger element before modal opens and restore on close
+  useEffect(() => {
+    if (isOpen) {
+      triggerElementRef.current = document.activeElement as HTMLElement | null;
+
+      // Focus close button when dialog opens
+      const focusTimer = requestAnimationFrame(() => {
+        if (closeButtonRef.current) {
+          closeButtonRef.current.focus();
+        } else if (dialogRef.current) {
+          dialogRef.current.focus();
+        }
+      });
+
+      return () => cancelAnimationFrame(focusTimer);
+    } else {
+      // Return focus to trigger element when closed
+      if (triggerElementRef.current && typeof triggerElementRef.current.focus === "function") {
+        triggerElementRef.current.focus();
+      }
+    }
+  }, [isOpen]);
+
+  // Focus trap & ESC key handling
   useEffect(() => {
     if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (e.key === "Tab") {
+        if (!dialogRef.current) return;
+        const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          // Shift + Tab: if on first element, wrap around to last
+          if (document.activeElement === firstElement || document.activeElement === dialogRef.current) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          // Tab: if on last element, wrap around to first
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -49,7 +107,11 @@ export default function PdfViewerModal({
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-5xl h-[92vh] max-h-[900px] flex flex-col bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-700/80 z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div
+        ref={dialogRef}
+        tabIndex={-1}
+        className="relative w-full max-w-5xl h-[92vh] max-h-[900px] flex flex-col bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-700/80 z-10 animate-in fade-in zoom-in-95 duration-200 focus:outline-none"
+      >
         {/* Header Bar */}
         <div className="bg-gradient-to-r from-navy-dark via-navy to-navy-light text-white px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between gap-3 border-b border-white/10 shrink-0">
           <div className="flex items-center gap-3 min-w-0">
@@ -111,6 +173,7 @@ export default function PdfViewerModal({
 
             {/* Close Button */}
             <button
+              ref={closeButtonRef}
               onClick={onClose}
               className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer"
               aria-label="Close PDF Viewer"

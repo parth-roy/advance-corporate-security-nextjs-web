@@ -28,7 +28,7 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
     // FAQ 1 — PSARA / Licensing (Security) OR ISO (Facility/Manpower)
     isSecurityService ? {
       question: `Are Advance Corporate Security's security guards in ${cityName} PSARA licensed?`,
-      answer: `Yes. All ACS security personnel deployed in ${cityName}, ${stateName} strictly adhere to PSARA (Private Security Agencies Regulation Act) guidelines. Every guard is licensed, background-verified, medically fit, and trained per Ministry of Home Affairs standards. ACS holds a valid PSARA license for all security deployments across India.`
+      answer: `Yes. All ACS security personnel deployed in ${cityName}, ${stateName} strictly adhere to PSARA (Private Security Agencies Regulation Act) guidelines. Every guard is licensed, background-verified, medically fit, and trained per Ministry of Home Affairs standards. ACS holds state PSARA licenses in major hubs including Delhi NCR, West Bengal, and Jharkhand, and delivers statutory-compliant security deployments nationwide.`
     } : {
       question: `Is Advance Corporate Security ISO 9001:2015 certified for ${serviceName} in ${cityName}?`,
       answer: `Yes. ACS is ISO 9001:2015 certified, ensuring that all ${serviceName} delivered in ${cityName}, ${stateName} meet internationally recognized quality management standards. Our service delivery follows documented SOPs with regular internal audits, ensuring consistent quality for every client.`
@@ -86,8 +86,8 @@ export function generateCityHubFaqs(cityName: string, stateName: string): FAQ[] 
       answer: `In ${cityName}, ACS provides a comprehensive range of B2B services: PSARA-licensed Security Guard Services (armed & unarmed), Facility Management (corporate housekeeping, pest control, MEP maintenance, facade cleaning), Manpower Outsourcing & Placement, Payroll Compliance Management, and Horticulture & Landscaping. All services come with full statutory compliance and ISO 9001:2015 quality assurance.`
     },
     {
-      question: `Is ACS the best security and facility management company in ${cityName}?`,
-      answer: `ACS is one of ${stateName}'s most experienced B2B services companies, with 25+ years of operational history since 2000. In ${cityName}, we serve government establishments, defense organizations, hospitals, IT parks, and industrial plants. Our PSARA license, ISO 9001:2015 certification, and track record with clients like Indian Air Force, BSF, HAL, and Indian Oil reflect our credibility.`
+      question: `What makes Advance Corporate Security a trusted facility and security partner in ${cityName}?`,
+      answer: `ACS is one of ${stateName}'s most experienced B2B facility and security services providers, with 25+ years of operational history since 2000. In ${cityName}, we serve government establishments, defense organizations, hospitals, IT parks, and industrial plants. Our PSARA license, ISO 9001:2015 certification, and proven track record with clients like the Indian Air Force, BSF, HAL, and Indian Oil demonstrate our operational reliability.`
     },
     {
       question: `Does ACS handle government and PSU contracts in ${cityName}?`,
@@ -99,7 +99,7 @@ export function generateCityHubFaqs(cityName: string, stateName: string): FAQ[] 
     },
     {
       question: `What government compliance certifications does ACS hold for services in ${stateName}?`,
-      answer: `ACS holds PSARA (Private Security Agencies Regulation Act) License for all security deployments in ${stateName}, ISO 9001:2015 certification for quality management, and is registered with relevant statutory bodies including PF, ESIC, and Labour Department. We are fully compliant with the Contract Labour (Regulation & Abolition) Act, 1970 for all outsourced manpower in ${cityName}.`
+      answer: `ACS operates in full compliance with the Private Security Agencies (Regulation) Act (PSARA 2005), ISO 9001:2015 quality management standards, and all statutory regulations including PF, ESIC, and the Contract Labour (R&A) Act 1970. In key operational hubs like Delhi NCR, West Bengal, and Jharkhand, ACS holds valid state PSARA licenses, with nationwide deployment capability under statutory compliance across ${stateName}.`
     },
   ];
 }
@@ -161,11 +161,29 @@ const KNOWN_CITY_ZONES: Record<string, LocalZone[]> = {
     { name: "IMT Manesar Industrial Township", type: "Automotive & Manufacturing SEZ", distance: "Manesar Belt" },
     { name: "Golf Course Road Corporate Belt", type: "Executive Business Centers", distance: "South Gurugram" },
   ],
+  gurgaon: [
+    { name: "DLF Cyber City & Cyber Hub", type: "MNC Corporate Towers", distance: "Phase 2 & 3" },
+    { name: "Udyog Vihar Phases I-V", type: "Commercial & IT Corridor", distance: "Adjacent NH-48" },
+    { name: "IMT Manesar Industrial Township", type: "Automotive & Manufacturing SEZ", distance: "Manesar Belt" },
+    { name: "Golf Course Road Corporate Belt", type: "Executive Business Centers", distance: "South Gurugram" },
+  ],
+  faridabad: [
+    { name: "Sector 24 & 25 Industrial Area", type: "Heavy Engineering & Manufacturing", distance: "Core Sector" },
+    { name: "Mathura Road NH-19 Industrial Belt", type: "Commercial & Logistics Corridor", distance: "Transit Belt" },
+    { name: "Ballabhgarh Industrial Hub", type: "Automotive Ancillary & Forging", distance: "South Faridabad" },
+    { name: "NIT Faridabad Commercial Hub", type: "Banking & Corporate Offices", distance: "Central Zone" },
+  ],
   noida: [
     { name: "Noida Sector 62 & 63 IT Cluster", type: "Technology & Software Parks", distance: "Core Zone" },
     { name: "Noida-Greater Noida Expressway Zone", type: "Corporate Institutional Belt", distance: "Expressway" },
     { name: "Greater Noida Ecotech Industrial Hub", type: "Electronics & Heavy Manufacturing", distance: "Greater Noida" },
     { name: "Hosiery Complex Phase-II", type: "Textile & Garment SEZ", distance: "Phase 2" },
+  ],
+  ghaziabad: [
+    { name: "Sahibabad Industrial Area Site 4", type: "Manufacturing & Heavy Engineering", distance: "Sahibabad Core" },
+    { name: "Kavi Nagar & Loni Industrial Belt", type: "Light Manufacturing & Warehousing", distance: "North Zone" },
+    { name: "Bulandshahr Road Industrial Area", type: "Foundry & Auto Ancillary", distance: "East Corridor" },
+    { name: "Mohan Nagar Commercial Hub", type: "Corporate & Logistics Center", distance: "Central Ghaziabad" },
   ],
   hyderabad: [
     { name: "HITEC City & Madhapur", type: "IT / ITES Software Hub", distance: "Cyberabad" },

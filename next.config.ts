@@ -91,6 +91,28 @@ const nextConfig: NextConfig = {
       { source: "/service", destination: "/services", permanent: true },
       { source: "/service/", destination: "/services", permanent: true },
 
+      // pSEO Canonical City & NCR Alias Redirects (301 Permanent)
+      { source: "/location/gurgaon", destination: "/location/gurugram", permanent: true },
+      { source: "/location/gurgaon/", destination: "/location/gurugram", permanent: true },
+      { source: "/location/gurugram-hr", destination: "/location/gurugram", permanent: true },
+      { source: "/location/gurugram-hr/", destination: "/location/gurugram", permanent: true },
+      { source: "/location/faridabad-hr", destination: "/location/faridabad", permanent: true },
+      { source: "/location/faridabad-hr/", destination: "/location/faridabad", permanent: true },
+      { source: "/location/noida-up", destination: "/location/noida", permanent: true },
+      { source: "/location/noida-up/", destination: "/location/noida", permanent: true },
+      { source: "/location/ghaziabad-up", destination: "/location/ghaziabad", permanent: true },
+      { source: "/location/ghaziabad-up/", destination: "/location/ghaziabad", permanent: true },
+      { source: "/services/:slug/gurgaon", destination: "/services/:slug/gurugram", permanent: true },
+      { source: "/services/:slug/gurgaon/", destination: "/services/:slug/gurugram", permanent: true },
+      { source: "/services/:slug/gurugram-hr", destination: "/services/:slug/gurugram", permanent: true },
+      { source: "/services/:slug/gurugram-hr/", destination: "/services/:slug/gurugram", permanent: true },
+      { source: "/services/:slug/faridabad-hr", destination: "/services/:slug/faridabad", permanent: true },
+      { source: "/services/:slug/faridabad-hr/", destination: "/services/:slug/faridabad", permanent: true },
+      { source: "/services/:slug/noida-up", destination: "/services/:slug/noida", permanent: true },
+      { source: "/services/:slug/noida-up/", destination: "/services/:slug/noida", permanent: true },
+      { source: "/services/:slug/ghaziabad-up", destination: "/services/:slug/ghaziabad", permanent: true },
+      { source: "/services/:slug/ghaziabad-up/", destination: "/services/:slug/ghaziabad", permanent: true },
+
       // WordPress legacy URL → New clean URLs (301 Permanent)
       { source: "/home/", destination: "/", permanent: true },
       { source: "/home", destination: "/", permanent: true },
@@ -120,8 +142,6 @@ const nextConfig: NextConfig = {
       { source: "/our-gallery", destination: "/gallery", permanent: true },
       { source: "/contact-us-2/", destination: "/contact", permanent: true },
       { source: "/contact-us-2", destination: "/contact", permanent: true },
-      { source: "/quote", destination: "/contact", permanent: true },
-      { source: "/quote/", destination: "/contact", permanent: true },
       { source: "/career", destination: "/careers", permanent: true },
       { source: "/career/", destination: "/careers", permanent: true },
     ];

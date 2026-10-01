@@ -57,7 +57,7 @@ const faqs = [
   {
     question: "What is the all-inclusive monthly cost formula ACS uses?",
     answer:
-      "ACS applies the standard statutory formula: Monthly Cost = (Daily Min Wage × 26 working days) + EPF employer contribution (12% + 0.5% EDLI + 0.5% Admin = 13%) + ESIC (3.25%) + Statutory Bonus provision (8.33% annualized) + Gratuity provision (4.81%) + Uniform & equipment allowance + Administrative service charge (5–10%) + GST @ 18%. This formula ensures 100% legal compliance with zero wage theft.",
+      "ACS applies the reviewed statutory formula: Total Monthly Billable Cost = Step B (Monthly Wage Base = Gazetted Daily Minimum Wage Step A × 26 working days) + Steps C..G (Statutory Contributions & Provisions: EPF 13%, ESIC 3.25%, Bonus 8.33%, Gratuity 4.81%, Uniform Allowance) + Step H (Administrative Service Charge 5–10%) + Step I (GST @ 18%). Step A serves strictly as an input benchmark to derive Step B and is never double-counted into monthly totals, ensuring 100% audit-proof compliance with zero wage theft.",
   },
   {
     question: "What EPF and ESIC rates does ACS deduct/contribute?",
@@ -111,60 +111,150 @@ export default function StatutoryCompliancePage() {
 
   const faqSchema = buildFaqSchema(faqs);
 
-  // Wage formula rows
+  // ── 3-Tier Statutory Wage Formula Definition ─────────────────────────────────
+  const wageTiers = [
+    {
+      tierId: "tier-1",
+      tierLabel: "Tier 1: Baseline Wage & Monthly Conversion",
+      tierType: "Inputs & Derived Baseline",
+      badgeClass: "bg-slate-100 text-slate-700 border-slate-200",
+      description:
+        "Delineates the statutory daily benchmark (input rate) from the derived monthly baseline. Step A is the input multiplier; Step B is the billable baseline foundation.",
+    },
+    {
+      tierId: "tier-2",
+      tierLabel: "Tier 2: Statutory Employer Contributions & Provisions",
+      tierType: "Mandatory Statutory Liabilities",
+      badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200",
+      description:
+        "Mandatory employer contributions and accruals under Central Labour Acts (EPF, ESIC, Bonus, Gratuity, and PSARA Uniforms). Non-negotiable statutory liabilities with zero wage deductions permitted.",
+    },
+    {
+      tierId: "tier-3",
+      tierLabel: "Tier 3: Commercial Overheads & Statutory Taxes",
+      tierType: "Operational Overhead & Indirect Tax",
+      badgeClass: "bg-sky-50 text-sky-800 border-sky-200",
+      description:
+        "Legitimate contractor management overhead per GeM / Ministry of Finance standards, plus statutory Goods & Services Tax (100% ITC eligible for clients).",
+    },
+  ];
+
   const wageFormulaRows = [
     {
       step: "A",
-      label: "Daily Minimum Wage (per gazette)",
-      detail: "Basic + Variable Dearness Allowance (VDA) — State / Central notification",
+      tierId: "tier-1",
+      tierName: "Input Baseline",
+      label: "Gazetted Daily Minimum Wage (Basic + VDA)",
+      category: "Input Statutory Benchmark",
+      detail:
+        "Daily statutory benchmark notified by the State Labour Department or Central Sphere for Unskilled, Semi-Skilled, or Skilled security personnel. This is an input rate used solely to calculate Step B (Step A × 26) and is NOT an additive line item in the monthly billable total.",
+      formulaBadge: "Input Benchmark (× 26 Days)",
+      statute: "Minimum Wages Act 1948",
+      isBillableAddend: false,
       highlight: false,
     },
     {
       step: "B",
-      label: "Monthly Base Wages",
-      detail: "Daily Min Wage × 26 working days",
+      tierId: "tier-1",
+      tierName: "Monthly Base Wages",
+      label: "Monthly Wage Base (A × 26 Working Days)",
+      category: "Derived Billable Baseline",
+      detail:
+        "Derived directly from Step A (Step A × 26 working days, accounting for 4 paid weekly rest days per 30-day month). Serves as the primary baseline for all subsequent statutory deductions and contributions.",
+      formulaBadge: "Step A × 26 Working Days",
+      statute: "Minimum Wages Act 1948 & State Rules",
+      isBillableAddend: true,
       highlight: false,
     },
     {
       step: "C",
-      label: "EPF Employer Contribution (13%)",
-      detail: "12% EPF + 0.5% EDLI + 0.5% Admin — on basic wages up to ₹15,000 ceiling",
+      tierId: "tier-2",
+      tierName: "Statutory Employer Contribution",
+      label: "EPF Employer Contribution (13% on Basic up to ₹15,000 ceiling: 12% EPF + 0.5% EDLI + 0.5% Admin)",
+      category: "Mandatory Statutory Contribution",
+      detail:
+        "Mandatory employer contribution comprising 12% EPF + 0.5% EDLI (Employees' Deposit Linked Insurance) + 0.5% EPFO Administrative Charges on basic wages up to the statutory ceiling of ₹15,000/month. Deposited monthly via EPFO Electronic Challan cum Return (ECR).",
+      formulaBadge: "13.00% on Basic (≤ ₹15k ceiling)",
+      statute: "EPF & MP Act 1952",
+      isBillableAddend: true,
       highlight: false,
     },
     {
       step: "D",
-      label: "ESIC Employer Contribution (3.25%)",
-      detail: "3.25% of gross wages — for employees earning ≤ ₹21,000/month",
+      tierId: "tier-2",
+      tierName: "Statutory Employer Contribution",
+      label: "ESIC Employer Contribution (3.25% on gross wages up to ₹21,000 ceiling)",
+      category: "Mandatory Statutory Contribution",
+      detail:
+        "Employer contribution of 3.25% of gross wages (employee contributes 0.75%) for all personnel earning up to ₹21,000/month. Provides full medical healthcare, sickness benefit, and disability cover via ESIC network hospitals.",
+      formulaBadge: "3.25% of Gross Wages (≤ ₹21k ceiling)",
+      statute: "Employees' State Insurance Act 1948",
+      isBillableAddend: true,
       highlight: false,
     },
     {
       step: "E",
-      label: "Statutory Bonus Provision (8.33%)",
-      detail: "Payment of Bonus Act 1965 — monthly provision on basic wages",
+      tierId: "tier-2",
+      tierName: "Statutory Provision",
+      label: "Statutory Bonus Provision (8.33% under Payment of Bonus Act 1965)",
+      category: "Mandatory Statutory Provision",
+      detail:
+        "Monthly statutory bonus provision of 8.33% of basic wages (or state statutory wage floor). Accrued monthly by ACS into an escrow provision and disbursed annually to guards prior to major festivals (e.g., Diwali / Durga Puja).",
+      formulaBadge: "8.33% of Basic / Floor",
+      statute: "Payment of Bonus Act 1965",
+      isBillableAddend: true,
       highlight: false,
     },
     {
       step: "F",
-      label: "Gratuity Provision (4.81%)",
-      detail: "Payment of Gratuity Act 1972 — accrual provision on basic wages",
+      tierId: "tier-2",
+      tierName: "Statutory Provision",
+      label: "Gratuity Provision (4.81% under Payment of Gratuity Act 1972)",
+      category: "Mandatory Statutory Provision",
+      detail:
+        "Monthly accrual provision computed as 15 days of wages for every completed year of service (15 ÷ 26 ÷ 12 = 4.81% of basic wages). Guarantees statutory terminal benefits under the Payment of Gratuity Act 1972 without default.",
+      formulaBadge: "4.81% (15 / 26 / 12) of Basic",
+      statute: "Payment of Gratuity Act 1972",
+      isBillableAddend: true,
       highlight: false,
     },
     {
       step: "G",
-      label: "Uniform & Equipment Allowance",
-      detail: "2 sets uniform, boots, lanyard, whistle, torch — annualized monthly",
+      tierId: "tier-2",
+      tierName: "Statutory Provision",
+      label: "Uniform & Equipment Allowance (Annualized monthly)",
+      category: "Mandatory Operational Provision",
+      detail:
+        "Annualized monthly cost covering 2 sets of seasonal uniforms, safety combat boots, photo ID card, lanyard, whistle, high-intensity LED torch, and reflective safety vest mandated under PSARA standards.",
+      formulaBadge: "Annualized Monthly Kit Provision",
+      statute: "PSARA Act 2005 & Model Rules",
+      isBillableAddend: true,
       highlight: false,
     },
     {
       step: "H",
-      label: "Administrative Service Charge",
-      detail: "5%–10% viable contractor overhead — as per GeM / Ministry of Finance guidelines",
+      tierId: "tier-3",
+      tierName: "Commercial Overhead",
+      label: "Administrative Service Charge (5% - 10% operational overhead per GeM / Min of Finance guidelines)",
+      category: "Commercial Operational Overhead",
+      detail:
+        "Legitimate contractor management fee (5% to 10% of manpower subtotal Steps B through G) covering 24/7 central control room operations, field supervision visits, background verification, compliance auditing, and replacement relievers per GeM and Ministry of Finance procurement rules.",
+      formulaBadge: "5% – 10% on Manday Subtotal",
+      statute: "GeM & Min of Finance Guidelines",
+      isBillableAddend: true,
       highlight: true,
     },
     {
       step: "I",
-      label: "GST @ 18% (SAC 998525)",
-      detail: "Fully eligible for Input Tax Credit (ITC) by client organisation",
+      tierId: "tier-3",
+      tierName: "Indirect Tax",
+      label: "GST @ 18% (SAC 998525, 100% eligible for Input Tax Credit)",
+      category: "Statutory Indirect Tax",
+      detail:
+        "Goods and Services Tax levied @ 18% on total taxable services under SAC 998525 (Security & Investigation Services). 100% eligible for Input Tax Credit (ITC) by GST-registered client organisations.",
+      formulaBadge: "18.00% on Billing Subtotal",
+      statute: "Central Goods & Services Tax Act 2017",
+      isBillableAddend: true,
       highlight: true,
     },
   ];
@@ -310,7 +400,7 @@ export default function StatutoryCompliancePage() {
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
               All wage figures are in Indian Rupees per day (₹/day) as per the latest state gazette
               notifications. Effective dates reflect the most recent revision notified by each
-              state's Labour Commissioner.
+              state&apos;s Labour Commissioner.
             </p>
           </div>
 
@@ -471,63 +561,236 @@ export default function StatutoryCompliancePage() {
 
             {/* Formula breakdown */}
             <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-              <div className="bg-navy text-white px-6 py-4">
-                <h3 className="font-roboto font-bold text-base sm:text-lg">
-                  All-Inclusive Monthly Cost Formula — Per Guard
-                </h3>
-                <p className="text-slate-300 text-xs mt-1">
-                  Monthly Cost = Sum of all components A through I below
-                </p>
-              </div>
-              <div className="divide-y divide-slate-100">
-                {wageFormulaRows.map((row) => (
-                  <div
-                    key={row.step}
-                    className={`flex items-start gap-4 px-6 py-4 ${
-                      row.highlight ? "bg-sky-50 border-l-4 border-l-sky-400" : "hover:bg-slate-50/60"
-                    } transition-colors`}
-                  >
-                    <span
-                      className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-black font-roboto ${
-                        row.highlight
-                          ? "bg-sky-500 text-white"
-                          : "bg-slate-100 text-slate-600"
-                      }`}
-                    >
-                      {row.step}
+              {/* Header Banner with Governing Equation */}
+              <div className="bg-navy text-white px-6 py-6 sm:px-8 sm:py-7">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                  <div>
+                    <span className="text-gold text-xs font-bold uppercase tracking-wider">
+                      Reviewed Statutory Calculation Model
                     </span>
-                    <div className="flex-1 min-w-0">
-                      <div className={`font-semibold text-sm ${row.highlight ? "text-sky-900" : "text-navy"}`}>
-                        {row.label}
-                      </div>
-                      <div className="text-slate-500 text-xs mt-0.5 leading-relaxed">
-                        {row.detail}
-                      </div>
+                    <h3 className="font-roboto font-bold text-lg sm:text-2xl text-white mt-1">
+                      Manday &amp; Monthly Wage Breakdown — Per Guard
+                    </h3>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 w-fit">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
+                    Audit Verified — No Double-Counting
+                  </span>
+                </div>
+
+                {/* Primary Mathematical Formula */}
+                <div className="bg-navy-dark/85 border border-white/15 rounded-xl p-4 sm:p-5">
+                  <div className="text-[11px] font-mono text-slate-300 mb-2 uppercase tracking-wider font-semibold flex items-center justify-between">
+                    <span>Governing Billing Formula:</span>
+                    <span className="text-gold text-[10px] uppercase font-bold tracking-normal">Central Labour Standard</span>
+                  </div>
+                  <div className="text-white font-mono text-xs sm:text-sm md:text-base font-bold leading-relaxed break-words">
+                    Total Monthly Billable Cost = <span className="text-sky-300">Step B (Monthly Base)</span> +{" "}
+                    <span className="text-emerald-300">Steps C..G (Statutory Contributions &amp; Provisions)</span> +{" "}
+                    <span className="text-gold">Step H (Service Charge)</span> +{" "}
+                    <span className="text-purple-300">Step I (GST)</span>
+                  </div>
+
+                  {/* Visual Derivation & Pipeline */}
+                  <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/10 text-slate-300 font-mono text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                      <span>Step A: Daily Wage Input</span>
+                    </div>
+                    <span className="text-slate-400 font-bold text-xs" aria-hidden="true">➔ ×26 days ➔</span>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-sky-500/20 text-sky-200 border border-sky-400/30 font-semibold font-mono text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                      <span>Step B (Base)</span>
+                    </div>
+                    <span className="text-slate-400 font-bold text-xs" aria-hidden="true">+</span>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 font-semibold font-mono text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span>Steps C..G (Statutory)</span>
+                    </div>
+                    <span className="text-slate-400 font-bold text-xs" aria-hidden="true">+</span>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-200 border border-amber-400/30 font-semibold font-mono text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                      <span>Step H (Service Fee)</span>
+                    </div>
+                    <span className="text-slate-400 font-bold text-xs" aria-hidden="true">+</span>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-200 border border-purple-400/30 font-semibold font-mono text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                      <span>Step I (GST 18%)</span>
                     </div>
                   </div>
-                ))}
-              </div>
-              <div className="bg-navy text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center gap-2 justify-between">
-                <div>
-                  <div className="font-bold text-base">Total Monthly Billing Rate</div>
-                  <div className="text-slate-300 text-xs mt-0.5">
-                    All components A–I inclusive. GST (I) eligible for full ITC by client.
+                </div>
+
+                {/* Explicit Audit Rule Note on Step A */}
+                <div className="mt-4 flex items-start gap-3 p-3.5 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-200 text-xs leading-relaxed">
+                  <span className="text-base shrink-0 leading-none mt-0.5" aria-hidden="true">⚠️</span>
+                  <div>
+                    <strong className="font-semibold text-amber-100">Audit Rule — Input Baseline vs. Billable Total:</strong>{" "}
+                    Step A (Gazetted Daily Minimum Wage) is an input benchmark used solely to derive Step B (Monthly Wage Base = A × 26).{" "}
+                    <strong>Step A is NOT an additive line item in the monthly billable total.</strong> Summing Step A and Step B double-counts wage components.
                   </div>
                 </div>
-                <span className="text-gold font-black text-sm whitespace-nowrap">
-                  A + B + C + D + E + F + G + H + GST
-                </span>
+              </div>
+
+              {/* Tier-by-Tier Breakdown */}
+              <div className="divide-y divide-slate-200">
+                {wageTiers.map((tier) => {
+                  const tierRows = wageFormulaRows.filter((r) => r.tierId === tier.tierId);
+                  return (
+                    <div key={tier.tierId} className="p-0">
+                      {/* Tier Section Sub-Header */}
+                      <div className="bg-slate-100/80 px-6 py-3 border-y border-slate-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full border ${tier.badgeClass} uppercase tracking-wider`}>
+                            {tier.tierType}
+                          </span>
+                          <span className="font-roboto font-bold text-navy text-xs sm:text-sm">
+                            {tier.tierLabel}
+                          </span>
+                        </div>
+                        <span className="text-[11px] text-slate-500 sm:text-right">
+                          {tier.description}
+                        </span>
+                      </div>
+
+                      {/* Tier Rows */}
+                      <div className="divide-y divide-slate-100">
+                        {tierRows.map((row) => (
+                          <div
+                            key={row.step}
+                            className={`p-5 sm:px-6 sm:py-5 transition-colors ${
+                              row.step === "A"
+                                ? "bg-amber-50/20 hover:bg-amber-50/40 border-l-4 border-l-amber-400"
+                                : row.highlight
+                                ? "bg-sky-50/60 hover:bg-sky-50 border-l-4 border-l-sky-500"
+                                : "hover:bg-slate-50/70 border-l-4 border-l-transparent"
+                            }`}
+                          >
+                            <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
+                              {/* Step circle indicator */}
+                              <div className="flex items-center gap-3 sm:block shrink-0">
+                                <span
+                                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black font-roboto ${
+                                    row.step === "A"
+                                      ? "bg-amber-100 text-amber-900 border border-amber-300"
+                                      : row.highlight
+                                      ? "bg-sky-500 text-white shadow-xs"
+                                      : "bg-navy text-white shadow-xs"
+                                  }`}
+                                >
+                                  {row.step}
+                                </span>
+                                <span className="sm:hidden text-xs font-semibold text-slate-600">
+                                  {row.category}
+                                </span>
+                              </div>
+
+                              {/* Row Content */}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-2 mb-1">
+                                  <h4 className={`font-semibold text-sm sm:text-base leading-snug ${
+                                    row.highlight ? "text-sky-950" : "text-navy"
+                                  }`}>
+                                    {row.label}
+                                  </h4>
+                                </div>
+
+                                <div className="flex flex-wrap items-center gap-2 mb-2">
+                                  {/* Badge: Billable vs Non-Additive */}
+                                  {row.isBillableAddend ? (
+                                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                      Billable Addend
+                                    </span>
+                                  ) : (
+                                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                                      Input Benchmark (Non-Additive)
+                                    </span>
+                                  )}
+
+                                  {/* Formula / Rate Badge */}
+                                  <span className="inline-flex items-center text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
+                                    {row.formulaBadge}
+                                  </span>
+
+                                  {/* Governing Statute */}
+                                  <span className="text-[11px] text-slate-500">
+                                    Act: {row.statute}
+                                  </span>
+                                </div>
+
+                                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                                  {row.detail}
+                                </p>
+
+                                {/* Explanatory alert inside Step A to guarantee clarity */}
+                                {row.step === "A" && (
+                                  <div className="mt-2 text-[11px] text-amber-800 bg-amber-100/70 border border-amber-300/80 rounded-lg p-2 font-medium">
+                                    📌 <strong>Tender Formula Note:</strong> Step A is an input rate used to calculate Step B (Monthly Base = A × 26). It is not added to monthly billing totals.
+                                  </div>
+                                )}
+
+                                {/* Explanatory alert inside Step B */}
+                                {row.step === "B" && (
+                                  <div className="mt-2 text-[11px] text-sky-800 bg-sky-50 border border-sky-200 rounded-lg p-2 font-medium">
+                                    📌 <strong>Baseline Foundation:</strong> Step B is derived from Step A and serves as the baseline for all statutory deductions and contributions (Steps C through G).
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Card Footer Summary */}
+              <div className="bg-navy text-white px-6 py-5 sm:px-8 sm:py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-t border-navy-light">
+                <div>
+                  <div className="font-roboto font-bold text-base sm:text-lg text-white">
+                    Total Monthly Billable Cost Formula
+                  </div>
+                  <p className="text-slate-300 text-xs mt-1 max-w-xl leading-relaxed">
+                    Total Monthly Billable Cost = Step B (Monthly Base) + Steps C..G (Statutory Contributions &amp; Provisions) + Step H (Service Charge) + Step I (GST). All line items are fully documented with ECR challans, TRRN receipts, and tax invoices.
+                  </p>
+                </div>
+                <div className="shrink-0 text-left md:text-right">
+                  <div className="inline-block px-4 py-2.5 rounded-xl bg-navy-dark border border-white/20 text-gold font-mono font-black text-sm sm:text-base shadow-inner">
+                    Step B + Steps C..G + Step H + Step I
+                  </div>
+                  <div className="text-[11px] text-slate-400 mt-1">
+                    * Step A is the input multiplier (A × 26 = B), NOT an additive line item
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Note */}
-            <div className="mt-6 p-5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed">
-              <strong>Important for Procurement Officers &amp; Tender Committees:</strong> Tenders
-              that omit line items for Bonus (8.33%), Reliever charges (1/6th), or Gratuity (4.81%)
-              force contractors to deduct these amounts from guard salaries — constituting wage
-              theft, violating the Payment of Wages Act, and creating vicarious liability for the
-              principal employer. ACS advocates transparent, statutory-compliant BOQ frameworks in
-              all government and corporate tenders.
+            {/* Note for Procurement Officers & Tender Committees */}
+            <div className="mt-8 p-6 bg-amber-50/90 border border-amber-200 rounded-2xl text-xs text-amber-950 leading-relaxed shadow-xs">
+              <div className="flex items-center gap-2 font-bold text-amber-900 text-sm mb-3 font-roboto">
+                <span className="text-base" aria-hidden="true">⚠️</span>
+                <span>Critical Advisory for Procurement Officers &amp; Tender Evaluation Committees</span>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4 text-slate-700">
+                <div className="bg-white/80 p-4 rounded-xl border border-amber-200/60">
+                  <div className="font-bold text-navy text-xs mb-1">
+                    1. Preventing Formula Double-Counting Defect
+                  </div>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    When evaluating vendor BOQs or tender rate sheets, verify that only the monthly derived wage (<strong>Step B = Step A × 26</strong>) is added to statutory contributions. Step A (Gazetted Daily Minimum Wage) is an input benchmark, not a billable addend. Bids that sum A + B double-count wages and must be corrected during technical/financial scrutiny.
+                  </p>
+                </div>
+                <div className="bg-white/80 p-4 rounded-xl border border-amber-200/60">
+                  <div className="font-bold text-navy text-xs mb-1">
+                    2. Avoiding Vicarious Liability Under CLRA
+                  </div>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    Tenders omitting statutory line items for Bonus (8.33%), Gratuity (4.81%), EPF (13%), or Reliever provisions force contractors to deduct these amounts from guard salaries — constituting illegal wage theft under the Payment of Wages Act 1936 and exposing the principal employer to direct recovery orders under Section 21(4) of the Contract Labour (R&amp;A) Act 1970.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -691,7 +954,7 @@ export default function StatutoryCompliancePage() {
             <div className="divider-sky mx-auto my-3" />
             <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto">
               Common questions from HR managers, procurement officers, audit teams, and business
-              owners about ACS's statutory compliance practices.
+              owners about ACS&apos;s statutory compliance practices.
             </p>
           </div>
 

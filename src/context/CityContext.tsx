@@ -34,13 +34,29 @@ export const DEFAULT_CITY: ACSCity = {
 const SESSION_CITY_KEY = "acs_session_city";
 const STORAGE_CITY_KEY = "acs_user_city";
 
-// O(1) map for instantaneous lookup across all 828+ cities
-const CITY_SLUG_MAP = new Map<string, ACSCity>(
-  ACS_CITIES.map((c) => [c.slug.toLowerCase(), c])
-);
+// O(1) map for instantaneous lookup across all cities
+const CITY_SLUG_MAP = new Map<string, ACSCity>();
+for (const c of ACS_CITIES) {
+  CITY_SLUG_MAP.set(c.slug.toLowerCase(), c);
+  if (c.aliases) {
+    for (const a of c.aliases) {
+      const aliasSlug = a.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      if (!CITY_SLUG_MAP.has(aliasSlug)) {
+        CITY_SLUG_MAP.set(aliasSlug, c);
+      }
+    }
+  }
+}
 
 // Common Indian city / town name aliases & historical spellings
 const CITY_ALIASES: Record<string, string> = {
+  gurgaon: "gurugram",
+  "gurugram-hr": "gurugram",
+  "faridabad-hr": "faridabad",
+  "noida-up": "noida",
+  "ghaziabad-up": "ghaziabad",
+  "greater noida west": "noida-extension",
+  "greater-noida-west": "noida-extension",
   bangalore: "bengaluru",
   calcutta: "kolkata",
   bombay: "mumbai",
@@ -79,7 +95,10 @@ export function extractCityFromUrl(pathname: string | null): ACSCity | null {
 
   // Pattern: /services/[slug]/[city]
   if (segments[0] === "services" && segments.length >= 3 && segments[2]) {
-    const candidate = segments[2].toLowerCase();
+    let candidate = segments[2].toLowerCase();
+    if (CITY_ALIASES[candidate]) {
+      candidate = CITY_ALIASES[candidate];
+    }
     if (CITY_SLUG_MAP.has(candidate)) {
       return CITY_SLUG_MAP.get(candidate)!;
     }
@@ -87,7 +106,10 @@ export function extractCityFromUrl(pathname: string | null): ACSCity | null {
 
   // Pattern: /location/[city]
   if (segments[0] === "location" && segments[1] && segments[1] !== "state") {
-    const candidate = segments[1].toLowerCase();
+    let candidate = segments[1].toLowerCase();
+    if (CITY_ALIASES[candidate]) {
+      candidate = CITY_ALIASES[candidate];
+    }
     if (CITY_SLUG_MAP.has(candidate)) {
       return CITY_SLUG_MAP.get(candidate)!;
     }

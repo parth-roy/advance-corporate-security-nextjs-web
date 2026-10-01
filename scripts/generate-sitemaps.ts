@@ -80,7 +80,7 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-states.xml"), generateUrlXml(stateUrls), "utf8");
   console.log(`✅ sitemap-states.xml generated (${stateUrls.length} URLs)`);
 
-  // 3. City deployment hubs (828 cities)
+  // 3. City deployment hubs
   const cityUrls = [
     ...ACS_CITIES.map((c) => ({
       loc: `${BASE_URL}/location/${c.slug}`,
@@ -91,7 +91,7 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-cities.xml"), generateUrlXml(cityUrls), "utf8");
   console.log(`✅ sitemap-cities.xml generated (${cityUrls.length} URLs)`);
 
-  // 4. Security & Safety (6,633 URLs)
+  // 4. Security & Safety
   const securityServices = ACS_SERVICES.filter((s) => s.category === "security");
   const securityUrls = [
     { loc: `${BASE_URL}/services/security-safety`, priority: "0.9" },
@@ -108,7 +108,7 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-security.xml"), generateUrlXml(securityUrls), "utf8");
   console.log(`✅ sitemap-security.xml generated (${securityUrls.length} URLs)`);
 
-  // 5. Facility Management (4,146 URLs)
+  // 5. Facility Management
   const facilityServices = ACS_SERVICES.filter((s) => s.category === "facility");
   const facilityUrls = [
     { loc: `${BASE_URL}/services/facility-management`, priority: "0.9" },
@@ -125,7 +125,7 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-facility.xml"), generateUrlXml(facilityUrls), "utf8");
   console.log(`✅ sitemap-facility.xml generated (${facilityUrls.length} URLs)`);
 
-  // 6. Manpower & Staffing (2,488 URLs)
+  // 6. Manpower & Staffing
   const manpowerServices = ACS_SERVICES.filter((s) => s.category === "manpower");
   const manpowerUrls = [
     { loc: `${BASE_URL}/services/placement-services`, priority: "0.85" },
@@ -142,7 +142,7 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-manpower.xml"), generateUrlXml(manpowerUrls), "utf8");
   console.log(`✅ sitemap-manpower.xml generated (${manpowerUrls.length} URLs)`);
 
-  // 7. Horticulture & Green (829 URLs)
+  // 7. Horticulture & Green
   const horticultureServices = ACS_SERVICES.filter((s) => s.category === "horticulture");
   const horticultureUrls = [
     { loc: `${BASE_URL}/services/horticulture`, priority: "0.85" },

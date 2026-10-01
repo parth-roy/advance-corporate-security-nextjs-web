@@ -82,6 +82,18 @@ export const STATE_COMPLIANCE_DATA: StateComplianceData[] = [
     keyStatutoryActs: ['PSARA 2005', 'Odisha Contract Labour Rules', 'Minimum Wages Act 1948'],
   },
   {
+    state: 'Haryana',
+    stateSlug: 'haryana',
+    psaraStatus: 'compliant',
+    psaraNote: 'State-compliant deployment with full PF/ESIC statutory coverage across NCR/Haryana',
+    minWageUnskilled: 418,
+    minWageSemiSkilled: 460,
+    minWageSkilled: 506,
+    minWageEffectiveDate: 'Jan 2025',
+    labourCommissionerUrl: 'https://hrylabour.gov.in/',
+    keyStatutoryActs: ['PSARA 2005', 'Contract Labour Act', 'Minimum Wages Act 1948', 'EPF & MP Act 1952'],
+  },
+  {
     state: 'Uttar Pradesh',
     stateSlug: 'uttar-pradesh',
     psaraStatus: 'compliant',

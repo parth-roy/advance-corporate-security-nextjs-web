@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/"],
+        disallow: ["/api/", "/admin/"],
       },
       // Unblock modern AI answer engines (GEO/AEO strategy)
       { userAgent: "GPTBot", allow: "/" },
