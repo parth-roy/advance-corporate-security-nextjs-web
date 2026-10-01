@@ -199,8 +199,6 @@ export default function CitySelectorModal({
     }
   }, [detectLocation, handleCitySelect]);
 
-  if (!isOpen) return null;
-
   const filteredCities = useMemo<ACSCity[]>(() => {
     if (!searchQuery.trim()) return ACS_CITIES;
     if (apiResults.length > 0) return apiResults;
@@ -215,6 +213,8 @@ export default function CitySelectorModal({
     if (searchQuery.trim() || showAllCities) return filteredCities;
     return filteredCities.slice(0, 48);
   }, [searchQuery, showAllCities, filteredCities]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 font-sans">
