@@ -230,8 +230,10 @@ Kindly attend to this request promptly. Thank you!`;
       newErrors.name = "Please enter your name";
     }
     const cleanPhone = (contactPhone || supportPhone).replace(/\D/g, "");
-    if (!cleanPhone || cleanPhone.length < 10) {
-      newErrors.phone = "Please enter a valid 10-digit number";
+    if (!cleanPhone || cleanPhone.length !== 10) {
+      newErrors.phone = "Please enter a valid 10-digit mobile number";
+    } else if (!/^[6-9]/.test(cleanPhone)) {
+      newErrors.phone = "Number must start with 6, 7, 8, or 9";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -442,19 +444,35 @@ Kindly attend to this request promptly. Thank you!`;
                 <label className="text-[11px] font-bold text-slate-700 block mb-1">
                   Contact Mobile / WhatsApp <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="tel"
-                  placeholder="e.g. 9876543210"
-                  value={contactPhone}
-                  onChange={(e) => {
-                    setContactPhone(e.target.value);
-                    if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
-                  }}
-                  className={`w-full bg-slate-50 border rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white transition-all ${
-                    errors.phone ? "border-red-400 bg-red-50/40" : "border-slate-200 focus:border-emerald-500"
-                  }`}
-                />
+                <div className="relative">
+                  <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 select-none">+91</span>
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    placeholder="9876543210"
+                    maxLength={10}
+                    value={contactPhone}
+                    onChange={(e) => {
+                      // Allow digits only
+                      const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 10);
+                      setContactPhone(digitsOnly);
+                      if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+                    }}
+                    className={`w-full bg-slate-50 border rounded-lg pl-9 pr-10 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white transition-all ${
+                      errors.phone ? "border-red-400 bg-red-50/40" : contactPhone.length === 10 ? "border-emerald-500 bg-emerald-50/20" : "border-slate-200 focus:border-emerald-500"
+                    }`}
+                  />
+                  {/* Live digit counter */}
+                  <span className={`absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-bold tabular-nums ${
+                    contactPhone.length === 10 ? "text-emerald-600" : contactPhone.length > 0 ? "text-amber-500" : "text-slate-300"
+                  }`}>
+                    {contactPhone.length}/10
+                  </span>
+                </div>
                 {errors.phone && <p className="text-[10px] text-red-500 font-semibold mt-0.5">{errors.phone}</p>}
+                {!errors.phone && contactPhone.length === 10 && (
+                  <p className="text-[10px] text-emerald-600 font-semibold mt-0.5">✓ Valid 10-digit number</p>
+                )}
               </div>
             </div>
 
