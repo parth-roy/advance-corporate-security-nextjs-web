@@ -106,6 +106,11 @@ export default function WhatsAppIntentModal({
     "SECURITY" | "FACILITY" | "MANPOWER" | "SUPPORT"
   >(initialIntent);
 
+  // Contact Details
+  const [contactName, setContactName] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+  const [errors, setErrors] = useState<{ name?: string; phone?: string }>({});
+
   // Quick-fill states
   const [secService, setSecService] = useState("Security Guards");
   const [secGuardsCount, setSecGuardsCount] = useState("3 - 5 Guards (24x7)");
@@ -160,10 +165,15 @@ export default function WhatsAppIntentModal({
 
   // Build the pre-formatted WhatsApp template
   const getWhatsAppMessage = () => {
+    const formattedName = contactName.trim() || "Prospective Client";
+    const formattedPhone = contactPhone.trim() || supportPhone.trim() || "[My Phone Number]";
+
     if (selectedIntent === "SECURITY") {
       return `👋 Hello Advance Corporate Security (ACS) Team,
 
 I would like to enquire about *Security Guard Deployment*:
+👤 Name: ${formattedName}
+📞 Contact: ${formattedPhone}
 🛡️ Service Needed: ${secService}
 👥 Guard Requirement: ${secGuardsCount}
 📍 Deployment Location: ${secLocation.trim() || currentCity.name}
@@ -176,6 +186,8 @@ Please connect with me and share a customized commercial quotation!`;
       return `👋 Hello Advance Corporate Security (ACS) Team,
 
 I need a quotation for *Corporate Facility Management*:
+👤 Name: ${formattedName}
+📞 Contact: ${formattedPhone}
 🧹 Service Needed: ${facService}
 🏢 Premises Type: ${facPremises}
 📍 Location / City: ${facLocation.trim() || currentCity.name}
@@ -188,6 +200,8 @@ Please arrange a site inspection and share quotation details!`;
       return `👋 Hello Advance Corporate Security (ACS) Team,
 
 I have a *Contract Labour & Manpower Supply requirement*:
+👤 Name: ${formattedName}
+📞 Contact: ${formattedPhone}
 👷 Workforce Type: ${manService}
 👥 Headcount Needed: ${manCount}
 📍 Work Site Location: ${manLocation.trim() || currentCity.name}
@@ -200,20 +214,86 @@ Please share deployment timeline and contract labour terms!`;
     return `👋 Hello Advance Corporate Security (ACS) Team,
 
 I am contacting the *24×7 Central Control Room*:
+👤 Name: ${formattedName}
+📞 Contact: ${formattedPhone}
 🚨 Topic: ${supportTopic}
 🏢 Organization: ${supportOrg.trim() || "Enterprise Client"}
-📱 Contact Number: ${supportPhone.trim() || "[My Phone Number]"}
 📍 Hub: ${currentCity.name}
 
 Kindly attend to this request promptly. Thank you!`;
   };
 
   const handleOpenWhatsApp = () => {
+    // Quick validation for name and phone
+    const newErrors: { name?: string; phone?: string } = {};
+    if (!contactName.trim()) {
+      newErrors.name = "Please enter your name";
+    }
+    const cleanPhone = (contactPhone || supportPhone).replace(/\D/g, "");
+    if (!cleanPhone || cleanPhone.length < 10) {
+      newErrors.phone = "Please enter a valid 10-digit number";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     trackEvent("whatsapp_click", {
       intent: selectedIntent,
       city: currentCity.name,
       source: "whatsapp_intent_modal",
     });
+
+    const currentLoc =
+      selectedIntent === "SECURITY"
+        ? secLocation
+        : selectedIntent === "FACILITY"
+        ? facLocation
+        : selectedIntent === "MANPOWER"
+        ? manLocation
+        : currentCity.name;
+
+    const currentSvc =
+      selectedIntent === "SECURITY"
+        ? secService
+        : selectedIntent === "FACILITY"
+        ? facService
+        : selectedIntent === "MANPOWER"
+        ? manService
+        : supportTopic;
+
+    const currentHeadcount =
+      selectedIntent === "SECURITY"
+        ? secGuardsCount
+        : selectedIntent === "MANPOWER"
+        ? manCount
+        : selectedIntent === "FACILITY"
+        ? facPremises
+        : "";
+
+    // 1. Fire-and-forget sync to Google Sheets "WhatsApp Messages" tab + backend
+    try {
+      fetch("/api/whatsapp-log", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "whatsapp_message",
+          name: contactName.trim(),
+          fullName: contactName.trim(),
+          phone: cleanPhone,
+          contactNumber: cleanPhone,
+          intent: selectedIntent,
+          service: currentSvc,
+          deploymentLocation: currentLoc.trim() || currentCity.name,
+          headcount: currentHeadcount,
+          organization: supportOrg.trim() || (selectedIntent === "FACILITY" ? facPremises : ""),
+          city: currentCity.name,
+          source: "WhatsApp Intent Modal",
+        }),
+      }).catch((err) => console.warn("WhatsApp log notice:", err));
+    } catch {}
+
     const text = getWhatsAppMessage();
     // ACS WhatsApp contact number: +91 93399 88999
     const url = `https://wa.me/919339988999?text=${encodeURIComponent(text)}`;
@@ -330,9 +410,53 @@ Kindly attend to this request promptly. Thank you!`;
 
           {/* Step 2: Quick Details Form */}
           <div className="bg-slate-50 p-3 sm:p-3.5 rounded-2xl border border-slate-200 space-y-2.5">
-            <label className="block text-[11px] font-black uppercase tracking-wider text-slate-600">
-              2. Quick Details ({currentIntentConfig.badge}):
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="block text-[11px] font-black uppercase tracking-wider text-slate-600">
+                2. Contact & Requirement Details ({currentIntentConfig.badge}):
+              </label>
+              <span className="text-[10px] text-slate-400 font-medium">Auto-synced to Sheet</span>
+            </div>
+
+            {/* Common Contact Details: Name & Phone */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-white p-2.5 rounded-xl border border-slate-200/90 shadow-2xs">
+              <div>
+                <label className="text-[11px] font-bold text-slate-700 block mb-1">
+                  Your Full Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Rajesh Kumar"
+                  value={contactName}
+                  onChange={(e) => {
+                    setContactName(e.target.value);
+                    if (errors.name) setErrors((prev) => ({ ...prev, name: undefined }));
+                  }}
+                  className={`w-full bg-slate-50 border rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white transition-all ${
+                    errors.name ? "border-red-400 bg-red-50/40" : "border-slate-200 focus:border-emerald-500"
+                  }`}
+                />
+                {errors.name && <p className="text-[10px] text-red-500 font-semibold mt-0.5">{errors.name}</p>}
+              </div>
+
+              <div>
+                <label className="text-[11px] font-bold text-slate-700 block mb-1">
+                  Contact Mobile / WhatsApp <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  placeholder="e.g. 9876543210"
+                  value={contactPhone}
+                  onChange={(e) => {
+                    setContactPhone(e.target.value);
+                    if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+                  }}
+                  className={`w-full bg-slate-50 border rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white transition-all ${
+                    errors.phone ? "border-red-400 bg-red-50/40" : "border-slate-200 focus:border-emerald-500"
+                  }`}
+                />
+                {errors.phone && <p className="text-[10px] text-red-500 font-semibold mt-0.5">{errors.phone}</p>}
+              </div>
+            </div>
 
             {/* Customizer for SECURITY */}
             {selectedIntent === "SECURITY" && (
@@ -546,11 +670,11 @@ Kindly attend to this request promptly. Thank you!`;
                   </div>
                   <div>
                     <label className="text-[11px] font-bold text-slate-600 block mb-1">
-                      Your Contact Mobile:
+                      Requirement / Query Details:
                     </label>
                     <input
-                      type="tel"
-                      placeholder="e.g. +91 98765 43210"
+                      type="text"
+                      placeholder="e.g. Urgent site inspection / query"
                       value={supportPhone}
                       onChange={(e) => setSupportPhone(e.target.value)}
                       className="w-full bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500"
