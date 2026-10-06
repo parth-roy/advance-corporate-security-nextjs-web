@@ -44,10 +44,10 @@ export default function FloatingContact() {
         <a
           href="tel:+917980147044"
           onClick={() => trackEvent("phone_click", { source: "floating_mobile", phone: "+917980147044" })}
-          className="flex min-h-11 items-center justify-center gap-1.5 rounded-xl border-2 border-navy bg-white px-2 py-2 text-xs font-extrabold text-navy active:scale-95 transition-transform"
+          className="flex min-h-11 items-center justify-center gap-1.5 rounded-xl border-2 border-[#0052cc] bg-[#0052cc]/5 px-2 py-2 text-xs font-extrabold text-[#0052cc] active:scale-95 transition-transform"
           aria-label="Call ACS Central Desk"
         >
-          <Phone className="w-3.5 h-3.5 text-navy shrink-0" />
+          <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
           <span className="truncate">Call</span>
         </a>
         <button
@@ -122,10 +122,10 @@ export default function FloatingContact() {
           <a
             href="tel:+917980147044"
             onClick={() => trackEvent("phone_click", { source: "floating_desktop", phone: "+917980147044" })}
-            className="w-13 h-13 sm:w-14 sm:h-14 bg-navy text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_rgba(11,31,63,0.35)] hover:bg-navy-dark hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(11,31,63,0.5)] border border-sky-400/30 transition-all duration-200 cursor-pointer"
+            className="w-13 h-13 sm:w-14 sm:h-14 bg-[#0052cc] hover:bg-[#0041a8] text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_rgba(0,82,204,0.45)] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,82,204,0.65)] border border-white/20 transition-all duration-200 cursor-pointer"
             aria-label="Call ACS: +91 79801 47044"
           >
-            <Phone className="w-6 h-6 text-gold" />
+            <Phone className="w-6 h-6 text-white" />
           </a>
         </div>
       </div>

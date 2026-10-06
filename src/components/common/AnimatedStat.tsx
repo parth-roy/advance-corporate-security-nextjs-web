@@ -6,6 +6,10 @@ interface AnimatedStatProps {
   value: string;
   label: string;
   className?: string;
+  /** Override label element classes. Default: small, uppercase, tracking-wider. */
+  labelClassName?: string;
+  /** Override value element classes. Default: text-3xl/4xl, font-black, text-navy. */
+  valueClassName?: string;
   disableAnimation?: boolean;
 }
 
@@ -13,6 +17,8 @@ export default function AnimatedStat({
   value,
   label,
   className = "",
+  labelClassName,
+  valueClassName,
   disableAnimation = false,
 }: AnimatedStatProps) {
   // Server-render the actual value directly so SSR and slow-loading JS never display 0
@@ -45,16 +51,16 @@ export default function AnimatedStat({
           const step = (now: number) => {
             const elapsed = now - startTimestamp;
             const progress = Math.min(elapsed / duration, 1);
-            // Ease-out cubic curve: 1 - Math.pow(1 - progress, 3)
+            // Ease-out cubic curve
             const easeOut = 1 - Math.pow(1 - progress, 3);
-            const current = Math.floor(easeOut * targetNumber);
+            const current = Math.floor(easeOut * (targetNumber as number));
 
             setDisplayValue(current.toString() + suffix);
 
             if (progress < 1) {
               requestAnimationFrame(step);
             } else {
-              setDisplayValue(targetNumber.toString() + suffix);
+              setDisplayValue((targetNumber as number).toString() + suffix);
             }
           };
 
@@ -78,10 +84,20 @@ export default function AnimatedStat({
 
   return (
     <div ref={elementRef} className={className} role="listitem">
-      <div className="text-3xl xl:text-4xl font-black text-navy font-roboto tracking-tight">
+      <div
+        className={
+          valueClassName ??
+          "text-3xl xl:text-4xl font-black text-navy font-roboto tracking-tight"
+        }
+      >
         {displayValue}
       </div>
-      <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">
+      <div
+        className={
+          labelClassName ??
+          "text-xs text-slate-500 font-bold uppercase tracking-wider mt-1"
+        }
+      >
         {label}
       </div>
     </div>

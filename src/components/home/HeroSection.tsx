@@ -2,395 +2,343 @@
 
 // src/components/home/HeroSection.tsx
 // ============================================================
-// ACS Hero Section — Dynamic Enterprise B2B Split-Layout
-// Optimized for zero UI disruptions, responsive proportions,
-// reactive to global CityContext, and animated stats strip.
+// ACS Hero Section — Pixel-Perfect Reference Implementation
+// Image bleeds to right viewport edge, no crop, sky behind text.
+// Brand Colors:
+//   - Primary Corporate Navy: #0d2458 (ACS Brand Blue)
+//   - Brand Red: #da1e25 (ACS Brand Red)
+//   - Electric Royal Blue: #0052cc (Brand Action/Stats Blue)
+//   - Soft Badge Blue: #edf6fd (Circular icon backing)
+// Stats = floating card with royal blue numbers and icons,
+//   corporate navy titles, and soft blue circular icon badges.
 // ============================================================
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useCity } from "@/context/CityContext";
 import AnimatedStat from "@/components/common/AnimatedStat";
 
-const TRUST_BADGES = [
-  { label: "PSARA Licensed", icon: "🛡️" },
-  { label: "ISO 9001:2015", icon: "✅" },
-  { label: "25+ Years Excellence", icon: "🏆" },
-  { label: "50+ Govt. Empanelled", icon: "🏛️" },
+// ── STAT DATA ──────────────────────────────────────────────
+const STATS = [
+  {
+    value: "25+",
+    label: "Years of Excellence",
+    subtitle: "A legacy of trust and performance",
+    icon: (
+      // Trophy in soft blue circle (#edf6fd) with Royal Blue Trophy icon
+      <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#edf6fd] flex items-center justify-center shrink-0">
+        <svg
+          className="w-7 h-7 sm:w-8 sm:h-8 text-[#0052cc]"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+          <path d="M4 22h16" />
+          <path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34" />
+          <path
+            d="M6 4h12a1 1 0 0 1 1 1v4a7 7 0 0 1-14 0V5a1 1 0 0 1 1-1Z"
+            fill="#0052cc"
+            fillOpacity="0.15"
+          />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    value: "5000+",
+    label: "Trained Professionals",
+    subtitle: "Skilled, verified and disciplined",
+    icon: (
+      // Clean team of 3 professionals in soft blue circle (#edf6fd)
+      <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#edf6fd] flex items-center justify-center shrink-0">
+        <svg
+          className="w-7 h-7 sm:w-8 sm:h-8 text-[#0052cc]"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          {/* Center Leader / Professional */}
+          <circle cx="12" cy="7" r="3" />
+          <path d="M12 12c-2.7 0-5.5 1.35-5.5 3.5V18h11v-2.5c0-2.15-2.8-3.5-5.5-3.5z" />
+          {/* Left Colleague */}
+          <circle cx="5.5" cy="8.5" r="2.2" />
+          <path d="M5.5 12.5c-1.6 0-3.5.9-3.5 2.5V17h2.8v-1.3c0-.8.4-1.5 1-2-.1-.1-.2-.2-.3-.2z" />
+          {/* Right Colleague */}
+          <circle cx="18.5" cy="8.5" r="2.2" />
+          <path d="M18.5 12.5c.1 0 .2.1.3.2.6.5 1 1.2 1 2V17H22v-1.5c0-1.6-1.9-2.5-3.5-2.5z" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    value: "500+",
+    label: "Clients Pan India",
+    subtitle: "Serving diverse sectors across the nation",
+    icon: (
+      // Location pin in soft blue circle (#edf6fd) with Royal Blue Pin
+      <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#edf6fd] flex items-center justify-center shrink-0">
+        <svg
+          className="w-7 h-7 sm:w-8 sm:h-8 text-[#0052cc]"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    value: "50+",
+    label: "Govt. & PSU Clients",
+    subtitle: "Trusted by leading public sector organisations",
+    icon: (
+      // Government & Commercial Office Buildings in soft blue circle (#edf6fd)
+      <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#edf6fd] flex items-center justify-center shrink-0">
+        <svg
+          className="w-7 h-7 sm:w-8 sm:h-8 text-[#0052cc]"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M17 11V3H7v4H3v14h18V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 8H9v-2h2v2zm0-4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z" />
+        </svg>
+      </div>
+    ),
+  },
 ];
 
-type TabType = "security" | "facility" | "placement" | "horticulture";
-
-interface TabMeta {
-  label: string;
-  icon: string;
-  title: (city: string) => string;
-  subtitle: string;
-  allLink: string;
-  allText: string;
-  services: { name: string; slug: string; icon: string; badge?: string }[];
-}
-
-const TAB_DATA: Record<TabType, TabMeta> = {
-  security: {
-    label: "Security & Safety",
-    icon: "🛡️",
-    title: (city) => `PSARA Security & Safety Deployments in ${city}`,
-    subtitle: "Background-verified security guards, surveillance & executive protection",
-    allLink: "/services/security-safety",
-    allText: "All Security (5)",
-    services: [
-      { name: "Security Guards", slug: "security-guard", icon: "👮", badge: "Verified" },
-      { name: "Investigation & Surveillance", slug: "surveillance-cctv", icon: "📹", badge: "24×7 Active" },
-      { name: "Executive Protection", slug: "executive-protection", icon: "🕴️", badge: "VIP / PSO" },
-      { name: "Cash Management", slug: "security-guard", icon: "💼", badge: "Secure Transit" },
-      { name: "Event Assignments", slug: "event-security", icon: "🎪", badge: "Crowd Control" },
-    ],
-  },
-  facility: {
-    label: "Facility Management",
-    icon: "🏢",
-    title: (city) => `Corporate Facility Management in ${city}`,
-    subtitle: "Housekeeping, payroll services, building maintenance & waste management",
-    allLink: "/services/facility-management",
-    allText: "All Facility (6)",
-    services: [
-      { name: "Housekeeping", slug: "housekeeping", icon: "🧹", badge: "ISO SOP" },
-      { name: "PayRoll Services", slug: "payroll-management", icon: "📊", badge: "Statutory" },
-      { name: "Building Maintenance", slug: "mep-maintenance", icon: "⚙️", badge: "HVAC & MEP" },
-      { name: "Cleaning & Janitorial", slug: "janitorial", icon: "🧽", badge: "Deep Clean" },
-      { name: "Waste Management", slug: "facility-management", icon: "♻️", badge: "Eco SOP" },
-      { name: "Event Management", slug: "event-security", icon: "🎪", badge: "Operations" },
-    ],
-  },
-  placement: {
-    label: "Placement Services",
-    icon: "💼",
-    title: (city) => `Corporate Placement & Manpower in ${city}`,
-    subtitle: "Career, employment, executive, and direct placement staffing solutions",
-    allLink: "/services/placement-services",
-    allText: "All Placement (4)",
-    services: [
-      { name: "Career Placement Services", slug: "placement-services", icon: "🎯", badge: "Career" },
-      { name: "Employment Placement Services", slug: "placement-services", icon: "🤝", badge: "Staffing" },
-      { name: "Executive Placement Services", slug: "manpower-outsourcing", icon: "👔", badge: "Leadership" },
-      { name: "Direct Placement Services", slug: "manpower-outsourcing", icon: "📋", badge: "On-Demand" },
-    ],
-  },
-  horticulture: {
-    label: "Horticulture",
-    icon: "🌿",
-    title: (city) => `Horticulture & Landscape Services in ${city}`,
-    subtitle: "Landscaping, garden & lawn space planning, groundskeeping & farm development",
-    allLink: "/services/horticulture",
-    allText: "All Horticulture (3)",
-    services: [
-      { name: "Landscaping & Groundskeeping", slug: "horticulture", icon: "🌱", badge: "Green Campus" },
-      { name: "Space Planning & Designing", slug: "horticulture", icon: "🏡", badge: "Garden / Lawns" },
-      { name: "Development of Farms", slug: "horticulture", icon: "🌾", badge: "Agri / Estate" },
-    ],
-  },
-};
-
 export default function HeroSection() {
-  const { currentCity, setIsCityModalOpen } = useCity();
-  const [activeTab, setActiveTab] = useState<TabType>("security");
-
-  const gridColsClass =
-    activeTab === "security"
-      ? "grid-cols-2 xs:grid-cols-3 sm:grid-cols-5"
-      : activeTab === "facility"
-      ? "grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-6"
-      : activeTab === "placement"
-      ? "grid-cols-2 sm:grid-cols-4"
-      : "grid-cols-3";
-
   return (
-    <section
-      className="relative bg-gradient-to-br from-[#f2f8fc] via-white to-[#edf5fa] overflow-hidden border-b border-slate-200/80 pt-3 sm:pt-5 pb-3 sm:pb-4"
-      aria-labelledby="hero-heading"
-    >
-      {/* Subtle background grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        aria-hidden="true"
-        style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, #0b1f3f 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-        }}
-      />
+    <div>
+      {/* ══════════════════════════════════════════════════════
+          HERO SECTION
+          Extra bottom padding (pb-20) creates room for the
+          floating stats card to overlap via -mt-14.
+      ══════════════════════════════════════════════════════ */}
+      <section
+        className="relative bg-white overflow-hidden min-h-[520px] sm:min-h-[540px] lg:min-h-[560px] xl:min-h-[580px] pb-16 lg:pb-24"
+        aria-labelledby="hero-heading"
+      >
+        {/* ── HERO IMAGE — right-anchored, positioned vertically higher ── */}
+        <div
+          className="absolute right-0 top-0 bottom-0 hidden lg:block pointer-events-none select-none overflow-hidden"
+          style={{ zIndex: 1 }}
+          aria-hidden="true"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/hero.webp"
+            alt=""
+            className="h-[106%] lg:h-[108%] xl:h-[110%] w-auto block max-w-none -translate-y-4 lg:-translate-y-6 xl:-translate-y-8 object-top"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+          {/* Left fade: white → transparent — sky appears behind heading text */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to right, " +
+                "white 0%, " +
+                "rgba(255,255,255,0.96) 4%, " +
+                "rgba(255,255,255,0.78) 12%, " +
+                "rgba(255,255,255,0.48) 22%, " +
+                "rgba(255,255,255,0.18) 32%, " +
+                "rgba(255,255,255,0.04) 40%, " +
+                "transparent 50%)",
+            }}
+          />
+        </div>
 
-      <div className="container-acs relative z-10">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.18fr_0.82fr] gap-6 xl:gap-8 items-start mb-4 w-full min-w-0">
-          {/* ── LEFT COLUMN: Headline, Location Pill & Tabbed Services Box ── */}
-          <div className="w-full min-w-0 max-w-2xl">
-            {/* Trust Badges */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2" role="list" aria-label="Certifications">
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-950 text-[10px] sm:text-[11px] font-bold shadow-2xs max-w-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" aria-hidden="true" />
-                <span className="truncate sm:whitespace-normal">Security & ISO Certified</span>
-              </span>
-              {TRUST_BADGES.map((badge) => (
-                <span
-                  key={badge.label}
-                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sky-50 border border-sky-200 text-sky-950 text-[10px] sm:text-[11px] font-bold shadow-2xs"
-                  role="listitem"
-                >
-                  <span aria-hidden="true">{badge.icon}</span>
-                  {badge.label}
-                </span>
-              ))}
+        {/* ── LEFT TEXT CONTENT — vertically centered ── */}
+        <div
+          className="relative flex items-center max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 min-h-[520px] sm:min-h-[540px] lg:min-h-[560px] xl:min-h-[580px]"
+          style={{ zIndex: 2 }}
+        >
+          <div className="w-full lg:max-w-[50%] xl:max-w-[47%] py-10 lg:py-0">
+
+            {/* Tagline / Breadcrumb: Red dash + Royal Blue text */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-5 h-0.5 bg-[#da1e25] rounded-full shrink-0" aria-hidden="true" />
+              <p className="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#0052cc] leading-none">
+                People&nbsp;&nbsp;|&nbsp;&nbsp;Process&nbsp;&nbsp;|&nbsp;&nbsp;A Safer Tomorrow
+              </p>
             </div>
 
-            {/* Main H1 Heading */}
+            {/* H1 Heading: Mid dark navy blue + ACS Brand Red */}
             <h1
               id="hero-heading"
-              className="font-roboto font-black text-slate-900 leading-[1.25] mb-2 tracking-tight text-lg sm:text-xl lg:text-2xl xl:text-3xl break-words"
+              className="font-extrabold leading-[1.15] mb-5 tracking-tight font-roboto"
+              style={{ fontSize: "clamp(1.85rem, 3.2vw, 2.75rem)" }}
             >
-              The Compliance-First Corporate Security &amp; Facilities Management Company in{" "}
-              <span className="text-sky-600 font-black">
-                {currentCity.name}
-              </span>
+              <span className="text-[#0d2458]">Compliance-First Security,</span>
+              <br />
+              <span className="text-[#0d2458]">Facility Management &amp;</span>
+              <br />
+              <span className="text-[#da1e25]">Manpower Solutions.</span>
             </h1>
 
-            {/* Subheadline tailored to active location */}
-            <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed mb-2 font-normal">
-              Ranked among Eastern India&apos;s most trusted <strong className="text-navy font-semibold">business security companies</strong> and <strong className="text-navy font-semibold">building maintenance company</strong> partners. We deploy PSARA-licensed (West Bengal, Delhi, NCR) <strong className="text-navy font-semibold">security guards</strong>, integrated <strong className="text-navy font-semibold">facility management services</strong>, and end-to-end <strong className="text-navy font-semibold">facility maintenance company</strong> solutions across{" "}
-              <strong suppressHydrationWarning className="text-navy font-semibold">
-                {currentCity.name}, {currentCity.state}
-              </strong>
-              .
+            {/* Description: Dark navy blue with little bold font (font-medium) */}
+            <p className="text-[#0d2458] font-medium text-[14px] sm:text-[15px] leading-relaxed mb-6 max-w-[490px]">
+              Advance Corporate Security is a PSARA licensed and ISO
+              9001:2015 certified company delivering reliable security,
+              facility management and manpower outsourcing services to
+              corporates, industries, government bodies and institutions
+              across Kolkata and pan India.
             </p>
 
-            {/* Action Bar: City Hub Button + Free Site Assessment CTA */}
-            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2 mb-2.5 w-full">
-              {/* City Pill Button */}
-              <button
-                type="button"
-                onClick={() => setIsCityModalOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-sky-200 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-sky-50 hover:border-sky-300 transition-all shadow-2xs group cursor-pointer shrink-0"
-                title="Change Deployment City"
-              >
-                <Image
-                  src="/google-maps-icon.webp"
-                  alt="City"
-                  width={15}
-                  height={15}
-                  className="w-3.5 h-3.5 object-contain group-hover:scale-110 transition-transform shrink-0"
-                />
-                <span suppressHydrationWarning className="text-navy font-bold max-w-[100px] xs:max-w-[130px] truncate">
-                  {currentCity.name}
-                </span>
-                <span className="text-sky-600 underline font-bold text-xs ml-0.5 group-hover:text-sky-800">
-                  Change
-                </span>
-              </button>
-
-              {/* Free Assessment CTA */}
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3.5 mb-7">
+              {/* Primary Consultation Button in ACS Brand Red with Comment/Speech-Bubble Tail */}
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold text-xs sm:text-sm bg-navy text-white hover:bg-navy-dark hover:shadow-sm transition-all cursor-pointer shadow-2xs max-w-full"
+                className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#da1e25] hover:bg-[#c4161d] text-white font-bold text-sm transition-all shadow-md active:scale-[0.98] cursor-pointer"
               >
-                <span className="truncate">Request Site Security Audit</span>
-                <svg className="w-3.5 h-3.5 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                <span>Request a Free Consultation</span>
+                <span className="text-sm font-bold leading-none transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
+
+                {/* Speech Bubble / Comment Box Tail Pointer */}
+                <svg
+                  className="absolute -bottom-[7px] left-3 w-3.5 h-2 text-[#da1e25] group-hover:text-[#c4161d] transition-colors pointer-events-none"
+                  viewBox="0 0 14 8"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M0 0 L2 8 L13 0 Z" />
                 </svg>
+              </Link>
+
+              {/* Secondary Expert Button in Royal Blue with Chat Bubble Icon */}
+              <Link
+                href="/contact?type=expert"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-[#1d4ed8] text-[#1d4ed8] hover:bg-[#1d4ed8] hover:text-white font-bold text-sm transition-all cursor-pointer bg-white shadow-xs"
+              >
+                <svg
+                  className="w-4 h-4 shrink-0 text-[#1d4ed8] group-hover:text-white transition-colors"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                </svg>
+                <span>Talk to an Expert</span>
               </Link>
             </div>
 
-            {/* ── B2B ENTERPRISE SERVICES BOX (Workforce Web Style with Category Tabs) ── */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-3 sm:p-5 w-full overflow-hidden">
-              {/* Category Segmented Tabs */}
-              <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100 overflow-hidden min-w-0">
-                <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl overflow-x-auto scrollbar-none max-w-full">
-                  {(Object.keys(TAB_DATA) as TabType[]).map((tabKey) => {
-                    const tab = TAB_DATA[tabKey];
-                    const isActive = activeTab === tabKey;
-                    return (
-                      <button
-                        key={tabKey}
-                        type="button"
-                        onClick={() => setActiveTab(tabKey)}
-                        className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-                          isActive
-                            ? "bg-white text-navy shadow-xs"
-                            : "text-slate-600 hover:text-navy"
-                        }`}
-                      >
-                        <span>{tab.icon}</span>
-                        <span>{tab.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <Link
-                  href={TAB_DATA[activeTab].allLink}
-                  className="text-xs font-bold text-sky-700 hover:text-navy underline hidden xl:inline-flex shrink-0"
+            {/* Trust row — all icons in vibrant Royal Blue, strictly in ONE LINE */}
+            <div className="flex items-center flex-nowrap whitespace-nowrap gap-3 sm:gap-3.5 lg:gap-4 text-[11px] sm:text-xs text-[#0d2458] font-bold overflow-x-auto scrollbar-none py-1">
+              {/* PSARA */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                <svg
+                  className="w-4 h-4 text-[#0052cc] shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
                 >
-                  {TAB_DATA[activeTab].allText} →
-                </Link>
+                  <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                </svg>
+                <span>PSARA Licensed</span>
               </div>
 
-              {/* Dynamic Tab Header — Suitable B2B title */}
-              <div className="flex items-center justify-between mb-3">
-                <div>
-                  <h2 className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight">
-                    {TAB_DATA[activeTab].title(currentCity.name)}
-                  </h2>
-                  <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
-                    {TAB_DATA[activeTab].subtitle}
+              <span className="w-px h-3.5 bg-slate-300 shrink-0" aria-hidden="true" />
+
+              {/* ISO */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                <svg
+                  className="w-4 h-4 text-[#0052cc] shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+                <span>ISO 9001:2015 Certified Company</span>
+              </div>
+
+              <span className="w-px h-3.5 bg-slate-300 shrink-0" aria-hidden="true" />
+
+              {/* Location */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                <svg
+                  className="w-4 h-4 text-[#0052cc] shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+                </svg>
+                <span>Kolkata, West Bengal, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile image */}
+        <div className="block lg:hidden w-full mt-2">
+          <Image
+            src="/images/hero.webp"
+            alt="ACS security and facility management officers"
+            width={1798}
+            height={875}
+            className="w-full h-auto"
+            priority
+            quality={90}
+          />
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          FLOATING STATS CARD
+          Negative margin pulls the card UP to overlap the hero's
+          bottom padding — creating the exact floating effect.
+          Numbers: Royal Blue (#0052cc)
+          Labels: Corporate Navy (#0d2458) Title Case
+          Icons: Royal Blue (#0052cc) with circular badges (#edf6fd)
+      ══════════════════════════════════════════════════════ */}
+      <div className="relative z-20 -mt-10 sm:-mt-12 lg:-mt-16 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 pb-4">
+        <div className="bg-white rounded-2xl border border-blue-100/70 shadow-[0_12px_45px_-10px_rgba(13,36,88,0.13)] overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-slate-100">
+            {STATS.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex items-center gap-3.5 sm:gap-4 px-5 sm:px-6 py-5 sm:py-6"
+              >
+                {/* Icon Container */}
+                {stat.icon}
+
+                {/* Text Content */}
+                <div className="min-w-0">
+                  <AnimatedStat
+                    value={stat.value}
+                    label={stat.label}
+                    valueClassName="text-3xl sm:text-[34px] font-black text-[#0052cc] font-roboto leading-none tracking-tight"
+                    labelClassName="text-[15px] sm:text-[16px] font-bold text-[#0d2458] mt-1.5 leading-snug"
+                  />
+                  <p className="text-[12px] text-slate-500 font-normal mt-0.5 leading-snug">
+                    {stat.subtitle}
                   </p>
                 </div>
               </div>
-
-              {/* Grid of Active Brochure Services */}
-              <div className={`grid ${gridColsClass} gap-2 sm:gap-2.5`}>
-                {TAB_DATA[activeTab].services.map((svc) => (
-                  <Link
-                    key={svc.name}
-                    href={`/services/${svc.slug}/${currentCity.slug}`}
-                    className="group flex flex-col items-center text-center p-1.5 rounded-xl hover:bg-sky-50/70 border border-transparent hover:border-sky-200/80 transition-all duration-150 cursor-pointer"
-                  >
-                    <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-white group-hover:shadow-xs transition-all">
-                      {svc.badge && (
-                        <span
-                          className={`absolute -top-1.5 px-1 py-0.2 rounded-full text-[7px] sm:text-[8px] font-bold shadow-2xs whitespace-nowrap ${
-                            activeTab === "security"
-                              ? "bg-sky-100 text-sky-800 border border-sky-200"
-                              : activeTab === "facility"
-                              ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
-                              : activeTab === "placement"
-                              ? "bg-amber-100 text-amber-800 border border-amber-200"
-                              : "bg-teal-100 text-teal-800 border border-teal-200"
-                          }`}
-                        >
-                          {svc.badge}
-                        </span>
-                      )}
-                      <span className="text-lg sm:text-xl transition-transform group-hover:scale-110 duration-150">
-                        {svc.icon}
-                      </span>
-                    </div>
-                    <span className="mt-1 text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover:text-navy leading-tight line-clamp-2">
-                      {svc.name}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
-
-          {/* ── RIGHT COLUMN: Photography, Trust Credentials & 24×7 Control Room ── */}
-          <div className="relative flex flex-col items-center lg:items-end justify-start gap-3 w-full">
-            {/* Visual Hero Image Card with Floating Trust Badges */}
-            <div className="relative w-full max-w-lg aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_16px_40px_rgba(11,31,63,0.12)] border border-slate-200/80">
-              <Image
-                src="/images/guarding.jpg"
-                alt={`ACS security and facility management officers on duty in ${currentCity.name}`}
-                fill
-                priority
-                className="object-cover object-[center_35%]"
-                sizes="(max-width: 1024px) 100vw, 45vw"
-              />
-              {/* Subtle gradient vignette for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent pointer-events-none" />
-
-              {/* Floating Badge 1: Top Right ISO */}
-              <div className="absolute top-3 right-3 bg-navy/95 backdrop-blur-xs text-white px-3 py-1.5 rounded-lg shadow-lg border border-sky-400/30 text-center">
-                <div className="text-[10px] text-gold font-bold uppercase tracking-wider">ISO 9001:2015</div>
-                <div className="text-xs font-black text-white">CERTIFIED</div>
-              </div>
-
-              {/* Floating Badge 2: Bottom Left Experience */}
-              <div className="absolute bottom-3 left-3 bg-gold text-navy font-roboto px-3.5 py-2 rounded-lg shadow-lg">
-                <div className="text-xl font-black leading-none">25+</div>
-                <div className="text-[9px] uppercase tracking-wider font-extrabold mt-0.5">
-                  Years Excellence
-                </div>
-              </div>
-
-              {/* Floating Badge 3: Bottom Right PSARA */}
-              <div className="absolute bottom-3 right-3 bg-sky-600/95 backdrop-blur-xs text-white px-3 py-1.5 rounded-lg shadow-lg text-center">
-                <div className="text-xs font-black">PSARA</div>
-                <div className="text-[9px] font-medium opacity-90">Govt. Licensed</div>
-              </div>
-            </div>
-
-            {/* Client Empanelment Chips */}
-            <div className="w-full max-w-lg bg-white rounded-xl border border-slate-200/80 p-3 shadow-2xs">
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                <span>Prestigious Institutional Clients</span>
-                <span className="text-navy font-extrabold">50+ Govt. Empanelled</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
-                {[
-                  "Indian Air Force",
-                  "BSF (MHA)",
-                  "Central Pollution Board",
-                  "Indian Oil Corporation",
-                  "HAL Barrackpore",
-                  "ESI Hospital",
-                  "Metro Railway",
-                ].map((c) => (
-                  <span
-                    key={c}
-                    className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200/80 text-slate-700"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* 24×7 Central Control Room Bar */}
-            <div className="w-full max-w-lg bg-[#0B1F3F] border border-slate-700/60 rounded-xl p-3 px-4 text-white flex items-center justify-between shadow-sm">
-              <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                <div>
-                  <p className="text-[10px] text-sky-200 font-medium">24×7 Central Control Room</p>
-                  <p className="text-xs sm:text-sm font-bold text-white tracking-wide">+91 94770 06681</p>
-                </div>
-              </div>
-              <a
-                href="tel:+919477006681"
-                className="px-3.5 py-1.5 bg-gold hover:bg-gold-light text-navy font-bold text-xs rounded-lg shadow-2xs transition-all active:scale-95 cursor-pointer"
-              >
-                Call Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* ── STATS STRIP WITH COUNT-UP ANIMATION (Image reference portion) ── */}
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-0 border-t border-slate-200 pt-3 pb-1.5"
-          role="list"
-          aria-label="Company statistics"
-        >
-          <AnimatedStat
-            value="25+"
-            label="Years of Excellence"
-            className="text-center px-4 md:border-r border-slate-200"
-          />
-          <AnimatedStat
-            value="5000+"
-            label="Trained Professionals"
-            className="text-center px-4 md:border-r border-slate-200"
-          />
-          <AnimatedStat
-            value="500+"
-            label="Cities Pan-India"
-            className="text-center px-4 md:border-r border-slate-200"
-          />
-          <AnimatedStat
-            value="50+"
-            label="Govt. & PSU Clients"
-            className="text-center px-4"
-          />
         </div>
       </div>
-    </section>
+
+      {/* ============================================================
+          OLD HERO SECTION — COMMENTED OUT (preserved for reference)
+          ============================================================ */}
+    </div>
   );
 }

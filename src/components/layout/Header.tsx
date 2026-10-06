@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/lib/config";
 import { useCity } from "@/context/CityContext";
 import { trackEvent } from "@/lib/analytics";
@@ -55,11 +55,42 @@ const navLinks: NavLinkItem[] = [
   { label: "Careers", href: "/careers", mobileOnly: true },
 ];
 
+const TOP_EMAILS = [
+  "admin@advancecorporatesecurity.com",
+  "advancedcorporatesecurityj@gmail.com",
+];
+
 export default function Header() {
   const { currentCity, setIsCityModalOpen } = useCity();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [emailIndex, setEmailIndex] = useState(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = (label: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setActiveDropdown(label);
+  };
+
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 180);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setEmailIndex((prev) => (prev + 1) % TOP_EMAILS.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -87,40 +118,62 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="bg-navy text-white text-sm py-2 hidden md:block">
-        <div className="container-acs flex justify-between items-center">
-          <span className="text-gray-300">
-            India&apos;s Trusted Security &amp; Facility Management Since {siteConfig.foundedYear} | PSARA Licensed
-          </span>
-          <div className="flex items-center gap-6">
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="hover:text-gold transition-colors duration-200 flex items-center gap-1.5"
-              aria-label="Email us"
-            >
-              <svg className="w-4 h-4 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      {/* Top Bar — Exactly One Line, Slim Vertical Height */}
+      <div className="bg-[#071f43] text-white text-[11px] sm:text-xs py-1.5 border-b border-white/10 hidden md:block select-none">
+        <div className="container-acs flex items-center justify-between whitespace-nowrap overflow-hidden">
+          {/* Left items: Phones + Sliding Emails */}
+          <div className="flex items-center gap-2.5 sm:gap-3 lg:gap-4 shrink-0">
+            {/* Phones — Responsive display based on screen width */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <svg className="w-3.5 h-3.5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              {siteConfig.email}
-            </a>
-            <div className="flex items-center gap-2 text-xs lg:text-sm">
-              <svg className="w-4 h-4 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              {siteConfig.phones.map((p, idx) => (
-                <span key={p} className="flex items-center gap-2">
-                  {idx > 0 && <span className="text-gray-500">|</span>}
-                  <a
-                    href={`tel:${p.replace(/[^+\d]/g, "")}`}
-                    className="hover:text-gold transition-colors duration-200 font-medium"
-                    aria-label={`Call ${p}`}
-                  >
-                    {p}
-                  </a>
-                </span>
-              ))}
+              <a href="tel:+919339988999" className="hover:text-sky-300 transition-colors font-medium hidden 2xl:inline">
+                +91 93399 88999
+              </a>
+              <span className="text-white/30 font-light hidden 2xl:inline">|</span>
+              <a href="tel:+917980147044" className="hover:text-sky-300 transition-colors font-medium hidden xl:inline">
+                +91 79801 47044
+              </a>
+              <span className="text-white/30 font-light hidden xl:inline">|</span>
+              <a href="tel:+919477006681" className="hover:text-sky-300 transition-colors font-medium">
+                +91 94770 06681
+              </a>
             </div>
+
+            <span className="text-white/30 font-light">|</span>
+
+            {/* Email with smooth vertical slide animation */}
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <div className="relative h-4 overflow-hidden w-[220px] sm:w-[245px] xl:w-[265px]">
+                <div
+                  className="transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateY(-${emailIndex * 16}px)` }}
+                >
+                  {TOP_EMAILS.map((email) => (
+                    <div key={email} className="h-4 flex items-center">
+                      <a
+                        href={`mailto:${email}`}
+                        className="hover:text-sky-300 transition-colors font-medium truncate block leading-none"
+                      >
+                        {email}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right item: Description with responsive length */}
+          <div className="flex items-center shrink-0 ml-3 sm:ml-4">
+            <span className="text-white/90 font-medium text-[11px] sm:text-xs">
+              <span className="hidden xl:inline">India&apos;s Trusted Security &amp; Facility Management Since 2000 | </span>
+              <span>PSARA Licensed</span>
+            </span>
           </div>
         </div>
       </div>
@@ -138,61 +191,106 @@ export default function Header() {
           className="container-acs flex items-center justify-between h-20 sm:h-22 md:h-24"
           aria-label="Main navigation"
         >
-          {/* Logo (Responsive, crystal-clear, zero mobile overflow) */}
-          <Link href="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="ACS Home">
-            <div className="relative h-9 sm:h-13 md:h-16 w-28 sm:w-44 md:w-60 lg:w-64 xl:w-72 transform group-hover:scale-[1.02] transition-transform duration-200">
-              <Image
-                src="/images/acs-official-logo.avif"
-                alt={`${siteConfig.name} Logo`}
-                fill
-                className="object-contain object-left"
-                priority
-                sizes="(max-width: 480px) 120px, (max-width: 640px) 160px, (max-width: 1024px) 240px, 320px"
-              />
-            </div>
+          {/* Logo — Tightly wrapped to exact image bounds with comfortable gap before Home */}
+          <Link
+            href="/"
+            className="inline-flex items-center shrink-0 group focus:outline-none mr-5 xl:mr-7 2xl:mr-9"
+            aria-label="ACS Home"
+          >
+            <Image
+              src="/images/acs-official-logo.avif"
+              alt={`${siteConfig.name} Logo`}
+              width={1313}
+              height={536}
+              className="h-10 sm:h-12 md:h-13 lg:h-14 w-auto object-contain block transform group-hover:scale-[1.02] transition-transform duration-200"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav Links (Visible from xl: 1280px breakpoint) */}
-          <ul className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5" role="list">
-            {navLinks.filter((link) => !link.mobileOnly).map((link) => (
-              <li
-                key={link.href}
-                className="relative group"
-                onMouseEnter={() => link.children && setActiveDropdown(link.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link
-                  href={link.href}
-                  className="px-2 xl:px-2.5 2xl:px-3 py-2 rounded font-roboto font-500 text-[13px] xl:text-[13.5px] 2xl:text-sm text-gray-700 hover:text-navy hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1 whitespace-nowrap"
-                  aria-haspopup={link.children ? "true" : undefined}
+          <ul className="hidden xl:flex items-center gap-0.5 2xl:gap-1" role="list">
+            {navLinks.filter((link) => !link.mobileOnly).map((link) => {
+              const hasDropdown = Boolean(link.children && link.children.length > 0);
+              const isOpen = activeDropdown === link.label;
+
+              return (
+                <li
+                  key={link.href}
+                  className="relative py-2"
+                  onMouseEnter={() => hasDropdown && handleMouseEnter(link.label)}
+                  onMouseLeave={() => hasDropdown && handleMouseLeave()}
                 >
-                  {link.label}
-                  {link.children && (
-                    <svg className="w-3.5 h-3.5 text-gold transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  )}
-                </Link>
-                {link.children && activeDropdown === link.label && (
-                  <ul
-                    className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-[var(--shadow-card-hover)] border border-gray-100 py-2 z-50 animate-fade-in"
-                    role="menu"
+                  <Link
+                    href={link.href}
+                    className="relative px-2 xl:px-2.5 2xl:px-3 py-1.5 font-roboto font-semibold text-[13px] 2xl:text-sm text-slate-700 hover:text-[#0d2458] transition-colors duration-200 flex items-center gap-1 whitespace-nowrap group/link cursor-pointer"
+                    aria-haspopup={hasDropdown ? "true" : undefined}
+                    aria-expanded={hasDropdown ? isOpen : undefined}
                   >
-                    {link.children.map((child) => (
-                      <li key={child.href} role="none">
-                        <Link
-                          href={child.href}
-                          className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-off-white hover:text-navy border-l-2 border-transparent hover:border-gold transition-all duration-150 mx-2 rounded"
-                          role="menuitem"
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+                    <span>{link.label}</span>
+
+                    {/* Dropdown Chevron (> rotated down vertically) */}
+                    {hasDropdown && (
+                      <svg
+                        className={`w-3.5 h-3.5 text-slate-400 group-hover/link:text-[#0d2458] transition-transform duration-200 shrink-0 ${
+                          isOpen ? "rotate-180 text-[#0052cc]" : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
+
+                    {/* Animated Underline */}
+                    <span
+                      className={`absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#0052cc] rounded-full transition-transform duration-300 ease-out origin-left pointer-events-none ${
+                        isOpen ? "scale-x-100" : "scale-x-0 group-hover/link:scale-x-100"
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </Link>
+
+                  {/* Dropdown Menu Container — Seamless hover bridge + shadow */}
+                  {hasDropdown && link.children && (
+                    <div
+                      className={`absolute top-full left-0 pt-2 w-64 z-50 transition-all duration-200 ease-out ${
+                        isOpen
+                          ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                          : "opacity-0 invisible translate-y-1.5 pointer-events-none"
+                      }`}
+                      onMouseEnter={() => handleMouseEnter(link.label)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <ul
+                        className="bg-white rounded-xl shadow-[0_12px_36px_-6px_rgba(13,36,88,0.18)] border border-slate-100 py-2.5 overflow-hidden ring-1 ring-black/5"
+                        role="menu"
+                      >
+                        {link.children.map((child) => (
+                          <li key={child.href} role="none">
+                            <Link
+                              href={child.href}
+                              onClick={() => {
+                                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                                setActiveDropdown(null);
+                              }}
+                              className="block px-4 py-2.5 text-[13px] font-medium text-slate-700 hover:bg-[#edf6fd] hover:text-[#0052cc] border-l-2 border-transparent hover:border-[#0052cc] transition-all duration-150 mx-1.5 rounded-md"
+                              role="menuitem"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           {/* Right Actions: City Selector + CTA + Mobile Hamburger */}
@@ -272,17 +370,17 @@ export default function Header() {
       {mobileOpen && (
         <div
           id="mobile-nav"
-          className="fixed inset-0 z-40 flex xl:hidden"
+          className="fixed inset-0 z-[100] flex xl:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"
         >
           <div
-            className="absolute inset-0 bg-black/50"
+            className="absolute inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileOpen(false)}
             aria-hidden="true"
           />
-          <nav className="relative w-80 max-w-full bg-white h-full overflow-y-auto shadow-2xl flex flex-col">
+          <nav className="relative w-80 max-w-[85vw] bg-white h-full overflow-y-auto shadow-2xl flex flex-col animate-in slide-in-from-left duration-200">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center py-1">
                 <div className="relative h-14 w-52">

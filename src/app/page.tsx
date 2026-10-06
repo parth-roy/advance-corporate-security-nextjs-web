@@ -6,6 +6,8 @@ import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/sc
 import HeroSection from "@/components/home/HeroSection";
 import DynamicGeoFactBox from "@/components/home/DynamicGeoFactBox";
 import CoreServicesAccordionGrid from "@/components/home/CoreServicesAccordionGrid";
+import IntegratedSolutionsSection from "@/components/home/IntegratedSolutionsSection";
+import CorporateTrustSuite from "@/components/home/CorporateTrustSuite";
 import DynamicHomeFaqs from "@/components/home/DynamicHomeFaqs";
 import ClientMarquee from "@/components/common/ClientMarquee";
 
@@ -69,14 +71,7 @@ const homeFaqs = [
   },
 ];
 
-const whyACS = [
-  { title: "PSARA Licensed", desc: "All security deployments strictly comply with the Private Security Agencies Regulation Act — India's gold standard for security firms.", icon: "🛡️" },
-  { title: "25+ Years Experience", desc: "Founded in 2000, we bring unmatched expertise and a proven track record to every contract across India.", icon: "🏆" },
-  { title: "ISO 9001:2015 Certified", desc: "Certified quality management ensuring consistent, high-standard service delivery in every city we operate.", icon: "✅" },
-  { title: "Government Empanelled", desc: "Trusted by Central & State Government, Defence establishments (IAF, BSF), and PSUs across India.", icon: "🏛️" },
-  { title: "24×7 Control Room", desc: "Round-the-clock deployment with night patrolling, CCTV monitoring, and emergency response teams.", icon: "🕐" },
-  { title: "Full Statutory Compliance", desc: "Complete PF, ESIC, Minimum Wage, Contract Labour Act compliance — zero legal exposure for your organization.", icon: "📋" },
-];
+
 
 
 
@@ -100,13 +95,17 @@ export default function HomePage() {
       {/* ===== NEW HERO SECTION (replaces HeroSlider) ===== */}
       <HeroSection />
 
-      {/* ===== DYNAMIC GEO FACT BOX (Hyper-local to Selected City) ===== */}
-      <DynamicGeoFactBox />
+      {/* ===== CORE SERVICES ACCORDION GRID (Commented out per user request) ===== */}
+      {/* <CoreServicesAccordionGrid /> */}
 
-      {/* ===== ACCENTURE-STYLE CORE SERVICES ACCORDION GRID (White Mode) ===== */}
-      <CoreServicesAccordionGrid />
+      {/* ===== INTEGRATED SOLUTIONS SECTION (Image 2 Design: Our Services) ===== */}
+      <IntegratedSolutionsSection />
 
-      {/* ===== ABOUT STRIP ===== */}
+      {/* ===== CORPORATE TRUST & SOLUTIONS SUITE (Image 2 Design: Why Choose -> Industries -> Trusted Orgs -> Process -> CTA Banner) ===== */}
+      <CorporateTrustSuite />
+
+      {/* ===== ABOUT STRIP (Commented out per user request) ===== */}
+      {/*
       <section className="section-py bg-off-white" aria-labelledby="about-heading">
         <div className="container-acs">
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-center">
@@ -149,49 +148,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      */}
 
-      {/* ===== WHY CHOOSE US (White Mode - Fully Legible & Crisp Visuals) ===== */}
-      <section className="section-py bg-slate-50 border-y border-slate-200/80" aria-labelledby="why-heading">
-        <div className="container-acs">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="section-label">Why Choose ACS</p>
-            <h2 id="why-heading" className="text-navy font-roboto font-black text-2xl sm:text-3xl md:text-4xl mb-3">
-              The <span className="text-sky">ACS Advantage</span>
-            </h2>
-            <div className="divider-sky mx-auto mb-4" />
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-              Deploying India&apos;s most reliable, PSARA-licensed workforce with guaranteed statutory protection, 24×7 operational supervision, and zero compliance liability.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {whyACS.map((item) => (
-              <div
-                key={item.title}
-                className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-xs hover:border-sky-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="w-13 h-13 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-sky-100 transition-all duration-300 shrink-0">
-                    <span aria-hidden="true">{item.icon}</span>
-                  </div>
-                  <h3 className="font-roboto font-black text-navy text-lg sm:text-xl mb-2.5 group-hover:text-sky transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-                <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Verified Standard</span>
-                  </span>
-                  <span className="text-slate-400 group-hover:text-sky transition-colors text-sm font-bold">→</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ===== CLIENTS MARQUEE (MetroMitra-Style Infinite Sliding Cards with Pause on Hover) ===== */}
       <ClientMarquee />
@@ -199,29 +158,7 @@ export default function HomePage() {
       {/* ===== DYNAMIC FAQ SECTION (Hyper-local to Selected City) ===== */}
       <DynamicHomeFaqs />
 
-      {/* ===== CTA SECTION ===== */}
-      <section
-        className="section-py text-center"
-        style={{ background: "linear-gradient(135deg, var(--color-navy-dark), var(--color-navy-light))" }}
-        aria-labelledby="cta-heading"
-      >
-        <div className="container-acs">
-          <h2 id="cta-heading" className="text-white mb-2.5">
-            Ready to Partner with <span className="text-sky">India&apos;s Best</span>?
-          </h2>
-          <p className="text-gray-300 mb-5 max-w-xl mx-auto text-xs sm:text-sm">
-            Contact our team today for a free consultation and customised security, facility management, or manpower outsourcing solution tailored to your business.
-          </p>
-          <div className="flex flex-wrap gap-3.5 justify-center">
-            <Link href="/contact" className="btn-primary text-base px-6 py-3">
-              Get Free Consultation
-            </Link>
-            <Link href="/services" className="btn-secondary text-base px-6 py-3">
-              Explore Services
-            </Link>
-          </div>
-        </div>
-      </section>
+
     </>
   );
 }
