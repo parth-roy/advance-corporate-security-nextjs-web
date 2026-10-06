@@ -23,24 +23,44 @@ export default function ContactPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildBreadcrumbSchema(breadcrumbs)) }} />
 
       {/* Hero */}
-      <section className="bg-navy text-white py-14 sm:py-16 relative overflow-hidden">
+      <section className="bg-navy text-white py-12 md:py-16 relative overflow-hidden">
         <div className="container-acs relative z-10">
-          <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex items-center gap-2 text-sm text-gray-400" role="list">
-              <li><Link href="/" className="hover:text-gold transition-colors">Home</Link></li>
-              <li aria-hidden="true"><span>/</span></li>
-              <li className="text-gold" aria-current="page">Contact Us</li>
-            </ol>
-          </nav>
-          <h1 className="font-roboto font-900 text-white text-3xl md:text-5xl mb-4">
-            Contact <span className="text-gold">Us</span>
-          </h1>
-          <p className="text-gray-300 max-w-xl text-sm sm:text-base leading-relaxed">
-            Reach out to our team for a free consultation and customised security or facility management solution for your organisation.
-          </p>
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7">
+              <nav aria-label="Breadcrumb" className="mb-4">
+                <ol className="flex items-center gap-2 text-sm text-gray-400" role="list">
+                  <li><Link href="/" className="hover:text-gold transition-colors">Home</Link></li>
+                  <li aria-hidden="true"><span>/</span></li>
+                  <li className="text-gold" aria-current="page">Contact Us</li>
+                </ol>
+              </nav>
+              <h1 className="font-roboto font-900 text-white text-3xl md:text-5xl mb-4 leading-tight">
+                Contact <span className="text-gold">Us</span>
+              </h1>
+              <p className="text-gray-300 max-w-xl text-sm sm:text-base leading-relaxed mb-6">
+                Reach out to our team for a free consultation and customised security or facility management solution for your organisation.
+              </p>
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs text-sky-200 font-medium">
+                <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  24×7 Operations Desk
+                </span>
+                <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+                  PSARA &amp; ISO 9001:2015
+                </span>
+                <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                  Pan-India Mobilization
+                </span>
+              </div>
+            </div>
 
-          {/* Big Glossy 'Download Our Brochure' Button in Hero */}
-          <BrochureDownloadButton variant="hero" />
+            {/* Exact Same High-Converting Brochure Card as Contact Details */}
+            <div className="lg:col-span-5">
+              <BrochureDownloadButton variant="card" />
+            </div>
+          </div>
         </div>
       </section>
 

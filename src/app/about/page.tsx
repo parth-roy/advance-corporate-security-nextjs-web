@@ -225,7 +225,7 @@ export default function AboutPage() {
             <div className="md:col-span-1">
               <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl border-2 border-slate-200 bg-slate-50">
                 <Image
-                  src="/images/jai-gopal.jpg"
+                  src="/images/leader.jpg"
                   alt="Mr. Jai Gopal — Founder & Managing Director, Advance Corporate Security"
                   fill
                   className="object-cover object-top"

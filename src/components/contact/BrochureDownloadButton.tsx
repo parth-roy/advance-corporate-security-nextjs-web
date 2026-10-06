@@ -81,35 +81,12 @@ export default function BrochureDownloadButton({
     </button>
   );
 
-  // Variant A: Featured Hero Placement
-  if (variant === "hero") {
-    return (
-      <>
-        <div className={`mt-6 sm:mt-7 ${className}`}>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-            {renderGlossyButton("large")}
-
-            <div className="flex items-center gap-2 text-xs text-sky-200 font-medium px-1">
-              <CheckCircle2 className="w-4 h-4 text-gold shrink-0" />
-              <span>Full Service Catalog • PSARA &amp; ISO Credentials • Pan-India Portfolio</span>
-            </div>
-          </div>
-        </div>
-
-        <PdfViewerModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
-      </>
-    );
-  }
-
-  // Variant B: Featured Sidebar Card (Right column on Contact Page)
-  if (variant === "card") {
+  // Variant A & B: Featured Corporate Brochure Card (Responsive Hero or Sidebar Placement)
+  if (variant === "hero" || variant === "card") {
     return (
       <>
         <div
-          className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white p-6 shadow-xl border-2 border-gold/40 group ${className}`}
+          className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white p-5 sm:p-6 shadow-xl border-2 border-gold/40 group w-full ${className}`}
         >
           {/* Subtle gold decorative glow in the corner */}
           <div

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { X, Download, ExternalLink, FileText, ShieldCheck } from "lucide-react";
 
 interface PdfViewerModalProps {
@@ -16,9 +17,14 @@ export default function PdfViewerModal({
   pdfUrl = "/downloads/ACS-Company-Brochure.pdf",
   fileName = "ACS-Company-Brochure.pdf",
 }: PdfViewerModalProps) {
+  const [mounted, setMounted] = useState(false);
   const triggerElementRef = useRef<HTMLElement | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Capture trigger element before modal opens and restore on close
   useEffect(() => {
@@ -65,13 +71,11 @@ export default function PdfViewerModal({
         const lastElement = focusableElements[focusableElements.length - 1];
 
         if (e.shiftKey) {
-          // Shift + Tab: if on first element, wrap around to last
           if (document.activeElement === firstElement || document.activeElement === dialogRef.current) {
             e.preventDefault();
             lastElement.focus();
           }
         } else {
-          // Tab: if on last element, wrap around to first
           if (document.activeElement === lastElement) {
             e.preventDefault();
             firstElement.focus();
@@ -82,17 +86,23 @@ export default function PdfViewerModal({
 
     window.addEventListener("keydown", handleKeyDown);
     const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
     document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[120] flex items-center justify-center p-2 sm:p-4 md:p-6"
       role="dialog"
@@ -246,6 +256,7 @@ export default function PdfViewerModal({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
