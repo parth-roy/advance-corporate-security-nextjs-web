@@ -1,31 +1,38 @@
-import type { MetadataRoute } from "next";
+import type { MetadataRoute } from 'next';
+import { siteConfig } from '@/lib/config';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/admin/"],
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/_next/', '/admin/'],
       },
-      // Unblock modern AI answer engines (GEO/AEO strategy)
-      { userAgent: "GPTBot", allow: "/" },
-      { userAgent: "OAI-SearchBot", allow: "/" },
-      { userAgent: "PerplexityBot", allow: "/" },
-      { userAgent: "ClaudeBot", allow: "/" },
-      { userAgent: "Google-Extended", allow: "/" },
-      { userAgent: "Applebot", allow: "/" },
-      { userAgent: "Bingbot", allow: "/" },
+      // Explicitly allow all major AI crawlers
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'ChatGPT-User', allow: '/' },
+      { userAgent: 'OAI-SearchBot', allow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
+      { userAgent: 'anthropic-ai', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'Amazonbot', allow: '/' },
+      { userAgent: 'Applebot-Extended', allow: '/' },
+      { userAgent: 'Applebot', allow: '/' },
+      { userAgent: 'Bingbot', allow: '/' },
     ],
     sitemap: [
-      "https://advancecorporatesecurity.com/sitemap.xml",
-      "https://advancecorporatesecurity.com/sitemap-security.xml",
-      "https://advancecorporatesecurity.com/sitemap-facility.xml",
-      "https://advancecorporatesecurity.com/sitemap-manpower.xml",
-      "https://advancecorporatesecurity.com/sitemap-horticulture.xml",
-      "https://advancecorporatesecurity.com/sitemap-cities.xml",
-      "https://advancecorporatesecurity.com/sitemap-states.xml",
-      "https://advancecorporatesecurity.com/sitemap-core.xml",
+      `${siteConfig.url}/sitemap.xml`,
+      `${siteConfig.url}/sitemap-security.xml`,
+      `${siteConfig.url}/sitemap-facility.xml`,
+      `${siteConfig.url}/sitemap-manpower.xml`,
+      `${siteConfig.url}/sitemap-horticulture.xml`,
+      `${siteConfig.url}/sitemap-cities.xml`,
+      `${siteConfig.url}/sitemap-states.xml`,
+      `${siteConfig.url}/sitemap-core.xml`,
+      `${siteConfig.url}/sitemap-west-bengal.xml`,
     ],
+    host: siteConfig.url,
   };
 }

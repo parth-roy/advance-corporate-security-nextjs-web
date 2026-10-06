@@ -13,7 +13,8 @@ import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
 import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
-import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, serializeJsonLd } from "@/lib/schema";
+import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, buildWBServiceAreaSchema, buildWBIndustrialHubSchema, serializeJsonLd } from "@/lib/schema";
+import { getWBHubsForCity, getWBWageZone } from "@/lib/wb-industrial-hubs";
 import CityMap from "@/components/common/CityMap";
 import ClientMarquee from "@/components/common/ClientMarquee";
 import EvidenceTrustEngine from "@/components/common/EvidenceTrustEngine";
@@ -54,13 +55,15 @@ export async function generateMetadata({
     : `Reliable ${service.name} in ${cityName}, ${state} | PSARA Licensed`;
   const title = rawTitle.replace(/\s*[|\-]\s*ACS\s*$/i, "").trim();
 
-  const description = service.metaDescTemplate
-    ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
-    : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Security (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`;
 
   const url = `${siteConfig.url}/services/${slug}/${citySlug}`;
 
-  const keywords = service.keywords
+
+  // West Bengal enrichment: wage zone signal in meta for B2B CTR lift
+  const isWestBengal = cityObj.state === "West Bengal";
+  const wbWageZone = isWestBengal ? getWBWageZone(citySlug) : null;
+
+  const baseKeywords = service.keywords
     ? service.keywords.map((k) => k.replace(/\[City\]/g, cityName))
     : [
         `${service.name} in ${cityName}`,
@@ -69,6 +72,31 @@ export async function generateMetadata({
         `facility management ${cityName}`,
         `contract labor in ${cityName}`,
       ];
+
+  const wbKeywords = isWestBengal
+    ? [
+        `security agency in ${cityName} West Bengal`,
+        `security guard company ${cityName}`,
+        `housekeeping services ${cityName}`,
+        `manpower supply ${cityName} West Bengal`,
+        `PSARA licensed security company West Bengal`,
+        `contract labour ${cityName} West Bengal minimum wages`,
+        wbWageZone ? `West Bengal Zone ${wbWageZone} minimum wage compliance ${cityName}` : "",
+        `facility management company ${cityName} West Bengal`,
+        `bouncers security ${cityName}`,
+        `lady security guard ${cityName} West Bengal`,
+      ].filter(Boolean)
+    : [];
+
+  const keywords = [...baseKeywords, ...wbKeywords];
+
+  const description = isWestBengal && wbWageZone
+    ? (service.metaDescTemplate
+        ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
+        : `Deploy PSARA-licensed ${service.name.toLowerCase()} in ${cityName}, West Bengal — 100% compliant with WB Minimum Wages Act Zone ${wbWageZone} & Labour Welfare Fund. ISO 9001:2015 certified. 24×7 deployment. Free site survey. Get a B2B quote.`)
+    : (service.metaDescTemplate
+        ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
+        : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Security (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`);
 
   // Tier-based indexing strategy (anti-Scaled Content Abuse)
   // Tier 1–3: sufficient search volume → inherit layout default (index: true)
@@ -111,6 +139,11 @@ export default async function ServiceCityPage({
 
   const { name: cityName, state, stateSlug } = cityObj;
   const pageUrl = `${siteConfig.url}/services/${slug}/${citySlug}`;
+
+  // West Bengal enrichment: industrial hubs + wage zone
+  const isWestBengal = state === "West Bengal";
+  const wbHubs = isWestBengal ? getWBHubsForCity(citySlug) : [];
+  const wbWageZone = isWestBengal ? getWBWageZone(citySlug) : null;
 
   const h1 = service.h1Template
     ? service.h1Template.replace(/\[City\]/g, cityName)
@@ -167,12 +200,23 @@ export default async function ServiceCityPage({
   // Other related services
   const relatedServices = ACS_SERVICES.filter((s) => s.slug !== service.slug).slice(0, 4);
 
+  // West Bengal — advanced SAB-model schemas (conditional, zero impact on other states)
+  const wbServiceAreaSchema = isWestBengal
+    ? buildWBServiceAreaSchema({ cityName, stateName: state, citySlug, serviceName: service.name, wageZone: wbWageZone ?? undefined })
+    : null;
+  const wbHubSchema = isWestBengal && wbHubs.length > 0
+    ? buildWBIndustrialHubSchema(wbHubs)
+    : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildBreadcrumbSchema(breadcrumbs)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(localBusinessSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />}
+      {/* WB-only: SAB service area + industrial hub geospatial signals */}
+      {wbServiceAreaSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(wbServiceAreaSchema) }} />}
+      {wbHubSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(wbHubSchema) }} />}
 
       {/* ── HERO BANNER — Authoritative B2B Enterprise Header ── */}
       <section className="bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white py-12 md:py-16 relative overflow-hidden">
@@ -295,6 +339,41 @@ export default async function ServiceCityPage({
           </div>
         </div>
       </section>
+
+      {/* ── WB INDUSTRIAL CORRIDORS (West Bengal only — Anti-Doorway Enrichment) ── */}
+      {isWestBengal && wbHubs.length > 0 && (
+        <section className="py-6 bg-gradient-to-r from-[#f0f7ff] to-[#f8fafc] border-b border-sky-100" aria-label="West Bengal industrial deployment corridors">
+          <div className="container-acs">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-sky text-base">🏭</span>
+              <p className="text-xs font-bold text-navy uppercase tracking-wider font-roboto">
+                ACS {service.shortName} — Active Deployment in {cityName} Industrial Corridors
+              </p>
+              <span className="ml-auto text-[10px] text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full font-semibold shrink-0">West Bengal PSARA Zone</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {wbHubs.map((hub) => (
+                <div key={hub.name} className="bg-white rounded-xl p-3.5 border border-sky-100 shadow-2xs hover:border-sky-300 transition-all">
+                  <div className="flex items-start justify-between gap-1 mb-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">{hub.type}</span>
+                    <span className="text-[10px] text-slate-400 font-medium shrink-0">📍 {hub.district}</span>
+                  </div>
+                  <h3 className="font-roboto font-bold text-navy text-xs leading-snug">{hub.name}</h3>
+                  <p className="text-slate-500 text-[11px] mt-1">
+                    24×7 statutory-compliant {service.shortName.toLowerCase()} coverage available
+                    {wbWageZone && <> — WB Zone <strong>{wbWageZone}</strong> wages</>}.
+                  </p>
+                </div>
+              ))}
+            </div>
+            {wbWageZone && (
+              <p className="text-[11px] text-slate-500 mt-3 border-t border-sky-100 pt-2">
+                ✅ All ACS personnel deployed in {cityName} are paid per the <strong>West Bengal Minimum Wages Act — Zone {wbWageZone}</strong> notification, with LWF contributions deposited to the West Bengal Labour Welfare Fund Board. Full statutory audit trail available on demand.
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* ── MAIN CONTENT & FEATURES ── */}
       <section className="section-py bg-white">

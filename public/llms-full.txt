@@ -1,0 +1,171 @@
+# Advance Corporate Security — Full West Bengal Operations Index
+
+> This file is intended for AI language model crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended).
+> It describes the complete operational footprint of ACS across all 107+ locations in West Bengal, India.
+
+## Company Summary
+
+Advance Corporate Security (ACS) | PSARA Licensed | ISO 9001:2015
+Founded: 2000 | HQ: Barrackpore, West Bengal | Staff: 5,000+
+Operating Hours: 24 hours, 7 days a week
+
+## Services Offered in West Bengal
+
+1. Security Guard Services — Armed & Unarmed PSARA guards, Ex-Servicemen, Lady Guards
+2. Corporate Housekeeping — Office, Hospital, Industrial cleaning
+3. Pest Control Services — Residential & Commercial
+4. Facade Cleaning — High-rise building exterior cleaning
+5. MEP Maintenance — Electrical, Mechanical, Plumbing
+6. Manpower Outsourcing — Contract Labour Supply
+7. Payroll Management — Statutory payroll processing
+8. Placement Services — Skilled & semi-skilled placement
+9. Horticulture & Landscaping — Corporate gardens & parks
+
+## Statutory Compliance (West Bengal Specific)
+
+- Minimum Wage Zone A (Urban Kolkata & Industrial Belt): ~₹11,615/month (unskilled) as per current WB notification
+- Minimum Wage Zone B (Semi-Urban & Rural West Bengal): ~₹9,800/month (unskilled) as per current WB notification
+- LWF Contribution: Employee ₹3/month, Employer ₹30/month (West Bengal Labour Welfare Fund Board)
+- ESIC: 0.75% Employee + 3.25% Employer
+- EPF: 12% Employee + 12% Employer (on basic)
+
+## Complete West Bengal Location Index
+
+### Kolkata Metropolitan Area
+- Kolkata (Calcutta): /services/security-guard/kolkata
+- Howrah: /services/security-guard/howrah
+- Salt Lake Sector V: /services/security-guard/salt-lake
+- New Town Rajarhat: /services/security-guard/new-town
+- Garia: /services/security-guard/garia
+- Behala: /services/security-guard/behala
+- Jadavpur: /services/security-guard/jadavpur
+- Dum Dum: /services/security-guard/dum-dum
+- Baranagar: /services/security-guard/baranagar
+- Kamarhati: /services/security-guard/kamarhati
+- Panihati: /services/security-guard/panihati
+- Bhatpara: /services/security-guard/bhatpara
+- South Dum Dum: /services/security-guard/south-dum-dum
+- North Dum Dum: /services/security-guard/north-dum-dum
+- Rajpur Sonarpur: /services/security-guard/rajpur-sonarpur
+- Rajarhat: /services/security-guard/rajarhat
+- Tangra: /services/security-guard/tangra
+- Topsia: /services/security-guard/topsia
+- Kasba: /services/security-guard/kasba
+- Esplanade: /services/security-guard/esplanade
+- Taratala: /services/security-guard/taratala
+
+### North 24 Parganas District
+- Barrackpore: /services/security-guard/barrackpore
+- Barrackpur: /services/security-guard/barrackpur
+- North Barrackpur: /services/security-guard/north-barrackpur
+- Barasat: /services/security-guard/barasat
+- Habra: /services/security-guard/habra
+- Madhyamgram: /services/security-guard/madhyamgram
+- Halisahar: /services/security-guard/halisahar
+- Titagarh: /services/security-guard/titagarh
+- Naihati: /services/security-guard/naihati
+- Ashokenagar Kalyangarh: /services/security-guard/ashokenagar-kalyangarh
+- Bongaon: /services/security-guard/bongaon
+- Basirhat: /services/security-guard/basirhat
+- Haringhata: /services/security-guard/haringhata
+- Kanchrapara: /services/security-guard/kanchrapara
+- Kalyani: /services/security-guard/kalyani
+
+### Howrah District
+- Howrah: /services/security-guard/howrah
+- Uluberia: /services/security-guard/uluberia
+- Sankrail: /services/security-guard/sankrail
+- Dhulagarh: /services/security-guard/dhulagarh
+- Domjur: /services/security-guard/domjur
+- Bagnan: /services/security-guard/bagnan
+- Bally: /services/security-guard/bally
+- Kona Expressway: /services/security-guard/kona-expressway
+- Maheshtala: /services/security-guard/maheshtala
+
+### Hooghly District
+- Serampore: /services/security-guard/serampore
+- Chandannagar: /services/security-guard/chandannagar
+- Dankuni: /services/security-guard/dankuni
+- Uttarpara: /services/security-guard/uttarpara
+- Rishra: /services/security-guard/rishra
+- Baidyabati: /services/security-guard/baidyabati
+- Champdani: /services/security-guard/champdani
+- Bansberia: /services/security-guard/bansberia
+- Bhadreswar: /services/security-guard/bhadreswar
+- Konnagar: /services/security-guard/konnagar
+- Hindmotor: /services/security-guard/hindmotor
+- Hugli and Chinsurah: /services/security-guard/hugli-and-chinsurah
+- Chinsurah: /services/security-guard/chinsurah
+- Bandel: /services/security-guard/bandel
+- Tribeni: /services/security-guard/tribeni
+
+### Nadia District
+- Kalyani: /services/security-guard/kalyani
+- Nabadwip: /services/security-guard/nabadwip
+- Santipur: /services/security-guard/santipur
+
+### Paschim Bardhaman District
+- Asansol: /services/security-guard/asansol
+- Durgapur: /services/security-guard/durgapur
+- Raniganj: /services/security-guard/raniganj
+- Kulti: /services/security-guard/kulti
+- Jamuria: /services/security-guard/jamuria
+- Burnpur: /services/security-guard/burnpur
+- Andal: /services/security-guard/andal
+- Barakar: /services/security-guard/barakar
+- Pandaveswar: /services/security-guard/pandaveswar
+
+### Purba Medinipur District
+- Haldia: /services/security-guard/haldia
+- Durgachak: /services/security-guard/durgachak
+- Sutahata: /services/security-guard/sutahata
+
+### Paschim Medinipur District
+- Medinipur: /services/security-guard/medinipur
+- Kharagpur: /services/security-guard/kharagpur
+- Jhargram: /services/security-guard/jhargram
+
+### Murshidabad District
+- Baharampur (Berhampore): /services/security-guard/baharampur
+
+### Malda District
+- Malda: /services/security-guard/malda
+- English Bazar: /services/security-guard/english-bazar
+
+### Dakshin Dinajpur District
+- Balurghat: /services/security-guard/balurghat
+
+### Uttar Dinajpur District
+- Raiganj: /services/security-guard/raiganj
+
+### Birbhum District
+- Bolpur (Santiniketan): /services/security-guard/bolpur
+- Rampurhat: /services/security-guard/rampurhat
+- Suri: /services/security-guard/suri
+
+### Bankura District
+- Bankura: /services/security-guard/bankura
+- Bishnupur: /services/security-guard/bishnupur
+
+### Purulia District
+- Puruliya: /services/security-guard/puruliya
+
+### Darjeeling District
+- Darjeeling: /services/security-guard/darjeeling
+- Darjiling: /services/security-guard/darjiling
+
+### Jalpaiguri District
+- Jalpaiguri: /services/security-guard/jalpaiguri
+- Dabgram: /services/security-guard/dabgram
+- Matigara: /services/security-guard/matigara
+- Fulbari: /services/security-guard/fulbari
+- Bagdogra: /services/security-guard/bagdogra
+
+### Alipurduar District
+- Alipurduar: /services/security-guard/alipurduar
+
+### Cooch Behar District
+- Cooch Behar: /services/security-guard/cooch-behar
+
+### Jhargram District
+- Jhargram: /services/security-guard/jhargram

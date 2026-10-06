@@ -382,3 +382,125 @@ export function buildCityLocalBusinessSchema({
     },
   };
 }
+
+// ============================================================
+// WB-Specific Schema Enhancements
+// Service Area Business model (no physical address per city)
+// with West Bengal statutory compliance signals
+// ============================================================
+
+/**
+ * SAB-model LocalBusiness schema for WB city/service pages.
+ * Uses areaServed instead of a physical address to accurately represent
+ * a service-area business operating across West Bengal.
+ * Embeds WB-specific statutory compliance knowsAbout signals for
+ * PSARA, Minimum Wages Act Zones, and LWF.
+ */
+export function buildWBServiceAreaSchema({
+  cityName,
+  stateName,
+  citySlug,
+  serviceName,
+  wageZone,
+}: {
+  cityName: string;
+  stateName: string;
+  citySlug: string;
+  serviceName?: string;
+  wageZone?: 'A' | 'B';
+}) {
+  const pageUrl = serviceName
+    ? `${siteConfig.url}/services/${serviceName.toLowerCase().replace(/\s+/g, '-')}/${citySlug}`
+    : `${siteConfig.url}/location/${citySlug}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'SecurityService'],
+    '@id': `${pageUrl}#servicearea`,
+    name: serviceName
+      ? `Advance Corporate Security — ${serviceName} in ${cityName}`
+      : `Advance Corporate Security — ${cityName} Service Hub`,
+    url: pageUrl,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    priceRange: '₹₹',
+    // No physical address — we use ServiceArea instead (SAB model)
+    areaServed: {
+      '@type': 'City',
+      name: cityName,
+      containedInPlace: {
+        '@type': 'State',
+        name: stateName,
+        containedInPlace: {
+          '@type': 'Country',
+          name: 'India',
+        },
+      },
+    },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cityName + ', West Bengal, India')}`,
+    knowsAbout: [
+      'PSARA License West Bengal Jurisdiction',
+      `West Bengal Minimum Wages Act Zone ${wageZone || 'A'} Compliance`,
+      'West Bengal Labour Welfare Fund (LWF) Statutory Compliance',
+      'Contract Labour (Regulation & Abolition) Act 1970',
+      'West Bengal Shops and Establishments Act',
+      'ESIC & PF Statutory Deposit Management',
+    ],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'PSARA License — West Bengal Jurisdiction',
+        credentialCategory: 'Government Security Regulatory License',
+        recognizedBy: {
+          '@type': 'GovernmentOrganization',
+          name: 'Controlling Authority, Private Security Agencies, West Bengal',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'ISO 9001:2015 Quality Management System',
+        credentialCategory: 'Quality Management Certification',
+      },
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  };
+}
+
+/**
+ * ItemList schema representing ACS deployment corridors near a city.
+ * Each hub is a Place with GeoCoordinates for rich geospatial signals.
+ */
+export function buildWBIndustrialHubSchema(
+  hubs: { name: string; type: string; district: string; lat: number; lng: number }[]
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'ACS West Bengal Industrial Deployment Corridors',
+    description:
+      'Key industrial hubs and commercial corridors served by Advance Corporate Security in West Bengal',
+    itemListElement: hubs.map((hub, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Place',
+        name: hub.name,
+        description: `${hub.type} — ${hub.district} District, West Bengal`,
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: hub.lat,
+          longitude: hub.lng,
+        },
+        containedInPlace: {
+          '@type': 'State',
+          name: 'West Bengal',
+        },
+      },
+    })),
+  };
+}

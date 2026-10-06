@@ -158,8 +158,31 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-horticulture.xml"), generateUrlXml(horticultureUrls), "utf8");
   console.log(`✅ sitemap-horticulture.xml generated (${horticultureUrls.length} URLs)`);
 
-  // 8. Master Index (sitemap.xml)
+  // 8. West Bengal Priority Sitemap (State Dominance Cluster)
+  const wbCities = ACS_CITIES.filter((c) => c.state === "West Bengal");
+  const wbUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const city of wbCities) {
+    wbUrls.push({
+      loc: `${BASE_URL}/location/${city.slug}`,
+      priority: city.tier === 1 ? "0.95" : city.tier === 2 ? "0.9" : "0.75",
+      changefreq: "weekly",
+    });
+  }
+  for (const s of ACS_SERVICES.filter((svc) => !svc.parentSlug)) {
+    for (const city of wbCities) {
+      wbUrls.push({
+        loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
+        priority: city.tier === 1 ? "0.9" : city.tier === 2 ? "0.85" : "0.7",
+        changefreq: "weekly",
+      });
+    }
+  }
+  await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-west-bengal.xml"), generateUrlXml(wbUrls), "utf8");
+  console.log(`✅ sitemap-west-bengal.xml generated (${wbUrls.length} URLs for all 108 WB cities)`);
+
+  // 9. Master Index (sitemap.xml)
   const sitemapFiles = [
+    "sitemap-west-bengal.xml",
     "sitemap-security.xml",
     "sitemap-facility.xml",
     "sitemap-manpower.xml",
