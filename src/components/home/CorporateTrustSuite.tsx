@@ -15,6 +15,7 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Phone } from "lucide-react";
+import ClientMarquee from "@/components/common/ClientMarquee";
 
 export default function CorporateTrustSuite() {
   return (
@@ -252,6 +253,20 @@ export default function CorporateTrustSuite() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          CLIENTS ANIMATION MARQUEE (Animated cards only)
+          Moved right after Industries We Serve per user request
+      ════════════════════════════════════════════════════════ */}
+      <section className="bg-white pb-5 sm:pb-6 overflow-hidden" aria-label="Our Trusted Clients & Partners">
+        <ClientMarquee
+          showHeading={false}
+          showTrustBadges={false}
+          showCta={false}
+          bgClass="bg-white"
+          pyClass="py-0"
+        />
       </section>
 
       {/* ════════════════════════════════════════════════════════

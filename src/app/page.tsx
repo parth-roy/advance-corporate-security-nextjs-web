@@ -152,8 +152,8 @@ export default function HomePage() {
 
 
 
-      {/* ===== CLIENTS MARQUEE (MetroMitra-Style Infinite Sliding Cards with Pause on Hover) ===== */}
-      <ClientMarquee />
+      {/* ===== CLIENTS MARQUEE (Moved right after Industries We Serve per user request) ===== */}
+      {/* <ClientMarquee /> */}
 
       {/* ===== DYNAMIC FAQ SECTION (Hyper-local to Selected City) ===== */}
       <DynamicHomeFaqs />

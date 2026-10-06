@@ -9,6 +9,8 @@ interface ClientMarqueeProps {
   variant?: "full" | "compact";
   bgClass?: string;
   showCta?: boolean;
+  showTrustBadges?: boolean;
+  pyClass?: string;
 }
 
 function ClientCard({ client }: { client: ACSClient }) {
@@ -45,18 +47,22 @@ function ClientCard({ client }: { client: ACSClient }) {
 }
 
 export default function ClientMarquee({
-  showHeading = true,
+  showHeading = false,
   variant = "full",
   bgClass = "bg-off-white",
   showCta = true,
+  showTrustBadges = true,
+  pyClass,
 }: ClientMarqueeProps) {
   // Seamless loop with doubled array (moves -50%)
   const row1Items = [...CLIENTS_ROW_1, ...CLIENTS_ROW_1];
   const row2Items = [...CLIENTS_ROW_2, ...CLIENTS_ROW_2];
 
+  const paddingClass = pyClass !== undefined ? pyClass : (showHeading ? "section-py" : "py-3 sm:py-4");
+
   return (
     <section
-      className={`section-py ${bgClass} overflow-hidden relative`}
+      className={`${paddingClass} ${bgClass} overflow-hidden relative`}
       aria-labelledby="clients-marquee-heading"
     >
       {/* Background Subtle Accent Gradients */}
@@ -65,8 +71,10 @@ export default function ClientMarquee({
         <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-amber-50/40 rounded-full blur-3xl" />
       </div>
 
-      <div className="container-acs relative z-10">
-        {showHeading && (
+      {/* ===== HEADER PORTION (Commented out per user request - media_1791290499366.png) ===== */}
+      {/*
+      {showHeading && (
+        <div className="container-acs relative z-10">
           <div className="text-center mb-6 sm:mb-8">
             <div className="inline-flex items-center gap-1.5 badge-sky mb-2">
               <span className="text-xs">⭐</span>
@@ -80,8 +88,9 @@ export default function ClientMarquee({
               Proudly protecting and managing premier installations for Defence forces, Government Ministries, PSUs, Apex Research bodies, and Blue-Chip Conglomerates nationwide.
             </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+      */}
 
       {/* Marquee Wrapper with Smooth Edge Fade */}
       <div className="relative w-full overflow-hidden group/marquee">
@@ -112,41 +121,45 @@ export default function ClientMarquee({
       </div>
 
       {/* Trust Badges & Action Buttons */}
-      <div className="container-acs relative z-10 mt-6 sm:mt-8">
-        {/* Trust Badges Strip */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-6 text-xs text-gray-600 font-medium">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
-            <span className="text-gold font-bold">✓</span> PSARA Licensed (Multi-State)
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
-            <span className="text-sky font-bold">✓</span> ISO 9001:2015 Certified
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
-            <span className="text-green-600 font-bold">✓</span> 100% PF &amp; ESIC Compliant
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
-            <span className="text-navy font-bold">✓</span> 25+ Years of Service
-          </span>
-        </div>
+      {(showTrustBadges || showCta) && (
+        <div className="container-acs relative z-10 mt-6 sm:mt-8">
+          {/* Trust Badges Strip */}
+          {showTrustBadges && (
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-6 text-xs text-gray-600 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
+                <span className="text-gold font-bold">✓</span> PSARA Licensed (Multi-State)
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
+                <span className="text-sky font-bold">✓</span> ISO 9001:2015 Certified
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
+                <span className="text-green-600 font-bold">✓</span> 100% PF &amp; ESIC Compliant
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-gray-200 shadow-2xs">
+                <span className="text-navy font-bold">✓</span> 25+ Years of Service
+              </span>
+            </div>
+          )}
 
-        {/* CTA Buttons */}
-        {showCta && (
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/clients"
-              className="btn-primary text-xs sm:text-sm px-6 py-2.5 shadow-md"
-            >
-              View Full Client Portfolio →
-            </Link>
-            <Link
-              href="/contact"
-              className="btn-navy text-xs sm:text-sm px-6 py-2.5"
-            >
-              Request Corporate Quote
-            </Link>
-          </div>
-        )}
-      </div>
+          {/* CTA Buttons */}
+          {showCta && (
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/clients"
+                className="btn-primary text-xs sm:text-sm px-6 py-2.5 shadow-md"
+              >
+                View Full Client Portfolio →
+              </Link>
+              <Link
+                href="/contact"
+                className="btn-navy text-xs sm:text-sm px-6 py-2.5"
+              >
+                Request Corporate Quote
+              </Link>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }
