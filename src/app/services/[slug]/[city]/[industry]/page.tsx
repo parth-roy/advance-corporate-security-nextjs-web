@@ -49,10 +49,11 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<Params>;
-  searchParams: Promise<SearchParams>;
+  searchParams?: Promise<SearchParams>;
 }): Promise<Metadata> {
   const { slug, city: citySlug, industry: industrySlug } = await params;
-  const { intent: intentQuery } = await searchParams;
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const intentQuery = resolvedSearchParams?.intent;
 
   const service = getServiceBySlug(slug);
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
@@ -103,10 +104,11 @@ export default async function ServiceCityIndustryPage({
   searchParams,
 }: {
   params: Promise<Params>;
-  searchParams: Promise<SearchParams>;
+  searchParams?: Promise<SearchParams>;
 }) {
   const { slug, city: citySlug, industry: industrySlug } = await params;
-  const { intent: intentQuery } = await searchParams;
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const intentQuery = resolvedSearchParams?.intent;
 
   const service = getServiceBySlug(slug);
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
