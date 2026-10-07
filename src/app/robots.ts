@@ -32,6 +32,9 @@ export default function robots(): MetadataRoute.Robots {
       `${siteConfig.url}/sitemap-states.xml`,
       `${siteConfig.url}/sitemap-core.xml`,
       `${siteConfig.url}/sitemap-west-bengal.xml`,
+      `${siteConfig.url}/sitemap-wb-matrix-security.xml`,
+      `${siteConfig.url}/sitemap-wb-matrix-facility.xml`,
+      `${siteConfig.url}/sitemap-wb-matrix-manpower.xml`,
     ],
     host: siteConfig.url,
   };

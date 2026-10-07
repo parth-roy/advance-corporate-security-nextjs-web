@@ -180,9 +180,61 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-west-bengal.xml"), generateUrlXml(wbUrls), "utf8");
   console.log(`✅ sitemap-west-bengal.xml generated (${wbUrls.length} URLs for all 108 WB cities)`);
 
-  // 9. Master Index (sitemap.xml)
+  // 9. West Bengal 3-Tier Matrix: Partition 1 — Security (8 Services × 107 WB Cities × 13 Industries)
+  const wbMatrixSecUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const s of securityServices) {
+    for (const city of wbCities) {
+      for (const ind of ACS_INDUSTRIES) {
+        wbMatrixSecUrls.push({
+          loc: `${BASE_URL}/services/${s.slug}/${city.slug}/${ind.slug}`,
+          priority: city.tier === 1 ? "0.85" : "0.75",
+          changefreq: "monthly",
+        });
+      }
+    }
+  }
+  await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-wb-matrix-security.xml"), generateUrlXml(wbMatrixSecUrls), "utf8");
+  console.log(`✅ sitemap-wb-matrix-security.xml generated (${wbMatrixSecUrls.length} URLs)`);
+
+  // 10. West Bengal 3-Tier Matrix: Partition 2 — Facility Management (5 Services × 107 WB Cities × 13 Industries)
+  const wbMatrixFacUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const s of facilityServices) {
+    for (const city of wbCities) {
+      for (const ind of ACS_INDUSTRIES) {
+        wbMatrixFacUrls.push({
+          loc: `${BASE_URL}/services/${s.slug}/${city.slug}/${ind.slug}`,
+          priority: city.tier === 1 ? "0.80" : "0.70",
+          changefreq: "monthly",
+        });
+      }
+    }
+  }
+  await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-wb-matrix-facility.xml"), generateUrlXml(wbMatrixFacUrls), "utf8");
+  console.log(`✅ sitemap-wb-matrix-facility.xml generated (${wbMatrixFacUrls.length} URLs)`);
+
+  // 11. West Bengal 3-Tier Matrix: Partition 3 — Manpower & Horticulture (4 Services × 107 WB Cities × 13 Industries)
+  const otherWbServices = [...manpowerServices, ...horticultureServices];
+  const wbMatrixManUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const s of otherWbServices) {
+    for (const city of wbCities) {
+      for (const ind of ACS_INDUSTRIES) {
+        wbMatrixManUrls.push({
+          loc: `${BASE_URL}/services/${s.slug}/${city.slug}/${ind.slug}`,
+          priority: city.tier === 1 ? "0.75" : "0.65",
+          changefreq: "monthly",
+        });
+      }
+    }
+  }
+  await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-wb-matrix-manpower.xml"), generateUrlXml(wbMatrixManUrls), "utf8");
+  console.log(`✅ sitemap-wb-matrix-manpower.xml generated (${wbMatrixManUrls.length} URLs)`);
+
+  // 12. Master Index (sitemap.xml)
   const sitemapFiles = [
     "sitemap-west-bengal.xml",
+    "sitemap-wb-matrix-security.xml",
+    "sitemap-wb-matrix-facility.xml",
+    "sitemap-wb-matrix-manpower.xml",
     "sitemap-security.xml",
     "sitemap-facility.xml",
     "sitemap-manpower.xml",
@@ -201,9 +253,12 @@ async function main() {
     securityUrls.length +
     facilityUrls.length +
     manpowerUrls.length +
-    horticultureUrls.length;
+    horticultureUrls.length +
+    wbMatrixSecUrls.length +
+    wbMatrixFacUrls.length +
+    wbMatrixManUrls.length;
 
-  console.log(`\n🎉 Total Sitemaps Generated: 7 categorized + 1 master index`);
+  console.log(`\n🎉 Total Sitemaps Generated: 11 categorized + 1 master index`);
   console.log(`🎉 Total Indexable URLs across all sitemaps: ${total}`);
 }
 

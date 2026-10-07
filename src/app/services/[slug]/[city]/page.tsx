@@ -12,6 +12,7 @@ import { notFound, redirect } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES } from "@/lib/cities";
+import { ACS_INDUSTRIES } from "@/lib/industries";
 import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, buildWBServiceAreaSchema, buildWBIndustrialHubSchema, serializeJsonLd } from "@/lib/schema";
 import { getWBHubsForCity, getWBWageZone } from "@/lib/wb-industrial-hubs";
@@ -559,6 +560,46 @@ export default async function ServiceCityPage({
           </div>
         </div>
       </section>
+
+      {/* ── SECTOR & INDUSTRY SOLUTIONS IN THIS CITY (3-Tier Internal Linking) ── */}
+      {isWestBengal && (
+        <section className="section-py bg-slate-50 border-t border-gray-200" aria-label={`Industry solutions in ${cityName}`}>
+          <div className="container-acs">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
+              <div>
+                <p className="section-label">Sector Specialization</p>
+                <h2 className="text-navy text-xl sm:text-2xl font-roboto font-bold">
+                  Industry-Specific {service.shortName} in {cityName}
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                  Tailored SOPs, compliance frameworks, and SLAs calibrated for {cityName} commercial and industrial sectors.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {ACS_INDUSTRIES.map((ind) => (
+                <Link
+                  key={ind.slug}
+                  href={`/services/${slug}/${citySlug}/${ind.slug}`}
+                  className="p-4 bg-white border border-gray-200 rounded-xl hover:border-sky-400 hover:shadow-md transition-all group block"
+                >
+                  <div className="text-2xl mb-2">{ind.icon}</div>
+                  <h3 className="font-roboto font-bold text-navy text-sm group-hover:text-sky transition-colors">
+                    {ind.name}
+                  </h3>
+                  <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                    {ind.tagline}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs text-sky font-semibold mt-3 group-hover:translate-x-1 transition-transform">
+                    View {cityName} Plan →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── RELATED SERVICES IN THIS CITY ── */}
       <section className="section-py bg-white border-t border-gray-100">

@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   devIndicators: false, // Hide dev status badge that blocks mobile bottom buttons
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: "https",
