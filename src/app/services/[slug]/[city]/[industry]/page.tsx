@@ -9,7 +9,7 @@ import { notFound } from 'next/navigation';
 import { siteConfig } from '@/lib/config';
 import { ACS_SERVICES, getServiceBySlug } from '@/lib/services';
 import { ACS_CITIES } from '@/lib/cities';
-import { getIndustryBySlug } from '@/lib/industries';
+import { ACS_INDUSTRIES, getIndustryBySlug } from '@/lib/industries';
 import { getWBLocationProfile } from '@/lib/data/wb-zone-dictionary';
 import { getIndustryRiskProfile } from '@/lib/data/industry-painpoints';
 import { getServiceBlueprint } from '@/lib/data/service-blueprints';
@@ -33,27 +33,43 @@ interface Params {
   industry: string;
 }
 
-interface SearchParams {
-  intent?: string;
-}
-
 export async function generateStaticParams(): Promise<Params[]> {
-  // On-demand rendering for hyper-scale performance
-  return [];
+  // Pre-render West Bengal major industrial and commercial hubs at build time
+  const priorityCities = [
+    'kolkata',
+    'howrah',
+    'durgapur',
+    'asansol',
+    'siliguri',
+    'haldia',
+    'salt-lake',
+    'new-town',
+    'barrackpore',
+  ];
+
+  const params: Params[] = [];
+  for (const city of priorityCities) {
+    for (const service of ACS_SERVICES) {
+      for (const industry of ACS_INDUSTRIES) {
+        params.push({
+          slug: service.slug,
+          city,
+          industry: industry.slug,
+        });
+      }
+    }
+  }
+  return params;
 }
 
 export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<SearchParams>;
 }): Promise<Metadata> {
   const { slug, city: citySlug, industry: industrySlug } = await params;
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const intentQuery = resolvedSearchParams?.intent;
 
   const service = getServiceBySlug(slug);
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
@@ -64,7 +80,6 @@ export async function generateMetadata({
   const wbProfile = getWBLocationProfile(citySlug);
   const districtName = wbProfile ? wbProfile.district : cityObj.state;
   const wageZone = wbProfile ? wbProfile.wageZone : 'A';
-  const intent = (intentQuery as BuyerIntentType) || 'transactional';
 
   const meta = generatePageMetadata({
     serviceName: service.name,
@@ -72,7 +87,7 @@ export async function generateMetadata({
     districtName,
     industryName: industry.name,
     wageZone,
-    intent,
+    intent: 'transactional',
   });
 
   const pageUrl = `${siteConfig.url}/services/${slug}/${citySlug}/${industrySlug}`;
@@ -101,14 +116,10 @@ export async function generateMetadata({
 
 export default async function ServiceCityIndustryPage({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams?: Promise<SearchParams>;
 }) {
   const { slug, city: citySlug, industry: industrySlug } = await params;
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const intentQuery = resolvedSearchParams?.intent;
 
   const service = getServiceBySlug(slug);
   const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
@@ -142,7 +153,7 @@ export default async function ServiceCityIndustryPage({
   const rawHubs = getWBHubsForCity(citySlug);
   const nearbyHubs = rawHubs.map((h) => `${h.name} (${h.type})`);
 
-  const intentId = (intentQuery as BuyerIntentType) || 'transactional';
+  const intentId: BuyerIntentType = 'transactional';
   const meta = generatePageMetadata({
     serviceName: service.name,
     cityName: cityObj.name,
