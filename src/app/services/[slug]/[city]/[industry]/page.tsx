@@ -5,7 +5,7 @@
 // ============================================================
 
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { siteConfig } from '@/lib/config';
 import { ACS_SERVICES, getServiceBySlug } from '@/lib/services';
 import { ACS_CITIES } from '@/lib/cities';
@@ -15,6 +15,101 @@ import { getIndustryRiskProfile } from '@/lib/data/industry-painpoints';
 import { getServiceBlueprint } from '@/lib/data/service-blueprints';
 import { BuyerIntentType, generatePageMetadata } from '@/lib/data/buyer-intents';
 import { getWBHubsForCity } from '@/lib/wb-industrial-hubs';
+
+// Common search & industry aliases mapped to canonical database slugs
+const INDUSTRY_ALIASES: Record<string, string> = {
+  // Manufacturing & Industrial
+  manufacturing: 'industrial-zones',
+  factories: 'industrial-zones',
+  factory: 'industrial-zones',
+  industrial: 'industrial-zones',
+  industry: 'industrial-zones',
+  'heavy-industry': 'industrial-zones',
+  'steel-plants': 'industrial-zones',
+  petrochemicals: 'industrial-zones',
+  chemical: 'industrial-zones',
+  textile: 'industrial-zones',
+
+  // Corporate & IT Parks
+  'it-parks': 'corporate',
+  'it-park': 'corporate',
+  'tech-parks': 'corporate',
+  'tech-park': 'corporate',
+  offices: 'corporate',
+  office: 'corporate',
+  'it-companies': 'corporate',
+  commercial: 'corporate',
+  bpo: 'corporate',
+  software: 'corporate',
+
+  // Warehouses & Logistics
+  logistics: 'warehouses',
+  'supply-chain': 'warehouses',
+  'cold-storage': 'warehouses',
+  godown: 'warehouses',
+  godowns: 'warehouses',
+  fulfillment: 'warehouses',
+
+  // Healthcare
+  healthcare: 'hospitals',
+  clinics: 'hospitals',
+  clinic: 'hospitals',
+  'nursing-homes': 'hospitals',
+  medical: 'hospitals',
+
+  // Hospitality
+  hospitality: 'hotels',
+  resorts: 'hotels',
+  resort: 'hotels',
+  banquets: 'hotels',
+  restaurants: 'hotels',
+
+  // Residential
+  apartments: 'residential',
+  'housing-societies': 'residential',
+  societies: 'residential',
+  'gated-communities': 'residential',
+  townships: 'residential',
+  condos: 'residential',
+
+  // Retail & Commercial Malls
+  'shopping-malls': 'malls',
+  retail: 'malls',
+  supermarkets: 'malls',
+  showrooms: 'malls',
+
+  // Educational Institutions
+  schools: 'educational-institutions',
+  colleges: 'educational-institutions',
+  universities: 'educational-institutions',
+  campus: 'educational-institutions',
+  education: 'educational-institutions',
+
+  // Infrastructure & Construction
+  builders: 'construction',
+  'real-estate': 'construction',
+  infrastructure: 'construction',
+  contractors: 'construction',
+};
+
+const SERVICE_ALIASES: Record<string, string> = {
+  'facility-management': 'housekeeping',
+  'security-safety': 'security-guard',
+  security: 'security-guard',
+  guards: 'security-guard',
+  guard: 'security-guard',
+  manpower: 'manpower-outsourcing',
+  staffing: 'manpower-outsourcing',
+  placement: 'placement-services',
+  cctv: 'surveillance-cctv',
+  cleaning: 'housekeeping',
+  housekeeper: 'housekeeping',
+};
+
+const CITY_ALIASES: Record<string, string> = {
+  calcutta: 'kolkata',
+  haora: 'howrah',
+};
 
 // Modular Components
 import HeroIntentSection from '@/components/matrix/HeroIntentSection';
@@ -71,13 +166,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug, city: citySlug, industry: industrySlug } = await params;
 
-  const service = getServiceBySlug(slug);
-  const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
-  const industry = getIndustryBySlug(industrySlug);
+  const resolvedSlug = SERVICE_ALIASES[slug] || slug;
+  const resolvedCity = CITY_ALIASES[citySlug] || citySlug;
+  const resolvedIndustry = INDUSTRY_ALIASES[industrySlug] || industrySlug;
+
+  const service = getServiceBySlug(resolvedSlug);
+  const cityObj = ACS_CITIES.find((c) => c.slug === resolvedCity);
+  const industry = getIndustryBySlug(resolvedIndustry);
 
   if (!service || !cityObj || !industry) return {};
 
-  const wbProfile = getWBLocationProfile(citySlug);
+  const wbProfile = getWBLocationProfile(resolvedCity);
   const districtName = wbProfile ? wbProfile.district : cityObj.state;
   const wageZone = wbProfile ? wbProfile.wageZone : 'A';
 
@@ -90,7 +189,7 @@ export async function generateMetadata({
     intent: 'transactional',
   });
 
-  const pageUrl = `${siteConfig.url}/services/${slug}/${citySlug}/${industrySlug}`;
+  const pageUrl = `${siteConfig.url}/services/${resolvedSlug}/${resolvedCity}/${resolvedIndustry}`;
 
   return {
     title: meta.title,
@@ -121,16 +220,25 @@ export default async function ServiceCityIndustryPage({
 }) {
   const { slug, city: citySlug, industry: industrySlug } = await params;
 
-  const service = getServiceBySlug(slug);
-  const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
-  const industry = getIndustryBySlug(industrySlug);
+  const resolvedSlug = SERVICE_ALIASES[slug] || slug;
+  const resolvedCity = CITY_ALIASES[citySlug] || citySlug;
+  const resolvedIndustry = INDUSTRY_ALIASES[industrySlug] || industrySlug;
+
+  // Seamless 301 / redirect from aliases (e.g. /manufacturing -> /industrial-zones, /it-parks -> /corporate)
+  if (resolvedSlug !== slug || resolvedCity !== citySlug || resolvedIndustry !== industrySlug) {
+    redirect(`/services/${resolvedSlug}/${resolvedCity}/${resolvedIndustry}`);
+  }
+
+  const service = getServiceBySlug(resolvedSlug);
+  const cityObj = ACS_CITIES.find((c) => c.slug === resolvedCity);
+  const industry = getIndustryBySlug(resolvedIndustry);
 
   if (!service || !cityObj || !industry) {
     notFound();
   }
 
   // West Bengal localized data resolution
-  const wbProfile = getWBLocationProfile(citySlug);
+  const wbProfile = getWBLocationProfile(resolvedCity);
   const districtName = wbProfile ? wbProfile.district : cityObj.state;
   const wageZone = wbProfile ? wbProfile.wageZone : 'A';
   const nearestHQ = wbProfile
@@ -147,10 +255,10 @@ export default async function ServiceCityIndustryPage({
     ? wbProfile.labourWelfareFundRule
     : 'West Bengal Labour Welfare Fund (Employee ₹3 / Employer ₹30)';
 
-  const industryProfile = getIndustryRiskProfile(industrySlug);
-  const serviceBlueprint = getServiceBlueprint(slug);
+  const industryProfile = getIndustryRiskProfile(resolvedIndustry);
+  const serviceBlueprint = getServiceBlueprint(resolvedSlug);
 
-  const rawHubs = getWBHubsForCity(citySlug);
+  const rawHubs = getWBHubsForCity(resolvedCity);
   const nearbyHubs = rawHubs.map((h) => `${h.name} (${h.type})`);
 
   const intentId: BuyerIntentType = 'transactional';
