@@ -941,6 +941,92 @@ export default function StatutoryCompliancePage() {
         </div>
       </section>
 
+      {/* ── 4B. THE MONTHLY COMPLIANCE PACK & VICARIOUS LIABILITY SHIELD ─────── */}
+      <section className="section-py bg-slate-50 border-t border-slate-200">
+        <div className="container-acs">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="badge-sky text-xs uppercase mb-3 inline-block">
+              Absolute Legal Indemnity
+            </span>
+            <h2 className="text-navy text-2xl sm:text-3xl font-roboto font-extrabold">
+              The Monthly Compliance Pack: Zero Vicarious Liability
+            </h2>
+            <div className="divider-sky mx-auto my-3" />
+            <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto">
+              Under Section 7A of the EPF Act 1952 and Section 21 of the Contract Labour Act 1970, Principal Employers face immense legal liability if vendors default. ACS acts as an operational firewall, delivering a digitized 4-part dossier to your finance team by the 15th of every month.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky/50 transition">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-sky flex items-center justify-center font-black text-xl mb-4">
+                01
+              </div>
+              <h3 className="font-bold text-navy text-base mb-2">EPF ECR &amp; TRRN Receipt</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Official Electronic Challan cum Return (ECR) downloaded from the EPFO unified portal, accompanied by the bank transaction receipt confirming 100% employer &amp; employee deposits.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky/50 transition">
+              <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black text-xl mb-4">
+                02
+              </div>
+              <h3 className="font-bold text-navy text-base mb-2">ESIC Contribution Proof</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Verified ESIC monthly contribution statement confirming all deployed personnel maintain active health insurance and medical benefits with zero arrears.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky/50 transition">
+              <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-black text-xl mb-4">
+                03
+              </div>
+              <h3 className="font-bold text-navy text-base mb-2">GSTR-3B &amp; Tax Clearances</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Legitimate GST payment receipts and GSTR-3B filings ensuring your organization effortlessly claims 100% Input Tax Credit (ITC) with zero mismatch notices.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky/50 transition">
+              <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-black text-xl mb-4">
+                04
+              </div>
+              <h3 className="font-bold text-navy text-base mb-2">Bank Wage Slips (NEFT)</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Schedule bank salary disbursement statements proving that 100% of deployed guard wages are credited directly into their bank accounts strictly by the 7th of the month.
+              </p>
+            </div>
+          </div>
+
+          {/* Interactive Action Strip */}
+          <div className="bg-navy text-white rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-bold font-roboto mb-1">
+                Verify Your Current Vendor&apos;s Statutory Exposure
+              </h3>
+              <p className="text-slate-300 text-xs md:text-sm">
+                Calculate compliant billing using our live rate engine or schedule a confidential on-site audit.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 shrink-0">
+              <Link
+                href="/rate-card-calculator"
+                className="px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-light text-navy font-bold text-xs transition shadow-md"
+              >
+                Launch Rate Card Calculator →
+              </Link>
+              <Link
+                href="/request-audit"
+                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition"
+              >
+                Book Compliance Audit
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── 5. FAQ ──────────────────────────────────────────────────────────── */}
       <section className="section-py bg-white">
         <div className="container-acs max-w-4xl">

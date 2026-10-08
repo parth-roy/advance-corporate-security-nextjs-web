@@ -8,11 +8,13 @@ import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
 
 const footerLinks = [
   { label: "About Us", href: "/about" },
-  { label: "Our Mission", href: "/about#mission" },
-  { label: "Leadership Team", href: "/about#team" },
+  { label: "Statutory Credentials Vault", href: "/credentials" },
+  { label: "Rate Card Calculator", href: "/rate-card-calculator" },
+  { label: "Compliance & Indemnity", href: "/compliance" },
+  { label: "Book Compliance Audit", href: "/request-audit" },
   { label: "Govt & PSU Procurement", href: "/procurement" },
   { label: "Tender Bids & Alerts", href: "/tenders" },
-  { label: "Statutory Compliance", href: "/compliance" },
+  { label: "Integrated Facility Mgmt", href: "/services/integrated-facility-management" },
   { label: "Get a Quote", href: "/quote" },
   { label: "Specialized Industry Sectors", href: "/sectors" },
   { label: "Our Clients", href: "/clients" },

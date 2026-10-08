@@ -56,6 +56,10 @@ async function main() {
     { loc: `${BASE_URL}/sectors`, priority: "0.9", changefreq: "weekly" },
     { loc: `${BASE_URL}/tenders`, priority: "0.90", changefreq: "weekly" },
     { loc: `${BASE_URL}/compliance`, priority: "0.85", changefreq: "monthly" },
+    { loc: `${BASE_URL}/rate-card-calculator`, priority: "0.95", changefreq: "weekly" },
+    { loc: `${BASE_URL}/request-audit`, priority: "0.95", changefreq: "weekly" },
+    { loc: `${BASE_URL}/credentials`, priority: "0.90", changefreq: "monthly" },
+    { loc: `${BASE_URL}/services/integrated-facility-management`, priority: "0.90", changefreq: "weekly" },
     { loc: `${BASE_URL}/quote`, priority: "0.95", changefreq: "weekly" },
     ...ACS_INDUSTRIES.map((ind) => ({
       loc: `${BASE_URL}/sectors/${ind.slug}`,

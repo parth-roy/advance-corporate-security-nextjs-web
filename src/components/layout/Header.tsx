@@ -21,6 +21,7 @@ const navLinks: NavLinkItem[] = [
     href: "/about",
     children: [
       { label: "About Us", href: "/about" },
+      { label: "Statutory Credentials Vault", href: "/credentials" },
       { label: "Our Mission", href: "/about#mission" },
       { label: "Our Vision", href: "/about#vision" },
       { label: "Leadership Team", href: "/about#team" },
@@ -34,6 +35,7 @@ const navLinks: NavLinkItem[] = [
     children: [
       { label: "Security & Safety", href: "/services/security-safety" },
       { label: "Facility Management", href: "/services/facility-management" },
+      { label: "Integrated Facility Mgmt (IFM)", href: "/services/integrated-facility-management" },
       { label: "Workforce Outsourcing", href: "/services/placement-services" },
       { label: "Horticulture Services", href: "/services/horticulture" },
     ],
@@ -44,8 +46,10 @@ const navLinks: NavLinkItem[] = [
     href: "/procurement",
     children: [
       { label: "Procurement Center", href: "/procurement" },
+      { label: "Rate Card Calculator", href: "/rate-card-calculator" },
       { label: "Tender Bids & Alerts", href: "/tenders" },
       { label: "Statutory Compliance", href: "/compliance" },
+      { label: "Book Compliance Audit", href: "/request-audit" },
       { label: "GeM Security Guide", href: "/procurement#gem" },
     ],
   },
