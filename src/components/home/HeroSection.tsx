@@ -52,8 +52,8 @@ const STATS = [
   },
   {
     value: "5000+",
-    label: "Trained Professionals",
-    subtitle: "Skilled, verified and disciplined",
+    label: "Trained Workforce Deployed",
+    subtitle: "Skilled, verified and disciplined personnel",
     icon: (
       // Clean team of 3 professionals in soft blue circle (#edf6fd)
       <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#edf6fd] flex items-center justify-center shrink-0">
@@ -96,8 +96,8 @@ const STATS = [
   },
   {
     value: "50+",
-    label: "Govt. & PSU Clients",
-    subtitle: "Trusted by leading public sector organisations",
+    label: "Govt. & Institutional Engagements",
+    subtitle: "Trusted across defence, PSUs and public bodies",
     icon: (
       // Government & Commercial Office Buildings in soft blue circle (#edf6fd)
       <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#edf6fd] flex items-center justify-center shrink-0">

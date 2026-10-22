@@ -244,7 +244,15 @@ export default async function ServiceCityPage({
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="badge-sky">{service.icon} {service.shortName}</span>
             <span className="badge-gold">📍 {cityName}, {state}</span>
-            <span className="badge-navy border border-white/20">PSARA Licensed</span>
+            {service.category === 'security' ? (
+              <span className="badge-navy border border-white/20">
+                {["West Bengal", "Delhi", "Jharkhand"].includes(state)
+                  ? "Direct PSARA Form-V"
+                  : "PSARA Compliant Partner Network"}
+              </span>
+            ) : (
+              <span className="badge-navy border border-white/20">100% Statutory Compliant</span>
+            )}
             <span className="badge-navy border border-white/20">ISO 9001:2015</span>
           </div>
 

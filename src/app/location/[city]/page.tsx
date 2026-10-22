@@ -29,8 +29,13 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const cityData = getCityBySlug(citySlug) || ACS_CITIES.find((c) => c.slug === citySlug);
   if (!cityData) return {};
   const { name: cityName, state: stateName, tier } = cityData;
-  const title = `Security & Facility Management Services in ${cityName} | PSARA Licensed`;
-  const description = `Advance Corporate Security in ${cityName}, ${stateName} — PSARA-licensed security guards, facility management, manpower outsourcing, and horticulture. ISO 9001:2015 certified. Get free quote.`;
+  const isDirectPsaraState = ["West Bengal", "Delhi", "Jharkhand"].includes(stateName);
+  const title = isDirectPsaraState
+    ? `PSARA Form-V Licensed Security & Facility Management in ${cityName} | ACS`
+    : `Enterprise Security & Facility Management Services in ${cityName} | ACS`;
+  const description = isDirectPsaraState
+    ? `Advance Corporate Security in ${cityName}, ${stateName} — Direct PSARA Form-V licensed security guards, corporate housekeeping, facility management & manpower. ISO 9001:2015 certified.`
+    : `Advance Corporate Security in ${cityName}, ${stateName} — ISO 9001:2015 certified facility management, corporate housekeeping, and compliant partner-network security deployment across ${cityName}.`;
   const canonical = `${siteConfig.url}/location/${citySlug}`;
 
   // Tier-based indexing strategy (anti-Scaled Content Abuse)
@@ -54,6 +59,7 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
   const cityData = ACS_CITIES.find((c) => c.slug === citySlug);
   if (!cityData) notFound();
   const { name: cityName, state: stateName, stateSlug } = cityData;
+  const isDirectPsaraState = ["West Bengal", "Delhi", "Jharkhand"].includes(stateName);
 
   const faqs = generateCityHubFaqs(cityName, stateName);
   const faqSchema = buildFaqSchema(faqs);
@@ -96,12 +102,19 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
           <div className="flex flex-wrap gap-2 mb-4">
             <span className="badge-sky">📍 {cityName}</span>
             <span className="badge-gold">🏛️ {stateName}</span>
+            <span className="badge-navy border border-white/20">
+              {isDirectPsaraState ? "PSARA Form-V Licensed" : "Empanelled Partner Network"}
+            </span>
           </div>
           <h1 className="text-white font-roboto font-black text-2xl sm:text-4xl lg:text-5xl leading-tight mb-4 max-w-4xl break-words">
-            PSARA Licensed Security &amp; Facility Management Services in {cityName}
+            {isDirectPsaraState
+              ? `PSARA Form-V Licensed Security & Facility Management Services in ${cityName}`
+              : `Enterprise Security & Facility Management Services in ${cityName}`}
           </h1>
           <p className="text-sky-200 text-sm sm:text-lg mb-5 sm:mb-8 max-w-2xl">
-            ISO 9001:2015 certified B2B services — Security Guards, Corporate Housekeeping, Manpower Outsourcing &amp; more — deployed across {cityName}, {stateName}.
+            {isDirectPsaraState
+              ? `Direct state-licensed security guards, corporate housekeeping, and compliant contract staffing across ${cityName}, ${stateName}.`
+              : `ISO 9001:2015 certified corporate housekeeping, facility management, and compliant partner-network security deployed across ${cityName}, ${stateName}.`}
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3">
             <Link href="/quote" className="btn-primary text-center">Get Free Quote in {cityName}</Link>
@@ -117,7 +130,10 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
             <p className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-3 font-roboto">📋 ACS in {cityName} — Quick Facts</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
               {[
-                { label: "PSARA License", value: "Government of India" },
+                {
+                  label: isDirectPsaraState ? "PSARA License" : "Compliance Model",
+                  value: isDirectPsaraState ? "Form-V (State Authority)" : "Partner Network / CLRA",
+                },
                 { label: "ISO Certification", value: "9001:2015 + IAF/IAS" },
                 { label: "Experience", value: "25+ Years (Since 2000)" },
                 { label: "Statutory Compliance", value: "PF, ESIC, Min. Wage Act" },

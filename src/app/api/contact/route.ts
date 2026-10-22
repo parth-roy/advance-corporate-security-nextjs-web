@@ -50,7 +50,24 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { name, email, phone, organization, service, city, message, fax_or_website } = body;
+    const {
+      name,
+      email,
+      phone,
+      organization,
+      service,
+      city,
+      message,
+      fax_or_website,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
+      landingUrl,
+      landing_url,
+      shiftType,
+    } = body;
 
     // ─── 1. Anti-Spam Honeypot Check ────────────────────────
     // If hidden bot trap field is filled out, silently return 200 OK
@@ -106,9 +123,16 @@ export async function POST(req: NextRequest) {
       service: service?.trim() || (isServiceInquiry ? "Enterprise Service Quotation" : "General Enquiry"),
       city: city?.trim() || "",
       manpowerCount: body.manpowerCount || "",
+      shiftType: shiftType || body.shiftType || "",
       duration: body.contractDuration || body.duration || "",
       message: message.trim(),
       source: isServiceInquiry ? "Enterprise Quotation / Service Form" : "Website Contact Form",
+      utmSource: utm_source || body.utmSource || "",
+      utmMedium: utm_medium || body.utmMedium || "",
+      utmCampaign: utm_campaign || body.utmCampaign || "",
+      utmTerm: utm_term || body.utmTerm || "",
+      utmContent: utm_content || body.utmContent || "",
+      landingUrl: landingUrl || landing_url || body.landingUrl || "",
     };
 
     syncToGoogleSheetsBackground(sheetLeadPayload);
@@ -133,6 +157,12 @@ export async function POST(req: NextRequest) {
           service: service?.trim() || "General Enquiry",
           city: city?.trim() || "",
           message: message.trim(),
+          manpowerCount: body.manpowerCount || "",
+          shiftType: shiftType || body.shiftType || "",
+          utm_source: utm_source || body.utmSource || "",
+          utm_medium: utm_medium || body.utmMedium || "",
+          utm_campaign: utm_campaign || body.utmCampaign || "",
+          landing_url: landingUrl || landing_url || body.landingUrl || "",
         }),
       });
     } catch (backendErr) {
@@ -152,6 +182,12 @@ export async function POST(req: NextRequest) {
             service: service?.trim() || "General Enquiry",
             city: city?.trim() || "",
             message: message.trim(),
+            manpowerCount: body.manpowerCount || "",
+            shiftType: shiftType || body.shiftType || "",
+            utm_source: utm_source || body.utmSource || "",
+            utm_medium: utm_medium || body.utmMedium || "",
+            utm_campaign: utm_campaign || body.utmCampaign || "",
+            landing_url: landingUrl || landing_url || body.landingUrl || "",
           }),
         });
       } catch (fallbackErr) {

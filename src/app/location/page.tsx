@@ -5,14 +5,14 @@ import { ACS_CITIES, ACS_STATES } from "@/lib/cities";
 import LocationDirectoryClient from "@/components/location/LocationDirectoryClient";
 
 export const metadata: Metadata = {
-  title: "Pan-India Security & Facility Management Directory (828+ Cities)",
+  title: "Pan-India Security & Facility Management Directory (820+ Cities) | ACS",
   description:
-    "Explore ACS's pan-India deployment directory covering 828+ cities across all 31 Indian States and Union Territories. PSARA-licensed security guards, facility management, and contract workforce.",
+    "Explore ACS's pan-India deployment directory covering 820+ cities. Direct PSARA-licensed security operations in West Bengal, Delhi NCR, and Jharkhand; Integrated Facility Management and compliant partner networks nationwide.",
   alternates: { canonical: `${siteConfig.url}/location` },
   openGraph: {
-    title: "Pan-India Security & Facility Management Directory (828+ Cities) | ACS",
+    title: "Pan-India Security & Facility Management Directory (820+ Cities) | ACS",
     description:
-      "Find PSARA-licensed security and corporate facility management across 828+ Indian cities. 24–72h SLA deployments nationwide.",
+      "Direct PSARA security operations in West Bengal, Delhi NCR & Jharkhand, with nationwide facility management & partner deployment across 820+ cities.",
     url: `${siteConfig.url}/location`,
     siteName: siteConfig.name,
     type: "website",

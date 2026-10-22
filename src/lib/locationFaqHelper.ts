@@ -28,7 +28,7 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
     // FAQ 1 — PSARA / Licensing (Security) OR ISO (Facility/Manpower)
     isSecurityService ? {
       question: `Are Advance Corporate Security's security guards in ${cityName} PSARA licensed?`,
-      answer: `Yes. All ACS security personnel deployed in ${cityName}, ${stateName} strictly adhere to PSARA (Private Security Agencies Regulation Act) guidelines. Every guard is licensed, background-verified, medically fit, and trained per Ministry of Home Affairs standards. ACS holds state PSARA licenses in major hubs including Delhi NCR, West Bengal, and Jharkhand, and delivers statutory-compliant security deployments nationwide.`
+      answer: `Yes. All ACS security personnel deployed in ${cityName}, ${stateName} strictly adhere to PSARA guidelines. Guards are background-verified, police-cleared, and trained per Ministry of Home Affairs standards. ACS holds state PSARA Form-V licenses in core operational jurisdictions (West Bengal, Delhi NCR, Jharkhand) and deploys nationwide under compliant partner frameworks.`
     } : {
       question: `Is Advance Corporate Security ISO 9001:2015 certified for ${serviceName} in ${cityName}?`,
       answer: `Yes. ACS is ISO 9001:2015 certified, ensuring that all ${serviceName} delivered in ${cityName}, ${stateName} meet internationally recognized quality management standards. Our service delivery follows documented SOPs with regular internal audits, ensuring consistent quality for every client.`
@@ -46,7 +46,7 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
     // FAQ 4 — Statutory compliance
     {
       question: `Does ACS handle PF, ESIC, and Minimum Wage compliance for staff in ${cityName}?`,
-      answer: `Absolutely. ACS fully manages all statutory compliances including Provident Fund (PF), Employee State Insurance (ESIC), Professional Tax, Bonus Act, and ${stateName} state minimum wage regulations for all staff deployed in ${cityName}. Client organizations have zero legal exposure — ACS assumes complete employer-of-record responsibility.`
+      answer: `Absolutely. ACS fully manages all statutory compliances including Provident Fund (PF), Employee State Insurance (ESIC), Professional Tax, Bonus Act, and ${stateName} state minimum wage regulations for all staff deployed in ${cityName}. ACS assumes complete employer-of-record responsibility with 100% statutory adherence and documented contractual indemnification.`
     },
     // FAQ 5 — Service-specific / industries
     {

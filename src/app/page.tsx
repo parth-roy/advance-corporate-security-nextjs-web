@@ -47,7 +47,7 @@ const homeFaqs = [
   {
     question: "Is Advance Corporate Security PSARA licensed?",
     answer:
-      "Yes. Advance Corporate Security holds valid PSARA licenses in West Bengal, Delhi, Jharkhand and other key states, issued by the respective State Governments as per the Private Security Agencies Regulation Act. All our security personnel are licensed, background-verified, and trained per Ministry of Home Affairs standards — with operational reach across 500+ Indian cities through our state-wise compliance framework.",
+      "Yes. Advance Corporate Security holds valid PSARA Form-V licenses issued by the State Controlling Authorities in West Bengal (Head Office), Delhi NCR (Licensing Unit), and Jharkhand. All deployed security personnel undergo rigorous background checks, police verification, and structured training aligned with Ministry of Home Affairs standards. For nationwide requirements, ACS operates through verified, fully compliant statutory partner frameworks.",
   },
   {
     question: "Is ACS ISO 9001:2015 certified?",
@@ -57,7 +57,7 @@ const homeFaqs = [
   {
     question: "Does ACS provide security and facility services across India?",
     answer:
-      "ACS provides services across all major Indian cities including Kolkata, Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Patna, Bhubaneswar, Ahmedabad, Pune, and 500+ other cities. We hold PSARA licenses in key states with full deployment capability and statutory compliance across India.",
+      "ACS provides integrated facility management, corporate housekeeping, and manpower outsourcing across major hubs including Kolkata, Delhi NCR, Mumbai, Bengaluru, Hyderabad, Chennai, Bhubaneswar, and 500+ cities. Licensed security guarding is delivered directly in our licensed states and through empanelled, PSARA-compliant partner networks nationally.",
   },
   {
     question: "Who are the major clients of Advance Corporate Security?",
@@ -67,7 +67,7 @@ const homeFaqs = [
   {
     question: "Does ACS handle PF, ESIC, and labour law compliance?",
     answer:
-      "Absolutely. ACS assumes complete employer-of-record responsibility for all outsourced staff. We manage PF deposits, ESIC contributions, Minimum Wage Act compliance, Professional Tax, Bonus Act, and all other statutory obligations — giving client organizations zero legal exposure.",
+      "Absolutely. ACS assumes complete employer-of-record responsibility for all outsourced personnel. We handle timely monthly PF deposits, ESIC contributions, state-notified Minimum Wages Act compliance, Professional Tax, and statutory Bonus. Clients receive auditable monthly compliance dossiers (ECR challans, payment bank statements, and wage registers) with complete contractual indemnification.",
   },
 ];
 

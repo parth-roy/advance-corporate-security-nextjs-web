@@ -90,7 +90,7 @@ export default function LocationDirectoryClient({
               ACS Pan-India Deployment Directory
             </h1>
             <p className="text-sm sm:text-base text-sky-100/90 leading-relaxed mb-6 font-normal">
-              Explore ACS&apos;s operational presence covering <strong className="text-white font-bold">{allCities.length}+ cities</strong> across all 31 Indian States and Union Territories. PSARA-licensed security guards, corporate facility management, and compliant contract manpower deployed within 24–72 hours.
+              Explore ACS&apos;s nationwide service footprint covering <strong className="text-white font-bold">{allCities.length}+ commercial and industrial centers</strong>. Direct PSARA Form-V licensed security operations in West Bengal (Head Office), Delhi NCR, and Jharkhand; Integrated Facility Management, corporate housekeeping, and compliant partner-network security deployment across all major Indian states.
             </p>
 
             {/* Interactive Search Bar */}
@@ -164,6 +164,36 @@ export default function LocationDirectoryClient({
               >
                 Tier 3 Industrial Towns
               </button>
+            </div>
+
+            {/* Jurisdictional Transparency Banner */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 text-left max-w-3xl mx-auto">
+              <div className="bg-white/10 border border-sky-400/25 rounded-xl p-3.5 backdrop-blur-xs">
+                <div className="flex items-start gap-2.5">
+                  <ShieldCheck size={18} className="text-gold shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="text-xs font-bold text-white tracking-wide uppercase">
+                      Direct PSARA Form-V Licensed Hubs
+                    </h4>
+                    <p className="text-[11.5px] text-sky-100/80 leading-relaxed mt-0.5">
+                      Direct operational licenses in <strong className="text-white">West Bengal (HQ)</strong>, <strong className="text-white">Delhi NCR</strong>, and <strong className="text-white">Jharkhand</strong> with 24×7 regional control rooms &amp; rapid mobilization.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/10 border border-sky-400/25 rounded-xl p-3.5 backdrop-blur-xs">
+                <div className="flex items-start gap-2.5">
+                  <Building2 size={18} className="text-sky-300 shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="text-xs font-bold text-white tracking-wide uppercase">
+                      Nationwide Facilities &amp; Partner Network
+                    </h4>
+                    <p className="text-[11.5px] text-sky-100/80 leading-relaxed mt-0.5">
+                      Integrated Facility Management, Corporate Housekeeping, and compliant partner-network security deployment across <strong className="text-white">820+ cities</strong> in India.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -164,6 +164,15 @@ export default function ContactForm() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout
 
+      // Extract UTM tracking and landing URL for closed-loop attribution
+      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+      const utm_source = urlParams?.get("utm_source") || "";
+      const utm_medium = urlParams?.get("utm_medium") || "";
+      const utm_campaign = urlParams?.get("utm_campaign") || "";
+      const utm_term = urlParams?.get("utm_term") || "";
+      const utm_content = urlParams?.get("utm_content") || "";
+      const landingUrl = typeof window !== "undefined" ? window.location.href : "";
+
       const res = await fetch(endpoint, {
         method: "POST",
         headers: {
@@ -179,6 +188,12 @@ export default function ContactForm() {
           city: formData.city.trim() || currentCity?.name || "",
           message: formData.message.trim(),
           fax_or_website: honeypot,
+          utm_source,
+          utm_medium,
+          utm_campaign,
+          utm_term,
+          utm_content,
+          landingUrl,
         }),
         signal: controller.signal,
       });

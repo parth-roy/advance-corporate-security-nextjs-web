@@ -129,7 +129,7 @@ export default function ProcurementCenterPage() {
       title: "Government Tender Security Services",
       icon: "📑",
       scope: "Turnkey tender execution across CPPP, GeM, State e-Procurement portals, and Rate Contracts.",
-      features: ["EMD & PBG Facilitation", "UDIN CA Net Worth Proof", "Pan-India Mobilization", "Zero Statutory Deviation"],
+      features: ["EMD & PBG Facilitation", "UDIN CA Net Worth Proof", "Pan-India Mobilization", "100% Statutory Adherence"],
     },
   ];
 
@@ -366,7 +366,7 @@ export default function ProcurementCenterPage() {
                   <td className="p-4 font-bold text-navy">PSARA License (Form V)</td>
                   <td className="p-4">Private Security Agencies (Regulation) Act 2005 / Home Dept.</td>
                   <td className="p-4 text-xs">Mandatory statutory permit. Operating without PSARA is a non-bailable offense.</td>
-                  <td className="p-4 text-emerald-700 font-bold">✓ Form-V Certified &amp; Pan-India Valid</td>
+                  <td className="p-4 text-emerald-700 font-bold">✓ Direct Form-V (WB, Delhi, JH) &amp; Partner Network</td>
                 </tr>
                 <tr className="hover:bg-slate-50/80">
                   <td className="p-4 font-bold text-navy">EPF Registration &amp; ECR</td>
