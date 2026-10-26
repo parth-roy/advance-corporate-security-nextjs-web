@@ -17,6 +17,14 @@ export const siteConfig = {
     "Advance Corporate Security (ACS) is a professionally managed, PSARA-licensed and ISO 9001:2015 certified Facility Management and Manpower Outsourcing company serving Eastern India, NCR & 500+ cities since 2000. We provide Security Guard Services, Corporate Housekeeping, Manpower Outsourcing, Pest Control, MEP Maintenance, Fire Fighting, Surveillance, Placement, Payroll Management, and Horticulture services.",
   foundedYear: 2000,
   certification: "ISO 9001:2015",
+  founder: "Jai Gopal Roy",
+  gstin: "19AJKPR7582B1ZR",
+  pan: "AJKPR7582B",
+  entityType: "Sole Proprietorship",
+  statutoryTimeline:
+    "Founded in 2000 as a private security and facility management proprietary enterprise by Mr. Jai Gopal Roy; formally registered under GSTIN 19AJKPR7582B1ZR upon enactment of the Central GST Act in July 2017.",
+  psaraJurisdictions: ["West Bengal", "Delhi NCR", "Jharkhand"] as const,
+  operationalHeadcount: "5000+",
 
   // --- Domain & URLs ---
   url: "https://advancecorporatesecurity.com",

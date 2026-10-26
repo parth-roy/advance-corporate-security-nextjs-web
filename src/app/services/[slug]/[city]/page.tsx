@@ -11,7 +11,7 @@ import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
-import { ACS_CITIES } from "@/lib/cities";
+import { ACS_CITIES, getCityBySlug } from "@/lib/cities";
 import { ACS_INDUSTRIES } from "@/lib/industries";
 import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, buildWBServiceAreaSchema, buildWBIndustrialHubSchema, serializeJsonLd } from "@/lib/schema";
@@ -25,10 +25,23 @@ interface Params {
   city: string;
 }
 
+const HIGH_PRIORITY_HUBS = [
+  "kolkata", "dankuni", "howrah", "barrackpore", "durgapur",
+  "asansol", "haldia", "siliguri", "delhi", "noida",
+  "gurgaon", "ranchi", "jamshedpur", "bhubaneswar", "guwahati",
+  "patna", "mumbai", "bengaluru", "hyderabad", "chennai",
+  "pune", "ahmedabad", "jaipur", "lucknow", "chandigarh",
+];
+
 export async function generateStaticParams(): Promise<Params[]> {
-  // Prerendering 14,000+ pages at build time is disabled for fast deployment.
-  // Pages are generated dynamically on-demand at request time.
-  return [];
+  // Prerender the top 25 high-priority commercial & industrial hubs across all services for fast ISR caching
+  const params: Params[] = [];
+  for (const service of ACS_SERVICES) {
+    for (const city of HIGH_PRIORITY_HUBS) {
+      params.push({ slug: service.slug, city });
+    }
+  }
+  return params;
 }
 
 export const dynamicParams = true;
@@ -45,7 +58,7 @@ export async function generateMetadata({
     if (fallback) return {}; // Let the page component handle the redirect
     return {};
   }
-  const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
+  const cityObj = getCityBySlug(citySlug) || ACS_CITIES.find((c) => c.slug === citySlug);
   if (!service || !cityObj) return {};
 
   const cityName = cityObj.name;
@@ -99,12 +112,12 @@ export async function generateMetadata({
         ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
         : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Security (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`);
 
-  // Tier-based indexing strategy (anti-Scaled Content Abuse)
-  // Tier 1–3: sufficient search volume → inherit layout default (index: true)
-  // Tier 4+:  very low-tier / thin-content risk → explicitly noindex
-  const robotsMeta: Metadata['robots'] = cityObj.tier >= 4
-    ? { index: false, follow: true, googleBot: { index: false, follow: true } }
-    : undefined;
+  // Indexing strategy: Full indexing enabled across ALL service-city pages (Zero noindex)
+  const robotsMeta: Metadata['robots'] = {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  };
 
   return {
     title,
@@ -117,7 +130,7 @@ export async function generateMetadata({
       url,
       images: [{ url: service.heroImage || "/images/security-service-slider.jpg", width: 1200, height: 630 }],
     },
-    ...(robotsMeta !== undefined && { robots: robotsMeta }),
+    robots: robotsMeta,
   };
 }
 
@@ -135,7 +148,7 @@ export default async function ServiceCityPage({
     }
     notFound();
   }
-  const cityObj = ACS_CITIES.find((c) => c.slug === citySlug);
+  const cityObj = getCityBySlug(citySlug) || ACS_CITIES.find((c) => c.slug === citySlug);
   if (!service || !cityObj) notFound();
 
   const { name: cityName, state, stateSlug } = cityObj;

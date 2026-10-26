@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/config";
 import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
 import EvidenceTrustEngine from "@/components/common/EvidenceTrustEngine";
 import ClientMarquee from "@/components/common/ClientMarquee";
+import { ArrowRight, FileCheck2, ShieldCheck, Scale, FileSpreadsheet, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Government & PSU Security Procurement Center | GeM Empanelled PSARA Contractor",
@@ -184,14 +185,20 @@ export default function ProcurementCenterPage() {
             Pan-India empanelled, PSARA-licensed, and ISO 9001:2015 certified security guarding and workforce partner for Central Ministries, State Secretariats, Maharatna/Navratna PSUs, Defence, Railways, and Municipal Bodies.
           </p>
 
-          <div className="flex flex-wrap gap-4 items-center mb-10">
-            <Link href="#tender-dossier" className="btn-primary text-sm px-7 py-3.5 shadow-lg">
+          <div className="flex flex-wrap gap-3 items-center mb-6">
+            <Link href="#tender-dossier" className="btn-primary text-xs sm:text-sm px-6 py-3 shadow-lg">
               Download Tender Compliance Dossier
             </Link>
-            <Link href="#pricing-guide" className="btn-secondary text-sm px-6 py-3.5">
-              Statutory Tender Pricing Guide
+            <Link href="/procurement/gem-security-tender-checklist" className="btn-secondary text-xs sm:text-sm px-5 py-3 border-sky-400/60 text-sky-200 hover:text-white hover:bg-white/10">
+              📋 GeM Tender Checklist (2026)
             </Link>
-            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="text-white font-medium text-sm hover:text-sky flex items-center gap-2">
+            <Link href="/procurement/monthly-compliance-pack-template" className="btn-secondary text-xs sm:text-sm px-5 py-3 border-emerald-400/60 text-emerald-200 hover:text-white hover:bg-white/10">
+              🛡️ Monthly Compliance Pack
+            </Link>
+            <Link href="/procurement/agency-comparison" className="btn-secondary text-xs sm:text-sm px-5 py-3 border-white/30 text-slate-200 hover:text-white hover:bg-white/10">
+              ⚖️ Agency Comparison Matrix
+            </Link>
+            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="text-white font-medium text-xs sm:text-sm hover:text-sky flex items-center gap-2">
               📞 Direct B2G Procurement Desk: {siteConfig.phone}
             </a>
           </div>
@@ -326,9 +333,16 @@ export default function ProcurementCenterPage() {
               <h4 className="font-roboto font-bold text-navy text-base sm:text-lg mb-1">
                 Notice on Zero Service Charge Bids (GeM Office Memorandum OM No. F.6/1/2023-PPD)
               </h4>
-              <p className="text-slate-700 text-xs sm:text-sm leading-relaxed">
-                Procuring entities are explicitly instructed to reject bids offering 0% or sub-penny service charges. In accordance with Ministry of Finance guidelines, minimum viable administrative overheads must be maintained to prevent contractor default, statutory wage theft, and EPF/ESIC non-remittance. ACS strictly complies with viable pricing frameworks.
+              <p className="text-slate-700 text-xs sm:text-sm leading-relaxed mb-3">
+                Procuring entities are explicitly instructed to reject bids offering 0% or sub-penny service charges. In accordance with Ministry of Finance guidelines, minimum viable administrative overheads (mandatory 3.85% floor) must be maintained to prevent contractor default, statutory wage theft, and EPF/ESIC non-remittance. ACS strictly complies with viable pricing frameworks.
               </p>
+              <Link
+                href="/procurement/gem-security-tender-checklist"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-sky hover:text-sky-dark underline"
+              >
+                <span>Read Full Guide: GeM Security Services Tender Checklist (2026) &amp; GFR 2017 Rules</span>
+                <span>→</span>
+              </Link>
             </div>
             <Link href="/contact" className="btn-primary shrink-0 text-xs px-5 py-3">
               Consult Our GeM Desk
@@ -421,10 +435,18 @@ export default function ProcurementCenterPage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-slate-100 border border-slate-200 text-xs sm:text-sm text-slate-700">
-            <span>📄 Need certified copies of these documents for your upcoming technical bid evaluation?</span>
-            <Link href="/contact" className="btn-primary text-xs py-2 px-4">
-              Request Full Tender Dossier
-            </Link>
+            <div>
+              <span className="font-semibold block text-navy">📄 Need certified copies of these documents for your upcoming technical bid evaluation?</span>
+              <span className="text-xs text-slate-500">Includes PSARA Form V, UDIN CA balance sheets, ECR receipts, and ISO certificates.</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link href="/procurement/monthly-compliance-pack-template" className="btn-secondary text-xs py-2 px-3.5 border-slate-300 text-navy hover:bg-slate-200">
+                🛡️ Monthly Compliance Pack Template
+              </Link>
+              <Link href="/contact" className="btn-primary text-xs py-2 px-4">
+                Request Full Tender Dossier
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -536,6 +558,16 @@ export default function ProcurementCenterPage() {
               </ul>
             </div>
           </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/procurement/gem-security-tender-checklist"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-navy bg-white hover:bg-slate-100 border border-slate-300 rounded-xl px-5 py-3 shadow-2xs transition-colors"
+            >
+              <span>📋 Launch Interactive 12-Point GeM Tender Scrutiny Docket (with Printable Audit Sheet)</span>
+              <span className="text-sky font-bold">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -604,7 +636,175 @@ export default function ProcurementCenterPage() {
         </div>
       </section>
 
-      {/* ── 6. TRUST & EVIDENCE DATABASE (15 PARAMETERS) ── */}
+      {/* ── 6. B2G PROCUREMENT GUIDES & STATUTORY COMPLIANCE BLUEPRINTS ── */}
+      <section className="section-py bg-slate-50 border-t border-b border-slate-200">
+        <div className="container-acs">
+          <div className="text-center mb-12 max-w-3xl mx-auto">
+            <span className="badge-sky text-xs uppercase mb-3 inline-block">Enterprise Procurement Knowledge Base</span>
+            <h2 className="text-navy text-2xl sm:text-4xl font-roboto font-extrabold">
+              Statutory Procurement Guides &amp; Audit Blueprints
+            </h2>
+            <div className="divider-sky mx-auto my-3" />
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Authoritative, non-negotiable statutory frameworks for CFOs, Plant Heads, and Tender Evaluation Committees across Central Ministries, PSUs, and Corporate Enterprises.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Guide 1: GeM Security Tender Checklist */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-sky-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-sky-50 text-sky border border-sky-200">
+                    <FileCheck2 size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-sky uppercase tracking-wider">
+                    GeM &amp; GFR 2017
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  GeM Security Services Tender Checklist (2026)
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Master the Ministry of Finance DoE OM No. F.6/1/2023-PPD 3.85% minimum service charge floor, GFR 170 MSME EMD exemptions, GFR 171 PBG norms, and the 100-point QCBS technical matrix.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">12-Point Pre-Bid Docket</span>
+                <Link
+                  href="/procurement/gem-security-tender-checklist"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-sky hover:text-sky-dark group"
+                >
+                  <span>Explore Guide</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Guide 2: Monthly Compliance Pack Template */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-emerald-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <ShieldCheck size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">
+                    Audit Immunity Shield
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  Monthly Security Compliance Pack Template
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  The mandatory 5-part monthly billing pack: EPFO ECR with TRRN, ESIC IP roster, Form B electronic wage registers, GSTR-3B ITC reconciliation, and CLRA Section 21(4) Principal Employer indemnity shields.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">5-Part Invoicing Docket</span>
+                <Link
+                  href="/procurement/monthly-compliance-pack-template"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800 group"
+                >
+                  <span>Explore Guide</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Guide 3: Agency Comparison Matrix */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-slate-400 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-navy/5 text-navy border border-navy/20">
+                    <Scale size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                    Vendor Evaluation
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  Security Agency Comparison Matrix
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Comprehensive benchmark comparing ACS against National Mega-Corporations and Local Contractors across 6 critical operational and statutory pillars.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">6 Pillars Benchmarked</span>
+                <Link
+                  href="/procurement/agency-comparison"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-navy hover:text-sky group"
+                >
+                  <span>Explore Matrix</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Guide 4: How to Read a Manpower Cost Sheet */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-amber-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-amber-50 text-amber-700 border border-amber-200">
+                    <FileSpreadsheet size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wider">
+                    Costing Mathematics
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  How to Read a Manpower Cost Sheet
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Dissecting security rate cards: Basic+VDA, EPF 13%, ESIC 3.25%, Reliever 16.67%, Statutory Bonus 8.33%, and eliminating hidden contractor skimming.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">Statutory Rate Formulas</span>
+                <Link
+                  href="/procurement/how-to-read-a-manpower-cost-sheet"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-amber-800 hover:text-amber-900 group"
+                >
+                  <span>Explore Guide</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Guide 5: PSARA License Verification */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-sky-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-sky-50 text-sky border border-sky-200">
+                    <FileText size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-sky uppercase tracking-wider">
+                    Licensing Protocol
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  PSARA License Verification Checklist
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Step-by-step audit protocol for verifying state-specific PSARA Form-V certificates, district territorial limits, and guard Section 9 training credentials.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">5-Point Verification SOP</span>
+                <Link
+                  href="/procurement/psara-license-verification-checklist"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-sky hover:text-sky-dark group"
+                >
+                  <span>Explore Guide</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. TRUST & EVIDENCE DATABASE (15 PARAMETERS) ── */}
       <EvidenceTrustEngine showTitle={true} />
 
       {/* Clients Marquee */}

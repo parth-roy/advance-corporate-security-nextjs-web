@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
+import { getEnterpriseServiceDetails } from "@/lib/serviceDetails";
 import { ACS_CITIES } from "@/lib/cities";
 import { buildBreadcrumbSchema, buildServiceSchema, buildFaqSchema, serializeJsonLd } from "@/lib/schema";
 import { notFound } from "next/navigation";
@@ -155,7 +156,10 @@ export default async function ServicePage({
   const longDescription = subService ? subService.longDescription : category.longDescription;
   const heroImage = subService ? subService.heroImage : category.heroImage;
   const features = subService ? subService.features : category.features;
-  const faqs = subService
+  const enterpriseDetail = getEnterpriseServiceDetails(slug);
+  const faqs = enterpriseDetail?.faqs
+    ? enterpriseDetail.faqs
+    : subService
     ? [
         {
           question: `Is ACS licensed and certified for ${title}?`,
@@ -381,6 +385,207 @@ export default async function ServicePage({
           </div>
         </div>
       </section>
+
+      {/* Enterprise Operational Depth & Framework (Whitepaper Grade) */}
+      {enterpriseDetail && (
+        <section className="section-py bg-slate-50 border-t border-slate-200" aria-label="Enterprise Operational Depth">
+          <div className="container-acs space-y-12">
+            
+            {/* 1. Operational Scope & Responsibilities */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-roboto">
+                  Enterprise Scope of Work
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-roboto text-navy mb-4">
+                Operational Scope &amp; On-Site Responsibilities
+              </h3>
+              <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+                Advance Corporate Security operates with rigorous standard operating discipline. All deployed personnel for <strong>{title}</strong> execute the following core responsibilities:
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {enterpriseDetail.operationalScope.map((scope, idx) => (
+                  <div key={idx} className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                    <span className="w-5 h-5 rounded-full bg-navy text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                      {idx + 1}
+                    </span>
+                    <span className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
+                      {scope}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 2. Personnel Training & Tactical Gear Grid */}
+            <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+              
+              {/* Training Standards */}
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-amber-700 font-roboto">
+                      Training &amp; Vetting
+                    </span>
+                    <span className="badge-gold text-[10px] font-mono">
+                      {enterpriseDetail.trainingStandards.hours}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold font-roboto text-navy mb-2">
+                    {enterpriseDetail.trainingStandards.title}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500 mb-4 pb-3 border-b border-slate-100">
+                    Certification: <strong className="text-slate-800">{enterpriseDetail.trainingStandards.certification}</strong>
+                  </p>
+                  <ul className="space-y-2.5">
+                    {enterpriseDetail.trainingStandards.modules.map((mod, mIdx) => (
+                      <li key={mIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                        <span className="text-emerald-600 font-bold shrink-0">✓</span>
+                        <span className="leading-relaxed">{mod}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500">
+                  🛡️ Police antecedent verification + biometric Aadhaar verification completed prior to site deployment.
+                </div>
+              </div>
+
+              {/* Tactical Gear & Technology */}
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-roboto">
+                      Equipment &amp; Tactical Assets
+                    </span>
+                    <span className="badge-sky text-[10px] font-mono">
+                      Site-Issued
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold font-roboto text-navy mb-2">
+                    Tactical Gear, PPE &amp; Technology Deployment
+                  </h3>
+                  <p className="text-xs text-slate-500 mb-4 pb-3 border-b border-slate-100">
+                    Industrial equipment and hardware issued to all on-duty personnel for {shortName}:
+                  </p>
+                  <ul className="space-y-2.5">
+                    {enterpriseDetail.gearAndTechnology.map((gear, gIdx) => (
+                      <li key={gIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                        <span className="text-sky font-bold shrink-0">⚙️</span>
+                        <span className="leading-relaxed">{gear}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500">
+                  📡 Calibrated and tested under ACS ISO 9001:2015 Quality Management inspection procedures.
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Standard Operating Procedures (SOPs) */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-indigo-700 font-roboto">
+                  Standard Operating Procedures
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-roboto text-navy mb-4">
+                Operational SOPs &amp; Site Execution Protocols
+              </h3>
+              <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+                Standardized operational checklists enforced across all commercial and industrial deployment sites:
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {enterpriseDetail.sops.map((sop) => (
+                  <div key={sop.code} className="p-5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-sky-300 transition-colors">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="text-xs font-bold font-mono text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">
+                        {sop.code}
+                      </span>
+                    </div>
+                    <h4 className="text-base font-bold text-navy mb-2">
+                      {sop.title}
+                    </h4>
+                    <p className="text-xs text-slate-500 font-medium mb-3">
+                      <strong>Objective:</strong> {sop.objective}
+                    </p>
+                    <p className="text-xs text-slate-700 leading-relaxed pt-2 border-t border-slate-200/60">
+                      {sop.protocol}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 4. SLA & Incident Escalation Matrix */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-rose-700 font-roboto">
+                  Service Level Commitments
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-roboto text-navy mb-4">
+                Service-Level Agreement (SLA) &amp; Incident Escalation Matrix
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <thead>
+                    <tr className="border-b border-slate-200 bg-slate-50 text-slate-600 uppercase text-[11px] font-bold">
+                      <th className="py-3 px-4">Tier / Classification</th>
+                      <th className="py-3 px-4">Performance Metric</th>
+                      <th className="py-3 px-4">Target SLA</th>
+                      <th className="py-3 px-4">Escalation Protocol</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {enterpriseDetail.slaMatrix.map((sla, sIdx) => (
+                      <tr key={sIdx} className="hover:bg-slate-50/50">
+                        <td className="py-3.5 px-4 font-bold text-navy">
+                          <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-xs">
+                            {sla.tier}
+                          </span>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-800 font-medium">{sla.metric}</td>
+                        <td className="py-3.5 px-4 font-bold text-emerald-700">{sla.target}</td>
+                        <td className="py-3.5 px-4 text-slate-600 text-xs">{sla.escalation}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* 5. 100% Statutory Compliance Shield */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-roboto">
+                  Statutory Indemnity
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-roboto text-navy mb-4">
+                100% Statutory Compliance Shield &amp; Principal Employer Indemnity
+              </h3>
+              <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+                Under the Contract Labour (R&amp;A) Act 1970, enterprise clients face vicarious joint liability for vendor labor defaults. ACS eliminates client liability with comprehensive statutory coverage:
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {enterpriseDetail.complianceShield.map((shield, cIdx) => (
+                  <div key={cIdx} className="p-4 rounded-xl bg-emerald-50/40 border border-emerald-200/70">
+                    <div className="font-bold text-navy text-sm mb-1">{shield.regulation}</div>
+                    <div className="text-xs font-semibold text-emerald-800 mb-2">{shield.standard}</div>
+                    <div className="text-xs text-slate-600 leading-relaxed border-t border-emerald-100 pt-2">
+                      {shield.coverage}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+      )}
 
       {/* Pan-India Cities Grid for this Service */}
       <section className="section-py bg-gray-50 border-t border-gray-100">

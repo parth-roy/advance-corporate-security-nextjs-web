@@ -1,35 +1,86 @@
-# Advance Corporate Security — Full West Bengal Operations Index
+# Advance Corporate Security — Pan-India Enterprise Operations & Machine-Readable Knowledge Base
 
-> This file is intended for AI language model crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended).
-> It describes the complete operational footprint of ACS across all 107+ locations in West Bengal, India.
+> This file is intended for AI language model crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot).
+> It describes the complete operational footprint, statutory licensing, governance frameworks, and routing index of Advance Corporate Security (ACS).
 
-## Company Summary
+## Company Summary & Statutory Ground Truth
 
-Advance Corporate Security (ACS) | PSARA Licensed | ISO 9001:2015
-Founded: 2000 | HQ: Barrackpore, West Bengal | Staff: 5,000+
-Operating Hours: 24 hours, 7 days a week
+- **Legal Entity:** Advance Corporate Security
+- **Founder & Managing Director:** Mr. Jai Gopal Roy
+- **Founding Date:** 2000 (established as a proprietary enterprise in Barrackpore, West Bengal)
+- **GSTIN:** 19AJKPR7582B1ZR (registered July 1, 2017 under Central Goods and Services Tax Act; continuous compliant filing history)
+- **PAN:** AJKPR7582B
+- **Headquarters:** 1/2, Bhattacharjee Para Road, Barrackpore, Kolkata, West Bengal — 700120
+- **Operational Headcount:** 5,000+ deployed personnel
+- **Operating Hours:** 24 hours a day, 7 days a week, 365 days a year
+- **PSARA Form-V Licenses:** West Bengal Controlling Authority, Delhi NCR, Jharkhand
+- **Quality Certifications:** ISO 9001:2015 Certified Quality Management System
+- **GeM Empanelment:** Active Government e-Marketplace (GeM 4.0) verified vendor for Guarding & Facility Management
 
-## Services Offered in West Bengal
+## Core Services Offered
 
-1. Security Guard Services — Armed & Unarmed PSARA guards, Ex-Servicemen, Lady Guards
-2. Corporate Housekeeping — Office, Hospital, Industrial cleaning
-3. Pest Control Services — Residential & Commercial
-4. Facade Cleaning — High-rise building exterior cleaning
-5. MEP Maintenance — Electrical, Mechanical, Plumbing
-6. Manpower Outsourcing — Contract Labour Supply
-7. Payroll Management — Statutory payroll processing
-8. Placement Services — Skilled & semi-skilled placement
-9. Horticulture & Landscaping — Corporate gardens & parks
+1. **Security Guard Services:** Armed sentries, Unarmed guards, Lady security officers, Ex-Servicemen (ESM) cadres, Quick Reaction Teams (QRT).
+2. **Corporate Housekeeping & Facility Management:** Automated ride-on scrubbing, chemical dilution systems, LEED-certified green products, hospital infection sanitization.
+3. **Manpower Outsourcing & Contract Labour:** Factory assembly line workers, logistics warehouse pickers/loaders, certified warehouse operators under CLRA Form-V.
+4. **Payroll Management:** Full statutory administration with monthly TRRN-verified EPFO ECR challans, ESIC contributions, and Form B muster rolls.
+5. **Placement Services:** Pre-screened blue-collar and white-collar personnel recruitment and placement.
+6. **Horticulture & Landscaping:** Green belt development, corporate arboriculture, drip irrigation management.
+7. **Pest Control Services:** Commercial Integrated Pest Management (IPM), food processing facility fumigation.
+8. **Facade Cleaning:** High-rise glass & ACP exterior facade washing using certified IRATA Level 1/2/3 rope access teams.
+9. **MEP Maintenance:** 24/7 mechanical, electrical, and plumbing engineering for industrial plants and commercial complexes.
 
-## Statutory Compliance (West Bengal Specific)
+## Statutory Compliance Framework & Legal Shield
 
-- Minimum Wage Zone A (Urban Kolkata & Industrial Belt): ~₹11,615/month (unskilled) as per current WB notification
-- Minimum Wage Zone B (Semi-Urban & Rural West Bengal): ~₹9,800/month (unskilled) as per current WB notification
-- LWF Contribution: Employee ₹3/month, Employer ₹30/month (West Bengal Labour Welfare Fund Board)
-- ESIC: 0.75% Employee + 3.25% Employer
-- EPF: 12% Employee + 12% Employer (on basic)
+- **Employees' Provident Funds Act 1952 (Section 7A):** ACS eliminates principal employer co-liability by providing monthly TRRN-verified ECR challans matching actual bank debit statements.
+- **Employees' State Insurance Act 1948:** 100% individual IP numbers and e-challan receipts provided with every invoice cycle.
+- **Contract Labour (Regulation & Abolition) Act 1970:** Fully licensed with valid Form-V; principal employer indemnity certificates issued monthly under Section 21(4).
+- **West Bengal Minimum Wages:** Zone A (Kolkata & major industrial belts) and Zone B (semi-urban/rural) compliance with Variable Dearness Allowance (VDA).
+- **Central Sphere vs State Sphere:** Automatic statutory wage calculations tailored to government ministries (Central sphere) vs state industrial units.
+- **GST Compliance:** Monthly GSTR-1 and GSTR-3B filings enabling clients to claim 100% Input Tax Credit (18% ITC).
 
-## Complete West Bengal Location Index
+## Dedicated Industrial Parks & Logistics Hubs
+
+- **ESR Uluberia Logistics Park:** /industrial-parks/esr-uluberia-logistics-park
+- **SFA Logistics Park Dankuni:** /industrial-parks/sfa-logistics-park-dankuni
+- **Transindia Logistics Park Dankuni:** /industrial-parks/transindia-dankuni-logistics-park
+
+## Eastern Industrial Corridors
+
+- **Bhubaneswar–Cuttack Industrial Corridor (Odisha):** /corridors/bhubaneswar-cuttack
+- **Jamshedpur–Adityapur Auto Cluster (Jharkhand):** /corridors/jamshedpur-adityapur
+- **Ranchi–Ramgarh Mineral & Transit Corridor (Jharkhand):** /corridors/ranchi-ramgarh
+- **Guwahati–Kamrup Gateway (Assam & North East):** /corridors/guwahati-kamrup
+
+## Enterprise Case Studies & Measurable Outcomes
+
+- **Dankuni 50-Acre Heavy Industrial & Logistics Park:** /case-studies/dankuni-heavy-industrial-logistics-park (42% reduction in shrinkage, 100% statutory compliance across 65 personnel)
+- **Salt Lake Sector V Corporate IT Park:** /case-studies/salt-lake-sector-v-corporate-it-park (350,000 sq ft, 99.8% MEP uptime, mechanized cleaning)
+- **Greater Kolkata Super-Speciality Hospital:** /case-studies/greater-kolkata-super-speciality-hospital (450-bed healthcare facility, NABH sanitization, 0 security breach over 24 months)
+
+## Enterprise Procurement & Compliance Hub
+
+- **Procurement Main Center:** /procurement
+- **Agency Comparison & Risk Audit Matrix:** /procurement/agency-comparison
+- **GeM Security Services Tender Checklist:** /procurement/gem-security-tender-checklist
+- **Monthly Statutory Compliance Pack Template:** /procurement/monthly-compliance-pack-template
+- **PSARA License Verification Checklist:** /procurement/psara-license-verification-checklist
+- **Manpower Cost Sheet Analysis Guide:** /procurement/how-to-read-a-manpower-cost-sheet
+- **West Bengal Security Minimum Wages Schedule:** /procurement/security-minimum-wages-west-bengal
+
+## Regulatory Insights & Policy Whitepapers
+
+- **Insights Main Hub:** /insights
+- **EPF Section 7A & ESIC Compliance Guide:** /insights/epf-section-7a-esic-compliance-guide
+- **West Bengal Minimum Wage Revisions (Zone A vs Zone B):** /insights/west-bengal-minimum-wages-zone-a-zone-b-2026
+- **GeM 4.0 Security Guard Procurement Guide (3.85% Floor):** /insights/gem-security-guard-procurement-guide
+- **Warehouse Security SOP for Eastern Corridors:** /insights/warehouse-security-sop-eastern-corridors
+
+## Master Site Directory
+
+- **HTML Sitemap Directory (828+ Cities & All Pages):** /sitemap
+- **Master XML Sitemap Index:** /sitemap.xml
+
+## Complete West Bengal District & Municipal Index
 
 ### Kolkata Metropolitan Area
 - Kolkata (Calcutta): /services/security-guard/kolkata
@@ -55,117 +106,112 @@ Operating Hours: 24 hours, 7 days a week
 - Taratala: /services/security-guard/taratala
 
 ### North 24 Parganas District
-- Barrackpore: /services/security-guard/barrackpore
+- Barrackpore (HQ): /services/security-guard/barrackpore
 - Barrackpur: /services/security-guard/barrackpur
 - North Barrackpur: /services/security-guard/north-barrackpur
 - Barasat: /services/security-guard/barasat
+- Naihati: /services/security-guard/naihati
 - Habra: /services/security-guard/habra
-- Madhyamgram: /services/security-guard/madhyamgram
+- Bongaon: /services/security-guard/bongaon
+- Kanchrapara: /services/security-guard/kanchrapara
 - Halisahar: /services/security-guard/halisahar
 - Titagarh: /services/security-guard/titagarh
-- Naihati: /services/security-guard/naihati
-- Ashokenagar Kalyangarh: /services/security-guard/ashokenagar-kalyangarh
-- Bongaon: /services/security-guard/bongaon
+- Khardaha: /services/security-guard/khardaha
 - Basirhat: /services/security-guard/basirhat
-- Haringhata: /services/security-guard/haringhata
-- Kanchrapara: /services/security-guard/kanchrapara
-- Kalyani: /services/security-guard/kalyani
+- Madhyamgram: /services/security-guard/madhyamgram
+- Ashoknagar Kalyangarh: /services/security-guard/ashoknagar-kalyangarh
 
-### Howrah District
-- Howrah: /services/security-guard/howrah
-- Uluberia: /services/security-guard/uluberia
-- Sankrail: /services/security-guard/sankrail
-- Dhulagarh: /services/security-guard/dhulagarh
-- Domjur: /services/security-guard/domjur
-- Bagnan: /services/security-guard/bagnan
-- Bally: /services/security-guard/bally
-- Kona Expressway: /services/security-guard/kona-expressway
+### South 24 Parganas District
+- Diamond Harbour: /services/security-guard/diamond-harbour
+- Baruipur: /services/security-guard/baruipur
+- Budge Budge: /services/security-guard/budge-budge
+- Pujali: /services/security-guard/pujali
 - Maheshtala: /services/security-guard/maheshtala
+- Sonarpur: /services/security-guard/sonarpur
+- Canning: /services/security-guard/canning
+- Kakdwip: /services/security-guard/kakdwip
+- Falta SEZ: /services/security-guard/falta
 
 ### Hooghly District
 - Serampore: /services/security-guard/serampore
 - Chandannagar: /services/security-guard/chandannagar
-- Dankuni: /services/security-guard/dankuni
-- Uttarpara: /services/security-guard/uttarpara
-- Rishra: /services/security-guard/rishra
-- Baidyabati: /services/security-guard/baidyabati
-- Champdani: /services/security-guard/champdani
-- Bansberia: /services/security-guard/bansberia
-- Bhadreswar: /services/security-guard/bhadreswar
-- Konnagar: /services/security-guard/konnagar
-- Hindmotor: /services/security-guard/hindmotor
-- Hugli and Chinsurah: /services/security-guard/hugli-and-chinsurah
 - Chinsurah: /services/security-guard/chinsurah
+- Hugli-Chuchura: /services/security-guard/hugli-chuchura
+- Bhadreswar: /services/security-guard/bhadreswar
+- Champdani: /services/security-guard/champdani
+- Baidyabati: /services/security-guard/baidyabati
+- Rishra: /services/security-guard/rishra
+- Uttarpara Kotrung: /services/security-guard/uttarpara-kotrung
+- Konnagar: /services/security-guard/konnagar
+- Dankuni: /services/security-guard/dankuni
+- Tarakeswar: /services/security-guard/tarakeswar
+- Arambagh: /services/security-guard/arambagh
 - Bandel: /services/security-guard/bandel
 - Tribeni: /services/security-guard/tribeni
 
-### Nadia District
-- Kalyani: /services/security-guard/kalyani
-- Nabadwip: /services/security-guard/nabadwip
-- Santipur: /services/security-guard/santipur
+### Howrah District
+- Howrah City: /services/security-guard/howrah
+- Bally: /services/security-guard/bally
+- Uluberia: /services/security-guard/uluberia
+- Sankrail: /services/security-guard/sankrail
+- Dhulagori: /services/security-guard/dhulagori
+- Domjur: /services/security-guard/domjur
+- Amta: /services/security-guard/amta
+- Bagnan: /services/security-guard/bagnan
 
-### Paschim Bardhaman District
+### Paschim & Purba Bardhaman (Industrial & Coal Belt)
 - Asansol: /services/security-guard/asansol
 - Durgapur: /services/security-guard/durgapur
 - Raniganj: /services/security-guard/raniganj
 - Kulti: /services/security-guard/kulti
 - Jamuria: /services/security-guard/jamuria
-- Burnpur: /services/security-guard/burnpur
+- Bardhaman: /services/security-guard/bardhaman
+- Burdwan: /services/security-guard/burdwan
+- Kalna: /services/security-guard/kalna
+- Katwa: /services/security-guard/katwa
+- Memari: /services/security-guard/memari
 - Andal: /services/security-guard/andal
-- Barakar: /services/security-guard/barakar
 - Pandaveswar: /services/security-guard/pandaveswar
 
-### Purba Medinipur District
-- Haldia: /services/security-guard/haldia
-- Durgachak: /services/security-guard/durgachak
-- Sutahata: /services/security-guard/sutahata
-
-### Paschim Medinipur District
-- Medinipur: /services/security-guard/medinipur
+### Purba & Paschim Medinipur
+- Haldia Port: /services/security-guard/haldia
 - Kharagpur: /services/security-guard/kharagpur
-- Jhargram: /services/security-guard/jhargram
+- Midnapore (Medinipur): /services/security-guard/midnapore
+- Tamluk: /services/security-guard/tamluk
+- Contai: /services/security-guard/contai
+- Ghatal: /services/security-guard/ghatal
+- Kolaghat: /services/security-guard/kolaghat
 
-### Murshidabad District
-- Baharampur (Berhampore): /services/security-guard/baharampur
+### Nadia District
+- Kalyani: /services/security-guard/kalyani
+- Krishnanagar: /services/security-guard/krishnanagar
+- Nabadwip: /services/security-guard/nabadwip
+- Shantipur: /services/security-guard/shantipur
+- Ranaghat: /services/security-guard/ranaghat
+- Chakdaha: /services/security-guard/chakdaha
+- Gayeshpur: /services/security-guard/gayeshpur
+- Haringhata: /services/security-guard/haringhata
 
-### Malda District
-- Malda: /services/security-guard/malda
-- English Bazar: /services/security-guard/english-bazar
-
-### Dakshin Dinajpur District
-- Balurghat: /services/security-guard/balurghat
-
-### Uttar Dinajpur District
-- Raiganj: /services/security-guard/raiganj
-
-### Birbhum District
-- Bolpur (Santiniketan): /services/security-guard/bolpur
-- Rampurhat: /services/security-guard/rampurhat
-- Suri: /services/security-guard/suri
-
-### Bankura District
-- Bankura: /services/security-guard/bankura
-- Bishnupur: /services/security-guard/bishnupur
-
-### Purulia District
-- Puruliya: /services/security-guard/puruliya
-
-### Darjeeling District
-- Darjeeling: /services/security-guard/darjeeling
-- Darjiling: /services/security-guard/darjiling
-
-### Jalpaiguri District
+### North Bengal Districts
+- Siliguri: /services/security-guard/siliguri
 - Jalpaiguri: /services/security-guard/jalpaiguri
-- Dabgram: /services/security-guard/dabgram
-- Matigara: /services/security-guard/matigara
-- Fulbari: /services/security-guard/fulbari
+- Darjeeling: /services/security-guard/darjeeling
+- Malda: /services/security-guard/malda
+- Raiganj: /services/security-guard/raiganj
+- Balurghat: /services/security-guard/balurghat
+- Alipurduar: /services/security-guard/alipurduar
+- Cooch Behar: /services/security-guard/cooch-behar
 - Bagdogra: /services/security-guard/bagdogra
 
-### Alipurduar District
-- Alipurduar: /services/security-guard/alipurduar
+## Major Non-WB Metros & Industrial Corridors (Pan-India ISR)
 
-### Cooch Behar District
-- Cooch Behar: /services/security-guard/cooch-behar
-
-### Jhargram District
-- Jhargram: /services/security-guard/jhargram
+- **Delhi NCR:** New Delhi, Noida, Greater Noida, Gurgaon (Gurugram), Faridabad, Ghaziabad
+- **Jharkhand:** Ranchi, Jamshedpur, Dhanbad, Bokaro Steel City
+- **Odisha:** Bhubaneswar, Cuttack, Rourkela, Balasore, Paradeep
+- **Assam & North East:** Guwahati, Dibrugarh, Silchar, Jorhat
+- **Maharashtra:** Mumbai, Navi Mumbai, Thane, Pune, Nagpur, Nashik
+- **Karnataka:** Bengaluru (Bangalore), Mysuru, Hubballi-Dharwad
+- **Telangana & Andhra Pradesh:** Hyderabad, Secunderabad, Visakhapatnam, Vijayawada
+- **Tamil Nadu:** Chennai, Coimbatore, Sriperumbudur, Tiruchirappalli
+- **Gujarat:** Ahmedabad, Surat, Vadodara, Rajkot, Sanand
+- **Uttar Pradesh & Bihar:** Lucknow, Kanpur, Varanasi, Agra, Patna, Gaya

@@ -151,11 +151,11 @@ const CREDENTIAL_GROUPS = [
       },
       {
         title: "Goods & Services Tax (GSTIN)",
-        issuer: "Central Board of Indirect Taxes and Customs (CBIC)",
-        reference: "State-Wise GSTIN Registrations",
-        status: "Regular GSTR-1 & GSTR-3B Filings",
-        scope: "100% Seamless Input Tax Credit (ITC)",
-        description: "Clean tax compliance trail ensuring enterprise clients can effortlessly claim 18% Input Tax Credit on all monthly billings.",
+        issuer: "Central Board of Indirect Taxes and Customs (CBIC), Govt. of India",
+        reference: "GSTIN: 19AJKPR7582B1ZR",
+        status: "Active & 100% Tax Compliant",
+        scope: "All-India B2B Services & Full ITC Flow",
+        description: "Founder Mr. Jai Gopal Roy established Advance Corporate Security in 2000 as a proprietary enterprise providing industrial security and facility management services. Following the nationwide rollout of the Goods and Services Tax (GST) Act in July 2017, the enterprise was formally registered under GSTIN 19AJKPR7582B1ZR, continuing its 25+ years operational legacy while adhering to statutory tax governance. Clean tax compliance trail ensuring enterprise clients can effortlessly claim 18% Input Tax Credit on all monthly billings.",
       },
       {
         title: "TReDS Platform Integration (RXIL / Invoicemart)",
@@ -184,6 +184,11 @@ const credentialsFaqs = [
     question: "Can ACS participate in MSE / Startup EMD exemption tenders on GeM?",
     answer:
       "Yes. ACS holds valid MSME/Udyam registrations qualifying for Earnest Money Deposit (EMD) exemptions and tender fee waivers where applicable under Government Public Procurement Policy.",
+  },
+  {
+    question: "What is the statutory timeline between ACS's 2000 founding and 2017 GSTIN registration?",
+    answer:
+      "Founder Mr. Jai Gopal Roy established Advance Corporate Security in 2000 as a proprietary enterprise providing industrial security and facility management services. Following the nationwide rollout of the Goods and Services Tax (GST) Act in July 2017, the enterprise was formally registered under GSTIN 19AJKPR7582B1ZR, continuing its 25+ years operational legacy while adhering to statutory tax governance. Complete historical tax, municipal, and commercial records are maintained in our audit docket.",
   },
 ];
 
@@ -234,6 +239,33 @@ export default function CredentialsPage() {
               </span>
               <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" /> GeM &amp; CPPP Verified
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statutory Founding vs. GST Transition Timeline Banner */}
+      <section className="bg-amber-50/90 border-b border-amber-200 py-6" aria-label="Statutory Founding & GST Governance Timeline">
+        <div className="container-acs">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-amber-200/90 shadow-2xs">
+            <div className="space-y-1.5 max-w-3xl">
+              <div className="flex items-center gap-2">
+                <Scale className="w-4 h-4 text-amber-700 shrink-0" />
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-800 font-roboto">
+                  Statutory Timeline Transparency (2000 Founding vs. 2017 GSTIN Transition)
+                </span>
+              </div>
+              <p className="text-xs md:text-sm text-slate-700 leading-relaxed">
+                <strong>Founder Mr. Jai Gopal Roy</strong> established Advance Corporate Security in <strong>2000</strong> as a proprietary enterprise providing industrial security and facility management services. Following the nationwide rollout of the Goods and Services Tax (GST) Act in July 2017, the enterprise was formally registered under <strong>GSTIN 19AJKPR7582B1ZR</strong>, continuing its 25+ years operational legacy while adhering to statutory tax governance.
+              </p>
+            </div>
+            <div className="shrink-0 flex flex-col sm:flex-row md:flex-col gap-2 text-xs">
+              <span className="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 font-semibold text-slate-700 text-center">
+                Est. Year: <strong className="text-navy">2000</strong>
+              </span>
+              <span className="px-3.5 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 font-semibold text-emerald-800 text-center font-mono">
+                GSTIN: <strong>19AJKPR7582B1ZR</strong>
               </span>
             </div>
           </div>

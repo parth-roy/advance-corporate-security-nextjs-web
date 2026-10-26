@@ -21,6 +21,8 @@ const navLinks: NavLinkItem[] = [
     href: "/about",
     children: [
       { label: "About Us", href: "/about" },
+      { label: "Enterprise Case Studies", href: "/case-studies" },
+      { label: "Enterprise Regulatory Insights", href: "/insights" },
       { label: "Statutory Credentials Vault", href: "/credentials" },
       { label: "Our Mission", href: "/about#mission" },
       { label: "Our Vision", href: "/about#vision" },
@@ -46,6 +48,7 @@ const navLinks: NavLinkItem[] = [
     href: "/procurement",
     children: [
       { label: "Procurement Center", href: "/procurement" },
+      { label: "Agency Comparison Matrix", href: "/procurement/agency-comparison" },
       { label: "Rate Card Calculator", href: "/rate-card-calculator" },
       { label: "Tender Bids & Alerts", href: "/tenders" },
       { label: "Statutory Compliance", href: "/compliance" },

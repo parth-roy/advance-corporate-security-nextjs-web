@@ -10,25 +10,37 @@ import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/config";
 import { ACS_SERVICES } from "@/lib/services";
 import { ACS_CITIES, getCityBySlug } from "@/lib/cities";
-import { generateCityHubFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
+import {
+  generateCityHubFaqs,
+  getLocalDeploymentZones,
+  getStateWageFramework,
+  getCityRiskAssessment,
+} from "@/lib/locationFaqHelper";
 import { buildFaqSchema, buildBreadcrumbSchema, buildCityLocalBusinessSchema, serializeJsonLd } from "@/lib/schema";
 import CityMap from "@/components/common/CityMap";
 import EvidenceTrustEngine from "@/components/common/EvidenceTrustEngine";
 
 interface Params { city: string; }
 
+const HIGH_PRIORITY_HUBS = [
+  "kolkata", "dankuni", "howrah", "barrackpore", "durgapur",
+  "asansol", "haldia", "siliguri", "delhi", "noida",
+  "gurgaon", "ranchi", "jamshedpur", "bhubaneswar", "guwahati",
+  "patna", "mumbai", "bengaluru", "hyderabad", "chennai",
+  "pune", "ahmedabad", "jaipur", "lucknow", "chandigarh",
+];
+
 export async function generateStaticParams(): Promise<Params[]> {
-  // Prerendering 828 cities at build time is disabled for fast deployment.
-  // Pages are rendered dynamically on-demand at request time.
-  return [];
+  // Prerender the top 25 high-priority commercial & industrial hubs for fast ISR caching
+  return HIGH_PRIORITY_HUBS.map((city) => ({ city }));
 }
 export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { city: citySlug } = await params;
-  const cityData = getCityBySlug(citySlug) || ACS_CITIES.find((c) => c.slug === citySlug);
+  const cityData = getCityBySlug(citySlug);
   if (!cityData) return {};
-  const { name: cityName, state: stateName, tier } = cityData;
+  const { name: cityName, state: stateName } = cityData;
   const isDirectPsaraState = ["West Bengal", "Delhi", "Jharkhand"].includes(stateName);
   const title = isDirectPsaraState
     ? `PSARA Form-V Licensed Security & Facility Management in ${cityName} | ACS`
@@ -38,30 +50,42 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     : `Advance Corporate Security in ${cityName}, ${stateName} — ISO 9001:2015 certified facility management, corporate housekeeping, and compliant partner-network security deployment across ${cityName}.`;
   const canonical = `${siteConfig.url}/location/${citySlug}`;
 
-  // Tier-based indexing strategy (anti-Scaled Content Abuse)
-  // Tier 1–3: sufficient search volume → inherit layout default (index: true)
-  // Tier 4+:  very low-tier / thin-content risk → explicitly noindex
-  const robotsMeta: Metadata['robots'] = tier >= 4
-    ? { index: false, follow: true, googleBot: { index: false, follow: true } }
-    : undefined;
+  // Indexing strategy: Full indexing enabled across ALL city pages (Zero noindex)
+  const robotsMeta: Metadata['robots'] = {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  };
 
   return {
-    title, description,
-    keywords: [`security services in ${cityName}`, `facility management ${cityName}`, `manpower outsourcing ${cityName}`, `security guard agency ${cityName}`, `corporate housekeeping ${cityName}`, `PSARA licensed security ${cityName}`],
+    title,
+    description,
+    keywords: [
+      `security services in ${cityName}`,
+      `facility management ${cityName}`,
+      `manpower outsourcing ${cityName}`,
+      `security guard agency ${cityName}`,
+      `corporate housekeeping ${cityName}`,
+      `PSARA licensed security ${cityName}`,
+      `contract staffing ${cityName}`,
+      `minimum wage compliance ${cityName}`,
+    ],
     alternates: { canonical },
     openGraph: { title, description, url: canonical },
-    ...(robotsMeta !== undefined && { robots: robotsMeta }),
+    robots: robotsMeta,
   };
 }
 
 export default async function CityHubPage({ params }: { params: Promise<Params> }) {
   const { city: citySlug } = await params;
-  const cityData = ACS_CITIES.find((c) => c.slug === citySlug);
+  const cityData = getCityBySlug(citySlug);
   if (!cityData) notFound();
-  const { name: cityName, state: stateName, stateSlug } = cityData;
+  const { name: cityName, state: stateName, stateSlug, tier = 2 } = cityData;
   const isDirectPsaraState = ["West Bengal", "Delhi", "Jharkhand"].includes(stateName);
 
   const faqs = generateCityHubFaqs(cityName, stateName);
+  const wageFramework = getStateWageFramework(stateName);
+  const riskAssessment = getCityRiskAssessment(cityName, stateName, tier);
   const faqSchema = buildFaqSchema(faqs);
   const localBusinessSchema = buildCityLocalBusinessSchema({
     cityName,
@@ -185,6 +209,91 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
         </div>
       </section>
 
+      {/* Dynamic Industrial Risk Assessment & Security SOP Architecture */}
+      <section className="py-12 bg-white border-b border-slate-200" aria-label={`Security risk assessment and SOP architecture in ${cityName}`}>
+        <div className="container-acs">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="badge-navy text-xs font-roboto">{riskAssessment.tierLabel}</span>
+                <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+                  riskAssessment.riskRating === 'High' 
+                    ? 'bg-rose-100 text-rose-800 border border-rose-200' 
+                    : 'bg-amber-100 text-amber-800 border border-amber-200'
+                }`}>
+                  Risk Rating: {riskAssessment.riskRating}
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold font-roboto text-navy">
+                Industrial Risk Assessment &amp; Security SOPs — <span className="text-sky">{cityName}</span>
+              </h2>
+              <p className="text-gray-600 text-sm mt-1 max-w-2xl">
+                Operational risk profile: <strong className="text-slate-800">{riskAssessment.economicArchetype}</strong>
+              </p>
+            </div>
+            <div className="flex flex-wrap sm:flex-nowrap gap-3 shrink-0">
+              <div className="bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-center">
+                <div className="text-xs text-slate-500 font-medium">Deployment SLA</div>
+                <div className="text-sm font-bold text-navy font-roboto">⚡ 24–48 Hours</div>
+              </div>
+              <div className="bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-center">
+                <div className="text-xs text-slate-500 font-medium">Supervisory Response</div>
+                <div className="text-sm font-bold text-emerald-700 font-roboto">🚨 {riskAssessment.supervisoryResponseTime}</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Threat Vulnerabilities Column */}
+            <div className="lg:col-span-1 bg-slate-50/70 border border-slate-200 rounded-2xl p-6">
+              <div className="flex items-center gap-2 text-navy font-bold text-sm mb-4 font-roboto">
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0" />
+                Key Local Threat Vectors &amp; Choke Points
+              </div>
+              <ul className="space-y-3">
+                {riskAssessment.primaryVulnerabilities.map((threat, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 leading-relaxed">
+                    <span className="text-rose-500 font-bold shrink-0 mt-0.5">⚠️</span>
+                    <span>{threat}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-4 border-t border-slate-200/80 text-xs text-slate-500 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span>Reliever Pool Reserve:</span>
+                  <strong className="text-slate-700 font-semibold">{riskAssessment.relieverPoolBuffer}</strong>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Control Room:</span>
+                  <strong className="text-slate-700 font-semibold">24×7 Active Monitoring</strong>
+                </div>
+              </div>
+            </div>
+
+            {/* Recommended SOPs Column */}
+            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {riskAssessment.recommendedSops.map((sop) => (
+                <div key={sop.code} className="bg-white border border-slate-200 rounded-xl p-5 hover:border-sky-300 transition-all shadow-2xs">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[11px] font-bold text-sky-700 font-mono bg-sky-50 px-2 py-0.5 rounded border border-sky-100">
+                      {sop.code}
+                    </span>
+                    <span className="text-[11px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded">
+                      Enforced SOP
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-navy text-sm font-roboto mb-1">{sop.name}</h3>
+                  <p className="text-xs text-slate-500 italic mb-2">{sop.objective}</p>
+                  <p className="text-xs text-slate-700 leading-relaxed border-t border-slate-100 pt-2">
+                    {sop.implementation}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Grid */}
       <section className="section-py bg-white">
         <div className="container-acs">
@@ -235,6 +344,79 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
 
       {/* 15-Parameter Enterprise Trust & Evidence Engine */}
       <EvidenceTrustEngine cityName={cityName} stateName={stateName} />
+
+      {/* State Minimum Wage Framework & Labour Sphere Alignment */}
+      <section className="py-12 bg-slate-50 border-t border-b border-slate-200" aria-label={`Statutory wage framework in ${cityName}`}>
+        <div className="container-acs">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <p className="section-label">Statutory Governance &amp; Labour Compliance</p>
+            <h2 className="text-2xl sm:text-3xl font-bold font-roboto text-navy">
+              Statutory Wage Framework &amp; Sphere Alignment — <span className="text-sky">{cityName}</span>
+            </h2>
+            <div className="divider-sky mx-auto" />
+            <p className="text-gray-600 text-sm mt-3">
+              100% compliant with the Minimum Wages Act, 1948 and statutory labour notifications for {stateName}. Zero joint liability for principal employers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs text-center">
+              <div className="text-xs font-bold text-sky uppercase tracking-wider mb-1">Employees Provident Fund</div>
+              <div className="font-roboto font-black text-navy text-2xl">13.00%</div>
+              <div className="text-[11px] text-slate-500 mt-1">12% EPF + 0.5% EDLI + 0.5% Admin Charges</div>
+            </div>
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs text-center">
+              <div className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1">State Insurance (ESIC)</div>
+              <div className="font-roboto font-black text-navy text-2xl">3.25%</div>
+              <div className="text-[11px] text-slate-500 mt-1">Employer contribution (Gross wages ≤ ₹21,000/mo)</div>
+            </div>
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs text-center">
+              <div className="text-xs font-bold text-amber-700 uppercase tracking-wider mb-1">Statutory Bonus</div>
+              <div className="font-roboto font-black text-navy text-2xl">8.33%</div>
+              <div className="text-[11px] text-slate-500 mt-1">Payment of Bonus Act, 1965 statutory floor</div>
+            </div>
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs text-center">
+              <div className="text-xs font-bold text-purple-700 uppercase tracking-wider mb-1">Gratuity Accrual</div>
+              <div className="font-roboto font-black text-navy text-2xl">4.81%</div>
+              <div className="text-[11px] text-slate-500 mt-1">Payment of Gratuity Act, 1972 statutory reserve</div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-sm font-bold text-navy font-roboto mb-1 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-sky" />
+                  Labour Sphere Jurisdiction ({wageFramework.sphere})
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {wageFramework.sphereDescription}
+                </p>
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-navy font-roboto mb-1 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                  Labour Welfare Fund &amp; Bi-Annual Revisions
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-2">
+                  <strong className="text-slate-800">LWF Contribution:</strong> {wageFramework.lwfDetails}
+                </p>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  <strong className="text-slate-800">Wage Revision Cycle:</strong> {wageFramework.wageRevisionFrequency}
+                </p>
+              </div>
+            </div>
+            <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+              <p className="italic">
+                🛡️ {wageFramework.complianceAssurance}
+              </p>
+              <Link href="/credentials" className="text-sky font-bold hover:underline shrink-0 flex items-center gap-1">
+                Verify Statutory Credentials →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section className="section-py bg-off-white">

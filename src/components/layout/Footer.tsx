@@ -8,6 +8,9 @@ import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
 
 const footerLinks = [
   { label: "About Us", href: "/about" },
+  { label: "Enterprise Case Studies", href: "/case-studies" },
+  { label: "Enterprise Regulatory Insights", href: "/insights" },
+  { label: "Agency Comparison Matrix", href: "/procurement/agency-comparison" },
   { label: "Statutory Credentials Vault", href: "/credentials" },
   { label: "Rate Card Calculator", href: "/rate-card-calculator" },
   { label: "Compliance & Indemnity", href: "/compliance" },
@@ -19,6 +22,7 @@ const footerLinks = [
   { label: "Specialized Industry Sectors", href: "/sectors" },
   { label: "Our Clients", href: "/clients" },
   { label: "Pan-India Directory", href: "/location" },
+  { label: "HTML Sitemap Directory", href: "/sitemap" },
   { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -241,6 +245,63 @@ export default function Footer() {
               className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
             >
               ISO Facility Management
+            </Link>
+          </div>
+        </div>
+
+        {/* Eastern Industrial Corridors & Logistics Hubs Bar */}
+        <div className="mt-6 pt-6 border-t border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div className="shrink-0">
+            <h4 className="font-roboto font-bold text-white uppercase tracking-wider text-xs">
+              Eastern Industrial Corridors &amp; High-Value Logistics Estates
+            </h4>
+            <p className="text-gray-400 text-xs">
+              PSARA-licensed guarding, 24-48 hr supervisory mobilization &amp; Zone A wage compliance
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href="/corridors/bhubaneswar"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Bhubaneswar–Kalinga Nagar
+            </Link>
+            <Link
+              href="/corridors/jamshedpur"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Jamshedpur–Adityapur
+            </Link>
+            <Link
+              href="/corridors/ranchi"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Ranchi–Ramgarh
+            </Link>
+            <Link
+              href="/corridors/guwahati"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Guwahati–Amingaon ICD
+            </Link>
+            <span className="text-white/20 hidden sm:inline">|</span>
+            <Link
+              href="/industrial-parks/esr-uluberia"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              ESR Uluberia (Howrah)
+            </Link>
+            <Link
+              href="/industrial-parks/sfa-dankuni"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              SFA Dankuni (Hooghly)
+            </Link>
+            <Link
+              href="/industrial-parks/transindia-dankuni"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Transindia Dankuni
             </Link>
           </div>
         </div>

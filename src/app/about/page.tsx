@@ -124,6 +124,7 @@ export default function AboutPage() {
               <div className="divider-gold" />
               <div className="mt-4 space-y-4 text-gray-700 leading-relaxed">
                 <p>Advance Corporate Security is one of the best Outsourcing &amp; Facility Management Company across Eastern India, NCR &amp; key cities, and is into manpower management services since inception in 2000. At Advance Corporate Security, we provide <strong>&quot;one-stop innovative solutions&quot;</strong> for the diverse requirements of the clients.</p>
+                <p>Founder Mr. Jai Gopal Roy established Advance Corporate Security in 2000 as a proprietary enterprise providing industrial security and facility management services. Following the nationwide rollout of the Goods and Services Tax (GST) Act in July 2017, the enterprise was formally registered under GSTIN 19AJKPR7582B1ZR, continuing its 25+ years operational legacy while adhering to statutory tax governance.</p>
                 <p>Today after 25 years in this sector, we have created a niche and top-most spot to offer the best manpower and facility management service in India.</p>
                 <p>Advance Corporate Security has grown to become one of the most reliable, recognized, and premier Manpower Outsourcing and Facility Management Companies in eastern India and multiple states — with nationwide deployment capabilities.</p>
               </div>
@@ -149,6 +150,48 @@ export default function AboutPage() {
               <div className="absolute -bottom-3 -right-3 bg-navy text-white font-roboto px-5 py-3.5 rounded-xl shadow-lg border border-white/15">
                 <div className="text-gold text-xs uppercase font-bold tracking-wider">Since</div>
                 <div className="font-black text-3xl">2000</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statutory Evolution & Governance Timeline */}
+      <section className="py-12 bg-slate-50 border-y border-slate-200" aria-label="Statutory Evolution & Governance Timeline">
+        <div className="container-acs max-w-4xl">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                <span className="text-xs font-bold uppercase tracking-wider text-sky-700 font-roboto">
+                  Statutory Evolution &amp; Regulatory Governance
+                </span>
+              </div>
+              <span className="badge-navy text-xs font-mono">
+                GSTIN: 19AJKPR7582B1ZR
+              </span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold font-roboto text-navy mb-3">
+              25+ Years Operational Legacy: 2000 Founding &amp; 2017 Statutory GST Alignment
+            </h3>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-6">
+              Founder Mr. Jai Gopal Roy established Advance Corporate Security in 2000 as a proprietary enterprise providing industrial security and facility management services. Following the nationwide rollout of the Goods and Services Tax (GST) Act in July 2017, the enterprise was formally registered under GSTIN 19AJKPR7582B1ZR, continuing its 25+ years operational legacy while adhering to statutory tax governance.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-100 text-xs">
+              <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/70">
+                <div className="font-black text-navy text-base">2000</div>
+                <div className="font-semibold text-slate-800 mt-1">Enterprise Inception</div>
+                <div className="text-slate-500 mt-0.5">Founded by Mr. Jai Gopal Roy as a proprietary industrial security &amp; facility management enterprise.</div>
+              </div>
+              <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/70">
+                <div className="font-black text-navy text-base">July 2017</div>
+                <div className="font-semibold text-slate-800 mt-1">GST Act Alignment</div>
+                <div className="text-slate-500 mt-0.5">Transitioned into nationwide Goods &amp; Services Tax governance under GSTIN 19AJKPR7582B1ZR.</div>
+              </div>
+              <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/70">
+                <div className="font-black text-emerald-700 text-base">2025 &amp; Beyond</div>
+                <div className="font-semibold text-slate-800 mt-1">25+ Years Pan-India Leadership</div>
+                <div className="text-slate-500 mt-0.5">Deploying 5,000+ professionals across 800+ cities with 100% statutory indemnification.</div>
               </div>
             </div>
           </div>
@@ -226,14 +269,14 @@ export default function AboutPage() {
               <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl border-2 border-slate-200 bg-slate-50">
                 <Image
                   src="/images/leader.jpg"
-                  alt="Mr. Jai Gopal — Founder & Managing Director, Advance Corporate Security"
+                  alt="Mr. Jai Gopal Roy — Founder & Managing Director, Advance Corporate Security"
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="mt-4 text-center">
-                <p className="font-roboto font-bold text-navy text-base">Mr. Jai Gopal</p>
+                <p className="font-roboto font-bold text-navy text-base">Mr. Jai Gopal Roy</p>
                 <p className="text-gold font-semibold text-xs uppercase tracking-wider">Founder &amp; Managing Director</p>
                 <p className="text-gray-500 text-xs mt-0.5">Advance Corporate Security</p>
               </div>

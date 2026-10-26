@@ -80,28 +80,226 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
 }
 
 export function generateCityHubFaqs(cityName: string, stateName: string): FAQ[] {
+  const isDirectPsaraState = ["West Bengal", "Delhi", "Jharkhand"].includes(stateName);
+
   return [
     {
       question: `What services does Advance Corporate Security provide in ${cityName}?`,
-      answer: `In ${cityName}, ACS provides a comprehensive range of B2B services: PSARA-licensed Security Guard Services (armed & unarmed), Facility Management (corporate housekeeping, pest control, MEP maintenance, facade cleaning), Manpower Outsourcing & Placement, Payroll Compliance Management, and Horticulture & Landscaping. All services come with full statutory compliance and ISO 9001:2015 quality assurance.`
+      answer: `In ${cityName}, ACS provides an end-to-end suite of B2B workforce solutions: PSARA-compliant Security Guard Services (armed sentries, corporate security, industrial gatekeepers, lady guards), Integrated Facility Management (deep corporate housekeeping, janitorial sanitation, MEP electrical/plumbing maintenance, pest eradication, facade cleaning), Manpower Outsourcing & Contract Staffing, and Payroll & Statutory Compliance Management. Every deployment is managed under ISO 9001:2015 certified standard operating procedures with dedicated field supervisory rounds.`
     },
     {
-      question: `What makes Advance Corporate Security a trusted facility and security partner in ${cityName}?`,
-      answer: `ACS is one of ${stateName}'s most experienced B2B facility and security services providers, with 25+ years of operational history since 2000. In ${cityName}, we serve government establishments, defense organizations, hospitals, IT parks, and industrial plants. Our PSARA license, ISO 9001:2015 certification, and proven track record with clients like the Indian Air Force, BSF, HAL, and Indian Oil demonstrate our operational reliability.`
+      question: `How does ACS maintain PSARA compliance and security licensing in ${stateName}?`,
+      answer: isDirectPsaraState
+        ? `In ${stateName}, ACS holds direct Form-V PSARA licenses granted by the State Controlling Authority under the Private Security Agencies (Regulation) Act, 2005. All security guards deployed in ${cityName} undergo mandatory antecedent verification, police clearance, and 160 hours of training in physical defense, gatepass management, and emergency response per MHA Model Rules.`
+        : `Across ${stateName}, ACS delivers enterprise security solutions under a fully compliant regulatory framework, partnering with empanelled, state-licensed PSARA agencies and operating direct facility management and contract staffing under the Contract Labour (R&A) Act, 1970. All deployed personnel carry comprehensive police verification and ISO 9001:2015 quality assurance.`
     },
     {
-      question: `Does ACS handle government and PSU contracts in ${cityName}?`,
-      answer: `Yes. ACS is government-empanelled and has an extensive track record serving Central & State Government bodies, Defence establishments (IAF, BSF, HAL), PSUs (Indian Oil, CPCB), and municipal bodies across India. We are equipped to handle GFR/GeM procurement and government tender processes for clients in ${cityName}, ${stateName}.`
+      question: `What are the minimum wage, EPF, and ESIC statutory requirements for security & facility staff in ${cityName}, ${stateName}?`,
+      answer: `All staff deployed by ACS in ${cityName} are billed with 100% adherence to the statutory wage notifications of ${stateName} (or Central Sphere rates for PSUs, mines, banking, and defence establishments). Quotations incorporate statutory employer contributions: EPF at 13.00% (12% EPF + 0.5% EDLI + 0.5% Admin), ESIC at 3.25% for gross monthly wages up to ₹21,000, statutory bonus accrual at 8.33% under the Payment of Bonus Act, 1965, Gratuity at 4.81%, and State Labour Welfare Fund (LWF) contributions. Clients receive monthly verifiable ECR challans and TRRN bank receipts.`
     },
     {
-      question: `How do I get a quotation for services in ${cityName}?`,
-      answer: `You can request a free quotation for any ACS service in ${cityName} by calling +91 93399 88999 / +91 79801 47044 / +91 94770 06681 or emailing advancedcorporatesecurityj@gmail.com. Our team will conduct a free on-site assessment in ${cityName} and provide a detailed, all-inclusive service proposal within 24–48 hours.`
+      question: `What is ACS's deployment SLA and emergency supervisory response time in ${cityName}?`,
+      answer: `ACS operates a standard 24–48 hour deployment SLA for full guard detachments and facility teams in ${cityName}. For critical industrial incidents or unexpected requirements, our Rapid Deployment Squads can mobilize within 12–24 hours. Regional Field Security Officers conduct routine day/night surprise inspections and maintain a 30–60 minute physical response time in the event of an on-site security escalation. A dedicated 10–15% reliever pool ensures zero vacant guard posts.`
     },
     {
-      question: `What government compliance certifications does ACS hold for services in ${stateName}?`,
-      answer: `ACS operates in full compliance with the Private Security Agencies (Regulation) Act (PSARA 2005), ISO 9001:2015 quality management standards, and all statutory regulations including PF, ESIC, and the Contract Labour (R&A) Act 1970. In key operational hubs like Delhi NCR, West Bengal, and Jharkhand, ACS holds valid state PSARA licenses, with nationwide deployment capability under statutory compliance across ${stateName}.`
+      question: `How does ACS conduct site risk assessments and enforce security SOPs in ${cityName}?`,
+      answer: `Prior to deployment in ${cityName}, ACS operational managers conduct an on-site physical security audit evaluating perimeter boundaries, entry/exit choke points, lighting, and vehicular flows. Deployments follow four strict standard operating procedures: (1) Biometric & digital visitor management (VMS) with ID capture, (2) Dual-signoff material gatepass verification for Returnable and Non-Returnable consignments, (3) Timed electronic RFID wand checkpoint patrols every 45 minutes, and (4) Structured emergency escalation protocols with direct liaison to local ${cityName} police and fire stations.`
+    },
+    {
+      question: `Does ACS provide corporate housekeeping, facility management, and MEP maintenance in ${cityName}?`,
+      answer: `Yes. In addition to security guarding, ACS manages corporate housekeeping and facility upkeep for corporate offices, healthcare facilities, warehouses, and IT parks across ${cityName}, ${stateName}. Our facility management teams deploy mechanized cleaning equipment (scrubber-driers, high-pressure washers), hospital-grade disinfectants, and skilled technicians for MEP (Mechanical, Electrical, and Plumbing) preventative maintenance.`
+    },
+    {
+      question: `How can commercial enterprises and procurement committees in ${cityName} request an on-site survey and quotation?`,
+      answer: `Enterprise procurement officers in ${cityName} can request a comprehensive on-site survey and transparent B2B cost matrix by calling our 24×7 helpdesk at +91 93399 88999 / +91 79801 47044 or emailing advancedcorporatesecurityj@gmail.com. ACS delivers itemized commercial proposals within 24–48 hours, complete with state minimum wage reconciliations, statutory compliance dossiers, and client reference letters.`
     },
   ];
+}
+
+export interface StateWageFramework {
+  stateName: string;
+  sphere: string;
+  sphereDescription: string;
+  epfRate: string;
+  esicRate: string;
+  bonusRate: string;
+  gratuityRate: string;
+  lwfDetails: string;
+  wageRevisionFrequency: string;
+  complianceAssurance: string;
+}
+
+export function getStateWageFramework(stateName: string): StateWageFramework {
+  const normState = stateName.toLowerCase().trim();
+
+  let lwfDetails = "Statutory deductions aligned with State Labour Welfare Board rules or exempt where unnotified.";
+  if (normState.includes("west bengal")) {
+    lwfDetails = "₹3 Employee / ₹30 Employer (Bi-annual June & December remittance to West Bengal Labour Welfare Board).";
+  } else if (normState.includes("maharashtra")) {
+    lwfDetails = "₹12 Employee / ₹36 Employer (Bi-annual June & December remittance to Maharashtra Labour Welfare Board).";
+  } else if (normState.includes("delhi")) {
+    lwfDetails = "₹0.75 Employee / ₹2.25 Employer (Bi-annual remittance to Delhi Labour Welfare Board).";
+  } else if (normState.includes("haryana")) {
+    lwfDetails = "₹25 Employee / ₹50 Employer (Monthly/Bi-annual remittance to Haryana Labour Welfare Board).";
+  } else if (normState.includes("gujarat")) {
+    lwfDetails = "₹6 Employee / ₹12 Employer (Bi-annual June & December remittance to Gujarat Labour Welfare Board).";
+  } else if (normState.includes("karnataka")) {
+    lwfDetails = "₹20 Employee / ₹40 Employer (Annual December remittance to Karnataka Labour Welfare Board).";
+  } else if (normState.includes("tamil nadu")) {
+    lwfDetails = "₹20 Employee / ₹40 Employer (Annual December remittance to Tamil Nadu Labour Welfare Board).";
+  } else if (normState.includes("telangana") || normState.includes("andhra")) {
+    lwfDetails = "₹20 Employee / ₹50 Employer (Annual remittance to State Labour Welfare Board).";
+  } else if (normState.includes("punjab")) {
+    lwfDetails = "₹5 Employee / ₹20 Employer (Monthly remittance to Punjab Labour Welfare Board).";
+  } else if (normState.includes("rajasthan") || normState.includes("madhya pradesh")) {
+    lwfDetails = "₹10 Employee / ₹30 Employer (Bi-annual remittance to State Labour Welfare Board).";
+  } else if (normState.includes("odisha")) {
+    lwfDetails = "₹10 Employee / ₹20 Employer (Bi-annual remittance to Odisha Labour Welfare Board).";
+  }
+
+  return {
+    stateName,
+    sphere: `${stateName} State Sphere & Central Sphere Alignment`,
+    sphereDescription: `Commercial establishments, corporate offices, IT parks, retail, and private industrial facilities in ${stateName} fall under the ${stateName} State Minimum Wages framework. Establishments operating in Central Sphere domains (such as PSUs, scheduled banks, defence cantonments, railways, mines, and major ports) are strictly aligned with Chief Labour Commissioner (Central) wage revisions. ACS maintains automated billing dockets reconciling both spheres with zero audit liability.`,
+    epfRate: "13.00% (12.00% Employer EPF + 0.50% EDLI Insurance + 0.50% Administrative Charges on basic wage ceiling)",
+    esicRate: "3.25% (Employer contribution on gross monthly wages ≤ ₹21,000; Employee 0.75%)",
+    bonusRate: "8.33% (Statutory floor under Payment of Bonus Act, 1965 / Monthly accrual)",
+    gratuityRate: "4.81% (Statutory reserve under Payment of Gratuity Act, 1972 on completed tenure)",
+    lwfDetails,
+    wageRevisionFrequency: `Bi-annual Cost of Living Allowance (VDA) updates notified by the ${stateName} Labour Commissionerate (effective April and October each fiscal year).`,
+    complianceAssurance: `ACS provides certified TRRN payment receipts for EPFO, ESIC monthly challans, and digitally stamped Form-B Wage Registers by the 15th of each deployment cycle, indemnifying principal employers from joint liability under Section 21 of the CLRA Act.`
+  };
+}
+
+export interface SecuritySopItem {
+  code: string;
+  name: string;
+  objective: string;
+  implementation: string;
+}
+
+export interface CityRiskAssessment {
+  cityName: string;
+  stateName: string;
+  tier: number;
+  tierLabel: string;
+  economicArchetype: string;
+  riskRating: 'Moderate' | 'Elevated' | 'High';
+  primaryVulnerabilities: string[];
+  recommendedSops: SecuritySopItem[];
+  mobilizationSla: string;
+  supervisoryResponseTime: string;
+  relieverPoolBuffer: string;
+  controlRoomSupport: string;
+}
+
+export function getCityRiskAssessment(cityName: string, stateName: string, tier: number = 2): CityRiskAssessment {
+  const normCity = cityName.toLowerCase().trim();
+
+  let tierLabel = `Tier-${tier} Commercial & Industrial Hub`;
+  let economicArchetype = "Mixed Industrial, Commercial & Institutional Hub";
+  let riskRating: 'Moderate' | 'Elevated' | 'High' = 'Elevated';
+  let primaryVulnerabilities: string[] = [];
+  let supervisoryResponseTime = "30–45 Minutes Field Officer On-Site";
+
+  if (tier === 1 || ['kolkata', 'mumbai', 'delhi', 'bengaluru', 'hyderabad', 'chennai', 'pune', 'ahmedabad'].includes(normCity)) {
+    tierLabel = "Tier-1 Metro / Primary Economic Hub";
+    economicArchetype = "Multinational Corporate HQs, IT/ITES Tech Corridors, Banking & Commercial Complexes";
+    riskRating = "Elevated";
+    primaryVulnerabilities = [
+      "High-volume visitor and contractor throughput with impersonation and unauthorized floor-access risks",
+      "Corporate IP, digital assets, and sensitive computing equipment pilferage or exfiltration",
+      "Multi-tenant vehicle congestion and executive transit bottlenecks during peak operational hours",
+      "High-rise commercial fire safety, emergency evacuation bottlenecks, and false-alarm containment"
+    ];
+    supervisoryResponseTime = "20–30 Minutes Field Inspection Dispatch";
+  } else if (['asansol', 'durgapur', 'haldia', 'jamshedpur', 'dhanbad', 'rourkela', 'bokaro'].includes(normCity)) {
+    tierLabel = "Tier-2 Heavy Industrial & Metallurgical Corridor";
+    economicArchetype = "Integrated Steel Manufacturing, Heavy Engineering, Thermal Power & Mining Support";
+    riskRating = "High";
+    primaryVulnerabilities = [
+      "Expansive factory perimeter intrusions, scrap-metal theft, and night-shift raw material pilferage",
+      "Heavy commercial vehicle logistics, weighbridge manipulation, and bulk material inward/outward gate fraud",
+      "Industrial labor disputes, union gate picketing, and unscheduled plant shift disruptions",
+      "High-temperature production zones, hazmat storage vulnerabilities, and factory act safety enforcement"
+    ];
+    supervisoryResponseTime = "30–45 Minutes Field Supervisory Dispatch";
+  } else if (['dankuni', 'howrah', 'siliguri', 'barrackpore', 'noida', 'gurgaon', 'gurugram', 'ghaziabad', 'faridabad'].includes(normCity)) {
+    tierLabel = "Tier-2 Multi-Modal Logistics & Industrial Freight Corridor";
+    economicArchetype = "Supply Chain Warehousing, Light Manufacturing, Auto Ancillary & Freight Terminals";
+    riskRating = "High";
+    primaryVulnerabilities = [
+      "Warehouse loading-dock pilferage, carton tampering, and transit consignment shortages",
+      "Perimeter fencing vulnerability along national highway corridors and unlit logistics belts",
+      "Temporary contract worker turnover without antecedent police clearance or biometric verification",
+      "Heavy container traffic congestion, weighbridge verification discrepancies, and fire hazard in dry packaging storage"
+    ];
+    supervisoryResponseTime = "30–45 Minutes Field Supervisory Dispatch";
+  } else if (tier === 2) {
+    tierLabel = "Tier-2 Regional Commercial Hub & Manufacturing Center";
+    economicArchetype = "State Capital Commercial Belt, MSME Manufacturing, Healthcare & Education Clusters";
+    riskRating = "Elevated";
+    primaryVulnerabilities = [
+      "Commercial premise intrusion, retail/banking footfall management, and cash-in-transit coordination",
+      "Perimeter boundary breaches in sprawling educational campuses or healthcare complexes",
+      "Unverified casual labor engagement leading to asset loss and lack of statutory record-keeping",
+      "Emergency medical or fire escalation delays requiring dedicated on-site first-responder guard units"
+    ];
+    supervisoryResponseTime = "30–60 Minutes Field Supervisory Dispatch";
+  } else {
+    tierLabel = "Tier-3 Emerging Industrial & District Resource Hub";
+    economicArchetype = "Agro-Processing, Cold Chain Warehousing, District Administration & Regional Distribution";
+    riskRating = "Moderate";
+    primaryVulnerabilities = [
+      "Isolated rural/semi-urban perimeter vulnerability with extended local police response latency",
+      "Nighttime theft of agricultural produce, solar assets, generators, and distribution wiring",
+      "Absence of formal gate logging and manual entry registers susceptible to record falsification",
+      "Seasonal power outages disrupting lighting and CCTV perimeter coverage"
+    ];
+    supervisoryResponseTime = "45–60 Minutes Field Supervisory Dispatch";
+  }
+
+  const recommendedSops: SecuritySopItem[] = [
+    {
+      code: "SOP-SEC-01",
+      name: "Biometric & Digital Visitor Management (VMS)",
+      objective: "Eliminate unauthorized pedestrian access and impersonation at perimeter gates.",
+      implementation: `Mandatory digital photo capture, government ID scanning, host authorization via OTP/phone confirmation, and time-stamped barcode visitor badges for all external contractors and visitors in ${cityName}.`
+    },
+    {
+      code: "SOP-SEC-02",
+      name: "Dual-Signoff Material Gatepass Control",
+      objective: "Prevent inventory shrinkage, tool-crib losses, and unauthorized asset egress.",
+      implementation: `Strict enforcement of Returnable (RGP) and Non-Returnable (NRGP) gate passes. Every vehicle and consignment undergoes physical seal verification, invoice cross-matching, and digital gate log entry prior to barrier release in ${cityName}.`
+    },
+    {
+      code: "SOP-SEC-03",
+      name: "Timed RFID Perimeter Patrol Checks",
+      objective: "Ensure 100% active guard surveillance along vulnerable boundaries and blind spots.",
+      implementation: `Field guards scan electronic RFID checkpoints at 45-minute intervals throughout night shifts. Patrol data synchronizes to the ACS Central Control Room, triggering immediate supervisory escalation if any checkpoint is skipped.`
+    },
+    {
+      code: "SOP-SEC-04",
+      name: "Emergency & Incident Response Protocol",
+      objective: "Provide immediate containment and structured multi-tier escalation during site emergencies.",
+      implementation: `Deployment of certified First Aid & Fire-Safety trained guards. 24×7 direct line to ACS Quick Reaction Teams (QRT), client security coordinators, and local ${cityName} police, fire, and trauma care facilities.`
+    }
+  ];
+
+  return {
+    cityName,
+    stateName,
+    tier,
+    tierLabel,
+    economicArchetype,
+    riskRating,
+    primaryVulnerabilities,
+    recommendedSops,
+    mobilizationSla: "24–48 Hours for full guard detachment mobilization",
+    supervisoryResponseTime,
+    relieverPoolBuffer: "10–15% Dedicated Reliever Reserve ensuring zero post vacancy",
+    controlRoomSupport: "24×7 Pan-India Control Room (+91 93399 88999 / +91 79801 47044)"
+  };
 }
 
 export interface LocalZone {

@@ -620,6 +620,19 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-hr-gurugram"
   },
   {
+    "name": "Gurgaon",
+    "slug": "gurgaon",
+    "state": "Haryana",
+    "stateSlug": "haryana",
+    "tier": 1,
+    "region": "NCR",
+    "aliases": [
+      "Gurugram"
+    ],
+    "id": "in-hr-gurgaon",
+    "placeId": "in-hr-gurgaon"
+  },
+  {
     "name": "Faridabad",
     "slug": "faridabad",
     "state": "Haryana",
