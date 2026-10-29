@@ -95,10 +95,23 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-roboto font-bold text-navy text-sm mb-1">Registered Corporate Head Office</h3>
-                    <address className="not-italic text-gray-600 text-sm">
+                    <address className="not-italic text-gray-600 text-sm leading-relaxed">
                       {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality},<br />
                       {siteConfig.address.addressRegion} — {siteConfig.address.postalCode}
                     </address>
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
+                      <a
+                        href="https://maps.google.com/?q=1/2+Bhattacharjee+Para+Lane+Barrackpore+Kolkata+700120"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-navy font-bold hover:text-gold transition-colors inline-flex items-center gap-1"
+                      >
+                        <span>Get Directions on Google Maps</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                      <span className="text-gray-300">•</span>
+                      <span className="text-gray-500 font-medium">Service-Area Hub: WB, NCR, Jharkhand</span>
+                    </div>
                   </div>
                 </div>
 

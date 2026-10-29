@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { siteConfig } from "@/lib/config";
+import { trackEvent } from "@/lib/analytics";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -9,20 +10,28 @@ interface QuoteFormData {
   companyName: string;
   pinCode: string;
   serviceType: string;
+  siteType: string;
+  numberOfPosts: string;
+  shiftCoverage: string;
   manpowerCount: string;
-  shiftType: string;
+  startDate: string;
   contractDuration: string;
   contactName: string;
   phone: string;
   email: string;
   additionalRequirements: string;
+  contactConsent: boolean;
 }
 
 interface QuoteFormErrors {
   companyName?: string;
   pinCode?: string;
   serviceType?: string;
+  siteType?: string;
+  numberOfPosts?: string;
+  shiftCoverage?: string;
   manpowerCount?: string;
+  startDate?: string;
   contactName?: string;
   phone?: string;
 }
@@ -121,13 +130,17 @@ export function EnterpriseQuotationForm() {
     companyName: "",
     pinCode: "",
     serviceType: "",
+    siteType: "",
+    numberOfPosts: "",
+    shiftCoverage: "",
     manpowerCount: "",
-    shiftType: "",
+    startDate: "",
     contractDuration: "",
     contactName: "",
     phone: "",
     email: "",
     additionalRequirements: "",
+    contactConsent: true,
   });
 
   const [errors, setErrors] = useState<QuoteFormErrors>({});
@@ -139,7 +152,15 @@ export function EnterpriseQuotationForm() {
     companyName: string;
     phone: string;
     serviceType: string;
+    siteType?: string;
     id?: string;
+    assignedOwner?: string;
+    assignedOwnerTitle?: string;
+    assignedOwnerDesk?: string;
+    slaTarget?: string;
+    numberOfPosts?: string;
+    shiftCoverage?: string;
+    startDate?: string;
   } | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
@@ -147,7 +168,12 @@ export function EnterpriseQuotationForm() {
   // Field refs for auto-focusing the first error field
   const companyNameRef = useRef<HTMLInputElement>(null);
   const pinCodeRef = useRef<HTMLInputElement>(null);
+  const serviceTypeRef = useRef<HTMLSelectElement>(null);
+  const siteTypeRef = useRef<HTMLSelectElement>(null);
+  const numberOfPostsRef = useRef<HTMLSelectElement>(null);
+  const shiftCoverageRef = useRef<HTMLSelectElement>(null);
   const manpowerCountRef = useRef<HTMLSelectElement>(null);
+  const startDateRef = useRef<HTMLSelectElement>(null);
   const contactNameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
 
@@ -165,8 +191,20 @@ export function EnterpriseQuotationForm() {
       case "serviceType":
         if (!value) return "Please select the service type you require";
         return undefined;
+      case "siteType":
+        if (!value) return "Please select the site archetype / facility type";
+        return undefined;
+      case "numberOfPosts":
+        if (!value) return "Please select the number of guard posts required";
+        return undefined;
+      case "shiftCoverage":
+        if (!value) return "Please specify the shift coverage / hours";
+        return undefined;
       case "manpowerCount":
         if (!value) return "Please specify the manpower count or range";
+        return undefined;
+      case "startDate":
+        if (!value) return "Please indicate your target deployment timeline";
         return undefined;
       case "contactName":
         if (!value.trim()) return "Contact person name is required";
@@ -188,7 +226,11 @@ export function EnterpriseQuotationForm() {
       "companyName",
       "pinCode",
       "serviceType",
+      "siteType",
+      "numberOfPosts",
+      "shiftCoverage",
       "manpowerCount",
+      "startDate",
       "contactName",
       "phone",
     ];
@@ -208,7 +250,12 @@ export function EnterpriseQuotationForm() {
     // Auto-focus first invalid field
     if (newErrors.companyName && companyNameRef.current) companyNameRef.current.focus();
     else if (newErrors.pinCode && pinCodeRef.current) pinCodeRef.current.focus();
+    else if (newErrors.serviceType && serviceTypeRef.current) serviceTypeRef.current.focus();
+    else if (newErrors.siteType && siteTypeRef.current) siteTypeRef.current.focus();
+    else if (newErrors.numberOfPosts && numberOfPostsRef.current) numberOfPostsRef.current.focus();
+    else if (newErrors.shiftCoverage && shiftCoverageRef.current) shiftCoverageRef.current.focus();
     else if (newErrors.manpowerCount && manpowerCountRef.current) manpowerCountRef.current.focus();
+    else if (newErrors.startDate && startDateRef.current) startDateRef.current.focus();
     else if (newErrors.contactName && contactNameRef.current) contactNameRef.current.focus();
     else if (newErrors.phone && phoneRef.current) phoneRef.current.focus();
 
@@ -278,14 +325,20 @@ export function EnterpriseQuotationForm() {
           email: formData.email.trim() || undefined,
           organization: formData.companyName.trim(),
           city: formData.pinCode.trim(),
-          // Quote-specific fields
+          // Quote-specific fields (Section 1 & 7 Procurement Engine)
           service: formData.serviceType || "Enterprise Security Quotation",
+          siteType: formData.siteType || "Commercial / Industrial Facility",
+          statutoryResponsibility: "Full ACS Statutory Scope (PF/ESIC/Bonus/Gratuity)",
+          contactConsent: formData.contactConsent,
+          numberOfPosts: formData.numberOfPosts,
+          shiftCoverage: formData.shiftCoverage,
+          shiftType: formData.shiftCoverage, // backward compatibility
           manpowerCount: formData.manpowerCount,
-          shiftType: formData.shiftType || "Not specified",
+          startDate: formData.startDate,
           contractDuration: formData.contractDuration || "Not specified",
           message:
             formData.additionalRequirements.trim() ||
-            `Enterprise quotation request for ${formData.serviceType || "security services"}.`,
+            `Enterprise procurement request for ${formData.serviceType || "security services"} at ${formData.siteType || "facility"} (${formData.numberOfPosts}, ${formData.shiftCoverage}, start: ${formData.startDate}).`,
           // Form source tag for CRM triage
           formType: "enterprise_quotation",
           // Attribution metadata
@@ -305,12 +358,32 @@ export function EnterpriseQuotationForm() {
 
       if (res.ok && data.success) {
         setSubmitSuccess(true);
+        const resolvedLeadId = data.data?.id || data.data?.leadId;
+        trackEvent("quote_submit", {
+          leadId: resolvedLeadId,
+          opportunityId: data.data?.opportunityId,
+          service: formData.serviceType || "Enterprise Security",
+          siteType: formData.siteType,
+          numberOfPosts: formData.numberOfPosts,
+          shiftCoverage: formData.shiftCoverage,
+          assignedOwner: data.data?.assignedOwner,
+          source: "enterprise_quotation_funnel",
+        });
+
         setSubmittedLead({
           contactName: formData.contactName,
           companyName: formData.companyName,
           serviceType: formData.serviceType || "Enterprise Security Quotation",
+          siteType: formData.siteType,
           phone: formData.phone,
-          id: data.data?.id,
+          id: data.data?.id || data.data?.leadId,
+          assignedOwner: data.data?.assignedOwner,
+          assignedOwnerTitle: data.data?.assignedOwnerTitle,
+          assignedOwnerDesk: data.data?.assignedOwnerDesk,
+          slaTarget: data.data?.slaTarget,
+          numberOfPosts: formData.numberOfPosts,
+          shiftCoverage: formData.shiftCoverage,
+          startDate: formData.startDate,
         });
         setShowSuccessModal(true);
         setToast({ type: "success", message: "Your quotation request has been dispatched to ACS operations!" });
@@ -320,13 +393,17 @@ export function EnterpriseQuotationForm() {
           companyName: "",
           pinCode: "",
           serviceType: "",
+          siteType: "",
+          numberOfPosts: "",
+          shiftCoverage: "",
           manpowerCount: "",
-          shiftType: "",
+          startDate: "",
           contractDuration: "",
           contactName: "",
           phone: "",
           email: "",
           additionalRequirements: "",
+          contactConsent: true,
         });
         setErrors({});
         setTouched({});
@@ -435,6 +512,7 @@ export function EnterpriseQuotationForm() {
               Service Type <span className="text-red-500">*</span>
             </label>
             <select
+              ref={serviceTypeRef}
               id="serviceType"
               name="serviceType"
               required
@@ -480,12 +558,107 @@ export function EnterpriseQuotationForm() {
             {touched.serviceType && <FieldError id="serviceType-error" message={errors.serviceType} />}
           </div>
 
-          {/* Manpower Count + Shift Type grid */}
+          {/* Site Archetype / Facility Type */}
+          <div>
+            <label htmlFor="siteType" className="block text-sm font-semibold text-gray-800 mb-1.5">
+              Site Archetype / Facility Type <span className="text-red-500">*</span>
+            </label>
+            <select
+              ref={siteTypeRef}
+              id="siteType"
+              name="siteType"
+              required
+              aria-required="true"
+              aria-invalid={!!(errors.siteType && touched.siteType)}
+              aria-describedby={errors.siteType && touched.siteType ? "siteType-error" : undefined}
+              value={formData.siteType}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={isSubmitting}
+              className={`${inputCls(!!(errors.siteType && touched.siteType))} cursor-pointer`}
+            >
+              <option value="">— Select facility or establishment type —</option>
+              <option value="Manufacturing & Industrial Plant">Manufacturing &amp; Industrial Plant</option>
+              <option value="Warehouse & Logistics Hub">Warehouse &amp; Logistics Hub</option>
+              <option value="Corporate Office & IT Park">Corporate Office &amp; IT Park</option>
+              <option value="Hospital & Healthcare Facility">Hospital &amp; Healthcare Facility</option>
+              <option value="Residential Complex & Township">Residential Complex &amp; Township</option>
+              <option value="Educational Campus & University">Educational Campus &amp; University</option>
+              <option value="Commercial Mall & Retail Hub">Commercial Mall &amp; Retail Hub</option>
+              <option value="Government & PSU Establishment">Government &amp; PSU Establishment</option>
+              <option value="Construction & Infrastructure Site">Construction &amp; Infrastructure Site</option>
+            </select>
+            {touched.siteType && <FieldError id="siteType-error" message={errors.siteType} />}
+          </div>
+
+          {/* Posts & Shift Coverage Grid */}
+          <div className="grid sm:grid-cols-2 gap-5">
+            {/* Number of Posts */}
+            <div>
+              <label htmlFor="numberOfPosts" className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Number of Guard Posts / Points <span className="text-red-500">*</span>
+              </label>
+              <select
+                ref={numberOfPostsRef}
+                id="numberOfPosts"
+                name="numberOfPosts"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.numberOfPosts && touched.numberOfPosts)}
+                aria-describedby={errors.numberOfPosts && touched.numberOfPosts ? "numberOfPosts-error" : undefined}
+                value={formData.numberOfPosts}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={isSubmitting}
+                className={`${inputCls(!!(errors.numberOfPosts && touched.numberOfPosts))} cursor-pointer`}
+              >
+                <option value="">— Select number of posts —</option>
+                <option value="1 Post (Single Point / Main Gate)">1 Post (e.g. Main Gate / Reception)</option>
+                <option value="2 Posts (Main Gate + Loading Bay)">2 Posts (e.g. Main Gate + Material Bay)</option>
+                <option value="3 - 5 Posts (Perimeter, Gate, CCTV)">3 – 5 Posts (Perimeter, Gate &amp; CCTV)</option>
+                <option value="6 - 10 Posts (Industrial Plant / Hospital)">6 – 10 Posts (Industrial Plant / Hospital / IT Park)</option>
+                <option value="10+ Posts (Multi-Acre Facility / Cluster)">10+ Posts (Multi-Acre Logistics / Enterprise Complex)</option>
+              </select>
+              {touched.numberOfPosts && <FieldError id="numberOfPosts-error" message={errors.numberOfPosts} />}
+            </div>
+
+            {/* Shift Coverage */}
+            <div>
+              <label htmlFor="shiftCoverage" className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Daily Shift Coverage <span className="text-red-500">*</span>
+              </label>
+              <select
+                ref={shiftCoverageRef}
+                id="shiftCoverage"
+                name="shiftCoverage"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.shiftCoverage && touched.shiftCoverage)}
+                aria-describedby={errors.shiftCoverage && touched.shiftCoverage ? "shiftCoverage-error" : undefined}
+                value={formData.shiftCoverage}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={isSubmitting}
+                className={`${inputCls(!!(errors.shiftCoverage && touched.shiftCoverage))} cursor-pointer`}
+              >
+                <option value="">— Select shift coverage —</option>
+                <option value="24x7 Continuous (Round-the-clock with relievers)">24×7 Continuous (Round-the-clock + mandatory relievers)</option>
+                <option value="12 Hours Day Shift (Single guard vigil)">12 Hours Day Shift (Daytime commercial / gate)</option>
+                <option value="12 Hours Night Shift (Perimeter lockdown)">12 Hours Night Shift (Perimeter &amp; warehouse vigil)</option>
+                <option value="8 Hours Day Shift (Standard office hours)">8 Hours Day Shift (Standard commercial/office)</option>
+                <option value="8 Hours Night Shift">8 Hours Night Shift</option>
+                <option value="Custom Split Shifts / Rotating Rosters">Custom Split Shifts / Rotating Rosters</option>
+              </select>
+              {touched.shiftCoverage && <FieldError id="shiftCoverage-error" message={errors.shiftCoverage} />}
+            </div>
+          </div>
+
+          {/* Manpower Count + Start Date Grid */}
           <div className="grid sm:grid-cols-2 gap-5">
             {/* Manpower Count */}
             <div>
               <label htmlFor="manpowerCount" className="block text-sm font-semibold text-gray-800 mb-1.5">
-                Manpower Count Needed <span className="text-red-500">*</span>
+                Total Manpower Headcount Needed <span className="text-red-500">*</span>
               </label>
               <select
                 ref={manpowerCountRef}
@@ -501,7 +674,7 @@ export function EnterpriseQuotationForm() {
                 disabled={isSubmitting}
                 className={`${inputCls(!!(errors.manpowerCount && touched.manpowerCount))} cursor-pointer`}
               >
-                <option value="">— Select range —</option>
+                <option value="">— Select personnel count —</option>
                 <option value="1-5">1 – 5 personnel</option>
                 <option value="5-20">5 – 20 personnel</option>
                 <option value="20-50">20 – 50 personnel</option>
@@ -512,25 +685,32 @@ export function EnterpriseQuotationForm() {
               {touched.manpowerCount && <FieldError id="manpowerCount-error" message={errors.manpowerCount} />}
             </div>
 
-            {/* Shift Type */}
+            {/* Target Start Date */}
             <div>
-              <label htmlFor="shiftType" className="block text-sm font-semibold text-gray-800 mb-1.5">
-                Shift Type
+              <label htmlFor="startDate" className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Target Deployment Start Date <span className="text-red-500">*</span>
               </label>
               <select
-                id="shiftType"
-                name="shiftType"
-                value={formData.shiftType}
+                ref={startDateRef}
+                id="startDate"
+                name="startDate"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.startDate && touched.startDate)}
+                aria-describedby={errors.startDate && touched.startDate ? "startDate-error" : undefined}
+                value={formData.startDate}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 disabled={isSubmitting}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all bg-white cursor-pointer"
+                className={`${inputCls(!!(errors.startDate && touched.startDate))} cursor-pointer`}
               >
-                <option value="">— Select shift —</option>
-                <option value="Day">Day Shift (8 hrs)</option>
-                <option value="Night">Night Shift (8 hrs)</option>
-                <option value="24x7">24×7 Round-the-Clock</option>
-                <option value="Custom">Custom / Split Shifts</option>
+                <option value="">— Select deployment timeline —</option>
+                <option value="Immediate (24-48 Hours Rapid Mobilisation)">Immediate (24–48 Hours Rapid Mobilisation)</option>
+                <option value="Within 7 Days (Standard Mobilisation)">Within 7 Days (Standard Mobilisation)</option>
+                <option value="Within 15-30 Days (Planned Transition)">Within 15–30 Days (Planned Transition)</option>
+                <option value="Next Month / Future Financial Quarter">Next Month / Future Financial Quarter</option>
               </select>
+              {touched.startDate && <FieldError id="startDate-error" message={errors.startDate} />}
             </div>
           </div>
 
@@ -646,9 +826,33 @@ export function EnterpriseQuotationForm() {
             value={formData.additionalRequirements}
             onChange={handleChange}
             disabled={isSubmitting}
-            placeholder="e.g. Site type (factory / hospital / warehouse), compliance needs (armed guards, ex-servicemen), CCTV integration, specific certifications, or any other details that help us quote accurately..."
+            placeholder="e.g. Specific compliance needs (armed guards, ex-servicemen), CCTV integration, specific certifications, or any other details that help us quote accurately..."
             className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all bg-white resize-none"
           />
+        </div>
+
+        {/* ── Statutory Compliance Guarantee & Buyer Consent (Section 7 Procurement Engine) ── */}
+        <div className="p-4 bg-navy/5 border border-navy/10 rounded-xl space-y-3">
+          <div className="flex items-start gap-2.5">
+            <svg className="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <div className="text-xs text-gray-700 leading-relaxed">
+              <strong className="text-navy font-bold">100% Statutory Compliance Guarantee:</strong> Every quotation adheres strictly to official State Gazette Minimum Wage Orders, EPF (13%), ESIC (3.25%), Statutory Bonus (8.33%), and PSARA Form-V operating licensing.
+            </div>
+          </div>
+          <label className="flex items-start gap-2.5 cursor-pointer text-xs text-gray-700 select-none pt-2 border-t border-navy/10">
+            <input
+              type="checkbox"
+              name="contactConsent"
+              checked={formData.contactConsent}
+              onChange={(e) => setFormData((prev) => ({ ...prev, contactConsent: e.target.checked }))}
+              className="mt-0.5 w-4 h-4 text-navy rounded border-gray-300 focus:ring-gold"
+            />
+            <span>
+              I authorize ACS Regional Operations Desk to contact me via Phone, Email, or WhatsApp for technical requirement scoping and complimentary physical site assessment.
+            </span>
+          </label>
         </div>
 
         {/* ── Submit Button ── */}
@@ -718,47 +922,72 @@ export function EnterpriseQuotationForm() {
             </button>
 
             {/* Checkmark */}
-            <div className="w-16 h-16 bg-emerald-100 border-2 border-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/20">
+            <div className="w-16 h-16 bg-emerald-100 border-2 border-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg shadow-emerald-500/20">
               <svg className="w-9 h-9 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
             </div>
 
+            {submittedLead.id && (
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy/5 border border-navy/10 text-navy font-mono text-xs font-bold mb-3">
+                <span className="text-gray-500">Lead Reference:</span>
+                <span className="text-gold-dark font-black tracking-wider">{submittedLead.id}</span>
+              </div>
+            )}
+
             <h3 id="quote-success-title" className="font-roboto font-black text-navy text-2xl mb-2">
-              Quotation Request Received!
+              Quotation Request Dispatched!
             </h3>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            <p className="text-gray-600 text-sm leading-relaxed mb-5">
               Thank you, <strong className="text-navy">{submittedLead.contactName}</strong> from{" "}
-              <strong className="text-navy">{submittedLead.companyName}</strong>. Your request for{" "}
-              <strong className="text-gold">{submittedLead.serviceType}</strong> has been logged. Our enterprise
-              team will call you at <strong className="text-navy">{submittedLead.phone}</strong> within{" "}
-              <strong>24 hours</strong> with a custom quotation.
+              <strong className="text-navy">{submittedLead.companyName}</strong>. Your requirement has been assigned to our designated enterprise procurement team.
             </p>
 
-            {/* Summary card */}
-            <div className="bg-off-white rounded-xl p-4 text-left text-xs text-gray-600 space-y-1.5 mb-6 border border-gray-200">
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-500">Company:</span>
-                <span className="font-medium text-navy">{submittedLead.companyName}</span>
+            {/* Designated Internal Sales / Account Owner */}
+            {submittedLead.assignedOwner && (
+              <div className="bg-navy/5 border border-navy/15 rounded-xl p-3.5 mb-5 text-left flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-navy text-gold flex items-center justify-center text-sm font-black shrink-0 mt-0.5 shadow-sm">
+                  {submittedLead.assignedOwner.split(" ").map((n) => n[0]).join("")}
+                </div>
+                <div className="text-xs">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-gold-dark mb-0.5">Assigned Account Manager</div>
+                  <div className="font-bold text-navy text-sm">{submittedLead.assignedOwner}</div>
+                  <div className="text-gray-600 font-medium">{submittedLead.assignedOwnerTitle || "Enterprise Accounts Lead"}</div>
+                  <div className="text-gray-500 text-[11px] mt-0.5">{submittedLead.assignedOwnerDesk}</div>
+                </div>
               </div>
+            )}
+
+            {/* Summary card */}
+            <div className="bg-off-white rounded-xl p-4 text-left text-xs text-gray-600 space-y-2 mb-6 border border-gray-200">
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-500">Service:</span>
                 <span className="font-medium text-navy">{submittedLead.serviceType}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-500">Contact:</span>
-                <span className="font-medium text-navy">{submittedLead.phone}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-semibold text-gray-500">Status:</span>
-                <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">⚡ Priority Dispatch</span>
-              </div>
-              {submittedLead.id && (
+              {submittedLead.siteType && (
                 <div className="flex justify-between">
-                  <span className="font-semibold text-gray-500">Reference:</span>
-                  <span className="font-mono text-navy">{submittedLead.id}</span>
+                  <span className="font-semibold text-gray-500">Facility / Site Type:</span>
+                  <span className="font-medium text-navy">{submittedLead.siteType}</span>
                 </div>
               )}
+              {submittedLead.numberOfPosts && (
+                <div className="flex justify-between">
+                  <span className="font-semibold text-gray-500">Posts &amp; Coverage:</span>
+                  <span className="font-medium text-navy">{submittedLead.numberOfPosts} ({submittedLead.shiftCoverage})</span>
+                </div>
+              )}
+              {submittedLead.startDate && (
+                <div className="flex justify-between">
+                  <span className="font-semibold text-gray-500">Target Start:</span>
+                  <span className="font-medium text-navy">{submittedLead.startDate}</span>
+                </div>
+              )}
+              <div className="flex justify-between">
+                <span className="font-semibold text-gray-500">Response SLA:</span>
+                <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">
+                  {submittedLead.slaTarget || "⚡ Within 24 Hours"}
+                </span>
+              </div>
             </div>
 
             {/* CTAs */}

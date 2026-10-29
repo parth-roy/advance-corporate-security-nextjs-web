@@ -1,0 +1,50 @@
+route_pattern,url_family,page_count,classification,canonical_strategy,intent,evidence_source,action_summary
+/,Homepage,1,KEEP,Self-canonical,Enterprise brand & corporate solutions,[A1],Core homepage preserved; zero unverified superlatives; high-trust credentials
+/quote,Procurement Intake,1,KEEP + CRO,Self-canonical,High-intent enterprise procurement funnel,[A4],Hardened with posts/shift/start-date inputs; traceable lead routing & SLA
+/compliance,Statutory Register,1,KEEP + IMPROVE,Self-canonical,Statutory & labour law compliance register,[A5],Effective-dated gazette circulars; statutory audit disclaimers; CLRA Sec 21(4) indemnification
+/rate-card-calculator,Rate Engine,1,KEEP + IMPROVE,Self-canonical,Transparent statutory cost estimation,[A4],Interactive rate engine; EPF ₹15k & ESIC ₹21k ceilings; audit notice banner
+/credentials,Licence Vault,1,KEEP + IMPROVE,Self-canonical,PSARA Form-V & ISO accreditation proof,[A6],Multi-state direct licensing & compliance evidence dossier
+/case-studies,Case Studies Hub,1,KEEP + STRENGTHEN,Self-canonical,Enterprise proof & client references,[A1],B2B proof with documented SHRINKAGE and retention metrics
+/case-studies/[slug],Sector Case Studies,3,KEEP,Self-canonical,Deep operational case evidence,[A1],Dankuni heavy industrial park; Salt Lake IT park; Multispeciality hospital
+/services/[slug],Primary Service Hubs,17,KEEP + UPGRADE,Self-canonical,Core service capabilities,[A2],Deep technical procurement content; 160h PSARA training; gear checklists; SLA matrix
+/services/integrated-facility-management,Dedicated IFM Hub,1,KEEP,Self-canonical,Enterprise integrated facility management,[A2],Dedicated comprehensive soft & hard FM operations landing page
+/services/industrial-security,Dedicated Industrial Hub,1,KEEP,Self-canonical,Heavy industrial guarding & plant security,[A2],Dedicated industrial security landing page; weighbridge & perimeter SOPs
+/sectors,Sector Verticals Hub,1,KEEP,Self-canonical,Vertical industry solutions overview,[A2],Structured portal covering 13 major commercial sectors
+/sectors/[slug],Industry Verticals,13,KEEP,Self-canonical,Vertical-specific procurement intent,[A2],Manufacturing; healthcare; warehouses; IT parks; hospitality; education
+/corridors/[slug],Eastern Logistics Corridors,4,KEEP + EXPAND,Self-canonical,Regional industrial freight routes,[A3],NH-16 & NH-19 arterial corridors (Bhubaneswar; Jamshedpur; Ranchi; Guwahati)
+/industrial-parks/[slug],Industrial Logistics Parks,3,KEEP + EXPAND,Self-canonical,Hyper-local warehouse clusters,[A3],ESR Uluberia; SFA Dankuni; Transindia Dankuni Logistics Parks
+/insights,Knowledge Hub,1,KEEP,Self-canonical,Legal & procurement explainers,[A5],High-authority B2B guides for CFOs and procurement committees
+/insights/[slug],Technical Articles,4,KEEP,Self-canonical,Statutory & tender guidelines,[A5],EPF Sec 7A guide; WB wage Zones A/B; GeM 4.0 procurement; weighbridge SOP
+/location/[city],City Operating Hubs,824,KEEP + IMPROVE,Self-canonical,Localized commercial presence,[A3],Top 25 SSG + 799 on-demand ISR; localized wage data & risk assessments
+/services/[slug]/[city],Service-City Hubs,6601,KEEP + IMPROVE,Self-canonical,Long-tail B2B search intent,[A3],Deep statutory wage mapping; localized supervisor coverage; FAQ schemas
+/services/[slug]/[city]/[industry],Service-City-Industry Matrix,23647,KEEP + IMPROVE,Self-canonical,Vertical-specific local search,[A3],Granular commercial landing pages; zero doorway boilerplate
+/sitemap,HTML Pan-India Directory,1,KEEP,Self-canonical,Human & crawler site architecture,[A3],Interactive filterable directory of all 820+ cities; services; corridors
+/procurement/*,Procurement Advisory Hubs,6,KEEP,Self-canonical,Institutional tender evaluation,[A4],GeM security tender checklists; cost sheet explainers; PSARA verifiers
+/locations,Alias Redirect,1,REDIRECT (301),Destination canonical,Plural path resolution,Internal,Exact 1-to-1 redirect to /location (0 chains; 0 loops)
+/privacy,Alias Redirect,1,REDIRECT (301),Destination canonical,Shorthand path resolution,Internal,Exact 1-to-1 redirect to /privacy-policy (0 chains; 0 loops)
+/terms,Alias Redirect,1,REDIRECT (301),Destination canonical,Shorthand path resolution,Internal,Exact 1-to-1 redirect to /terms-of-service (0 chains; 0 loops)
+/service,Alias Redirect,1,REDIRECT (301),Destination canonical,Singular path resolution,Internal,Exact 1-to-1 redirect to /services (0 chains; 0 loops)
+/location/gurgaon,NCR City Alias,1,REDIRECT (301),Destination canonical,Official municipal renaming,Internal,Exact 1-to-1 redirect to /location/gurugram (0 chains; 0 loops)
+/location/gurugram-hr,NCR City Alias,1,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /location/gurugram (0 chains; 0 loops)
+/location/faridabad-hr,NCR City Alias,1,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /location/faridabad (0 chains; 0 loops)
+/location/noida-up,NCR City Alias,1,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /location/noida (0 chains; 0 loops)
+/location/ghaziabad-up,NCR City Alias,1,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /location/ghaziabad (0 chains; 0 loops)
+/services/:slug/gurgaon,NCR Service Alias,17,REDIRECT (301),Destination canonical,Official municipal renaming,Internal,Exact 1-to-1 redirect to /services/:slug/gurugram (0 chains)
+/services/:slug/gurugram-hr,NCR Service Alias,17,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /services/:slug/gurugram (0 chains)
+/services/:slug/faridabad-hr,NCR Service Alias,17,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /services/:slug/faridabad (0 chains)
+/services/:slug/noida-up,NCR Service Alias,17,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /services/:slug/noida (0 chains)
+/services/:slug/ghaziabad-up,NCR Service Alias,17,REDIRECT (301),Destination canonical,State suffix normalization,Internal,Exact 1-to-1 redirect to /services/:slug/ghaziabad (0 chains)
+/about-us-3,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /about (0 chains; preserves backlink equity)
+/our-mission-2,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /about#mission (0 chains)
+/our-vision-2,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /about#vision (0 chains)
+/core-value-2,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /about#values (0 chains)
+/from-the-desk-of-founder,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /about#founder (0 chains)
+/our-team-our-forte,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /about#team (0 chains)
+/security-safety-services,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /services/security-safety (0 chains)
+/facility-management-services,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /services/facility-management (0 chains)
+/placement-services,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /services/placement-services (0 chains)
+/horticulture-2,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /services/horticulture (0 chains)
+/our-clients,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /clients (0 chains)
+/our-gallery,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /gallery (0 chains)
+/contact-us-2,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /contact (0 chains)
+/career,Legacy WordPress Path,1,REDIRECT (301),Destination canonical,WordPress migration,[A1],Exact 1-to-1 redirect to /careers (0 chains)

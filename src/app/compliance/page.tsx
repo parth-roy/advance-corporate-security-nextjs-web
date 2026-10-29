@@ -15,7 +15,7 @@ import { buildBreadcrumbSchema, buildFaqSchema, serializeJsonLd } from "@/lib/sc
 export const metadata: Metadata = {
   title: "Security Guard Statutory Compliance | PSARA Wages & Labour Law | ACS",
   description:
-    "ACS maintains 100% statutory compliance — PSARA licensing, minimum wages, EPF/ESIC contributions and labour law compliance across all deployment states. View state-wise compliance data.",
+    "ACS provides comprehensive statutory compliance across 13 Indian states — PSARA Form-V licensing, gazetted minimum wage notifications, EPF/ESIC contributions, and statutory indemnification under CLRA Act Sec 21(4).",
   keywords: [
     "PSARA Compliance",
     "Security Guard Minimum Wages",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Security Guard Statutory Compliance | PSARA Wages & Labour Law | ACS",
     description:
-      "ACS maintains 100% statutory compliance — PSARA licensing, minimum wages, EPF/ESIC contributions and labour law compliance across all deployment states.",
+      "ACS provides comprehensive statutory compliance across 13 Indian states — PSARA Form-V licensing, gazetted minimum wage notifications, EPF/ESIC contributions, and statutory indemnification under CLRA Act Sec 21(4).",
     url: `${siteConfig.url}/compliance`,
     images: [{ url: "/images/guarding.jpg", width: 1200, height: 630 }],
   },
@@ -57,12 +57,12 @@ const faqs = [
   {
     question: "What is the all-inclusive monthly cost formula ACS uses?",
     answer:
-      "ACS applies the reviewed statutory formula: Total Monthly Billable Cost = Step B (Monthly Wage Base = Gazetted Daily Minimum Wage Step A × 26 working days) + Steps C..G (Statutory Contributions & Provisions: EPF 13%, ESIC 3.25%, Bonus 8.33%, Gratuity 4.81%, Uniform Allowance) + Step H (Administrative Service Charge 5–10%) + Step I (GST @ 18%). Step A serves strictly as an input benchmark to derive Step B and is never double-counted into monthly totals, ensuring 100% audit-proof compliance with zero wage theft.",
+      "ACS applies the reviewed statutory formula: Total Monthly Billable Cost = Step B (Monthly Wage Base = Gazetted Daily Minimum Wage Step A × 26 working days) + Steps C..G (Statutory Contributions & Provisions: EPF 13%, ESIC 3.25%, Bonus 8.33%, Gratuity 4.81%, Uniform Allowance) + Step H (Administrative Service Charge 5–10%) + Step I (GST @ 18%). Step A serves strictly as an input benchmark to derive Step B and is never double-counted into monthly totals, ensuring audit-compliant billing with zero wage theft.",
   },
   {
     question: "What EPF and ESIC rates does ACS deduct/contribute?",
     answer:
-      "Employee Provident Fund: Employer contributes 12% EPF + 0.5% EDLI + 0.5% Admin Charges = 13% total on basic wages (up to ₹15,000 wage ceiling). Employee's share: 12% of basic wages. ESIC: Employer contributes 3.25% and Employee contributes 0.75% of gross wages (applicable for employees earning up to ₹21,000/month). ACS deposits all statutory contributions monthly via the EPFO/ESIC portal.",
+      "Employee Provident Fund: Employer contributes 12% EPF + 0.5% EDLI + 0.5% Admin Charges = 13% total on basic wages, subject to the statutory EPF wage ceiling of ₹15,000/month under Paragraph 29 of the EPF Scheme 1952 (contributions on wages exceeding ₹15,000 are optional or by mutual agreement). Employee's statutory share is 12%. ESIC: Employer contributes 3.25% and Employee contributes 0.75% of gross wages, applicable strictly for employees earning gross wages up to the statutory ceiling of ₹21,000/month under Section 2(9) of the ESI Act 1948. Personnel earning above ₹21,000 are exempt from ESIC and are covered under Workmen's Compensation / GPA insurance. ACS deposits all statutory contributions monthly via the EPFO and ESIC unified portals.",
   },
   {
     question: "Does ACS provide compliance documentation for client audits?",
@@ -72,7 +72,7 @@ const faqs = [
   {
     question: "How does ACS handle mid-year wage revisions by state governments?",
     answer:
-      "ACS tracks all State Labour Department gazette notifications through its statutory compliance desk. Whenever a state revises minimum wages (typically in April and October), ACS implements the revised rate from the effective date specified in the gazette. Client billing is correspondingly revised after formal communication, ensuring seamless compliance without operational disruption.",
+      "ACS tracks all State Labour Department gazette notifications and CLC(C) semi-annual VDA orders (typically issued in April and October) through its statutory compliance desk. Whenever a state revises minimum wages, ACS implements the revised rate from the statutory gazette effective date. Client billing is updated alongside formal circular documentation, ensuring seamless compliance without operational disruption.",
   },
 ] as const;
 
@@ -345,9 +345,9 @@ export default function StatutoryCompliancePage() {
           </h1>
 
           <p className="text-sky-200 font-roboto text-base sm:text-lg md:text-xl font-normal mb-8 max-w-4xl leading-relaxed">
-            ACS maintains 100% statutory compliance across all deployment states — covering PSARA
-            licensing, state-wise minimum wages, EPF/ESIC contributions, statutory bonus, gratuity,
-            and Contract Labour Act obligations. View live state-wise compliance data below.
+            ACS maintains verified statutory compliance across 13 Indian states — covering PSARA
+            licensing, state-wise gazetted minimum wages, EPF/ESIC contributions, statutory bonus, gratuity,
+            and contractual statutory indemnification under the Contract Labour (R&amp;A) Act 1970 Section 21(4).
           </p>
 
           {/* CTA row */}
@@ -373,7 +373,7 @@ export default function StatutoryCompliancePage() {
               <div className="text-slate-200 text-xs">WB, Delhi &amp; Jharkhand — Direct</div>
             </div>
             <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs">
-              <div className="text-sky font-bold text-sm mb-0.5">12 States Covered</div>
+              <div className="text-sky font-bold text-sm mb-0.5">13 States Covered</div>
               <div className="text-slate-200 text-xs">Pan-India statutory deployment</div>
             </div>
             <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs">
@@ -381,8 +381,8 @@ export default function StatutoryCompliancePage() {
               <div className="text-slate-200 text-xs">Monthly ECR &amp; Form 5 deposits</div>
             </div>
             <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs">
-              <div className="text-gold font-bold text-sm mb-0.5">Zero Litigation</div>
-              <div className="text-slate-200 text-xs">25+ years unblemished record</div>
+              <div className="text-gold font-bold text-sm mb-0.5">25+ Years Experience</div>
+              <div className="text-slate-200 text-xs">Verified statutory compliance</div>
             </div>
           </div>
         </div>
@@ -391,6 +391,19 @@ export default function StatutoryCompliancePage() {
       {/* ── 1. STATE-WISE COMPLIANCE TABLE ───────────────────────────────── */}
       <section id="state-compliance-table" className="section-py bg-white">
         <div className="container-acs">
+          {/* Statutory Notice & Audit Disclaimer Banner */}
+          <div className="bg-amber-50/90 border border-amber-300 rounded-2xl p-5 mb-10 text-xs text-amber-950 flex items-start gap-3.5 shadow-xs max-w-5xl mx-auto">
+            <span className="text-xl shrink-0 leading-none mt-0.5" aria-hidden="true">⚠️</span>
+            <div className="leading-relaxed">
+              <p className="font-bold text-amber-900 uppercase tracking-wide text-[11px] mb-1">
+                Statutory Notice &amp; Audit Disclaimer
+              </p>
+              <p>
+                Statutory wage benchmarks and gazette notifications displayed in this register are compiled from official State Labour Department notifications, the Office of Chief Labour Commissioner (Central), and Central Board of Trustees (EPFO). Figures serve as verified statutory baselines for institutional budgeting and tender formulation. <strong>ACS does not issue automated legally binding quotations.</strong> Final contractual pricing requires a mandatory joint site security survey, post risk classification, shift-level risk analysis, and a formal written quotation signed by an authorized ACS compliance officer with contractual statutory indemnification under Section 21(4) of the Contract Labour (R&amp;A) Act 1970.
+              </p>
+            </div>
+          </div>
+
           <div className="text-center mb-10 max-w-3xl mx-auto">
             <p className="section-label">State-Wise Data — Updated {new Date().getFullYear()}</p>
             <h2 className="text-navy text-2xl sm:text-4xl font-roboto font-extrabold">
@@ -426,13 +439,13 @@ export default function StatutoryCompliancePage() {
               <thead className="bg-navy text-white text-xs uppercase tracking-wider">
                 <tr>
                   <th className="p-4 min-w-[140px]">State</th>
-                  <th className="p-4 min-w-[160px]">PSARA Status</th>
-                  <th className="p-4 text-right min-w-[110px]">Unskilled<br />(₹/day)</th>
-                  <th className="p-4 text-right min-w-[120px]">Semi-Skilled<br />(₹/day)</th>
+                  <th className="p-4 min-w-[150px]">PSARA Status</th>
+                  <th className="p-4 text-right min-w-[100px]">Unskilled<br />(₹/day)</th>
+                  <th className="p-4 text-right min-w-[105px]">Semi-Skilled<br />(₹/day)</th>
                   <th className="p-4 text-right min-w-[100px]">Skilled<br />(₹/day)</th>
-                  <th className="p-4 min-w-[100px]">Effective</th>
-                  <th className="p-4 min-w-[200px]">Key Statutory Acts</th>
-                  <th className="p-4 min-w-[120px]">Labour Dept.</th>
+                  <th className="p-4 min-w-[220px]">Effective Period &amp; Gazette Ref</th>
+                  <th className="p-4 min-w-[180px]">Key Statutory Acts</th>
+                  <th className="p-4 min-w-[110px]">Labour Dept.</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -459,9 +472,12 @@ export default function StatutoryCompliancePage() {
                     <td className="p-4 text-right font-mono font-bold text-navy">
                       ₹{row.minWageSkilled}
                     </td>
-                    {/* Effective date */}
-                    <td className="p-4 text-xs text-slate-600 whitespace-nowrap">
-                      {row.minWageEffectiveDate}
+                    {/* Effective date & Gazette circular */}
+                    <td className="p-4 text-xs">
+                      <div className="font-semibold text-slate-800 whitespace-nowrap">{row.minWageEffectiveDate}</div>
+                      <div className="text-[11px] text-navy font-mono mt-1 leading-snug bg-slate-100/80 px-2 py-1 rounded border border-slate-200">
+                        {row.gazetteNotificationRef}
+                      </div>
                     </td>
                     {/* Key Acts */}
                     <td className="p-4">
@@ -498,11 +514,8 @@ export default function StatutoryCompliancePage() {
           </div>
 
           {/* Disclaimer note */}
-          <p className="mt-4 text-[11px] text-slate-400 text-center leading-relaxed max-w-3xl mx-auto">
-            ⚠️ Minimum wage figures are sourced from respective State Labour Department gazette
-            notifications and are updated periodically. Always confirm the current gazetted rate
-            with the relevant authority before finalising any contract. Contact ACS Compliance Desk
-            for the latest verified rates.
+          <p className="mt-4 text-[11px] text-slate-500 text-center leading-relaxed max-w-3xl mx-auto">
+            ⚠️ Statutory Notice: Minimum wage figures and gazette circulars are sourced from respective State Labour Department notifications and CLC(C) orders. Rates are subject to semi-annual Variable Dearness Allowance (VDA) revisions (typically April 1 and October 1). Contractual deployment rates require joint site survey and customized shift risk classification. Contact ACS Compliance Desk for project-specific formal costing.
           </p>
         </div>
       </section>
@@ -946,14 +959,14 @@ export default function StatutoryCompliancePage() {
         <div className="container-acs">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="badge-sky text-xs uppercase mb-3 inline-block">
-              Absolute Legal Indemnity
+              Statutory Compliance Indemnification
             </span>
             <h2 className="text-navy text-2xl sm:text-3xl font-roboto font-extrabold">
-              The Monthly Compliance Pack: Zero Vicarious Liability
+              The Monthly Compliance Pack: Contractual Indemnification &amp; Vicarious Liability Protection
             </h2>
             <div className="divider-sky mx-auto my-3" />
             <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto">
-              Under Section 7A of the EPF Act 1952 and Section 21 of the Contract Labour Act 1970, Principal Employers face immense legal liability if vendors default. ACS acts as an operational firewall, delivering a digitized 4-part dossier to your finance team by the 15th of every month.
+              Under Section 7A of the EPF Act 1952 and Section 21(4) of the Contract Labour (R&amp;A) Act 1970, Principal Employers face vicarious statutory liability if manpower contractors default. ACS provides formal contractual indemnification backed by an audited 4-part digital dossier delivered directly to your finance and audit teams by the 15th of every month.
             </p>
           </div>
 

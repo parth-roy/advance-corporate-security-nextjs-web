@@ -195,6 +195,9 @@ export default function ProcurementCenterPage() {
             <Link href="/procurement/monthly-compliance-pack-template" className="btn-secondary text-xs sm:text-sm px-5 py-3 border-emerald-400/60 text-emerald-200 hover:text-white hover:bg-white/10">
               🛡️ Monthly Compliance Pack
             </Link>
+            <Link href="/procurement/workforce-capacity-and-payroll-model" className="btn-secondary text-xs sm:text-sm px-5 py-3 border-indigo-400/60 text-indigo-200 hover:text-white hover:bg-white/10">
+              📊 Workforce Supply &amp; Float Model
+            </Link>
             <Link href="/procurement/agency-comparison" className="btn-secondary text-xs sm:text-sm px-5 py-3 border-white/30 text-slate-200 hover:text-white hover:bg-white/10">
               ⚖️ Agency Comparison Matrix
             </Link>
@@ -796,6 +799,36 @@ export default function ProcurementCenterPage() {
                   className="inline-flex items-center gap-1 text-xs font-bold text-sky hover:text-sky-dark group"
                 >
                   <span>Explore Guide</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Guide 6: Workforce Supply Capacity & Payroll Float Model */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200">
+                    <Scale size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-indigo-800 uppercase tracking-wider">
+                    Capacity Governance
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  Workforce Supply &amp; Payroll Float Model
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Operational capacity equations, supervisory span-of-control (1:15–20), mandatory 1/6th reliever rosters, sourcing SLAs, and 60-day liquid payroll float reserves.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">Liquidity &amp; Supply Math</span>
+                <Link
+                  href="/procurement/workforce-capacity-and-payroll-model"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-indigo-800 hover:text-indigo-950 group"
+                >
+                  <span>Explore Model</span>
                   <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               </div>

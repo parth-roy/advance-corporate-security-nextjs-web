@@ -9,7 +9,8 @@
 // ============================================================
 
 import React, { useState, useEffect } from "react";
-import { Phone, Mail } from "lucide-react";
+import Link from "next/link";
+import { Phone, Mail, FileText } from "lucide-react";
 import WhatsAppIntentModal from "@/components/common/WhatsAppIntentModal";
 import { trackEvent } from "@/lib/analytics";
 import { siteConfig } from "@/lib/config";
@@ -65,15 +66,15 @@ export default function FloatingContact() {
           </svg>
           <span className="truncate">WhatsApp</span>
         </button>
-        <a
-          href={`mailto:${siteConfig.email}`}
-          onClick={() => trackEvent("email_click", { source: "floating_mobile", email: siteConfig.email })}
-          className="flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-navy hover:bg-navy-dark px-2 py-2 text-xs font-extrabold text-white active:scale-95 transition-transform"
-          aria-label={`Email ACS: ${siteConfig.email}`}
+        <Link
+          href="/quote"
+          onClick={() => trackEvent("quote_request", { source: "floating_mobile" })}
+          className="flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-red-600 hover:bg-red-700 px-2 py-2 text-xs font-extrabold text-white shadow-md active:scale-95 transition-transform"
+          aria-label="Request Instant Procurement Quote"
         >
-          <Mail className="w-3.5 h-3.5 text-gold shrink-0" />
-          <span className="truncate">Email</span>
-        </a>
+          <FileText className="w-3.5 h-3.5 text-white shrink-0" />
+          <span className="truncate">Get Quote</span>
+        </Link>
       </div>
 
       {/* Desktop Floating Badges (Right Side) */}

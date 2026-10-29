@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 import { ShieldCheck, AlertTriangle, Calculator, Download, CheckCircle2, Building2, HelpCircle, ArrowRight } from "lucide-react";
 
 interface WageZoneConfig {
@@ -27,8 +28,8 @@ const WAGE_ZONES: Record<string, WageZoneConfig> = {
       skilled: 12776,
       highlySkilled: 14053,
     },
-    gazetteRef: "WB Labour Commissioner Notification 2026",
-    effectivePeriod: "Calendar Year 2026",
+    gazetteRef: "WB Labour Commissioner Circular No. 12/Stat/2RW/29/16/LCS/JLC (Zone A)",
+    effectivePeriod: "1 Jan 2026 – 30 Jun 2026",
   },
   "wb-zone-b": {
     stateName: "West Bengal",
@@ -39,8 +40,8 @@ const WAGE_ZONES: Record<string, WageZoneConfig> = {
       skilled: 11807,
       highlySkilled: 12988,
     },
-    gazetteRef: "WB Labour Commissioner Notification 2026",
-    effectivePeriod: "Calendar Year 2026",
+    gazetteRef: "WB Labour Commissioner Circular No. 12/Stat/2RW/29/16/LCS/JLC (Zone B)",
+    effectivePeriod: "1 Jan 2026 – 30 Jun 2026",
   },
   "delhi-ncr": {
     stateName: "Delhi NCR",
@@ -51,8 +52,8 @@ const WAGE_ZONES: Record<string, WageZoneConfig> = {
       skilled: 21215,
       highlySkilled: 23000,
     },
-    gazetteRef: "Office of Labour Commissioner, Govt of NCT Delhi",
-    effectivePeriod: "Current FY 2026",
+    gazetteRef: "Office of Addl. Labour Commissioner Order F.No.12(142)/02/MW/VII/Partfile/5826",
+    effectivePeriod: "1 Oct 2025 – 31 Mar 2026 (Semi-Annual Cycle)",
   },
   "maharashtra-zone-1": {
     stateName: "Maharashtra",
@@ -63,8 +64,8 @@ const WAGE_ZONES: Record<string, WageZoneConfig> = {
       skilled: 17650,
       highlySkilled: 19500,
     },
-    gazetteRef: "Maharashtra State Minimum Wages Board",
-    effectivePeriod: "Current FY 2026",
+    gazetteRef: "Maharashtra State Minimum Wages Board Circular No. MWA-2026/CR-14/Labour-7 (Zone 1)",
+    effectivePeriod: "1 Jan 2026 – 30 Jun 2026",
   },
   "karnataka-zone-1": {
     stateName: "Karnataka",
@@ -75,8 +76,8 @@ const WAGE_ZONES: Record<string, WageZoneConfig> = {
       skilled: 18450,
       highlySkilled: 20200,
     },
-    gazetteRef: "Karnataka Labour Department Gazette",
-    effectivePeriod: "Current FY 2026",
+    gazetteRef: "Karnataka Labour Department Gazette Notification No. KAE 28 LMW 2025 (Zone 1)",
+    effectivePeriod: "1 Apr 2025 – 31 Mar 2026 (FY 2025-26/26)",
   },
   "central-sphere": {
     stateName: "Central Sphere (Pan-India)",
@@ -87,8 +88,8 @@ const WAGE_ZONES: Record<string, WageZoneConfig> = {
       skilled: 20020,
       highlySkilled: 22100,
     },
-    gazetteRef: "Chief Labour Commissioner (Central) Notification",
-    effectivePeriod: "Current FY 2026",
+    gazetteRef: "Office of Chief Labour Commissioner (Central) Order No. 1/1(7)/2026-LS-II (Area A)",
+    effectivePeriod: "1 Oct 2025 – 31 Mar 2026 (Central Sphere Area A)",
   },
 };
 
@@ -167,6 +168,19 @@ export default function RateCardCalculator() {
 
   return (
     <div className="w-full">
+      {/* Statutory Notice & Audit Disclaimer Banner */}
+      <div className="bg-amber-50/90 border border-amber-300 rounded-2xl p-4 md:p-5 mb-6 text-xs text-amber-950 flex items-start gap-3 shadow-xs">
+        <AlertTriangle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+        <div className="leading-relaxed">
+          <p className="font-bold text-amber-900 uppercase tracking-wide text-[11px] mb-1">
+            Statutory Notice &amp; Audit Disclaimer
+          </p>
+          <p>
+            Rates computed by this interactive calculator are indicative statutory estimates based on published State Labour Department Gazette notifications, Central Sphere orders, and EPFO/ESIC statutory contribution schedules. <strong>ACS does not issue automated legally binding quotations.</strong> Final contractual pricing requires a mandatory joint site security survey, post risk classification, shift-level risk analysis, and a formal written quotation signed by an authorized ACS compliance officer with contractual statutory indemnification under Section 21(4) of the Contract Labour (R&amp;A) Act 1970 and Section 7A of the EPF Act 1952.
+          </p>
+        </div>
+      </div>
+
       {/* Configuration Header Card */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-100">
@@ -188,8 +202,8 @@ export default function RateCardCalculator() {
           <div className="flex items-center gap-3 bg-blue-50/70 border border-blue-200/60 rounded-xl px-4 py-2.5">
             <ShieldCheck className="w-6 h-6 text-sky shrink-0" />
             <div className="text-xs">
-              <p className="font-bold text-navy">100% Audit-Proof Rate Engine</p>
-              <p className="text-slate-600">Zero vicarious liability under EPF Sec 7A & CLRA Sec 21</p>
+              <p className="font-bold text-navy">Statutory Rate Engine &amp; Indemnification</p>
+              <p className="text-slate-600">Contractual indemnification under CLRA Sec 21(4) &amp; EPF Sec 7A</p>
             </div>
           </div>
         </div>
@@ -370,13 +384,13 @@ export default function RateCardCalculator() {
 
                 <tr>
                   <td className="py-3 font-bold text-navy">2. EPF (Employer Share)</td>
-                  <td className="py-3 text-slate-600 text-xs">13.00% (EPF 12% + EDLI 0.5% + Admin 0.5%)</td>
+                  <td className="py-3 text-slate-600 text-xs">13.00% (EPF 12% + EDLI 0.5% + Admin 0.5%) • Capped at ₹15,000 basic wage threshold</td>
                   <td className="py-3 text-right font-bold text-navy">₹{breakdown.epfEmployer.toLocaleString("en-IN")}</td>
                 </tr>
 
                 <tr>
                   <td className="py-3 font-bold text-navy">3. ESIC (Employer Share)</td>
-                  <td className="py-3 text-slate-600 text-xs">3.25% of Gross (Statutory Health Cover)</td>
+                  <td className="py-3 text-slate-600 text-xs">3.25% of Gross • Statutory cover for monthly gross wages ≤ ₹21,000 threshold</td>
                   <td className="py-3 text-right font-bold text-navy">₹{breakdown.esicEmployer.toLocaleString("en-IN")}</td>
                 </tr>
 
@@ -434,6 +448,11 @@ export default function RateCardCalculator() {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* Statutory Threshold Qualifier Footnote */}
+          <div className="px-6 py-3 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 leading-normal">
+            * <strong>Statutory Wage Ceilings:</strong> EPF calculations are subject to the statutory ceiling of ₹15,000/month under Paragraph 29 of the EPF Scheme 1952. ESIC contributions are mandated for gross monthly earnings up to ₹21,000/month under Section 2(9) of the ESI Act 1948. Reliever provisions (1/6th) are mandatory for 24×7 continuous round-the-clock deployments under Section 13 of the Minimum Wages Act 1948.
           </div>
         </div>
 
@@ -496,6 +515,14 @@ export default function RateCardCalculator() {
           <div className="space-y-3">
             <Link
               href={`/request-audit?headcount=${headcount}&state=${selectedZoneKey}&skill=${selectedSkill}`}
+              onClick={() =>
+                trackEvent("rate_calculator_used", {
+                  state: selectedZoneKey,
+                  category: selectedSkill,
+                  value: headcount,
+                  label: `${headcount} Personnel in ${selectedZoneKey}`,
+                })
+              }
               className="w-full text-center block px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition shadow-lg text-sm"
             >
               Request Formal Rate Card Quotation →
@@ -530,9 +557,9 @@ export default function RateCardCalculator() {
             </p>
           </div>
           <div className="bg-white p-4 rounded-xl border border-slate-200">
-            <p className="font-bold text-navy mb-1">3. The ACS Operational Firewall</p>
+            <p className="font-bold text-navy mb-1">3. The ACS Statutory Indemnity Shield</p>
             <p>
-              ACS assumes 100% Employer-of-Record responsibility. We disburse salaries strictly on the 7th via direct bank transfer (NEFT) and email client CFOs a verified "Monthly Compliance Pack" containing verified bank receipts and official challans.
+              ACS provides contractual statutory indemnification against principal employer vicarious liability under CLRA Section 21(4) and EPF Section 7A. We disburse wages strictly by the 7th via direct bank transfer (NEFT) and deliver an audited monthly compliance pack with EPFO ECR challans, TRRN payment receipts, and ESIC Form 5 contribution vouchers.
             </p>
           </div>
         </div>

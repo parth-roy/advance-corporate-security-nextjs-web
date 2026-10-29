@@ -211,6 +211,30 @@ export default async function ServicePage({
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  // Dynamic Blueprint-aligned Primary CTA based on service slug (Section 4)
+  const getPrimaryCta = (serviceSlug: string) => {
+    switch (serviceSlug) {
+      case "security-guard":
+        return { label: "Request Guarding Quote →", href: "/quote?service=security-guard" };
+      case "industrial-security":
+        return { label: "Survey Security Requirements →", href: "/quote?service=industrial-security" };
+      case "housekeeping":
+        return { label: "Request Staffing Quote →", href: "/quote?service=housekeeping" };
+      case "manpower-outsourcing":
+        return { label: "Request Workers & Staffing →", href: "/quote?service=manpower-outsourcing" };
+      case "surveillance-cctv":
+        return { label: "Request CCTV Surveillance Survey →", href: "/quote?service=surveillance-cctv" };
+      case "armed-guard":
+        return { label: "Request Armed Guard Proposal →", href: "/quote?service=armed-guard" };
+      case "facility-management":
+        return { label: "Book Facility Assessment →", href: "/services/integrated-facility-management" };
+      default:
+        return { label: "Request Scoped Quotation →", href: `/quote?service=${serviceSlug}` };
+    }
+  };
+
+  const primaryCta = getPrimaryCta(slug);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildBreadcrumbSchema(breadcrumbs)) }} />
@@ -256,13 +280,13 @@ export default async function ServicePage({
             {description}
           </p>
 
-          {/* Action Buttons */}
+          {/* Action Buttons — Enterprise Buyer First (Section 4) */}
           <div className="flex flex-wrap gap-3 items-center mb-8">
-            <Link href="/contact" className="btn-primary text-xs sm:text-sm px-6 py-3">
-              Request Free Proposal
+            <Link href={primaryCta.href} className="btn-primary text-xs sm:text-sm px-6 py-3 shadow-lg">
+              {primaryCta.label}
             </Link>
             <a href="tel:+919477006681" className="btn-secondary text-xs sm:text-sm px-5 py-3">
-              📞 Call: +91 94770 06681
+              📞 Direct Operations: +91 94770 06681
             </a>
           </div>
 

@@ -1,0 +1,75 @@
+source_path,destination_path,status_code,chain_length,intent_match,risk_level,rollback_target,notes
+/locations,/location,301,1,Exact,Low,None,Alias normalization (plural to singular)
+/locations/,/location,301,1,Exact,Low,None,Trailing slash normalization
+/privacy,/privacy-policy,301,1,Exact,Low,None,Shorthand legal path to full slug
+/privacy/,/privacy-policy,301,1,Exact,Low,None,Trailing slash normalization
+/terms,/terms-of-service,301,1,Exact,Low,None,Shorthand legal path to full slug
+/terms/,/terms-of-service,301,1,Exact,Low,None,Trailing slash normalization
+/service,/services,301,1,Exact,Low,None,Singular service catalog to plural
+/service/,/services,301,1,Exact,Low,None,Trailing slash normalization
+/industries,/sectors,301,1,Exact,Low,None,Blueprint target IA alias
+/industries/,/sectors,301,1,Exact,Low,None,Trailing slash normalization
+/industries/manufacturing,/sectors/industrial-zones,301,1,Exact,Low,None,Blueprint target IA alias
+/industries/manufacturing/,/sectors/industrial-zones,301,1,Exact,Low,None,Trailing slash normalization
+/industries/healthcare,/sectors/hospitals,301,1,Exact,Low,None,Blueprint target IA alias
+/industries/healthcare/,/sectors/hospitals,301,1,Exact,Low,None,Trailing slash normalization
+/industries/warehousing-logistics,/sectors/warehouses,301,1,Exact,Low,None,Blueprint target IA alias
+/industries/warehousing-logistics/,/sectors/warehouses,301,1,Exact,Low,None,Trailing slash normalization
+/industries/warehousing,/sectors/warehouses,301,1,Exact,Low,None,Blueprint target IA alias
+/industries/warehousing/,/sectors/warehouses,301,1,Exact,Low,None,Trailing slash normalization
+/industries/:slug,/sectors/:slug,301,1,Exact,Low,None,Blueprint target IA alias
+/industries/:slug/,/sectors/:slug,301,1,Exact,Low,None,Trailing slash normalization
+/locations/west-bengal/kolkata,/location/kolkata,301,1,Exact,Low,None,Blueprint target IA alias
+/locations/west-bengal/kolkata/,/location/kolkata,301,1,Exact,Low,None,Trailing slash normalization
+/location/west-bengal/kolkata,/location/kolkata,301,1,Exact,Low,None,Blueprint target IA alias
+/location/west-bengal/kolkata/,/location/kolkata,301,1,Exact,Low,None,Trailing slash normalization
+/location/gurgaon,/location/gurugram,301,1,Exact,Low,None,Municipal naming standardization
+/location/gurgaon/,/location/gurugram,301,1,Exact,Low,None,Trailing slash normalization
+/location/gurugram-hr,/location/gurugram,301,1,Exact,Low,None,PSEO slug normalization (removing -hr suffix)
+/location/gurugram-hr/,/location/gurugram,301,1,Exact,Low,None,Trailing slash normalization
+/location/faridabad-hr,/location/faridabad,301,1,Exact,Low,None,PSEO slug normalization (removing -hr suffix)
+/location/faridabad-hr/,/location/faridabad,301,1,Exact,Low,None,Trailing slash normalization
+/location/noida-up,/location/noida,301,1,Exact,Low,None,PSEO slug normalization (removing -up suffix)
+/location/noida-up/,/location/noida,301,1,Exact,Low,None,Trailing slash normalization
+/location/ghaziabad-up,/location/ghaziabad,301,1,Exact,Low,None,PSEO slug normalization (removing -up suffix)
+/location/ghaziabad-up/,/location/ghaziabad,301,1,Exact,Low,None,Trailing slash normalization
+/services/:slug/gurgaon,/services/:slug/gurugram,301,1,Exact,Low,None,Service-city municipal standardization
+/services/:slug/gurgaon/,/services/:slug/gurugram,301,1,Exact,Low,None,Trailing slash normalization
+/services/:slug/gurugram-hr,/services/:slug/gurugram,301,1,Exact,Low,None,Service-city suffix normalization
+/services/:slug/gurugram-hr/,/services/:slug/gurugram,301,1,Exact,Low,None,Trailing slash normalization
+/services/:slug/faridabad-hr,/services/:slug/faridabad,301,1,Exact,Low,None,Service-city suffix normalization
+/services/:slug/faridabad-hr/,/services/:slug/faridabad,301,1,Exact,Low,None,Trailing slash normalization
+/services/:slug/noida-up,/services/:slug/noida,301,1,Exact,Low,None,Service-city suffix normalization
+/services/:slug/noida-up/,/services/:slug/noida,301,1,Exact,Low,None,Trailing slash normalization
+/services/:slug/ghaziabad-up,/services/:slug/ghaziabad,301,1,Exact,Low,None,Service-city suffix normalization
+/services/:slug/ghaziabad-up/,/services/:slug/ghaziabad,301,1,Exact,Low,None,Trailing slash normalization
+/home/,/,301,1,Exact,Low,None,Legacy WordPress front-page alias
+/home,/,301,1,Exact,Low,None,Legacy WordPress front-page alias
+/about-us-3/,/about,301,1,Exact,Low,None,Legacy WordPress slug preservation
+/about-us-3,/about,301,1,Exact,Low,None,Legacy WordPress slug preservation
+/our-mission-2/,/about#mission,301,1,Exact,Low,None,Legacy WordPress sub-section preservation
+/our-mission-2,/about#mission,301,1,Exact,Low,None,Legacy WordPress sub-section preservation
+/our-vision-2/,/about#vision,301,1,Exact,Low,None,Legacy WordPress sub-section preservation
+/our-vision-2,/about#vision,301,1,Exact,Low,None,Legacy WordPress sub-section preservation
+/core-value-2/,/about#values,301,1,Exact,Low,None,Legacy WordPress sub-section preservation
+/core-value-2,/about#values,301,1,Exact,Low,None,Legacy WordPress sub-section preservation
+/from-the-desk-of-founder/,/about#founder,301,1,Exact,Low,None,Legacy WordPress founder note preservation
+/from-the-desk-of-founder,/about#founder,301,1,Exact,Low,None,Legacy WordPress founder note preservation
+/our-team-our-forte/,/about#team,301,1,Exact,Low,None,Legacy WordPress leadership preservation
+/our-team-our-forte,/about#team,301,1,Exact,Low,None,Legacy WordPress leadership preservation
+/security-safety-services/,/services/security-safety,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/security-safety-services,/services/security-safety,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/facility-management-services/,/services/facility-management,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/facility-management-services,/services/facility-management,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/placement-services/,/services/placement-services,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/placement-services,/services/placement-services,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/horticulture-2/,/services/horticulture,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/horticulture-2,/services/horticulture,301,1,Exact,Low,None,Legacy WordPress service category preservation
+/our-clients/,/clients,301,1,Exact,Low,None,Legacy WordPress client portfolio preservation
+/our-clients,/clients,301,1,Exact,Low,None,Legacy WordPress client portfolio preservation
+/our-gallery/,/gallery,301,1,Exact,Low,None,Legacy WordPress gallery preservation
+/our-gallery,/gallery,301,1,Exact,Low,None,Legacy WordPress gallery preservation
+/contact-us-2/,/contact,301,1,Exact,Low,None,Legacy WordPress contact page preservation
+/contact-us-2,/contact,301,1,Exact,Low,None,Legacy WordPress contact page preservation
+/career,/careers,301,1,Exact,Low,None,Recruitment path singular to plural normalization
+/career/,/careers,301,1,Exact,Low,None,Trailing slash normalization

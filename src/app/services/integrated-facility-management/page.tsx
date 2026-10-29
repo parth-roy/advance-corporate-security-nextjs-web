@@ -156,6 +156,23 @@ export default function IntegratedFacilityManagementPage() {
             <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-6 max-w-2xl">
               Consolidate security, mechanized housekeeping, MEP maintenance, and soft services under a single, audit-proof contract. Eliminate vendor blame-shifting and reduce facility overheads by up to 20%.
             </p>
+
+            {/* Action Buttons — Enterprise Buyer First (Section 4) */}
+            <div className="flex flex-wrap gap-3 items-center mb-6">
+              <Link
+                href="/quote?service=facility-management"
+                className="px-6 py-3 rounded-xl bg-gold hover:bg-gold-light text-navy font-black text-xs sm:text-sm transition shadow-lg flex items-center gap-2"
+              >
+                <span>Book Facility Assessment &amp; Survey →</span>
+              </Link>
+              <a
+                href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}
+                className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm transition backdrop-blur-xs border border-white/20"
+              >
+                📞 Direct IFM Desk: {siteConfig.phone}
+              </a>
+            </div>
+
             <div className="flex flex-wrap gap-4 text-xs font-bold text-slate-300">
               <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Single-Vendor SLA Accountability

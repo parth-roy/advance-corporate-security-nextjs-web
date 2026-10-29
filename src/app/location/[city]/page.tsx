@@ -141,8 +141,12 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
               : `ISO 9001:2015 certified corporate housekeeping, facility management, and compliant partner-network security deployed across ${cityName}, ${stateName}.`}
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-            <Link href="/quote" className="btn-primary text-center">Get Free Quote in {cityName}</Link>
-            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-center">📞 {siteConfig.phone}</a>
+            <Link href={`/quote?city=${citySlug}`} className="btn-primary text-center">
+              Request Procurement Quote in {cityName} →
+            </Link>
+            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-center">
+              📞 Speak to Local Team: {siteConfig.phone}
+            </a>
           </div>
         </div>
       </section>
@@ -446,7 +450,8 @@ export default async function CityHubPage({ params }: { params: Promise<Params> 
           <h2 className="text-white font-roboto font-bold text-2xl mb-3">Get ACS Services in {cityName} Today</h2>
           <p className="text-gray-300 mb-6 max-w-lg mx-auto text-sm">Free site assessment. Customised proposal in 24–48 hours. 25+ years of trusted service.</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="btn-primary">Request Free Quote</Link>
+            <Link href={`/quote?city=${citySlug}`} className="btn-primary">Request Procurement Quote</Link>
+            <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary">📞 Speak to Local Team</a>
             <Link href={`/location/state/${stateSlug}`} className="btn-secondary">More cities in {stateName}</Link>
           </div>
         </div>

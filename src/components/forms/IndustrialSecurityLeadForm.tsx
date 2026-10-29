@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { CheckCircle2, AlertCircle, ArrowRight, Phone, Clock } from "lucide-react";
+import { CheckCircle2, AlertCircle, ArrowRight, Phone, Clock, ShieldCheck, Copy, Check } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface IndustrialLeadState {
   fullName: string;
@@ -44,6 +45,14 @@ export default function IndustrialSecurityLeadForm() {
   const [formData, setFormData] = useState<IndustrialLeadState>(INITIAL_STATE);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submittedData, setSubmittedData] = useState<{
+    leadId?: string;
+    assignedOwner?: string;
+    assignedOwnerTitle?: string;
+    assignedOwnerDesk?: string;
+    slaTarget?: string;
+  } | null>(null);
+  const [copied, setCopied] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const togglePriority = (item: string) => {
@@ -112,6 +121,35 @@ Priority Defense Pillars: ${formData.priorities.join(", ")}`,
         throw new Error(data.message || "Failed to submit proposal request. Please call directly.");
       }
 
+      const returnedLeadId = data.data?.leadId || data.data?.id;
+      setSubmittedData({
+        leadId: returnedLeadId,
+        assignedOwner: data.data?.assignedOwner || "Debabrata Sen",
+        assignedOwnerTitle: data.data?.assignedOwnerTitle || "Senior Lead – Enterprise Accounts",
+        assignedOwnerDesk: data.data?.assignedOwnerDesk || "Eastern Industrial Operations Desk",
+        slaTarget: data.data?.slaTarget || "Within 60 Minutes (Urgent Industrial SLA)",
+      });
+
+      // ─── Analytics & Google Ads Conversion Tracking (Enterprise Blueprint §11) ───
+      trackEvent("quote_request", {
+        source: "google_ads_industrial_lp",
+        service: "industrial_security",
+        leadId: returnedLeadId,
+        value: formData.headcountNeeded,
+      });
+
+      if (typeof window !== "undefined") {
+        const win = window as unknown as { gtag?: (...args: unknown[]) => void; dataLayer?: Record<string, unknown>[] };
+        if (typeof win.gtag === "function") {
+          win.gtag("event", "conversion", {
+            send_to: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID || "AW-CONVERSION_LEAD",
+            value: 1.0,
+            currency: "INR",
+            transaction_id: returnedLeadId,
+          });
+        }
+      }
+
       setIsSuccess(true);
     } catch (err: unknown) {
       console.error("[IndustrialLeadForm]", err);
@@ -125,12 +163,33 @@ Priority Defense Pillars: ${formData.priorities.join(", ")}`,
     }
   };
 
+  const handleCopyLeadId = () => {
+    if (!submittedData?.leadId) return;
+    navigator.clipboard.writeText(submittedData.leadId);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
+  };
+
   if (isSuccess) {
     return (
       <div className="bg-white rounded-3xl p-8 border border-emerald-200 shadow-2xl text-center space-y-5 animate-fade-in">
         <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
           <CheckCircle2 size={36} />
         </div>
+
+        {submittedData?.leadId && (
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy/5 border border-navy/15 text-navy font-mono text-xs font-bold">
+            <span className="text-slate-500">Lead Reference:</span>
+            <span className="text-gold-dark font-black tracking-wider">{submittedData.leadId}</span>
+            <button
+              onClick={handleCopyLeadId}
+              className="ml-1 p-1 hover:bg-navy/10 rounded transition-colors text-slate-600"
+              title="Copy Reference ID"
+            >
+              {copied ? <Check size={12} className="text-emerald-600" /> : <Copy size={12} />}
+            </button>
+          </div>
+        )}
 
         <div className="space-y-2">
           <span className="text-xs uppercase font-extrabold tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
@@ -140,19 +199,39 @@ Priority Defense Pillars: ${formData.priorities.join(", ")}`,
             Plant Security Survey Requested!
           </h3>
           <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-            Thank you, <strong className="text-slate-900">{formData.fullName}</strong>. Our Senior Industrial Security Operations Director has received your facility details for <strong>{formData.companyName || "your plant"}</strong>.
+            Thank you, <strong className="text-slate-900">{formData.fullName}</strong>. Your requirement has been assigned to our designated Enterprise Accounts team for <strong>{formData.companyName || "your plant"}</strong>.
           </p>
         </div>
 
-        <div className="bg-slate-50 rounded-2xl p-4 text-xs text-slate-600 text-left border border-slate-200 space-y-2">
-          <div className="flex items-center gap-2 font-bold text-navy">
-            <Clock size={14} className="text-sky" />
-            <span>Expected Response Within 60 Minutes:</span>
+        {/* Assigned Account Desk */}
+        {submittedData?.assignedOwner && (
+          <div className="bg-navy/5 border border-navy/15 rounded-2xl p-4 text-left flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-navy text-gold flex items-center justify-center text-sm font-black shrink-0 mt-0.5">
+              {submittedData.assignedOwner.split(" ").map((n) => n[0]).join("")}
+            </div>
+            <div className="text-xs">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-gold-dark mb-0.5">Assigned Operations Lead</div>
+              <div className="font-bold text-navy text-sm">{submittedData.assignedOwner}</div>
+              <div className="text-slate-600">{submittedData.assignedOwnerTitle}</div>
+              <div className="text-slate-500 text-[11px] mt-0.5">{submittedData.assignedOwnerDesk}</div>
+            </div>
           </div>
-          <ul className="space-y-1 list-disc list-inside text-slate-500">
-            <li>Review of plant security perimeter &amp; headcount requirement ({formData.headcountNeeded})</li>
-            <li>Scheduling of physical or digital site reconnaissance</li>
-            <li>Itemized statutory cost sheet (Basic, EPF, ESIC, Bonus, Relieving)</li>
+        )}
+
+        <div className="bg-slate-50 rounded-2xl p-4 text-xs text-slate-600 text-left border border-slate-200 space-y-2">
+          <div className="flex items-center justify-between font-bold text-navy">
+            <span className="flex items-center gap-1.5">
+              <Clock size={14} className="text-sky" />
+              <span>Priority Response SLA:</span>
+            </span>
+            <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-mono">
+              {submittedData?.slaTarget || "⚡ Within 60 Minutes"}
+            </span>
+          </div>
+          <ul className="space-y-1 list-disc list-inside text-slate-500 pt-1 border-t border-slate-200">
+            <li>Physical or aerial site perimeter risk reconnaissance</li>
+            <li>Headcount optimization ({formData.headcountNeeded}) with weighbridge &amp; gate SOPs</li>
+            <li>Itemized statutory rate card (Basic, EPF 13%, ESIC 3.25%, Bonus 8.33%, Relievers)</li>
           </ul>
         </div>
 
@@ -377,6 +456,14 @@ Priority Defense Pillars: ${formData.priorities.join(", ")}`,
               );
             })}
           </div>
+        </div>
+
+        {/* Job Seeker Negative Qualification Filter (Enterprise Blueprint §11) */}
+        <div className="p-3 bg-amber-50/70 border border-amber-200/80 rounded-xl text-left text-[11px] text-amber-900 leading-snug flex items-start gap-2">
+          <AlertCircle size={14} className="text-amber-700 shrink-0 mt-0.5" />
+          <span>
+            <strong>Procurement Intake Notice:</strong> This portal is exclusively for enterprise B2B plant security and workforce procurement. Looking for employment or security guard jobs? Please visit our <a href="/careers" className="text-navy font-bold underline hover:text-gold">Careers Portal</a> or <a href="/post-job" className="text-navy font-bold underline hover:text-gold">Candidate Submission Desk</a>.
+          </span>
         </div>
 
         {/* Submit Button */}

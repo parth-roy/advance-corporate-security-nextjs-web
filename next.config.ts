@@ -92,6 +92,24 @@ const nextConfig: NextConfig = {
       { source: "/terms/", destination: "/terms-of-service", permanent: true },
       { source: "/service", destination: "/services", permanent: true },
       { source: "/service/", destination: "/services", permanent: true },
+      { source: "/industries", destination: "/sectors", permanent: true },
+      { source: "/industries/", destination: "/sectors", permanent: true },
+
+      // Blueprint Enterprise Target IA Aliases (Section 4)
+      { source: "/industries/manufacturing", destination: "/sectors/industrial-zones", permanent: true },
+      { source: "/industries/manufacturing/", destination: "/sectors/industrial-zones", permanent: true },
+      { source: "/industries/healthcare", destination: "/sectors/hospitals", permanent: true },
+      { source: "/industries/healthcare/", destination: "/sectors/hospitals", permanent: true },
+      { source: "/industries/warehousing-logistics", destination: "/sectors/warehouses", permanent: true },
+      { source: "/industries/warehousing-logistics/", destination: "/sectors/warehouses", permanent: true },
+      { source: "/industries/warehousing", destination: "/sectors/warehouses", permanent: true },
+      { source: "/industries/warehousing/", destination: "/sectors/warehouses", permanent: true },
+      { source: "/industries/:slug", destination: "/sectors/:slug", permanent: true },
+      { source: "/industries/:slug/", destination: "/sectors/:slug", permanent: true },
+      { source: "/locations/west-bengal/kolkata", destination: "/location/kolkata", permanent: true },
+      { source: "/locations/west-bengal/kolkata/", destination: "/location/kolkata", permanent: true },
+      { source: "/location/west-bengal/kolkata", destination: "/location/kolkata", permanent: true },
+      { source: "/location/west-bengal/kolkata/", destination: "/location/kolkata", permanent: true },
 
       // pSEO Canonical City & NCR Alias Redirects (301 Permanent)
       { source: "/location/gurgaon", destination: "/location/gurugram", permanent: true },

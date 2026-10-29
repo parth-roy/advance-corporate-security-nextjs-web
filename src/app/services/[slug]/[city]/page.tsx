@@ -278,7 +278,7 @@ export default async function ServiceCityPage({
           </h2>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
-            <Link href="/quote" className="btn-primary text-xs sm:text-sm px-6 py-3 text-center justify-center">
+            <Link href={`/quote?service=${slug}&city=${citySlug}`} className="btn-primary text-xs sm:text-sm px-6 py-3 text-center justify-center">
               Get Quotation in {cityName}
               <svg className="w-4 h-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </Link>

@@ -205,6 +205,16 @@ export default function QuotePage() {
                   . Our ops team is available 24×7.
                 </p>
               </div>
+
+              {/* Procurement Safety Governance Notice (§7) */}
+              <div className="mt-3 p-4 bg-amber-50/70 border border-amber-200/80 rounded-xl flex items-start gap-3">
+                <svg className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <div className="text-xs text-amber-900 leading-relaxed">
+                  <strong className="font-bold">Enterprise Safety Policy:</strong> Public rate cards provide indicative estimates based on notified state gazette minimums. Legally binding commercial quotations are issued exclusively following physical site assessment and PSARA compliance verification. ACS prevents wage double-counting and enforces strict statutory separation of employer PF/ESIC liabilities.
+                </div>
+              </div>
             </div>
 
             {/* ── Right Column: Trust Signals + Info ── */}
@@ -232,26 +242,60 @@ export default function QuotePage() {
                 </div>
               </div>
 
-              {/* What Happens Next */}
-              <div className="bg-navy rounded-2xl p-6 text-white">
-                <h3 className="font-roboto font-bold text-white text-base mb-4 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  What Happens Next
-                </h3>
-                <ol className="space-y-3">
+              {/* What Happens Next — Enterprise Procurement Lifecycle (§7) */}
+              <div className="bg-navy rounded-2xl p-6 text-white border border-white/10 shadow-lg">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-roboto font-bold text-white text-base flex items-center gap-2">
+                    <svg className="w-5 h-5 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Enterprise Procurement Process
+                  </h3>
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-gold/20 text-gold border border-gold/30">
+                    6-Step Lifecycle
+                  </span>
+                </div>
+                <ol className="space-y-3.5">
                   {[
-                    { step: "1", text: "We receive your quotation request and assign a dedicated account manager." },
-                    { step: "2", text: "Our operations team analyses your manpower, shift, and location requirements." },
-                    { step: "3", text: "A detailed, PSARA-compliant quote is prepared — including all statutory costs." },
-                    { step: "4", text: "You receive the quote via phone call and email within 24 hours." },
-                  ].map(({ step, text }) => (
-                    <li key={step} className="flex items-start gap-3 text-sm text-gray-300">
-                      <span className="w-6 h-6 rounded-full bg-gold text-navy-dark text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                    {
+                      step: "1",
+                      title: "Traceable Requirement Intake",
+                      text: "Submission logs into CRM with unique ACS-2026-XXXXX reference & assigns a designated Regional Desk Lead.",
+                    },
+                    {
+                      step: "2",
+                      title: "Scope & Feasibility Review",
+                      text: "SLA triage within 4 hours (urgent mobilization) or 24 hours (standard multi-post enterprise proposals).",
+                    },
+                    {
+                      step: "3",
+                      title: "Complimentary Site Risk Survey",
+                      text: "Field safety audit evaluating entry-exit bottlenecks, perimeter lighting, material bay, and CCTV coverage.",
+                    },
+                    {
+                      step: "4",
+                      title: "Statutory Gazette Costing",
+                      text: "Transparent line-item calculation based on state minimum wages, EPF (13%), ESIC (3.25%), and bonus.",
+                    },
+                    {
+                      step: "5",
+                      title: "Formal Quotation & SLA Review",
+                      text: "Formal written proposal with defined reliever rosters, supervision ratios, and CLRA Sec 21(4) indemnification.",
+                    },
+                    {
+                      step: "6",
+                      title: "Work Order & Guard Mobilisation",
+                      text: "Police-verified personnel deployment, biometric onboarding, site-specific SOP training, and patrol tracking.",
+                    },
+                  ].map(({ step, title, text }) => (
+                    <li key={step} className="flex items-start gap-3 text-xs text-gray-300">
+                      <span className="w-5 h-5 rounded-full bg-gold text-navy-dark text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         {step}
                       </span>
-                      <span className="leading-relaxed">{text}</span>
+                      <div className="leading-snug">
+                        <strong className="text-white block font-roboto font-bold mb-0.5 text-xs">{title}</strong>
+                        <span className="text-gray-300">{text}</span>
+                      </div>
                     </li>
                   ))}
                 </ol>

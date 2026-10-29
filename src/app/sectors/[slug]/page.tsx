@@ -66,6 +66,29 @@ export default async function SectorDetailPage({
     .map((sSlug) => getServiceBySlug(sSlug))
     .filter((s): s is NonNullable<typeof s> => !!s);
 
+  // Dynamic Blueprint-aligned Primary CTA based on industry slug (Section 4)
+  const getIndustryPrimaryCta = (indSlug: string) => {
+    switch (indSlug) {
+      case "industrial-zones":
+      case "construction":
+        return { label: "Submit Site Requirement →", href: `/quote?industry=${indSlug}` };
+      case "hospitals":
+        return { label: "Request Compliant Proposal →", href: `/quote?industry=hospitals` };
+      case "warehouses":
+        return { label: "Plan Posts & Manpower →", href: `/quote?industry=warehouses` };
+      case "corporate":
+        return { label: "Request Corporate Guarding Quote →", href: `/quote?industry=corporate` };
+      case "hotels":
+        return { label: "Request Hospitality Security Proposal →", href: `/quote?industry=hotels` };
+      case "educational-institutions":
+        return { label: "Plan Campus Security Roster →", href: `/quote?industry=educational-institutions` };
+      default:
+        return { label: `Get ${industry.shortName} Proposal →`, href: `/quote?industry=${indSlug}` };
+    }
+  };
+
+  const primaryCta = getIndustryPrimaryCta(slug);
+
   return (
     <>
       <script
@@ -108,9 +131,10 @@ export default async function SectorDetailPage({
             {industry.tagline}
           </p>
 
+          {/* Action Buttons — Enterprise Buyer First (Section 4) */}
           <div className="flex flex-wrap gap-4 items-center">
-            <Link href="/contact" className="btn-primary text-xs sm:text-sm px-7 py-3.5 shadow-lg">
-              Get {industry.shortName} Proposal
+            <Link href={primaryCta.href} className="btn-primary text-xs sm:text-sm px-7 py-3.5 shadow-lg">
+              {primaryCta.label}
             </Link>
             <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`} className="btn-secondary text-xs sm:text-sm px-6 py-3.5">
               📞 Call Operations: {siteConfig.phone}
