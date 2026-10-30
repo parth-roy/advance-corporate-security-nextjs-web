@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
 export interface JobOpening {
@@ -16,6 +15,8 @@ export interface JobOpening {
   locality?: string;
   salaryMin: number;
   salaryMax: number;
+  isSalaryNegotiable?: boolean;
+  salaryText?: string;
   hasIncentives?: boolean;
   incentivesText?: string;
   salaryBreakdown?: {
@@ -142,26 +143,17 @@ export default function CareersJobList() {
     <section className="section-py bg-slate-50 border-b border-slate-200" id="openings">
       <div className="container-acs">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-          <div>
-            <span className="badge-sky text-xs font-semibold mb-2 inline-block">
-              📢 Active Client &amp; Vendor Openings
-            </span>
-            <h2 className="text-navy font-roboto font-black text-2xl sm:text-4xl">
-              Verified Operational Job Openings ({filteredJobs.length})
-            </h2>
-            <div className="divider-sky" />
-            <p className="text-slate-600 text-xs sm:text-sm mt-2 max-w-xl">
-              Explore open deployment positions for Security Guards, Supervisors, Housekeeping, and Technicians across India with 100% on-time bank payroll.
-            </p>
-          </div>
-
-          <Link
-            href="/post-job"
-            className="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-roboto font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-all self-start md:self-auto cursor-pointer"
-          >
-            <span>+</span> Post a New Job Opening
-          </Link>
+        <div className="mb-8">
+          <span className="badge-sky text-xs font-semibold mb-2 inline-block">
+            📢 Active Client &amp; Vendor Openings
+          </span>
+          <h2 className="text-navy font-roboto font-black text-2xl sm:text-4xl">
+            Verified Operational Job Openings ({filteredJobs.length})
+          </h2>
+          <div className="divider-sky" />
+          <p className="text-slate-600 text-xs sm:text-sm mt-2 max-w-2xl leading-relaxed">
+            Explore verified deployment opportunities across manufacturing plants, machine operations, corporate security, and facility management across India with 100% statutory PF &amp; ESIC benefits.
+          </p>
         </div>
 
         {/* Filter Controls Bar */}
@@ -230,7 +222,7 @@ export default function CareersJobList() {
             <span className="text-3xl block mb-2">🔍</span>
             <h3 className="font-bold text-navy text-base mb-1">No openings matching your filter</h3>
             <p className="text-xs text-slate-500 mb-4">
-              Try resetting your city or keyword search, or post a new requirement for your area.
+              Try resetting your city or keyword search to view all active openings, or register your profile below.
             </p>
             <button
               type="button"
@@ -280,21 +272,34 @@ export default function CareersJobList() {
                     <span>{job.workLocationType}</span>
                   </p>
 
-                  {/* Salary Highlight */}
+                  {/* Salary / Remuneration Highlight */}
                   <div className="bg-emerald-50/80 border border-emerald-100/90 rounded-xl p-2.5 mb-3 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] text-emerald-800 font-semibold uppercase tracking-wider block">
-                        Monthly Salary
+                        Remuneration
                       </span>
-                      <strong className="text-sm font-bold text-emerald-700">
-                        ₹{job.salaryMin.toLocaleString()} - ₹{job.salaryMax.toLocaleString()}
-                      </strong>
+                      {job.isSalaryNegotiable || job.salaryMin === 0 || !job.salaryMin ? (
+                        <>
+                          <strong className="text-xs sm:text-sm font-bold text-navy block">
+                            Discussed During Interview
+                          </strong>
+                          <span className="text-[10px] text-slate-500 font-medium block">
+                            Based on experience &amp; machine skills
+                          </span>
+                        </>
+                      ) : (
+                        <strong className="text-sm font-bold text-emerald-700">
+                          ₹{job.salaryMin.toLocaleString()} - ₹{job.salaryMax.toLocaleString()}
+                        </strong>
+                      )}
                     </div>
-                    {job.hasIncentives && (
-                      <span className="text-[10px] font-bold text-gold bg-navy px-2 py-0.5 rounded-full">
-                        + Incentives
-                      </span>
-                    )}
+                    <span className="text-[10px] font-bold text-teal-800 bg-teal-100/90 px-2 py-0.5 rounded-full border border-teal-200/80 shrink-0">
+                      {job.isSalaryNegotiable || job.salaryMin === 0 || !job.salaryMin
+                        ? "Negotiable"
+                        : job.hasIncentives
+                        ? "+ Incentives"
+                        : "Fixed"}
+                    </span>
                   </div>
 
                   {/* Shift & Requirements */}
@@ -363,39 +368,75 @@ export default function CareersJobList() {
 
             {/* Modal Body (Scrollable) */}
             <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-700">
-              {/* Compensation Box (White Mode) */}
-              <div className="bg-white border-2 border-emerald-100 rounded-2xl p-4 sm:p-5 shadow-xs">
-                <span className="text-amber-800 text-[10px] uppercase font-bold tracking-wider block mb-1">
-                  Statutory Monthly Payout Band
-                </span>
-                <div className="text-2xl sm:text-3xl font-roboto font-black text-emerald-600 mb-2">
-                  ₹{activeJob.salaryMin.toLocaleString()} - ₹{activeJob.salaryMax.toLocaleString()}
-                  <span className="text-xs text-slate-500 font-normal"> / month</span>
-                </div>
-                {activeJob.hasIncentives && activeJob.incentivesText && (
-                  <p className="text-xs text-amber-700 font-semibold mb-2">
-                    ⚡ {activeJob.incentivesText}
-                  </p>
-                )}
-                {activeJob.salaryBreakdown && (
-                  <div className="mt-3 pt-3 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-[11px]">
-                    <div className="bg-slate-50 border border-slate-200/80 p-2.5 rounded-xl">
-                      <span className="text-slate-500 block text-[9px] font-semibold">Base Pay</span>
-                      <strong className="text-navy text-xs sm:text-sm font-black">₹{(activeJob.salaryBreakdown.basePay || activeJob.salaryMin).toLocaleString()}</strong>
-                    </div>
-                    <div className="bg-amber-50/70 border border-amber-200/80 p-2.5 rounded-xl">
-                      <span className="text-amber-800 block text-[9px] font-semibold">EPF &amp; ESIC</span>
-                      <strong className="text-amber-700 text-xs sm:text-sm font-bold">100% Covered</strong>
-                    </div>
-                    <div className="bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl">
-                      <span className="text-emerald-800 block text-[9px] font-semibold">Est. Take-Home</span>
-                      <strong className="text-emerald-700 font-black text-xs sm:text-sm">
-                        ₹{((activeJob.salaryBreakdown.basePay || activeJob.salaryMin) * 0.87).toFixed(0)}
-                      </strong>
-                    </div>
+              {/* Compensation Box */}
+              {activeJob.isSalaryNegotiable || activeJob.salaryMin === 0 || !activeJob.salaryMin || !activeJob.salaryBreakdown?.basePay ? (
+                <div className="bg-gradient-to-r from-emerald-50/90 via-teal-50/60 to-slate-50 border-2 border-emerald-200/90 rounded-2xl p-4 sm:p-5 shadow-xs">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-emerald-800 text-[10px] uppercase font-bold tracking-wider">
+                      Compensation &amp; Payout Terms
+                    </span>
+                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Competitive &amp; Negotiable
+                    </span>
                   </div>
-                )}
-              </div>
+
+                  <div className="text-xl sm:text-2xl font-roboto font-black text-navy mb-2">
+                    To Be Discussed During Interview
+                  </div>
+
+                  <blockquote className="border-l-3 border-teal-500 pl-3 py-1.5 text-xs sm:text-sm text-slate-700 font-medium italic bg-white/80 rounded-r-xl shadow-2xs">
+                    &ldquo;Salary will be discussed and finalized during the interview / machine assessment based on your hands-on experience, machine make &amp; model operated, and proven capability.&rdquo;
+                  </blockquote>
+
+                  <div className="mt-3.5 pt-3 border-t border-emerald-200/70 flex flex-wrap items-center gap-3 text-xs text-slate-700 font-semibold">
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      Statutory Benefits (PF &amp; ESIC) as applicable under law
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      Shift &amp; Overtime arrangements applicable
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+                      Free Accommodation, Meals &amp; Relocation Support
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-white border-2 border-emerald-100 rounded-2xl p-4 sm:p-5 shadow-xs">
+                  <span className="text-amber-800 text-[10px] uppercase font-bold tracking-wider block mb-1">
+                    Statutory Monthly Payout Band
+                  </span>
+                  <div className="text-2xl sm:text-3xl font-roboto font-black text-emerald-600 mb-2">
+                    ₹{activeJob.salaryMin.toLocaleString()} - ₹{activeJob.salaryMax.toLocaleString()}
+                    <span className="text-xs text-slate-500 font-normal"> / month</span>
+                  </div>
+                  {activeJob.hasIncentives && activeJob.incentivesText && (
+                    <p className="text-xs text-amber-700 font-semibold mb-2">
+                      ⚡ {activeJob.incentivesText}
+                    </p>
+                  )}
+                  {activeJob.salaryBreakdown && (
+                    <div className="mt-3 pt-3 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-[11px]">
+                      <div className="bg-slate-50 border border-slate-200/80 p-2.5 rounded-xl">
+                        <span className="text-slate-500 block text-[9px] font-semibold">Base Pay</span>
+                        <strong className="text-navy text-xs sm:text-sm font-black">₹{(activeJob.salaryBreakdown.basePay || activeJob.salaryMin).toLocaleString()}</strong>
+                      </div>
+                      <div className="bg-amber-50/70 border border-amber-200/80 p-2.5 rounded-xl">
+                        <span className="text-amber-800 block text-[9px] font-semibold">EPF &amp; ESIC</span>
+                        <strong className="text-amber-700 text-xs sm:text-sm font-bold">100% Covered</strong>
+                      </div>
+                      <div className="bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl">
+                        <span className="text-emerald-800 block text-[9px] font-semibold">Est. Take-Home</span>
+                        <strong className="text-emerald-700 font-black text-xs sm:text-sm">
+                          ₹{((activeJob.salaryBreakdown.basePay || activeJob.salaryMin) * 0.87).toFixed(0)}
+                        </strong>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Schedule & Working Terms */}
               <div className="grid sm:grid-cols-2 gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
@@ -450,11 +491,16 @@ export default function CareersJobList() {
                   </div>
                 )}
                 {activeJob.documentsRequired && activeJob.documentsRequired.length > 0 && (
-                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                    <strong className="text-navy text-xs block mb-1.5">📄 Required Documents:</strong>
-                    <ul className="space-y-1 text-xs text-slate-600">
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                    <strong className="text-navy text-xs block mb-1.5 flex items-center gap-1.5">
+                      <span>📄</span> Verification Documents Required:
+                    </strong>
+                    <ul className="space-y-1.5 text-xs text-slate-700">
                       {activeJob.documentsRequired.map((d) => (
-                        <li key={d}>• {d}</li>
+                        <li key={d} className="flex items-center gap-2">
+                          <span className="text-emerald-600 font-bold">✓</span>
+                          <span>{d}</span>
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -599,6 +645,19 @@ export default function CareersJobList() {
                         onChange={(e) => setAppData({ ...appData, message: e.target.value })}
                         className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs outline-none"
                       />
+                    </div>
+
+                    {/* Three-Point Documents & Passport Photo Notice */}
+                    <div className="bg-gradient-to-r from-amber-50 to-sky-50/50 border border-amber-200/90 rounded-xl p-3 text-xs text-slate-700 flex items-start gap-2.5 shadow-2xs">
+                      <span className="text-base shrink-0">📌</span>
+                      <div className="space-y-0.5">
+                        <strong className="text-navy font-bold block text-[11px] uppercase tracking-wide">
+                          Three-Point Documents &amp; Passport Photo Required at Interview:
+                        </strong>
+                        <p className="text-[11px] text-slate-600 leading-relaxed">
+                          Please keep ready your original &amp; photocopy of: <strong>1. Aadhaar Card</strong>, <strong>2. PAN Card</strong>, <strong>3. Bank Account Passbook / Cancelled Cheque</strong>, and <strong>recent color Passport-size Photographs</strong> for KYC verification during onboarding.
+                        </p>
+                      </div>
                     </div>
 
                     <button

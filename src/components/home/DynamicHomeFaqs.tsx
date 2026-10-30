@@ -36,18 +36,26 @@ export default function DynamicHomeFaqs() {
             return (
               <div
                 key={faq.question}
-                className="bg-white rounded-2xl border border-gray-200/90 shadow-2xs overflow-hidden transition-all duration-200 hover:border-sky-300"
+                className={`bg-white rounded-2xl border shadow-2xs overflow-hidden transition-all duration-200 ${
+                  isOpen
+                    ? "border-sky-300 ring-1 ring-sky-200/50"
+                    : "border-gray-200/90 hover:border-sky-200"
+                }`}
               >
                 <button
                   type="button"
                   onClick={() => toggleFaq(index)}
-                  className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-roboto font-bold text-navy text-sm sm:text-base cursor-pointer"
+                  className={`w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-roboto font-bold text-navy text-sm sm:text-base cursor-pointer transition-colors ${
+                    isOpen ? "bg-sky-50/30" : "hover:bg-slate-50/50"
+                  }`}
                   aria-expanded={isOpen}
                 >
                   <span className="leading-snug">{faq.question}</span>
                   <div
-                    className={`w-7 h-7 rounded-full bg-sky-50 flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 bg-navy text-white" : "text-sky-700"
+                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
+                      isOpen
+                        ? "rotate-180 bg-navy text-white shadow-xs"
+                        : "bg-sky-50 text-sky-700 hover:bg-sky-100"
                     }`}
                   >
                     <ChevronDown size={16} />

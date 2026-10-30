@@ -162,9 +162,10 @@ const ASSET_OPTIONS = [
 const DOCUMENT_OPTIONS = [
   "Aadhaar Card",
   "PAN Card",
+  "Bank Account Passbook / Cancelled Cheque",
+  "Passport Size Photograph (Recent Copies)",
   "Two-Wheeler Driving License",
   "Valid Arms / Gun License",
-  "Bank Account Passbook / Cancelled Cheque",
   "Police Verification Certificate",
   "10th / 12th Educational Certificate",
   "Ex-Servicemen Discharge Book / Service Book",
@@ -211,7 +212,12 @@ export default function PostJobPage() {
     skills: ["Access Control & Boom Barrier", "Gate Pass & Visitor Register Log"],
     customSkill: "",
     assetsNeeded: [] as string[],
-    documentsRequired: ["Aadhaar Card", "PAN Card", "Bank Account Passbook / Cancelled Cheque"],
+    documentsRequired: [
+      "Aadhaar Card",
+      "PAN Card",
+      "Bank Account Passbook / Cancelled Cheque",
+      "Passport Size Photograph (Recent Copies)",
+    ],
 
     // Step 4
     description: "",

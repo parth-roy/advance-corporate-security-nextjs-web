@@ -92,22 +92,35 @@ export default function HyperLocalFAQ({
             return (
               <div
                 key={idx}
-                className="rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden transition-all duration-200"
+                className={`rounded-2xl bg-white border shadow-xs overflow-hidden transition-all duration-200 ${
+                  isOpen
+                    ? "border-sky-300 ring-1 ring-sky-200/50"
+                    : "border-slate-200/80 hover:border-sky-200"
+                }`}
               >
                 <button
                   type="button"
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full py-4 sm:py-5 px-6 text-left flex items-center justify-between gap-4 font-bold text-slate-900 hover:text-sky-700 transition-colors"
+                  className={`w-full py-4 sm:py-5 px-6 text-left flex items-center justify-between gap-4 font-bold text-slate-900 hover:text-sky-700 transition-colors cursor-pointer ${
+                    isOpen ? "bg-sky-50/30" : "hover:bg-slate-50/50"
+                  }`}
+                  aria-expanded={isOpen}
                 >
-                  <span className="text-sm sm:text-base">{faq.q}</span>
-                  <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-mono text-sm shrink-0">
+                  <span className="text-sm sm:text-base leading-snug">{faq.q}</span>
+                  <span
+                    className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-sm shrink-0 transition-all duration-200 ${
+                      isOpen
+                        ? "bg-navy text-white shadow-xs"
+                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    }`}
+                  >
                     {isOpen ? '−' : '+'}
                   </span>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
-                    {faq.a}
+                  <div className="px-6 pb-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 animate-in fade-in duration-200">
+                    <p>{faq.a}</p>
                   </div>
                 )}
               </div>

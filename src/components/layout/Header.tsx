@@ -15,12 +15,12 @@ interface NavLinkItem {
 }
 
 const navLinks: NavLinkItem[] = [
-  { label: "Home", href: "/" },
   {
     label: "About",
     href: "/about",
     children: [
       { label: "About Us", href: "/about" },
+      { label: "Sectors", href: "/sectors" },
       { label: "Enterprise Case Studies", href: "/case-studies" },
       { label: "Enterprise Regulatory Insights", href: "/insights" },
       { label: "Statutory Credentials Vault", href: "/credentials" },
@@ -28,13 +28,13 @@ const navLinks: NavLinkItem[] = [
       { label: "Our Vision", href: "/about#vision" },
       { label: "Leadership Team", href: "/about#team" },
       { label: "Founder's Desk", href: "/about#founder" },
-      { label: "Careers & Hiring", href: "/careers" },
     ],
   },
   {
     label: "Services",
     href: "/services",
     children: [
+      { label: "Look All Services", href: "/services" },
       { label: "Security & Safety", href: "/services/security-safety" },
       { label: "Facility Management", href: "/services/facility-management" },
       { label: "Integrated Facility Mgmt (IFM)", href: "/services/integrated-facility-management" },
@@ -42,7 +42,6 @@ const navLinks: NavLinkItem[] = [
       { label: "Horticulture Services", href: "/services/horticulture" },
     ],
   },
-  { label: "Sectors", href: "/sectors" },
   {
     label: "Govt & PSU",
     href: "/procurement",
@@ -67,13 +66,191 @@ const TOP_EMAILS = [
   "advancedcorporatesecurityj@gmail.com",
 ];
 
+interface MegaMenuItem {
+  label: string;
+  href: string;
+  desc: string;
+}
+
+interface MegaMenuData {
+  title: string;
+  tagline: string;
+  subcategories?: string[];
+  featuredLink?: { label: string; href: string };
+  items: MegaMenuItem[];
+}
+
+const MEGA_MENUS: Record<string, MegaMenuData> = {
+  About: {
+    title: "About ACS",
+    tagline:
+      "India's compliance-first corporate security, facility management & workforce partner since 2000.",
+    subcategories: [
+      "PSARA & STATUTORY ACCREDITATIONS",
+      "ENTERPRISE REGULATORY INSIGHTS",
+      "25+ YEARS INDUSTRY LEGACY",
+      "EXECUTIVE GOVERNANCE",
+    ],
+    featuredLink: {
+      label: "Explore Credentials Vault",
+      href: "/credentials",
+    },
+    items: [
+      {
+        label: "About Us",
+        href: "/about",
+        desc: "Corporate profile, accreditations, PSARA licenses, and nationwide operational footprint.",
+      },
+      {
+        label: "Industry Sectors",
+        href: "/sectors",
+        desc: "Tailored protection & facility solutions for healthcare, IT, retail, and manufacturing.",
+      },
+      {
+        label: "Enterprise Case Studies",
+        href: "/case-studies",
+        desc: "Proven deployment blueprints and measurable SLA milestones across client sites.",
+      },
+      {
+        label: "Regulatory Insights",
+        href: "/insights",
+        desc: "In-depth compliance intelligence, labor codes, and PSARA security advisories.",
+      },
+      {
+        label: "Credentials Vault",
+        href: "/credentials",
+        desc: "Verified PSARA licenses, ISO certificates, ESIC/EPF filings, and GST compliance.",
+      },
+      {
+        label: "Our Mission & Vision",
+        href: "/about#mission",
+        desc: "Delivering zero-incident operations through vigilance, training, and ethical leadership.",
+      },
+      {
+        label: "Leadership Team",
+        href: "/about#team",
+        desc: "Armed forces veterans and corporate security professionals steering day-to-day operations.",
+      },
+      {
+        label: "Founder's Desk",
+        href: "/about#founder",
+        desc: "Executive vision, 25-year milestone message, and customer-first governance.",
+      },
+    ],
+  },
+  Services: {
+    title: "Enterprise Solutions",
+    tagline:
+      "Comprehensive security, facility management, and workforce outsourcing tailored to your operational scale.",
+    subcategories: [
+      "SECURITY & MANNED GUARDING",
+      "CORPORATE FACILITY MANAGEMENT",
+      "INTEGRATED IFM CONTRACTS",
+      "TECHNICAL WORKFORCE OUTSOURCING",
+    ],
+    featuredLink: {
+      label: "Request Corporate Proposal",
+      href: "/quote",
+    },
+    items: [
+      {
+        label: "Look All Services",
+        href: "/services",
+        desc: "Full portfolio of integrated guarding, housekeeping, IFM, and workforce services.",
+      },
+      {
+        label: "Security & Safety",
+        href: "/services/security-safety",
+        desc: "PSARA armed & unarmed guards, mobile patrol, and 24/7 central control room surveillance.",
+      },
+      {
+        label: "Facility Management",
+        href: "/services/facility-management",
+        desc: "Corporate housekeeping, deep cleaning, MEP engineering maintenance, and sanitization.",
+      },
+      {
+        label: "Integrated Facility Mgmt (IFM)",
+        href: "/services/integrated-facility-management",
+        desc: "Unified single-contract delivery combining guarding, cleaning, and regulatory compliance.",
+      },
+      {
+        label: "Workforce Outsourcing",
+        href: "/services/placement-services",
+        desc: "Background-verified front desk, logistics, technical, and industrial staffing.",
+      },
+      {
+        label: "Horticulture Services",
+        href: "/services/horticulture",
+        desc: "Commercial landscape design, lawn maintenance, indoor greenery, and campus grounds.",
+      },
+    ],
+  },
+  "Govt & PSU": {
+    title: "Govt & PSU Procurement",
+    tagline:
+      "Specialized procurement desk for GeM bids, PSU tenders, and statutory wage compliance audits.",
+    subcategories: [
+      "GeM TENDER BIDDING DESK",
+      "PSU COMPLIANCE ADHERENCE",
+      "MINIMUM WAGE RATE CARD",
+      "STATUTORY AUDIT & VETTING",
+    ],
+    featuredLink: {
+      label: "Explore Live Tender Alerts",
+      href: "/tenders",
+    },
+    items: [
+      {
+        label: "Procurement Center",
+        href: "/procurement",
+        desc: "Centralized bidding portal, GeM vendor profiles, and tender submission documentation.",
+      },
+      {
+        label: "Agency Comparison Matrix",
+        href: "/procurement/agency-comparison",
+        desc: "Benchmark ACS against unorganized agencies across GeM compliance and reliability metrics.",
+      },
+      {
+        label: "Rate Card Calculator",
+        href: "/rate-card-calculator",
+        desc: "Transparent wage estimation with minimum wage, EPF, ESIC, and statutory breakdown.",
+      },
+      {
+        label: "Tender Bids & Alerts",
+        href: "/tenders",
+        desc: "Real-time updates on active public tenders for security, housekeeping, and manpower.",
+      },
+      {
+        label: "Statutory Compliance",
+        href: "/compliance",
+        desc: "100% adherence to Central/State labor laws, provident fund, insurance, and GST.",
+      },
+      {
+        label: "Book Compliance Audit",
+        href: "/request-audit",
+        desc: "Schedule an on-site audit to identify statutory liabilities and vendor compliance gaps.",
+      },
+      {
+        label: "GeM Security Guide",
+        href: "/procurement#gem",
+        desc: "Step-by-step buyer guide for procuring compliant security services on GeM.",
+      },
+    ],
+  },
+};
+
 export default function Header() {
   const { currentCity, setIsCityModalOpen } = useCity();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpandedSection, setMobileExpandedSection] = useState<string | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [emailIndex, setEmailIndex] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const toggleMobileSection = (section: string) => {
+    setMobileExpandedSection((prev) => (prev === section ? null : section));
+  };
 
   const handleMouseEnter = (label: string) => {
     if (timeoutRef.current) {
@@ -89,7 +266,7 @@ export default function Header() {
     }
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 180);
+    }, 220);
   };
 
   useEffect(() => {
@@ -119,6 +296,7 @@ export default function Header() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      setMobileExpandedSection(null);
     }
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
@@ -195,13 +373,13 @@ export default function Header() {
         role="banner"
       >
         <nav
-          className="container-acs flex items-center justify-between h-20 sm:h-22 md:h-24"
+          className="container-acs !px-2.5 sm:!px-6 flex items-center justify-between h-16 sm:h-20 md:h-24"
           aria-label="Main navigation"
         >
-          {/* Logo — Tightly wrapped to exact image bounds with comfortable gap before Home */}
+          {/* Logo — Tightly wrapped to exact image bounds */}
           <Link
             href="/"
-            className="inline-flex items-center shrink-0 group focus:outline-none mr-5 xl:mr-7 2xl:mr-9"
+            className="inline-flex items-center shrink-0 group focus:outline-none mr-1.5 xs:mr-2 sm:mr-4 xl:mr-7 2xl:mr-9"
             aria-label="ACS Home"
           >
             <Image
@@ -209,7 +387,7 @@ export default function Header() {
               alt={`${siteConfig.name} Logo`}
               width={1313}
               height={536}
-              className="h-10 sm:h-12 md:h-13 lg:h-14 w-auto object-contain block transform group-hover:scale-[1.02] transition-transform duration-200"
+              className="h-8 xs:h-9 sm:h-11 md:h-13 lg:h-14 w-auto object-contain block transform group-hover:scale-[1.02] transition-transform duration-200"
               priority
             />
           </Link>
@@ -222,21 +400,22 @@ export default function Header() {
 
               return (
                 <li
-                  key={link.href}
+                  key={link.label}
                   className="relative py-2"
                   onMouseEnter={() => hasDropdown && handleMouseEnter(link.label)}
                   onMouseLeave={() => hasDropdown && handleMouseLeave()}
                 >
-                  <Link
-                    href={link.href}
-                    className="relative px-2 xl:px-2.5 2xl:px-3 py-1.5 font-roboto font-semibold text-[13px] 2xl:text-sm text-slate-700 hover:text-[#0d2458] transition-colors duration-200 flex items-center gap-1 whitespace-nowrap group/link cursor-pointer"
-                    aria-haspopup={hasDropdown ? "true" : undefined}
-                    aria-expanded={hasDropdown ? isOpen : undefined}
-                  >
-                    <span>{link.label}</span>
+                  {hasDropdown ? (
+                    <button
+                      type="button"
+                      onClick={() => setActiveDropdown(isOpen ? null : link.label)}
+                      className="relative px-2 xl:px-2.5 2xl:px-3 py-1.5 font-roboto font-semibold text-[13px] 2xl:text-sm text-slate-700 hover:text-[#0d2458] transition-colors duration-200 flex items-center gap-1 whitespace-nowrap group/link cursor-pointer bg-transparent border-0 select-none focus:outline-none"
+                      aria-haspopup="true"
+                      aria-expanded={isOpen}
+                    >
+                      <span>{link.label}</span>
 
-                    {/* Dropdown Chevron (> rotated down vertically) */}
-                    {hasDropdown && (
+                      {/* Dropdown Chevron (> rotated down vertically) */}
                       <svg
                         className={`w-3.5 h-3.5 text-slate-400 group-hover/link:text-[#0d2458] transition-transform duration-200 shrink-0 ${
                           isOpen ? "rotate-180 text-[#0052cc]" : ""
@@ -251,49 +430,28 @@ export default function Header() {
                       >
                         <path d="M19 9l-7 7-7-7" />
                       </svg>
-                    )}
 
-                    {/* Animated Underline */}
-                    <span
-                      className={`absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#0052cc] rounded-full transition-transform duration-300 ease-out origin-left pointer-events-none ${
-                        isOpen ? "scale-x-100" : "scale-x-0 group-hover/link:scale-x-100"
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </Link>
-
-                  {/* Dropdown Menu Container — Seamless hover bridge + shadow */}
-                  {hasDropdown && link.children && (
-                    <div
-                      className={`absolute top-full left-0 pt-2 w-64 z-50 transition-all duration-200 ease-out ${
-                        isOpen
-                          ? "opacity-100 visible translate-y-0 pointer-events-auto"
-                          : "opacity-0 invisible translate-y-1.5 pointer-events-none"
-                      }`}
-                      onMouseEnter={() => handleMouseEnter(link.label)}
-                      onMouseLeave={handleMouseLeave}
+                      {/* Animated Underline */}
+                      <span
+                        className={`absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#0052cc] rounded-full transition-transform duration-300 ease-out origin-left pointer-events-none ${
+                          isOpen ? "scale-x-100" : "scale-x-0 group-hover/link:scale-x-100"
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="relative px-2 xl:px-2.5 2xl:px-3 py-1.5 font-roboto font-semibold text-[13px] 2xl:text-sm text-slate-700 hover:text-[#0d2458] transition-colors duration-200 flex items-center gap-1 whitespace-nowrap group/link cursor-pointer"
                     >
-                      <ul
-                        className="bg-white rounded-xl shadow-[0_12px_36px_-6px_rgba(13,36,88,0.18)] border border-slate-100 py-2.5 overflow-hidden ring-1 ring-black/5"
-                        role="menu"
-                      >
-                        {link.children.map((child) => (
-                          <li key={child.href} role="none">
-                            <Link
-                              href={child.href}
-                              onClick={() => {
-                                if (timeoutRef.current) clearTimeout(timeoutRef.current);
-                                setActiveDropdown(null);
-                              }}
-                              className="block px-4 py-2.5 text-[13px] font-medium text-slate-700 hover:bg-[#edf6fd] hover:text-[#0052cc] border-l-2 border-transparent hover:border-[#0052cc] transition-all duration-150 mx-1.5 rounded-md"
-                              role="menuitem"
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                      <span>{link.label}</span>
+
+                      {/* Animated Underline */}
+                      <span
+                        className="absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#0052cc] rounded-full transition-transform duration-300 ease-out origin-left pointer-events-none scale-x-0 group-hover/link:scale-x-100"
+                        aria-hidden="true"
+                      />
+                    </Link>
                   )}
                 </li>
               );
@@ -301,12 +459,12 @@ export default function Header() {
           </ul>
 
           {/* Right Actions: City Selector + CTA + Mobile Hamburger */}
-          <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
-            {/* City Selector Pill Button (Desktop & Mobile) */}
+          <div className="flex items-center gap-2 sm:gap-2 lg:gap-3 shrink-0">
+            {/* City Selector Pill Button (Desktop & Tablet only - Mobile has dedicated selector in drawer) */}
             <button
               type="button"
               onClick={() => setIsCityModalOpen(true)}
-              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold border border-sky-200 bg-sky-50/90 text-navy hover:bg-sky-100 hover:border-sky-300 transition-all active:scale-95 cursor-pointer shadow-2xs group shrink-0"
+              className="hidden md:flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-bold border border-sky-200 bg-sky-50/90 text-navy hover:bg-sky-100 hover:border-sky-300 transition-all active:scale-95 cursor-pointer shadow-2xs group shrink-0"
               title="Change Deployment City"
               aria-label="Change current city"
             >
@@ -315,9 +473,9 @@ export default function Header() {
                 alt="Location"
                 width={13}
                 height={13}
-                className="w-3 h-3 sm:w-3.5 sm:h-3.5 object-contain shrink-0 group-hover:scale-110 transition-transform"
+                className="w-3.5 h-3.5 object-contain shrink-0 group-hover:scale-110 transition-transform"
               />
-              <span suppressHydrationWarning className="max-w-[46px] xs:max-w-[70px] sm:max-w-[110px] truncate font-semibold text-slate-800">
+              <span suppressHydrationWarning className="max-w-[70px] sm:max-w-[110px] truncate font-semibold text-slate-800">
                 {currentCity?.name || "Kolkata"}
               </span>
               <svg
@@ -329,6 +487,22 @@ export default function Header() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
+
+            {/* Glowing Urgent Vacancies Button (Direct Job Seeker Magnet - Big & Bold on Mobile & Desktop) */}
+            <Link
+              href="/careers"
+              onClick={() => trackEvent("job_apply", { source: "header_urgent_vacancies" })}
+              className="btn-urgent-glow inline-flex items-center gap-1.5 sm:gap-2 text-white font-roboto font-bold text-xs sm:text-xs xl:text-sm py-1.5 sm:py-2 px-3 sm:px-3.5 xl:px-4 rounded-xl shadow-md transition-all duration-200 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer group"
+              title="Immediate & Urgent Job Vacancies Available Now"
+              aria-label="Urgent Job Vacancies - Apply Now"
+            >
+              <span className="tracking-tight">Urgent Vacancies</span>
+
+              {/* HIRING NOW Pill Badge (Always visible - prominent on mobile & desktop) */}
+              <span className="inline-flex items-center text-[10px] bg-white/20 text-white border border-white/30 px-1.5 py-0.5 rounded-md font-extrabold uppercase tracking-wider shadow-2xs">
+                Hiring Now
+              </span>
+            </Link>
 
             {/* Post Job Button (Desktop & Tablet) */}
             <Link
@@ -355,13 +529,13 @@ export default function Header() {
 
             {/* Mobile / Tablet Hamburger (visible below xl: 1280px) */}
             <button
-              className="xl:hidden p-1.5 sm:p-2 rounded-lg text-navy hover:bg-gray-100 transition-colors shrink-0 cursor-pointer"
+              className="xl:hidden p-1 xs:p-1.5 sm:p-2 rounded-lg text-navy hover:bg-gray-100 transition-colors shrink-0 cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
             >
-              <svg className="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 {mobileOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -371,6 +545,120 @@ export default function Header() {
             </button>
           </div>
         </nav>
+
+        {/* Full-Width Enterprise Mega Menu (Desktop xl: 1280px+) */}
+        <div
+          className={`hidden xl:block absolute top-full left-0 right-0 w-full bg-white border-t border-slate-100 border-b border-slate-200 shadow-[0_20px_50px_rgba(11,31,63,0.1)] transition-all duration-200 ease-out z-50 ${
+            activeDropdown && MEGA_MENUS[activeDropdown]
+              ? "opacity-100 visible translate-y-0 pointer-events-auto"
+              : "opacity-0 invisible -translate-y-2 pointer-events-none"
+          }`}
+          onMouseEnter={() => {
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+              timeoutRef.current = null;
+            }
+          }}
+          onMouseLeave={handleMouseLeave}
+        >
+          {activeDropdown && MEGA_MENUS[activeDropdown] && (
+            <div className="container-acs py-9 xl:py-10 px-8 xl:px-12">
+              <div className="grid grid-cols-12 gap-10 xl:gap-12 items-start">
+                {/* Left Category Info / Overview Panel */}
+                <div className="col-span-3 border-r border-slate-200/90 pr-8 xl:pr-10">
+                  <h3 className="text-2xl font-bold font-roboto text-[#0b1f3f] tracking-tight">
+                    {MEGA_MENUS[activeDropdown].title}
+                  </h3>
+                  <p className="text-[13px] text-slate-500 mt-3 leading-relaxed font-normal">
+                    {MEGA_MENUS[activeDropdown].tagline}
+                  </p>
+
+                  {/* Sub-category Anchor Highlights (like Mynd reference) */}
+                  {MEGA_MENUS[activeDropdown].subcategories && (
+                    <div className="mt-7 space-y-3 pt-5 border-t border-slate-100">
+                      {MEGA_MENUS[activeDropdown].subcategories!.map((sub, idx) => (
+                        <div
+                          key={sub}
+                          className={`text-[11px] font-bold tracking-wider uppercase ${
+                            idx === 0 ? "text-[#0052cc]" : "text-slate-500 hover:text-slate-800"
+                          } transition-colors select-none`}
+                        >
+                          {sub}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {MEGA_MENUS[activeDropdown].featuredLink && (
+                    <Link
+                      href={MEGA_MENUS[activeDropdown].featuredLink!.href}
+                      onClick={() => setActiveDropdown(null)}
+                      className="mt-7 inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-[#0052cc] hover:text-[#0b1f3f] group/cta transition-colors"
+                    >
+                      <span>{MEGA_MENUS[activeDropdown].featuredLink!.label}</span>
+                      <div className="w-7 h-7 rounded-full border border-[#0052cc]/30 text-[#0052cc] flex items-center justify-center group-hover/cta:bg-[#0052cc] group-hover/cta:text-white group-hover/cta:border-[#0052cc] transition-all duration-200">
+                        <svg
+                          className="w-3.5 h-3.5 transform group-hover/cta:translate-x-0.5 transition-transform duration-200"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </div>
+                    </Link>
+                  )}
+                </div>
+
+                {/* Right Items Grid — Clean, unboxed typography & circular buttons */}
+                <div className="col-span-9 pl-2 xl:pl-6">
+                  <div
+                    className={`grid gap-x-8 xl:gap-x-10 gap-y-8 xl:gap-y-9 ${
+                      MEGA_MENUS[activeDropdown].items.length <= 6
+                        ? "grid-cols-3"
+                        : "grid-cols-4"
+                    }`}
+                  >
+                    {MEGA_MENUS[activeDropdown].items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => {
+                          if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                          setActiveDropdown(null);
+                        }}
+                        className="group/item flex flex-col justify-between py-1 cursor-pointer transition-all duration-150"
+                      >
+                        <div>
+                          <h4 className="text-[14px] xl:text-[15px] font-bold font-roboto text-slate-900 group-hover/item:text-[#0052cc] transition-colors leading-snug">
+                            {item.label}
+                          </h4>
+                          <p className="text-[12px] text-slate-500 mt-1.5 leading-relaxed font-normal">
+                            {item.desc}
+                          </p>
+                        </div>
+
+                        {/* Circular Arrow Button with smooth hover animation */}
+                        <div className="w-7 h-7 rounded-full border border-sky-400/50 text-sky-600 flex items-center justify-center group-hover/item:border-[#0052cc] group-hover/item:bg-[#0052cc] group-hover/item:text-white transition-all duration-200 mt-4 self-start">
+                          <svg
+                            className="w-3.5 h-3.5 transform group-hover/item:translate-x-0.5 transition-transform duration-200"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </header>
 
       {/* Mobile Nav Overlay */}
@@ -387,7 +675,10 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
             aria-hidden="true"
           />
-          <nav className="relative w-80 max-w-[85vw] bg-white h-full overflow-y-auto shadow-2xl flex flex-col animate-in slide-in-from-left duration-200">
+          <nav
+            className="relative w-80 max-w-[85vw] bg-white h-full overflow-y-auto no-scrollbar shadow-2xl flex flex-col animate-in slide-in-from-left duration-200"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center py-1">
                 <div className="relative h-14 w-52">
@@ -402,7 +693,7 @@ export default function Header() {
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-1.5 rounded hover:bg-gray-100 text-gray-500"
+                className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors"
                 aria-label="Close menu"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -436,72 +727,133 @@ export default function Header() {
               </button>
             </div>
 
-            <ul className="flex-1 py-4 px-2" role="list">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-3 font-roboto font-500 text-navy hover:bg-off-white hover:text-navy rounded transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                  {link.children && (
-                    <ul className="ml-4 border-l-2 border-gray-100 mb-2">
-                      {link.children.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="block px-4 py-2 text-sm text-gray-600 hover:text-navy hover:bg-gray-50 rounded transition-colors"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
+            {/* Quick Action CTAs: Urgent Vacancies, Post Job, Get Quote */}
+            <div className="p-3 bg-slate-50/70 border-b border-gray-100 space-y-2">
+              <Link
+                href="/careers"
+                onClick={() => {
+                  trackEvent("job_apply", { source: "mobile_drawer_urgent_vacancies" });
+                  setMobileOpen(false);
+                }}
+                className="btn-urgent-glow w-full flex items-center justify-between py-2.5 px-3.5 rounded-xl text-white font-roboto font-bold text-sm shadow-md transition-all active:scale-[0.98]"
+              >
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-300 animate-ping" />
+                  Urgent Vacancies
+                </span>
+                <span className="text-[10px] bg-white/20 text-white border border-white/30 px-2 py-0.5 rounded-full font-extrabold uppercase tracking-wide shadow-2xs">
+                  Hiring Now
+                </span>
+              </Link>
 
-            <div className="p-4 border-t border-gray-100 space-y-2.5">
               <Link
                 href="/post-job"
                 onClick={() => setMobileOpen(false)}
-                className="w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-roboto font-bold py-2.5 px-4 rounded-xl text-sm transition-all shadow-xs"
+                className="w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-roboto font-bold py-2.5 px-3 rounded-xl text-xs transition-all shadow-xs active:scale-[0.98]"
               >
-                <span>💼</span> Post Job
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Post Job</span>
               </Link>
+
               <Link
                 href="/quote"
                 onClick={() => setMobileOpen(false)}
-                className="btn-primary w-full justify-center"
+                className="btn-primary w-full justify-center py-2.5 px-3 rounded-xl font-bold text-xs text-center shadow-xs active:scale-[0.98]"
               >
                 Get Quote
               </Link>
-              <div className="mt-4 space-y-2 text-sm text-gray-600">
-                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 hover:text-navy">
-                  <svg className="w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  {siteConfig.email}
-                </a>
-                <div className="space-y-1.5 pt-1">
-                  {siteConfig.phones.map((p) => (
-                    <a
-                      key={p}
-                      href={`tel:${p.replace(/[^+\d]/g, "")}`}
-                      className="flex items-center gap-2 hover:text-navy"
-                      aria-label={`Call ${p}`}
-                    >
-                      <svg className="w-4 h-4 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                      {p}
-                    </a>
-                  ))}
-                </div>
+            </div>
+
+            {/* Navigation Collapsible Accordion List */}
+            <ul className="flex-1 py-2 px-3 divide-y divide-gray-100/80" role="list">
+              {navLinks
+                .filter((link) => link.label !== "Careers")
+                .map((link) => {
+                  const hasChildren = Boolean(link.children && link.children.length > 0);
+                  const isExpanded = mobileExpandedSection === link.label;
+
+                  return (
+                    <li key={link.label} className="py-1">
+                      {hasChildren ? (
+                        <div>
+                          <button
+                            type="button"
+                            onClick={() => toggleMobileSection(link.label)}
+                            className="w-full flex items-center justify-between px-3 py-2.5 font-roboto font-bold text-navy hover:bg-slate-50 rounded-lg transition-colors text-left"
+                            aria-expanded={isExpanded}
+                          >
+                            <span className="text-sm uppercase tracking-wide text-slate-800">
+                              {link.label}
+                            </span>
+                            <svg
+                              className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+                                isExpanded ? "rotate-180 text-navy" : ""
+                              }`}
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+
+                          {isExpanded && (
+                            <ul className="pl-3 pr-1 py-1.5 space-y-1 border-l-2 border-sky-200 ml-4 mb-1 animate-in fade-in slide-in-from-top-1 duration-150">
+                              {link.children!.map((child) => (
+                                <li key={child.href}>
+                                  <Link
+                                    href={child.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-navy hover:bg-sky-50 rounded-md transition-colors"
+                                  >
+                                    {child.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="flex items-center justify-between px-3 py-2.5 font-roboto font-bold text-navy hover:bg-slate-50 rounded-lg transition-colors text-sm uppercase tracking-wide text-slate-800"
+                        >
+                          <span>{link.label}</span>
+                          <svg className="w-4 h-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
+            </ul>
+
+            {/* Bottom Contact Footer */}
+            <div className="p-4 border-t border-gray-100 mt-auto bg-slate-50/50 space-y-2 text-xs text-gray-600">
+              <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 hover:text-navy font-medium text-slate-700">
+                <svg className="w-4 h-4 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span className="truncate">{siteConfig.email}</span>
+              </a>
+              <div className="space-y-1.5 pt-1">
+                {siteConfig.phones.map((p) => (
+                  <a
+                    key={p}
+                    href={`tel:${p.replace(/[^+\d]/g, "")}`}
+                    className="flex items-center gap-2 hover:text-navy font-medium text-slate-700"
+                    aria-label={`Call ${p}`}
+                  >
+                    <svg className="w-4 h-4 text-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>{p}</span>
+                  </a>
+                ))}
               </div>
             </div>
           </nav>
