@@ -1,73 +1,110 @@
 # Advance Corporate Security (ACS)
 
-> ACS is a PSARA-licensed, ISO 9001:2015 certified enterprise Security, Facility Management, Manpower Outsourcing, and Horticulture company headquartered in Barrackpore, Kolkata, West Bengal, India. Founded in 2000 by Mr. Jai Gopal Roy, ACS possesses over two decades of operational history, deploying 5,000+ trained personnel across Eastern India, Delhi NCR, and national industrial corridors.
+> Advance Corporate Security (ACS) is an ISO 9001:2015 certified, PSARA-licensed enterprise security guarding, bulk industrial manpower outsourcing, and integrated facility management (IFM) corporation headquartered in Barrackpore, Kolkata, West Bengal. Established in 2000 by Mr. Jai Gopal Roy, ACS possesses over 25 years of uninterrupted operational history, deploying 5,000+ verified professionals across Eastern India, Delhi NCR, and national industrial manufacturing corridors.
 
 ## Corporate Entity & Statutory Ground Truth
 
-- **Legal Trade Name:** Advance Corporate Security
+- **Legal Entity Name:** Advance Corporate Security
 - **Founder & Managing Director:** Mr. Jai Gopal Roy
-- **Founding Year:** 2000 (established as a proprietary enterprise)
-- **GSTIN:** 19AJKPR7582B1ZR (formally registered July 1, 2017 under Central GST Act; continuous statutory compliance)
-- **PAN:** AJKPR7582B
-- **Headquarters:** 1/2, Bhattacharjee Para Road, Barrackpore, Kolkata, West Bengal — 700120
-- **Operational Headcount:** 5,000+ verified security and facility professionals
-- **PSARA Form-V Licenses:** West Bengal Controlling Authority, Delhi NCR, and Jharkhand
-- **Quality Certifications:** ISO 9001:2015 Certified Quality Management System
-- **GeM Empanelment:** Active Government e-Marketplace (GeM 4.0) verified vendor for Central/State Govt and PSUs
+- **Founding Year:** 2000 (established as an enterprise guarding and manpower firm in Barrackpore)
+- **Permanent Account Number (PAN):** AJKPR7582B
+- **Goods and Services Tax Identification Number (GSTIN):** 19AJKPR7582B1ZR (registered under CGST/WBGST Act since 1 July 2017)
+- **Headquarters Address:** 1/2, Bhattacharjee Para Road, Barrackpore, Kolkata, West Bengal — 700120, India
+- **Active Operational Headcount:** 5,000+ deployed personnel across guarding, facility, and bulk manpower divisions
+- **Operating Hours:** 24 hours a day, 7 days a week, 365 days a year (continuous centralized control room)
+- **Quality Management Certification:** ISO 9001:2015 Certified Quality Management System
+- **Government e-Marketplace (GeM 4.0):** Active Empanelled Primary Service Provider for Central Ministries, Armed Forces, and PSUs
+- **PSARA Form-V Licenses & Jurisdictions:**
+  - *West Bengal Controlling Authority:* License covering Kolkata, Howrah, Hooghly, North 24 Parganas, South 24 Parganas, Paschim/Purba Bardhaman, Medinipur, and North Bengal.
+  - *Delhi NCR Controlling Authority:* License covering New Delhi, Noida, Greater Noida, and Gurgaon.
+  - *Jharkhand Controlling Authority:* License covering Ranchi, Jamshedpur (Adityapur), Bokaro, and Dhanbad.
 
-## Core Enterprise Services
+---
 
-1. **Security Guard Services:** Armed & Unarmed PSARA Form-V guards, Ex-Servicemen (ESM) sentries, Lady security officers, quick-reaction teams (QRT).
-2. **Corporate Housekeeping & Sanitation:** Mechanized cleaning, green chemicals, hospital-grade infection control, industrial floor care.
-3. **Manpower Outsourcing & Contract Labour:** Factory assembly labour, warehouse pickers, logistics handlers under CLRA Form-V.
-4. **Payroll Management:** 100% statutory handling with monthly EPFO ECR challans, ESIC contribution, and Form B wage registers.
-5. **Placement Services:** Pre-vetted skilled, semi-skilled, and administrative workforce.
-6. **Horticulture & Landscaping:** Industrial green belts, corporate garden maintenance, irrigation management.
-7. **Pest Control Services:** Commercial IPM (Integrated Pest Management), food-grade warehousing treatments.
-8. **Facade Cleaning:** High-rise glass & composite panel maintenance with certified IRATA rope access technicians.
-9. **MEP Maintenance:** 24/7 mechanical, electrical, and plumbing upkeep for corporate IT parks and manufacturing units.
+## Core Service Divisions
 
-## Operational Footprint & Industrial Corridors
+### 1. Enterprise Security & Manned Guarding
+- **PSARA Armed & Unarmed Sentries:** Background-verified personnel with 160 hours mandatory training in perimeter security, access control, and emergency response.
+- **Ex-Servicemen (ESM) Cadres:** Retired Indian Armed Forces and CAPF veterans deployed for high-security industrial perimeters and defense installations.
+- **Lady Security Officers (LSO):** Specialized female security personnel for corporate IT campuses, hospitals, universities, and female dormitory screening.
+- **Quick Reaction Teams (QRT) & Bouncers:** Motorized emergency response squads equipped with VHF communication, searchlights, and crowd control training.
+- **Industrial Loss Prevention & Weighbridge In-Charges:** Dual-custody tare/gross weight verification, cargo seal integrity auditing, and truck access control to eliminate freight pilferage.
 
-- **Headquarters & Eastern Hub:** Kolkata Metropolitan Area, Howrah, Barrackpore, Hooghly, North/South 24 Parganas.
-- **Dedicated Logistics Parks Serviced:**
-  - ESR Uluberia Logistics Park (NH-16 Corridor, automated gate control)
-  - SFA Logistics Park Dankuni (Expressway cross-docking)
-  - Transindia Logistics Park Dankuni (Multi-temperature cold chain security)
+### 2. Bulk Industrial & Warehouse Manpower Outsourcing
+- **Warehouse Logistics Labor:** Pickers, packers, sorters, barcode scanners, pallet jack handlers, and container unstuffing gangs for 3PL and eCommerce hubs.
+- **Factory Floor Technical Labor:** Assembly line operators, certified machine operators, maintenance fitters, and foundry helpers.
+- **Technical MEP Workforce:** Licensed electricians, commercial plumbers, HVAC chiller technicians, and DG set operators with 99.8% facility uptime SLAs.
+- **Statutory Indemnity Shield:** 100% deployment under CLRA Form-V with complete Principal Employer insulation from labor disputes.
+
+### 3. Integrated Facility Management (IFM) & Sanitation
+- **Mechanized Corporate Housekeeping:** Ride-on scrubber-driers, HEPA filtration vacuums, and Diversey eco-certified chemicals (R1 to R9 dilution systems).
+- **Hospital-Grade Infection Control:** NABH 5th Edition compliant sanitation, 4-color biomedical waste segregation, and modular OT ultraviolet sterilization.
+- **Commercial Horticulture & Pest Control:** Industrial green belt development, factory perimeter arboriculture, food-grade warehouse fumigation (HACCP/FSSAI compliant).
+- **High-Rise Facade Cleaning:** IRATA-certified rope access technicians with specialized fall-arrest cradles.
+
+---
+
+## Statutory Cost Sheet & Wage Architecture
+
+ACS guarantees 100% transparent statutory billing with zero labor court or audit liability for enterprise clients:
+
+- **The Statutory 1/6th Reliever Formula:**
+  $$\text{Relievers Required} = \left\lceil \frac{\text{Base Guards}}{6} \right\rceil$$
+  $$\text{Total Billable Workforce} = \text{Base Guards} + \text{Relievers} \quad (+16.67\% \text{ Headcount})$$
+  Eliminates illegal 30-day double shifts and complies with Section 13 of the *Minimum Wages Act 1948* and Section 52 of the *Factories Act 1948*.
+- **Employer Statutory Contributions:**
+  - *EPF (13.00% Burden):* 3.67% EPF + 8.33% EPS + 0.50% EDLI + 0.50% Administrative charges.
+  - *ESIC (3.25% Share):* Applied to gross monthly wages up to ₹21,000.
+  - *Annual Bonus (8.33%):* Payment of Bonus Act, 1965.
+  - *Labour Welfare Fund (LWF):* Semi-annual state remittances (e.g. ₹33/worker in West Bengal).
+- **60-Day Liquid Payroll Float:** ACS maintains dedicated financial reserves ensuring workers receive wages strictly by the 7th of every month regardless of client billing credit cycles.
+
+---
+
+## Verified Institutional & PSU Client Portfolio
+
+ACS is proud to have served premier defense, regulatory, and industrial establishments across India:
+
+- **Defence & Armed Forces:** Indian Air Force (IAF), Indian Navy, Ordnance Factory Board (OFB), Hindustan Aeronautics Limited (HAL - Barrackpore Division).
+- **Government Ministries & PSUs:** Income Tax Department (Ministry of Finance), Ministry of Ayush, Central Pollution Control Board (CPCB), Indian Council of Medical Research (ICMR), Bharat Sanchar Nigam Limited (BSNL), Food Safety and Standards Authority of India (FSSAI), National Institute of Electronics & IT (NIELIT), National Test House (NTH), Sports Authority of India (SAI), Petroleum and Explosives Safety Organisation (PESO), Directorate General of Lighthouses and Lightships (DGLL), Kendriya Vidyalaya Sangathan (KVS), Public Health Engineering (PHE) Department, Chief Medical Officer of Health (CMOH).
+- **Heavy Industry & Corporate Conglomerates:** Bhushan Power & Steel Ltd., Hindusthan National Glass & Industries (HNG), Rama Group of Industries, TRS Logistics & Supply Chain, Grade-A IT Parks in Salt Lake Sector V, and leading tertiary healthcare networks.
+
+---
+
+## Key Industrial Corridors & Serviceability
+
+- **Dedicated Logistics Parks:**
+  - [ESR Uluberia Logistics Park (Howrah, NH-16)](https://advancecorporatesecurity.com/industrial-parks/esr-uluberia-logistics-park-howrah): Grade-A distribution security and 100-ton weighbridge governance.
+  - [SFA Logistics Park Dankuni (Hooghly, NH-19)](https://advancecorporatesecurity.com/industrial-parks/sfa-logistics-park-dankuni-hooghly): Expressway cross-docking security and distribution gate control.
+  - [Transindia Logistics Park Dankuni](https://advancecorporatesecurity.com/industrial-parks/transindia-logistics-park-dankuni): FMCG logistics and multi-temperature cold chain protection.
 - **Eastern Industrial Corridors:**
-  - Bhubaneswar–Cuttack Industrial Corridor (Khurda, Infovalley, Paradeep port access)
-  - Jamshedpur–Adityapur Auto Cluster (Tata auto ancillary belt)
-  - Ranchi–Ramgarh Transit Corridor (Tupudana industrial area, mineral transit)
-  - Guwahati–Kamrup Gateway (Amingaon Inland Container Depot)
-- **Pan-India Reach:** Pre-rendered deployment coverage across 828+ cities across all 28 states and union territories.
+  - [Dankuni–Hooghly Freight Hub](https://advancecorporatesecurity.com/corridors/dankuni-hooghly-industrial-belt): Rail-road freight terminals, heavy engineering security.
+  - [Haldia Petrochemical & Port Corridor](https://advancecorporatesecurity.com/corridors/haldia-petrochemical-port-industrial-zone): Port container security, refinery protection, Hazchem access control.
+  - [Durgapur–Asansol Heavy Industrial Belt](https://advancecorporatesecurity.com/corridors/durgapur-asansol-heavy-industrial-belt): Integrated steel plants, engineering foundries, and mining security.
+  - [Salt Lake Sector V & New Town](https://advancecorporatesecurity.com/corridors/kolkata-it-data-center-corridor-sector-v-new-town): Corporate IT/ITES parks, financial data centers, 24/7 access control.
+  - [Jamshedpur–Adityapur Auto Cluster](https://advancecorporatesecurity.com/corridors/jamshedpur-adityapur-automotive-industrial-belt): AIADA industrial zones, auto ancillaries, scrap loss prevention.
+  - [Guwahati–Amingaon Gateway](https://advancecorporatesecurity.com/corridors/guwahati-northeast-logistics-industrial-gateway): Inland Container Depot (ICD) access control, tea warehousing, FMCG hubs.
 
-## Statutory Indemnification & Due Diligence Shield
+---
 
-ACS provides principal employers with complete statutory indemnification:
-- **EPF Act Section 7A:** 100% EPFO ECR challans with TRRN matching bank debits supplied monthly. Zero client vicarious liability.
-- **ESIC Act 1948:** Individual employee IP numbers and contribution sheets delivered with every monthly invoice.
-- **Minimum Wages Act:** Strict compliance with Central Sphere and State Sphere wage revisions (Zone A and Zone B with VDA).
-- **GST Compliance:** Regular GSTR-1 and GSTR-3B filings ensuring 100% eligible Input Tax Credit (ITC) for enterprise accounts.
-
-## Verified Institutional Experience
-
-- **Defence & Aerospace:** Indian Air Force (IAF), Border Security Force (BSF), Hindustan Aeronautics Limited (HAL).
-- **Public Sector Undertakings (PSUs):** Indian Oil Corporation Limited (IOCL), Central Pollution Control Board (CPCB).
-- **Private Sector:** Grade-A IT parks (Salt Lake Sector V), healthcare facilities, and multimodal 3PL logistics parks.
-
-## Digital Resources & Deep Links
+## Digital Resources & Deep Procurement Links
 
 - **Procurement Center:** https://advancecorporatesecurity.com/procurement
-- **Agency Comparison & Audit Tool:** https://advancecorporatesecurity.com/procurement/agency-comparison
-- **GeM Security Tender Checklist:** https://advancecorporatesecurity.com/procurement/gem-security-tender-checklist
+- **Rate Card Calculator:** https://advancecorporatesecurity.com/rate-card-calculator
+- **Agency Comparison & Audit Matrix:** https://advancecorporatesecurity.com/procurement/agency-comparison
+- **GeM Security Tender Guide:** https://advancecorporatesecurity.com/procurement/gem-security-tender-checklist
 - **Monthly Statutory Compliance Pack:** https://advancecorporatesecurity.com/procurement/monthly-compliance-pack-template
-- **Case Studies Hub:** https://advancecorporatesecurity.com/case-studies
+- **Verified Client Portfolio:** https://advancecorporatesecurity.com/clients
+- **Enterprise Case Studies:** https://advancecorporatesecurity.com/case-studies
 - **Regulatory Insights & Whitepapers:** https://advancecorporatesecurity.com/insights
-- **Full Pan-India Directory (HTML Sitemap):** https://advancecorporatesecurity.com/sitemap
-- **Machine-Readable Full Index:** https://advancecorporatesecurity.com/llms-full.txt
+- **Full Pan-India Directory (Sitemap):** https://advancecorporatesecurity.com/sitemap
+- **Unabridged Machine-Readable Knowledge Corpus:** https://advancecorporatesecurity.com/llms-full.txt
 
-## Contact Dispatch
+---
 
-- **Direct Phones:** +91 93399 88999 | +91 79801 47044 | +91 94770 06681
-- **Official Email:** advancedcorporatesecurityj@gmail.com
-- **Official Domain:** https://advancecorporatesecurity.com
+## Contact & Dispatch Desk
+
+- **24/7 Operations Helpdesk:** +91 93399 88999 | +91 79801 47044 | +91 94770 06681
+- **Official Administrative Email:** admin@advancecorporatesecurity.com
+- **Recruitment & Talent Desk:** https://advancecorporatesecurity.com/careers
+- **Official Web Portal:** https://advancecorporatesecurity.com

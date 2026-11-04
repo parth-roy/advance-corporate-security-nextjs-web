@@ -133,6 +133,82 @@ const nextConfig: NextConfig = {
       { source: "/services/:slug/ghaziabad-up", destination: "/services/:slug/ghaziabad", permanent: true },
       { source: "/services/:slug/ghaziabad-up/", destination: "/services/:slug/ghaziabad", permanent: true },
 
+      // Sanitized City Variant Redirects (Consolidation of Duplicate & Doorway Slugs)
+      { source: "/location/barrackpur", destination: "/location/barrackpore", permanent: true },
+      { source: "/location/barrackpur/", destination: "/location/barrackpore", permanent: true },
+      { source: "/services/:slug/barrackpur", destination: "/services/:slug/barrackpore", permanent: true },
+      { source: "/services/:slug/barrackpur/", destination: "/services/:slug/barrackpore", permanent: true },
+
+      { source: "/location/hardwar", destination: "/location/haridwar", permanent: true },
+      { source: "/location/hardwar/", destination: "/location/haridwar", permanent: true },
+      { source: "/services/:slug/hardwar", destination: "/services/:slug/haridwar", permanent: true },
+      { source: "/services/:slug/hardwar/", destination: "/services/:slug/haridwar", permanent: true },
+
+      { source: "/location/darjiling", destination: "/location/darjeeling", permanent: true },
+      { source: "/location/darjiling/", destination: "/location/darjeeling", permanent: true },
+      { source: "/services/:slug/darjiling", destination: "/services/:slug/darjeeling", permanent: true },
+      { source: "/services/:slug/darjiling/", destination: "/services/:slug/darjeeling", permanent: true },
+
+      { source: "/location/khardah", destination: "/location/khardaha", permanent: true },
+      { source: "/location/khardah/", destination: "/location/khardaha", permanent: true },
+      { source: "/services/:slug/khardah", destination: "/services/:slug/khardaha", permanent: true },
+      { source: "/services/:slug/khardah/", destination: "/services/:slug/khardaha", permanent: true },
+
+      { source: "/location/davanagere", destination: "/location/davangere", permanent: true },
+      { source: "/location/davanagere/", destination: "/location/davangere", permanent: true },
+      { source: "/services/:slug/davanagere", destination: "/services/:slug/davangere", permanent: true },
+      { source: "/services/:slug/davanagere/", destination: "/services/:slug/davangere", permanent: true },
+
+      { source: "/location/tumakuru", destination: "/location/tumkur", permanent: true },
+      { source: "/location/tumakuru/", destination: "/location/tumkur", permanent: true },
+      { source: "/services/:slug/tumakuru", destination: "/services/:slug/tumkur", permanent: true },
+      { source: "/services/:slug/tumakuru/", destination: "/services/:slug/tumkur", permanent: true },
+
+      { source: "/location/ranebennur", destination: "/location/ranibennur", permanent: true },
+      { source: "/location/ranebennur/", destination: "/location/ranibennur", permanent: true },
+      { source: "/services/:slug/ranebennur", destination: "/services/:slug/ranibennur", permanent: true },
+      { source: "/services/:slug/ranebennur/", destination: "/services/:slug/ranibennur", permanent: true },
+
+      { source: "/location/kolapur", destination: "/location/kolhapur", permanent: true },
+      { source: "/location/kolapur/", destination: "/location/kolhapur", permanent: true },
+      { source: "/services/:slug/kolapur", destination: "/services/:slug/kolhapur", permanent: true },
+      { source: "/services/:slug/kolapur/", destination: "/services/:slug/kolhapur", permanent: true },
+
+      { source: "/location/ahmadnagar", destination: "/location/ahmednagar", permanent: true },
+      { source: "/location/ahmadnagar/", destination: "/location/ahmednagar", permanent: true },
+      { source: "/services/:slug/ahmadnagar", destination: "/services/:slug/ahmednagar", permanent: true },
+      { source: "/services/:slug/ahmadnagar/", destination: "/services/:slug/ahmednagar", permanent: true },
+
+      { source: "/location/badalapur", destination: "/location/badlapur", permanent: true },
+      { source: "/location/badalapur/", destination: "/location/badlapur", permanent: true },
+      { source: "/services/:slug/badalapur", destination: "/services/:slug/badlapur", permanent: true },
+      { source: "/services/:slug/badalapur/", destination: "/services/:slug/badlapur", permanent: true },
+
+      { source: "/location/bid", destination: "/location/beed", permanent: true },
+      { source: "/location/bid/", destination: "/location/beed", permanent: true },
+      { source: "/services/:slug/bid", destination: "/services/:slug/beed", permanent: true },
+      { source: "/services/:slug/bid/", destination: "/services/:slug/beed", permanent: true },
+
+      { source: "/location/gondiya", destination: "/location/gondia", permanent: true },
+      { source: "/location/gondiya/", destination: "/location/gondia", permanent: true },
+      { source: "/services/:slug/gondiya", destination: "/services/:slug/gondia", permanent: true },
+      { source: "/services/:slug/gondiya/", destination: "/services/:slug/gondia", permanent: true },
+
+      { source: "/location/raurkela", destination: "/location/rourkela", permanent: true },
+      { source: "/location/raurkela/", destination: "/location/rourkela", permanent: true },
+      { source: "/services/:slug/raurkela", destination: "/services/:slug/rourkela", permanent: true },
+      { source: "/services/:slug/raurkela/", destination: "/services/:slug/rourkela", permanent: true },
+
+      { source: "/location/chittaurgarh", destination: "/location/chittorgarh", permanent: true },
+      { source: "/location/chittaurgarh/", destination: "/location/chittorgarh", permanent: true },
+      { source: "/services/:slug/chittaurgarh", destination: "/services/:slug/chittorgarh", permanent: true },
+      { source: "/services/:slug/chittaurgarh/", destination: "/services/:slug/chittorgarh", permanent: true },
+
+      { source: "/location/thoothukkudi", destination: "/location/thoothukudi", permanent: true },
+      { source: "/location/thoothukkudi/", destination: "/location/thoothukudi", permanent: true },
+      { source: "/services/:slug/thoothukkudi", destination: "/services/:slug/thoothukudi", permanent: true },
+      { source: "/services/:slug/thoothukkudi/", destination: "/services/:slug/thoothukudi", permanent: true },
+
       // WordPress legacy URL → New clean URLs (301 Permanent)
       { source: "/home/", destination: "/", permanent: true },
       { source: "/home", destination: "/", permanent: true },

@@ -50,15 +50,15 @@ export default function DynamicHomeFaqs() {
                   }`}
                   aria-expanded={isOpen}
                 >
-                  <span className="leading-snug">{faq.question}</span>
+                  <span className="leading-snug text-slate-900">{faq.question}</span>
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
                       isOpen
-                        ? "rotate-180 bg-navy text-white shadow-xs"
-                        : "bg-sky-50 text-sky-700 hover:bg-sky-100"
+                        ? "rotate-180 !bg-[#0b1f3f] !text-white shadow-xs"
+                        : "!bg-sky-100/80 !text-[#0284c7] hover:!bg-sky-200"
                     }`}
                   >
-                    <ChevronDown size={16} />
+                    <ChevronDown className="w-4 h-4 shrink-0 transition-transform" />
                   </div>
                 </button>
                 {isOpen && (

@@ -84,6 +84,8 @@ async function main() {
     { loc: `${BASE_URL}/request-audit`, priority: "0.95", changefreq: "weekly" },
     { loc: `${BASE_URL}/credentials`, priority: "0.90", changefreq: "monthly" },
     { loc: `${BASE_URL}/services/integrated-facility-management`, priority: "0.90", changefreq: "weekly" },
+    { loc: `${BASE_URL}/services/warehouse-manpower-supply`, priority: "0.95", changefreq: "weekly" },
+    { loc: `${BASE_URL}/services/industrial-factory-workers`, priority: "0.95", changefreq: "weekly" },
     { loc: `${BASE_URL}/quote`, priority: "0.95", changefreq: "weekly" },
     ...ACS_INDUSTRIES.map((ind) => ({
       loc: `${BASE_URL}/sectors/${ind.slug}`,

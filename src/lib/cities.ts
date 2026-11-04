@@ -875,7 +875,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "karnataka",
     "tier": 2,
     "id": "in-karnataka-davangere",
-    "placeId": "in-karnataka-davangere"
+    "placeId": "in-karnataka-davangere",
+    "aliases": [
+      "Davanagere"
+    ]
   },
   {
     "name": "Bellary",
@@ -911,7 +914,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "karnataka",
     "tier": 2,
     "id": "in-karnataka-tumkur",
-    "placeId": "in-karnataka-tumkur"
+    "placeId": "in-karnataka-tumkur",
+    "aliases": [
+      "Tumakuru"
+    ]
   },
   {
     "name": "Hospet",
@@ -1265,7 +1271,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "maharashtra",
     "tier": 2,
     "id": "in-maharashtra-kolhapur",
-    "placeId": "in-maharashtra-kolhapur"
+    "placeId": "in-maharashtra-kolhapur",
+    "aliases": [
+      "Kolapur"
+    ]
   },
   {
     "name": "Ulhasnagar",
@@ -1310,7 +1319,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "maharashtra",
     "tier": 2,
     "id": "in-maharashtra-ahmednagar",
-    "placeId": "in-maharashtra-ahmednagar"
+    "placeId": "in-maharashtra-ahmednagar",
+    "aliases": [
+      "Ahmadnagar"
+    ]
   },
   {
     "name": "Sangli",
@@ -1418,7 +1430,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "odisha",
     "tier": 2,
     "id": "in-odisha-rourkela",
-    "placeId": "in-odisha-rourkela"
+    "placeId": "in-odisha-rourkela",
+    "aliases": [
+      "Raurkela"
+    ]
   },
   {
     "name": "Brahmapur",
@@ -1728,7 +1743,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "rajasthan",
     "tier": 2,
     "id": "in-rajasthan-chittorgarh",
-    "placeId": "in-rajasthan-chittorgarh"
+    "placeId": "in-rajasthan-chittorgarh",
+    "aliases": [
+      "Chittaurgarh"
+    ]
   },
   {
     "name": "Nagaur",
@@ -1839,7 +1857,11 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "tamil-nadu",
     "tier": 2,
     "id": "in-tamil-nadu-thoothukudi",
-    "placeId": "in-tamil-nadu-thoothukudi"
+    "placeId": "in-tamil-nadu-thoothukudi",
+    "aliases": [
+      "Thoothukkudi",
+      "Tuticorin"
+    ]
   },
   {
     "name": "Thanjavur",
@@ -2303,7 +2325,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "uttarakhand",
     "tier": 2,
     "id": "in-uttarakhand-haridwar",
-    "placeId": "in-uttarakhand-haridwar"
+    "placeId": "in-uttarakhand-haridwar",
+    "aliases": [
+      "Hardwar"
+    ]
   },
   {
     "name": "Haldwani",
@@ -2400,7 +2425,8 @@ export const ACS_CITIES: ACSCity[] = [
     "aliases": [
       "Barakpur",
       "Barrackpur II",
-      "North 24 Parganas"
+      "North 24 Parganas",
+      "Barrackpur"
     ]
   },
   {
@@ -2428,7 +2454,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "west-bengal",
     "tier": 2,
     "id": "in-west-bengal-darjeeling",
-    "placeId": "in-west-bengal-darjeeling"
+    "placeId": "in-west-bengal-darjeeling",
+    "aliases": [
+      "Darjiling"
+    ]
   },
   {
     "name": "Jalpaiguri",
@@ -2631,11 +2660,11 @@ export const ACS_CITIES: ACSCity[] = [
   {
     "name": "Mahbubnagar",
     "slug": "mahbubnagar",
-    "state": "Andhra Pradesh",
-    "stateSlug": "andhra-pradesh",
+    "state": "Telangana",
+    "stateSlug": "telangana",
     "tier": 2,
-    "id": "in-andhra-pradesh-mahbubnagar",
-    "placeId": "in-andhra-pradesh-mahbubnagar"
+    "id": "in-telangana-mahbubnagar",
+    "placeId": "in-telangana-mahbubnagar"
   },
   {
     "name": "Hindupur",
@@ -2667,11 +2696,11 @@ export const ACS_CITIES: ACSCity[] = [
   {
     "name": "Nalgonda",
     "slug": "nalgonda",
-    "state": "Andhra Pradesh",
-    "stateSlug": "andhra-pradesh",
+    "state": "Telangana",
+    "stateSlug": "telangana",
     "tier": 2,
-    "id": "in-andhra-pradesh-nalgonda",
-    "placeId": "in-andhra-pradesh-nalgonda"
+    "id": "in-telangana-nalgonda",
+    "placeId": "in-telangana-nalgonda"
   },
   {
     "name": "Guntakal",
@@ -2694,11 +2723,11 @@ export const ACS_CITIES: ACSCity[] = [
   {
     "name": "Adilabad",
     "slug": "adilabad",
-    "state": "Andhra Pradesh",
-    "stateSlug": "andhra-pradesh",
+    "state": "Telangana",
+    "stateSlug": "telangana",
     "tier": 2,
-    "id": "in-andhra-pradesh-adilabad",
-    "placeId": "in-andhra-pradesh-adilabad"
+    "id": "in-telangana-adilabad",
+    "placeId": "in-telangana-adilabad"
   },
   {
     "name": "Narasaraopet",
@@ -2721,11 +2750,11 @@ export const ACS_CITIES: ACSCity[] = [
   {
     "name": "Suryapet",
     "slug": "suryapet",
-    "state": "Andhra Pradesh",
-    "stateSlug": "andhra-pradesh",
+    "state": "Telangana",
+    "stateSlug": "telangana",
     "tier": 2,
-    "id": "in-andhra-pradesh-suryapet",
-    "placeId": "in-andhra-pradesh-suryapet"
+    "id": "in-telangana-suryapet",
+    "placeId": "in-telangana-suryapet"
   },
   {
     "name": "Tadepalligudem",
@@ -2739,11 +2768,11 @@ export const ACS_CITIES: ACSCity[] = [
   {
     "name": "Miryalaguda",
     "slug": "miryalaguda",
-    "state": "Andhra Pradesh",
-    "stateSlug": "andhra-pradesh",
+    "state": "Telangana",
+    "stateSlug": "telangana",
     "tier": 2,
-    "id": "in-andhra-pradesh-miryalaguda",
-    "placeId": "in-andhra-pradesh-miryalaguda"
+    "id": "in-telangana-miryalaguda",
+    "placeId": "in-telangana-miryalaguda"
   },
   {
     "name": "Chilakaluripet",
@@ -3321,15 +3350,6 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-karnataka-peenya"
   },
   {
-    "name": "Tumakuru",
-    "slug": "tumakuru",
-    "state": "Karnataka",
-    "stateSlug": "karnataka",
-    "tier": 2,
-    "id": "in-karnataka-tumakuru",
-    "placeId": "in-karnataka-tumakuru"
-  },
-  {
     "name": "Hubli and Dharwad",
     "slug": "hubli-and-dharwad",
     "state": "Karnataka",
@@ -3346,15 +3366,6 @@ export const ACS_CITIES: ACSCity[] = [
     "tier": 2,
     "id": "in-karnataka-gulbarga",
     "placeId": "in-karnataka-gulbarga"
-  },
-  {
-    "name": "Davanagere",
-    "slug": "davanagere",
-    "state": "Karnataka",
-    "stateSlug": "karnataka",
-    "tier": 2,
-    "id": "in-karnataka-davanagere",
-    "placeId": "in-karnataka-davanagere"
   },
   {
     "name": "Raichur",
@@ -3435,7 +3446,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "karnataka",
     "tier": 2,
     "id": "in-karnataka-ranibennur",
-    "placeId": "in-karnataka-ranibennur"
+    "placeId": "in-karnataka-ranibennur",
+    "aliases": [
+      "Ranebennur"
+    ]
   },
   {
     "name": "Gangawati",
@@ -3654,15 +3668,6 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-maharashtra-nanded-waghala"
   },
   {
-    "name": "Kolapur",
-    "slug": "kolapur",
-    "state": "Maharashtra",
-    "stateSlug": "maharashtra",
-    "tier": 2,
-    "id": "in-maharashtra-kolapur",
-    "placeId": "in-maharashtra-kolapur"
-  },
-  {
     "name": "Sangli Miraj Kupwad",
     "slug": "sangli-miraj-kupwad",
     "state": "Maharashtra",
@@ -3679,15 +3684,6 @@ export const ACS_CITIES: ACSCity[] = [
     "tier": 2,
     "id": "in-maharashtra-malegaon",
     "placeId": "in-maharashtra-malegaon"
-  },
-  {
-    "name": "Ahmadnagar",
-    "slug": "ahmadnagar",
-    "state": "Maharashtra",
-    "stateSlug": "maharashtra",
-    "tier": 2,
-    "id": "in-maharashtra-ahmadnagar",
-    "placeId": "in-maharashtra-ahmadnagar"
   },
   {
     "name": "Parbhani",
@@ -3751,33 +3747,6 @@ export const ACS_CITIES: ACSCity[] = [
     "tier": 2,
     "id": "in-maharashtra-panvel",
     "placeId": "in-maharashtra-panvel"
-  },
-  {
-    "name": "Badalapur",
-    "slug": "badalapur",
-    "state": "Maharashtra",
-    "stateSlug": "maharashtra",
-    "tier": 2,
-    "id": "in-maharashtra-badalapur",
-    "placeId": "in-maharashtra-badalapur"
-  },
-  {
-    "name": "Bid",
-    "slug": "bid",
-    "state": "Maharashtra",
-    "stateSlug": "maharashtra",
-    "tier": 2,
-    "id": "in-maharashtra-bid",
-    "placeId": "in-maharashtra-bid"
-  },
-  {
-    "name": "Gondiya",
-    "slug": "gondiya",
-    "state": "Maharashtra",
-    "stateSlug": "maharashtra",
-    "tier": 2,
-    "id": "in-maharashtra-gondiya",
-    "placeId": "in-maharashtra-gondiya"
   },
   {
     "name": "Barshi",
@@ -3868,15 +3837,6 @@ export const ACS_CITIES: ACSCity[] = [
     "tier": 2,
     "id": "in-odisha-brahmapur-town",
     "placeId": "in-odisha-brahmapur-town"
-  },
-  {
-    "name": "Raurkela",
-    "slug": "raurkela",
-    "state": "Odisha",
-    "stateSlug": "odisha",
-    "tier": 2,
-    "id": "in-odisha-raurkela",
-    "placeId": "in-odisha-raurkela"
   },
   {
     "name": "Raurkela Industrial Township",
@@ -4068,15 +4028,6 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-rajasthan-baran"
   },
   {
-    "name": "Chittaurgarh",
-    "slug": "chittaurgarh",
-    "state": "Rajasthan",
-    "stateSlug": "rajasthan",
-    "tier": 2,
-    "id": "in-rajasthan-chittaurgarh",
-    "placeId": "in-rajasthan-chittaurgarh"
-  },
-  {
     "name": "Hindaun",
     "slug": "hindaun",
     "state": "Rajasthan",
@@ -4138,15 +4089,6 @@ export const ACS_CITIES: ACSCity[] = [
     "tier": 2,
     "id": "in-tamil-nadu-tiruvottiyur",
     "placeId": "in-tamil-nadu-tiruvottiyur"
-  },
-  {
-    "name": "Thoothukkudi",
-    "slug": "thoothukkudi",
-    "state": "Tamil Nadu",
-    "stateSlug": "tamil-nadu",
-    "tier": 2,
-    "id": "in-tamil-nadu-thoothukkudi",
-    "placeId": "in-tamil-nadu-thoothukkudi"
   },
   {
     "name": "Pallavaram",
@@ -4599,15 +4541,6 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-uttar-pradesh-kasganj"
   },
   {
-    "name": "Hardwar",
-    "slug": "hardwar",
-    "state": "Uttarakhand",
-    "stateSlug": "uttarakhand",
-    "tier": 2,
-    "id": "in-uttarakhand-hardwar",
-    "placeId": "in-uttarakhand-hardwar"
-  },
-  {
     "name": "Haldwani and Kathgodam",
     "slug": "haldwani-and-kathgodam",
     "state": "Uttarakhand",
@@ -4779,15 +4712,6 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-west-bengal-uttarpara-kotrung"
   },
   {
-    "name": "Barrackpur",
-    "slug": "barrackpur",
-    "state": "West Bengal",
-    "stateSlug": "west-bengal",
-    "tier": 2,
-    "id": "in-west-bengal-barrackpur",
-    "placeId": "in-west-bengal-barrackpur"
-  },
-  {
     "name": "Jamuria",
     "slug": "jamuria",
     "state": "West Bengal",
@@ -4878,15 +4802,6 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-west-bengal-dabgram"
   },
   {
-    "name": "Darjiling",
-    "slug": "darjiling",
-    "state": "West Bengal",
-    "stateSlug": "west-bengal",
-    "tier": 2,
-    "id": "in-west-bengal-darjiling",
-    "placeId": "in-west-bengal-darjiling"
-  },
-  {
     "name": "Titagarh",
     "slug": "titagarh",
     "state": "West Bengal",
@@ -4938,7 +4853,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "west-bengal",
     "tier": 2,
     "id": "in-west-bengal-khardaha",
-    "placeId": "in-west-bengal-khardaha"
+    "placeId": "in-west-bengal-khardaha",
+    "aliases": [
+      "Khardah"
+    ]
   },
   {
     "name": "Bansberia",
@@ -5537,7 +5455,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "maharashtra",
     "tier": 3,
     "id": "in-maharashtra-badlapur",
-    "placeId": "in-maharashtra-badlapur"
+    "placeId": "in-maharashtra-badlapur",
+    "aliases": [
+      "Badalapur"
+    ]
   },
   {
     "name": "Dombivli",
@@ -5654,7 +5575,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "maharashtra",
     "tier": 3,
     "id": "in-maharashtra-beed",
-    "placeId": "in-maharashtra-beed"
+    "placeId": "in-maharashtra-beed",
+    "aliases": [
+      "Bid"
+    ]
   },
   {
     "name": "Hingoli",
@@ -5681,7 +5605,10 @@ export const ACS_CITIES: ACSCity[] = [
     "stateSlug": "maharashtra",
     "tier": 2,
     "id": "in-maharashtra-gondia",
-    "placeId": "in-maharashtra-gondia"
+    "placeId": "in-maharashtra-gondia",
+    "aliases": [
+      "Gondiya"
+    ]
   },
   {
     "name": "Gadchiroli",
@@ -6341,15 +6268,6 @@ export const ACS_CITIES: ACSCity[] = [
     "placeId": "in-karnataka-karwar"
   },
   {
-    "name": "Ranebennur",
-    "slug": "ranebennur",
-    "state": "Karnataka",
-    "stateSlug": "karnataka",
-    "tier": 3,
-    "id": "in-karnataka-ranebennur",
-    "placeId": "in-karnataka-ranebennur"
-  },
-  {
     "name": "Patancheru",
     "slug": "patancheru",
     "state": "Telangana",
@@ -6864,15 +6782,6 @@ export const ACS_CITIES: ACSCity[] = [
     "tier": 2,
     "id": "in-west-bengal-tangra",
     "placeId": "in-west-bengal-tangra"
-  },
-  {
-    "name": "Khardah",
-    "slug": "khardah",
-    "state": "West Bengal",
-    "stateSlug": "west-bengal",
-    "tier": 3,
-    "id": "in-west-bengal-khardah",
-    "placeId": "in-west-bengal-khardah"
   },
   {
     "name": "Sodepur",

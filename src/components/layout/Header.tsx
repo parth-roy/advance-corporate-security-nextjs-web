@@ -38,6 +38,8 @@ const navLinks: NavLinkItem[] = [
       { label: "Security & Safety", href: "/services/security-safety" },
       { label: "Facility Management", href: "/services/facility-management" },
       { label: "Integrated Facility Mgmt (IFM)", href: "/services/integrated-facility-management" },
+      { label: "Warehouse Manpower Supply", href: "/services/warehouse-manpower-supply" },
+      { label: "Industrial Factory Workers", href: "/services/industrial-factory-workers" },
       { label: "Workforce Outsourcing", href: "/services/placement-services" },
       { label: "Horticulture Services", href: "/services/horticulture" },
     ],
@@ -172,6 +174,16 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         label: "Integrated Facility Mgmt (IFM)",
         href: "/services/integrated-facility-management",
         desc: "Unified single-contract delivery combining guarding, cleaning, and regulatory compliance.",
+      },
+      {
+        label: "Warehouse Manpower Supply",
+        href: "/services/warehouse-manpower-supply",
+        desc: "Bulk pickers, packers, container loaders, and licensed forklift operators for logistics hubs.",
+      },
+      {
+        label: "Industrial Factory Workers",
+        href: "/services/industrial-factory-workers",
+        desc: "Assembly line workers, certified CNC/lathe operators, and helpers under Factories Act standards.",
       },
       {
         label: "Workforce Outsourcing",

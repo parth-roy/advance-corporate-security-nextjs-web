@@ -568,10 +568,12 @@ export default async function ServiceCityPage({
             {faqs.map((faq, i) => (
               <details key={i} className="group border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
                 <summary className="flex items-center justify-between px-5 py-4 cursor-pointer font-roboto font-bold text-navy hover:bg-sky-50/50 transition-colors list-none text-base">
-                  <span>{faq.question}</span>
-                  <svg className="w-5 h-5 text-sky shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="leading-snug text-slate-900">{faq.question}</span>
+                  <div className="w-8 h-8 rounded-full !bg-sky-100/80 !text-[#0284c7] group-open:!bg-[#0b1f3f] group-open:!text-white flex items-center justify-center shrink-0 transition-all duration-200 group-open:rotate-180">
+                    <svg className="w-4 h-4 shrink-0 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </summary>
                 <div className="px-5 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
                   {faq.answer}

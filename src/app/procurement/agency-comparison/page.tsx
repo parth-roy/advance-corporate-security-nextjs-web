@@ -739,15 +739,12 @@ export default function AgencyComparisonPage() {
                 className="group border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-2xs hover:border-sky-300 transition-colors"
               >
                 <summary className="flex items-center justify-between px-6 py-4 cursor-pointer font-roboto font-bold text-navy hover:bg-slate-50/70 transition-colors list-none text-sm sm:text-base">
-                  <span>{faq.question}</span>
-                  <svg
-                    className="w-5 h-5 text-sky shrink-0 transition-transform duration-200 group-open:rotate-180"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="leading-snug text-slate-900">{faq.question}</span>
+                  <div className="w-8 h-8 rounded-full !bg-sky-100/80 !text-[#0284c7] group-open:!bg-[#0b1f3f] group-open:!text-white flex items-center justify-center shrink-0 transition-all duration-200 group-open:rotate-180">
+                    <svg className="w-4 h-4 shrink-0 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </summary>
                 <div className="px-6 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
                   {faq.answer}

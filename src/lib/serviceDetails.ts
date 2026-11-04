@@ -1078,6 +1078,126 @@ export const ENTERPRISE_SERVICE_DETAILS: Record<string, EnterpriseServiceDetail>
       { question: 'What mechanized equipment does ACS provide for grounds maintenance?', answer: 'We provide commercial motorized lawnmowers, hedge trimmers, brush-cutters, soil tillers, high-reach pole pruners, and leaf blowers to maintain expansive campuses efficiently.' },
       { question: 'Do you use chemical pesticides or organic fertilizers?', answer: 'ACS prioritizes environmental sustainability. We use organic vermicompost, bone meal, and natural neem-based bio-pesticides that are 100% safe for pets, birds, and corporate employees.' }
     ]
+  },
+  // 18. Warehouse Manpower Supply
+  'warehouse-manpower-supply': {
+    slug: 'warehouse-manpower-supply',
+    operationalScope: [
+      'High-volume container unloading, destuffing, palletization, and staging across multi-dock warehouse facilities.',
+      'RF-gun handheld barcode scanning, pick-and-pack fulfillment, order consolidation, and dispatch carton sealing.',
+      'Licensed Material Handling Equipment (MHE) operation: counterbalanced forklifts, reach trucks, and battery electric stackers.',
+      'Inventory cycle counting, SKU bin allocation, damages segregation, and returns processing (RTV/RTO).',
+      'Dynamic shift roster management with mandatory 1/6th reliever formula ensuring 24/7 continuous operations without overtime fatigue.',
+      'Daily gatepass reconciliation, weighbridge slips matching, and zero-loss dispatch audit trails.'
+    ],
+    trainingStandards: {
+      title: 'National Logistics Skills Council (LSC) & Safety Protocol',
+      hours: '40 Hours Pre-Deployment & MHE Certification',
+      certification: 'Certified Logistics Associate (CLA) & MHE Operator',
+      modules: [
+        'Ergonomic Lifting & Back Injury Prevention',
+        'WMS Barcode Scanning & RF Gun Protocols',
+        'Hazardous Chemical & Spill Containment',
+        'Fire Evacuation & Emergency Dock Shut-off'
+      ]
+    },
+    gearAndTechnology: [
+      'High-visibility fluorescent reflective vests (Class 2/3 compliant)',
+      'Steel-toe puncture-resistant puncture-proof safety shoes (IS 15298)',
+      'Cut-resistant nitrile work gloves for carton handling and box cutter operation',
+      'Safety bump caps and industrial protective eye goggles'
+    ],
+    sops: [
+      {
+        code: 'SOP-LOG-01',
+        title: 'Inbound Container Destuffing & Pallet Integrity Verification',
+        objective: 'Safely unload 20ft/40ft containers within SLA without product damages.',
+        protocol: 'Unloading team inspects container seal, photographs door seals, verifies container floor integrity, destuffs cartons in interlocking tier patterns onto Euro/ISO wooden pallets, stretch-wraps with 23-micron film, and logs pallet barcode into WMS before staging.'
+      },
+      {
+        code: 'SOP-LOG-02',
+        title: 'RF-Scan Order Picking & Damage-Zero Packing Flow',
+        objective: 'Achieve 99.85%+ pick accuracy with zero mis-shipments.',
+        protocol: 'Picker receives pick-list on RF gun, follows optimal serpentine bin travel route, scans bin barcode then item barcode, places items into color-coded tote, passes tote to packing station where packer conducts secondary barcode verification, inserts bubble cushion, and seals with tamper-evident tape.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Inbound Turnaround', metric: '40ft High-Cube Unloading Time', target: '< 120 Minutes', escalation: 'Additional 4-man helper squad mobilized to dock immediately' },
+      { tier: 'Pick Accuracy', metric: 'Order Dispatch Accuracy', target: '≥ 99.85%', escalation: 'Secondary verification station activated for offending SKU line' },
+      { tier: 'Shift Attendance', metric: 'Rostered Manpower Fill Rate', target: '≥ 98.5%', escalation: 'Staged bench relievers deployed from local corridor reserve' }
+    ],
+    complianceShield: [
+      { regulation: 'Contract Labour (Regulation & Abolition) Act 1970', standard: 'Form V Certificate & Principal Employer Shield', coverage: 'ACS holds valid central & state labour licenses with zero co-employment exposure' },
+      { regulation: 'Employees Provident Fund & MP Act 1952', standard: '100% Statutory ECR Deposit by 15th', coverage: 'EPF challans and employee-wise UAN contribution sheets provided monthly' },
+      { regulation: 'Employees State Insurance (ESIC) Act 1948', standard: 'Day-1 Biometric Pehchan Medical Cover', coverage: 'Complete medical cover and accidental insurance protecting workers and principal employer' }
+    ],
+    faqs: [
+      { question: 'Does ACS supply licensed forklift and reach truck operators?', answer: 'Yes. All ACS MHE (Material Handling Equipment) operators possess valid transport authority licenses, heavy equipment endorsements, and undergo practical maneuvering assessments before deployment at customer sites.' },
+      { question: 'How quickly can ACS scale up manpower during festive surge seasons?', answer: 'We maintain regional talent benches in key logistics corridors (Dankuni, Uluberia, Bhiwandi, Bilaspur). For Diwali, Big Billion Days, and seasonal spikes, we can scale operations from 50 to 500+ workers within 48 to 72 hours.' },
+      { question: 'How do you prevent shrinkage and material pilferage in high-value warehouses?', answer: 'We integrate physical security with logistics manpower: pocketless uniforms, mandatory metal-detector frisking at turnaround gates, CCTV coverage over packing stations, and dual-signoff gatepass reconciliations.' },
+      { question: 'Who is responsible for workplace injuries or accidents during material handling?', answer: 'ACS is the direct employer of record. All workers are covered under ESIC and comprehensive Group Personal Accident Insurance from Day 1, indemnifying the client from all workmen compensation claims.' },
+      { question: 'What is the 1/6th reliever formula and why is it mandatory?', answer: 'Under Indian Labour Laws, every worker deployed in continuous 24/7 or 6-day operations is legally entitled to one paid day of rest per week. ACS incorporates a 1/6th (16.67%) trained reliever ratio into all commercial rate cards to guarantee 100% station attendance without illegal overtime.' }
+    ]
+  },
+  // 19. Industrial Factory Workers
+  'industrial-factory-workers': {
+    slug: 'industrial-factory-workers',
+    operationalScope: [
+      'Certified machine operations for CNC routers, edge banding machines, panel saws, shearing presses, and lathe machines.',
+      'Conveyor assembly line production, component sub-assembly, quality checking, and finished goods crating.',
+      'Industrial helper operations: sheet metal loading, raw material conveying, furnace charging, and swarf clearing.',
+      'Preventive machinery cleaning, lubrication, oil top-ups, and 5S workplace housekeeping.',
+      'Strict adherence to industrial health and safety protocols including Lockout/Tagout (LOTO) and personal protective equipment.',
+      'Production logging, batch tracking, job card sign-offs, and shift handover reports.'
+    ],
+    trainingStandards: {
+      title: 'Directorate of Industrial Safety & Health (DISH) Certified Standard',
+      hours: '48 Hours Industrial Safety & Machine Handling',
+      certification: 'Certified Production Associate (CPA)',
+      modules: [
+        'Industrial Machinery Hazards & Emergency Trip Wires',
+        'Lockout / Tagout (LOTO) Procedures',
+        'Shopfloor 5S Discipline & Waste Minimization',
+        'First Aid, Chemical Burns & Fire Safety'
+      ]
+    },
+    gearAndTechnology: [
+      'Heavy-duty leather palm gloves, heat-resistant welding aprons, and Kevlar cut-resistant arm sleeves',
+      'High-impact polycarbonate safety glasses with side shields (ANSI Z87.1)',
+      'Industrial hard hats with chin straps (IS 2925) and ear muffs (SNR 28dB)',
+      'Steel-toe heat and oil-resistant industrial work boots'
+    ],
+    sops: [
+      {
+        code: 'SOP-MFG-01',
+        title: 'Machine Pre-Start Inspection & Emergency Stop Calibration',
+        objective: 'Verify machine safety guards and interlocks are functioning before energizing motors.',
+        protocol: 'Operator conducts physical check of safety curtains, checks lubricating oil levels, tests red mushroom emergency-stop button, verifies dust extraction ducts are clear, and logs machine readiness in daily shopfloor logbook before initiating production run.'
+      },
+      {
+        code: 'SOP-MFG-02',
+        title: 'Shopfloor Shift Handover & Production Tally Protocol',
+        objective: 'Ensure zero-defect continuation and transparent piece-rate / batch output recording.',
+        protocol: 'Outgoing machine operator completes current batch cycle, cleans scrap and wood dust/swarf from bed, tallies finished parts against job card, briefs incoming operator on tooling wear or temperature irregularities, and both sign the shift logbook.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Line Uptime', metric: 'Operator-Induced Line Downtime', target: '< 0.1%', escalation: 'Relief technician mobilized immediately; retraining mandated' },
+      { tier: 'Quality Defect', metric: 'Parts Rejected Due to Operator Error', target: '< 0.25%', escalation: 'Machine calibration audit conducted with client plant manager' },
+      { tier: 'Station Attendance', metric: 'Shift Roster Punctuality & Fill', target: '≥ 99.0%', escalation: 'On-site floor marshall deploys staged standby operator' }
+    ],
+    complianceShield: [
+      { regulation: 'The Factories Act 1948', standard: 'Certified Work Hours & Safety Committees', coverage: 'Strict adherence to 48-hour weekly caps, double overtime under Sec 59, and mandatory safety gear' },
+      { regulation: 'Form 35 Medical Fitness Certificate', standard: 'Pre-Employment Medical & Vision Examination', coverage: 'Every worker certified fit by a registered factory certifying surgeon before floor entry' },
+      { regulation: 'Contract Labour (CLRA) Act 1970', standard: 'Principal Employer Indemnification', coverage: 'Complete statutory PF, ESIC, and minimum wage documentation furnished before billing' }
+    ],
+    faqs: [
+      { question: 'What technical machine operators does ACS supply?', answer: 'ACS supplies experienced operators for CNC routers, multi-boring units, edge banding machinery, cold presses, beam saws, lathe machines, milling equipment, and industrial packaging conveyors.' },
+      { question: 'How does ACS handle statutory compliance for factory contract workers?', answer: 'We maintain 100% digital records of attendance, wage registers (Form B/C), EPF and ESIC challans. We submit a comprehensive Monthly Compliance Dossier to your HR before billing so your company is 100% audit-proof.' },
+      { question: 'Are workers medically certified before being posted in manufacturing environments?', answer: 'Yes. In accordance with the Factories Act, all deployed industrial workers undergo vision screening, audiometric testing, and general physical fitness examinations with certified medical documentation.' },
+      { question: 'How does ACS ensure productivity on assembly lines?', answer: 'We deploy dedicated On-Site Floor Marshalls who monitor hourly production counts, manage line balance, coordinate with plant engineers, and manage worker rotations to eliminate fatigue.' },
+      { question: 'Can ACS provide complete on-site floor supervision?', answer: 'Yes. For facilities deploying 20+ workers, ACS embeds dedicated shift supervisors and floor marshalls at zero extra cost to handle muster rolls, grievance redressal, and safety enforcement.' }
+    ]
   }
 };
 

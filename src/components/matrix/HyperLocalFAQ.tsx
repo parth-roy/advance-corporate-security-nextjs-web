@@ -107,15 +107,17 @@ export default function HyperLocalFAQ({
                   aria-expanded={isOpen}
                 >
                   <span className="text-sm sm:text-base leading-snug">{faq.q}</span>
-                  <span
-                    className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-sm shrink-0 transition-all duration-200 ${
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
                       isOpen
-                        ? "bg-navy text-white shadow-xs"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        ? "rotate-180 !bg-[#0b1f3f] !text-white shadow-xs"
+                        : "!bg-sky-100/80 !text-[#0284c7] hover:!bg-sky-200"
                     }`}
                   >
-                    {isOpen ? '−' : '+'}
-                  </span>
+                    <svg className="w-4 h-4 shrink-0 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </button>
 
                 {isOpen && (
