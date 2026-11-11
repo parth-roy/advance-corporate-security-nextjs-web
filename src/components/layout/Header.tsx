@@ -38,8 +38,13 @@ const navLinks: NavLinkItem[] = [
       { label: "Security & Safety", href: "/services/security-safety" },
       { label: "Facility Management", href: "/services/facility-management" },
       { label: "Integrated Facility Mgmt (IFM)", href: "/services/integrated-facility-management" },
+      { label: "Warehouse Loading & Unloading (Hamali)", href: "/services/loading-unloading-labour" },
       { label: "Warehouse Manpower Supply", href: "/services/warehouse-manpower-supply" },
-      { label: "Industrial Factory Workers", href: "/services/industrial-factory-workers" },
+      { label: "Industrial Factory & Karkhana Workers", href: "/services/industrial-factory-workers" },
+      { label: "Industrial Electricians & DG Operators", href: "/services/industrial-electrician-contractors" },
+      { label: "Commercial Plumbers & STP Operators", href: "/services/commercial-plumbing-contractors" },
+      { label: "HVAC & Cold Storage Techs", href: "/services/hvac-ac-maintenance-staffing" },
+      { label: "Commercial Shifting & Rigging", href: "/services/commercial-shifting-relocation-labour" },
       { label: "Workforce Outsourcing", href: "/services/placement-services" },
       { label: "Horticulture Services", href: "/services/horticulture" },
     ],
@@ -49,6 +54,7 @@ const navLinks: NavLinkItem[] = [
     href: "/procurement",
     children: [
       { label: "Procurement Center", href: "/procurement" },
+      { label: "West Bengal 23-District Hubs", href: "/location/state/west-bengal" },
       { label: "Agency Comparison Matrix", href: "/procurement/agency-comparison" },
       { label: "Rate Card Calculator", href: "/rate-card-calculator" },
       { label: "Tender Bids & Alerts", href: "/tenders" },
@@ -176,14 +182,29 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         desc: "Unified single-contract delivery combining guarding, cleaning, and regulatory compliance.",
       },
       {
-        label: "Warehouse Manpower Supply",
-        href: "/services/warehouse-manpower-supply",
-        desc: "Bulk pickers, packers, container loaders, and licensed forklift operators for logistics hubs.",
+        label: "Warehouse Loading & Unloading (Hamali)",
+        href: "/services/loading-unloading-labour",
+        desc: "Bulk loaders, container stuffing/destuffing gangs & godown material handling teams.",
       },
       {
-        label: "Industrial Factory Workers",
+        label: "Warehouse Manpower Supply",
+        href: "/services/warehouse-manpower-supply",
+        desc: "Bulk pickers, packers, inventory scanners, and licensed forklift operators for logistics hubs.",
+      },
+      {
+        label: "Industrial Factory & Karkhana Workers",
         href: "/services/industrial-factory-workers",
-        desc: "Assembly line workers, certified CNC/lathe operators, and helpers under Factories Act standards.",
+        desc: "Assembly line helpers, ITI welders, CNC/lathe operators under CLRA & Factories Act standards.",
+      },
+      {
+        label: "Industrial Electricians & MEP Trades",
+        href: "/services/industrial-electrician-contractors",
+        desc: "HT/LT panel wiremen, DG set operators, commercial plumbers, HVAC chillers & civil crews.",
+      },
+      {
+        label: "Commercial Shifting & Office Support",
+        href: "/services/commercial-shifting-relocation-labour",
+        desc: "Plant machinery rigging, pallet-rack dismantling, corporate movers & peon/pantry staff.",
       },
       {
         label: "Workforce Outsourcing",
@@ -200,7 +221,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   "Govt & PSU": {
     title: "Govt & PSU Procurement",
     tagline:
-      "Specialized procurement desk for GeM bids, PSU tenders, and statutory wage compliance audits.",
+      "Specialized procurement desk for GeM bids, PSU tenders, West Bengal 23-district hubs & wage compliance audits.",
     subcategories: [
       "GeM TENDER BIDDING DESK",
       "PSU COMPLIANCE ADHERENCE",
@@ -208,14 +229,19 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       "STATUTORY AUDIT & VETTING",
     ],
     featuredLink: {
-      label: "Explore Live Tender Alerts",
-      href: "/tenders",
+      label: "Explore West Bengal 23-District Hubs",
+      href: "/location/state/west-bengal",
     },
     items: [
       {
         label: "Procurement Center",
         href: "/procurement",
         desc: "Centralized bidding portal, GeM vendor profiles, and tender submission documentation.",
+      },
+      {
+        label: "West Bengal District & Corridor Hub",
+        href: "/location/state/west-bengal",
+        desc: "147+ WB industrial hubs across 23 districts, Zone A/B Jul-Dec 2026 wages & SLAs.",
       },
       {
         label: "Agency Comparison Matrix",

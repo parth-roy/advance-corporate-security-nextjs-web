@@ -4,6 +4,9 @@
 // Keywords from SEO Research Report integrated
 // ============================================================
 
+import { WB_EXTRA_LOCAL_ZONES } from "./data/wb-local-zones";
+import { WB_WAGES_ZONE_A, WB_WAGES_ZONE_B, WB_CURRENT_PERIOD } from "./wb-wages";
+
 export interface FAQ {
   question: string;
   answer: string;
@@ -21,8 +24,27 @@ export interface FaqContext {
 export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
   const { cityName, stateName, serviceName, serviceShortName, serviceSlug } = ctx;
   const isSecurityService = ctx.schemaType === 'SecurityService';
-  const isFacility = ['housekeeping', 'janitorial', 'pest-control', 'facade-cleaning', 'mep-maintenance'].includes(serviceSlug);
-  const isManpower = ['manpower-outsourcing', 'placement-services', 'payroll-management'].includes(serviceSlug);
+  const isFacility = [
+    'housekeeping',
+    'janitorial',
+    'pest-control',
+    'facade-cleaning',
+    'mep-maintenance',
+    'industrial-electrician-contractors',
+    'commercial-plumbing-contractors',
+    'hvac-ac-maintenance-staffing',
+    'office-support-peon-pantry-staff',
+  ].includes(serviceSlug);
+  const isManpower = [
+    'manpower-outsourcing',
+    'placement-services',
+    'payroll-management',
+    'warehouse-manpower-supply',
+    'industrial-factory-workers',
+    'loading-unloading-labour',
+    'carpentry-painting-civil-labour',
+    'commercial-shifting-relocation-labour',
+  ].includes(serviceSlug);
 
   const baseFaqs: FAQ[] = [
     // FAQ 1 — PSARA / Licensing (Security) OR ISO (Facility/Manpower)
@@ -69,10 +91,57 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
       question: `How quickly can ACS deploy housekeeping staff for a new corporate office in ${cityName}?`,
       answer: `ACS can deploy trained, uniformed corporate housekeeping staff in ${cityName} within 48–72 hours for standard office setups. For large corporate campuses or hospitals in ${stateName}, we conduct a pre-deployment site survey to create a customized cleaning schedule and staffing plan at no extra cost.`
     });
+  } else if (serviceSlug === 'loading-unloading-labour' || serviceSlug === 'warehouse-manpower-supply') {
+    baseFaqs.push({
+      question: `Can ACS supply bulk hamali, loading-unloading labour, and warehouse packers in ${cityName}?`,
+      answer: `Yes. ACS supplies bulk contract gangs (10 to 300+ workers per shift) for container stuffing/destuffing, truck loading/unloading, pallet jack movement, godown stacking, and e-commerce sortation across ${cityName}, ${stateName}. Every worker is covered under ESIC (3.25%), EPF (13%), safety PPE, and shift attendance logs.`
+    });
+  } else if (serviceSlug === 'industrial-electrician-contractors') {
+    baseFaqs.push({
+      question: `Do your industrial electricians in ${cityName} hold valid wireman permits for HT/LT panels and DG sets?`,
+      answer: `Yes. All ACS industrial electricians and DG operators deployed in ${cityName} possess valid ITI trade certificates and West Bengal/state Wireman Licensing Board permits for 415V/11kV HT/LT panels, AMF/DG changeover maintenance, capacitor banks, and factory shift troubleshooting.`
+    });
+  } else if (serviceSlug === 'commercial-plumbing-contractors') {
+    baseFaqs.push({
+      question: `Can ACS provide licensed industrial plumbers and STP/WTP operators in ${cityName}?`,
+      answer: `Yes. ACS deploys experienced pipeline fitters, commercial maintenance plumbers, STP/WTP/ETP plant operators, and fire-hydrant piping technicians for factories, warehouses, hospitals, and corporate campuses in ${cityName}, ${stateName}.`
+    });
+  } else if (serviceSlug === 'hvac-ac-maintenance-staffing') {
+    baseFaqs.push({
+      question: `Does ACS staff HVAC chiller technicians and cold storage refrigeration mechanics in ${cityName}?`,
+      answer: `Yes. We provide on-site residential shift HVAC technicians, VRF/VRV AC mechanics, AHU duct cleaners, and industrial refrigeration mechanics for cold storages, pharma depots, hospitals, and commercial towers across ${cityName}.`
+    });
+  } else if (serviceSlug === 'industrial-factory-workers') {
+    baseFaqs.push({
+      question: `What karkhana and factory worker categories does ACS deploy in ${cityName}?`,
+      answer: `In ${cityName}, ACS supplies general karkhana helpers, production line feeders, packaging machine operators, ITI welders (ARC/MIG/TIG), fabricators, CNC/lathe helpers, and quality sorting staff under CLRA third-party payroll with zero principal-employer legal risk.`
+    });
+  } else if (serviceSlug === 'carpentry-painting-civil-labour') {
+    baseFaqs.push({
+      question: `Can we hire industrial crate carpenters, epoxy floor crew, and civil maintenance labour in ${cityName}?`,
+      answer: `Yes. ACS provides export wooden-crate packing carpenters, modular office furniture repair carpenters, industrial shed painters, epoxy warehouse floor coating crews, and masonry civil repair teams in ${cityName} on AMC or project contracts.`
+    });
+  } else if (serviceSlug === 'office-support-peon-pantry-staff') {
+    baseFaqs.push({
+      question: `Are ACS office boys, peons, and pantry staff in ${cityName} police-verified and uniformed?`,
+      answer: `Yes. Every office boy, dak runner, pantry attendant, and reception support staff deployed in ${cityName} undergoes strict antecedent verification, hygiene orientation, and uniform onboarding under monthly PF/ESIC payroll.`
+    });
+  } else if (serviceSlug === 'commercial-shifting-relocation-labour') {
+    baseFaqs.push({
+      question: `Does ACS handle corporate office shifting and factory machinery rigging in ${cityName}?`,
+      answer: `Yes. ACS deploys trained relocation gangs, IT workstation packers, pallet-rack dismantling crews, and heavy machinery rigging helpers for weekend commercial office moves and plant relocations across ${cityName} and neighbouring hubs.`
+    });
   } else if (isManpower) {
     baseFaqs.push({
       question: `What is the minimum wage for contract labour in ${stateName}?`,
       answer: `ACS strictly follows the current ${stateName} state minimum wage notification for all contract labour deployed in ${cityName}. We maintain complete wage registers, attendance records, and statutory deposit receipts as mandated by the Minimum Wages Act, 1948 — giving you complete audit-ready documentation.`
+    });
+  }
+
+  if (stateName === 'West Bengal') {
+    baseFaqs.push({
+      question: `What are the ${WB_CURRENT_PERIOD} West Bengal Minimum Wages (Zone A vs Zone B) applicable in ${cityName}?`,
+      answer: `Under the West Bengal Labour Commissioner Gazette (${WB_CURRENT_PERIOD}), Zone A municipal/industrial rates are ₹${WB_WAGES_ZONE_A.unskilled.monthly.toLocaleString('en-IN')}/mo (Unskilled), ₹${WB_WAGES_ZONE_A.semiSkilled.monthly.toLocaleString('en-IN')}/mo (Semi-Skilled), ₹${WB_WAGES_ZONE_A.skilled.monthly.toLocaleString('en-IN')}/mo (Skilled), and ₹${WB_WAGES_ZONE_A.highlySkilled.monthly.toLocaleString('en-IN')}/mo (Highly Skilled). Zone B non-municipal Gram Panchayat industrial pockets follow ₹${WB_WAGES_ZONE_B.unskilled.monthly.toLocaleString('en-IN')}/mo to ₹${WB_WAGES_ZONE_B.highlySkilled.monthly.toLocaleString('en-IN')}/mo, revised every January and July alongside 13.00% EPF, 3.25% ESIC, 8.33% Bonus, and WB LWF (₹3/₹30).`
     });
   }
 
@@ -166,7 +235,9 @@ export function getStateWageFramework(stateName: string): StateWageFramework {
     bonusRate: "8.33% (Statutory floor under Payment of Bonus Act, 1965 / Monthly accrual)",
     gratuityRate: "4.81% (Statutory reserve under Payment of Gratuity Act, 1972 on completed tenure)",
     lwfDetails,
-    wageRevisionFrequency: `Bi-annual Cost of Living Allowance (VDA) updates notified by the ${stateName} Labour Commissionerate (effective April and October each fiscal year).`,
+    wageRevisionFrequency: normState.includes("west bengal")
+      ? "Bi-annual Cost of Living Allowance (VDA) updates notified by the West Bengal Labour Commissionerate (effective January 1 and July 1 each calendar year for State Sphere; April & October for Central Sphere PSUs)."
+      : `Bi-annual Cost of Living Allowance (VDA) updates notified by the ${stateName} Labour Commissionerate (or April and October under Central Sphere notifications).`,
     complianceAssurance: `ACS provides certified TRRN payment receipts for EPFO, ESIC monthly challans, and digitally stamped Form-B Wage Registers by the 15th of each deployment cycle, indemnifying principal employers from joint liability under Section 21 of the CLRA Act.`
   };
 }
@@ -606,6 +677,7 @@ const KNOWN_CITY_ZONES: Record<string, LocalZone[]> = {
     { name: "SG Highway Corporate Corridor", type: "Financial & Corporate Offices", distance: "City Core" },
     { name: "Vatva & Naroda GIDC", type: "Chemical & Industrial Estate", distance: "East Ahmedabad" },
   ],
+  ...WB_EXTRA_LOCAL_ZONES,
 };
 
 export function getLocalDeploymentZones(cityName: string, stateName: string): LocalZone[] {

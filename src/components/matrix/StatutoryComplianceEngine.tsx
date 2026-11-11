@@ -1,6 +1,13 @@
 'use client';
 
 import React from 'react';
+import {
+  WB_EPF_EMPLOYER_RATE,
+  WB_ESIC_EMPLOYER_RATE,
+  WB_BONUS_RATE,
+  WB_CURRENT_PERIOD,
+  computeWBEmployerCost,
+} from '@/lib/wb-wages';
 
 interface StatutoryComplianceEngineProps {
   cityName: string;
@@ -17,12 +24,12 @@ export default function StatutoryComplianceEngine({
   labourOffice,
   labourWelfareRule,
 }: StatutoryComplianceEngineProps) {
-  const isZoneA = wageZone === 'A';
-  const minWageBase = isZoneA ? '₹11,615' : '₹9,800';
-  const epfEmployer = isZoneA ? '₹1,394 (12%)' : '₹1,176 (12%)';
-  const esicEmployer = isZoneA ? '₹377 (3.25%)' : '₹318 (3.25%)';
-  const bonus = isZoneA ? '₹967 (8.33%)' : '₹816 (8.33%)';
-  const lwfEmployer = '₹30 / worker (Biannual)';
+  const breakdown = computeWBEmployerCost(wageZone, 'unskilled');
+  const minWageBase = `₹${breakdown.basicWage.toLocaleString('en-IN')}`;
+  const epfEmployer = `₹${breakdown.epf.toLocaleString('en-IN')} (${(WB_EPF_EMPLOYER_RATE * 100).toFixed(0)}%)`;
+  const esicEmployer = `₹${breakdown.esic.toLocaleString('en-IN')} (${(WB_ESIC_EMPLOYER_RATE * 100).toFixed(2)}%)`;
+  const bonus = `₹${breakdown.bonus.toLocaleString('en-IN')} (${(WB_BONUS_RATE * 100).toFixed(2)}%)`;
+  const lwfEmployer = `₹30 / worker (Biannual — ${WB_CURRENT_PERIOD})`;
 
   return (
     <section className="py-16 bg-slate-50 border-b border-slate-200">

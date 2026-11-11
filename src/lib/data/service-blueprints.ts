@@ -269,6 +269,141 @@ export const SERVICE_BLUEPRINTS: Record<string, ServiceBlueprint> = {
     complianceGuarantees: ['Environment Protection Act & Local Municipal Green Cover norms', 'West Bengal Minimum Wages (Agricultural / Horticultural sphere)', '100% EPF and ESIC contribution remittance', 'Safe usage of non-toxic eco-friendly organic inputs'],
     reportingCadence: 'Monthly lawn health index, seasonal planting schedule, and botanical inventory updates.',
   },
+
+  'warehouse-manpower-supply': {
+    slug: 'warehouse-manpower-supply',
+    name: 'Warehouse Logistics Staffing & Helper Manpower',
+    sopSteps: [
+      { stepNumber: 1, title: 'WMS Role Profiling & Surge Staging', detail: 'Mapping bay volume to exact picker, packer, scanner, and MHE forklift operator headcount from regional logistics benches.' },
+      { stepNumber: 2, title: 'Aadhaar KYC & Anti-Shrinkage Briefing', detail: 'Pre-deployment verification, pocketless uniform issuance, and standard 5S warehouse aisle training.' },
+      { stepNumber: 3, title: 'RF-Scan Pick & Container Destuffing Execution', detail: 'Shift-wise execution across inbound docks, put-away bins, cold rooms, and dispatch staging lanes.' },
+      { stepNumber: 4, title: 'Biometric Attendance & Throughput Audit', detail: 'Turnstile biometric sync feeding digital muster rolls, 1/6th reliever tracking, and shift-end challan reconciliation.' },
+    ],
+    deployedEquipment: ['Biometric Attendance Terminals', 'Safety Shoes (IS 15298) & High-Vis Vests', 'Cut-Resistant Nitrile Handling Gloves', 'Portable Hand Trolleys & Stretch-Wrap Dispensers', 'Walkie-Talkie Supervisor Coordination Radios'],
+    personnelProfiles: ['RF-Gun Pickers, Packers & Inventory Sorters', 'Licensed Reach-Truck & Forklift (MHE) Operators', 'Inbound Container Destuffing & Palletizing Crews', 'On-Site Shift Supervisors & Dispatch Coordinators'],
+    complianceGuarantees: ['CLRA Form-V license with Principal Employer indemnification', 'West Bengal Zone A/B minimum wages bank-credited by 7th', 'Day-1 ESIC injury cover & 13% EPFO ECR monthly reconciliation', '16.67% trained reliever buffer eliminating illegal overtime'],
+    reportingCadence: 'Shift-wise bay attendance, hourly box/pallet throughput logs, and monthly statutory compliance dossier.',
+  },
+
+  'industrial-factory-workers': {
+    slug: 'industrial-factory-workers',
+    name: 'Industrial Factory Labor & Technical Machine Operators',
+    sopSteps: [
+      { stepNumber: 1, title: 'ITI Skill Assessment & Form 35 Medical Check', detail: 'Trade testing for CNC, lathe, press, welding, or assembly roles paired with registered Factory Act surgeon fitness certification.' },
+      { stepNumber: 2, title: 'DISH Safety & LOTO Floor Induction', detail: 'Mandatory pre-shift training on machine guarding, Lockout/Tagout (LOTO), PPE usage, and shopfloor emergency stops.' },
+      { stepNumber: 3, title: 'Production Line Shift Deployment', detail: 'Continuous 8-hour rotational shifts supervised by ACS floor marshalls aligned to target batch production quotas.' },
+      { stepNumber: 4, title: 'Form-B Register & Statutory Reconciliation', detail: 'Daily overtime compliance tracking (Sec 59 double rate), bank wage transfer, and EPF/ESIC UAN credit filing.' },
+    ],
+    deployedEquipment: ['ANSI Z87.1 Safety Goggles & Hard Hats (IS 2925)', 'Leather Welding Aprons, Heat Gloves & Ear Muffs', 'Oil/Acid Resistant Steel-Toe Work Boots', 'Biometric Shift Terminals & Shopfloor Job Cards'],
+    personnelProfiles: ['Certified CNC, Lathe & Hydraulic Press Operators', 'ITI Welders (ARC, MIG, TIG) & Maintenance Fitters', 'Semi-Skilled Assembly, Bottling & Grading Staff', 'General Karkhana Helpers & Raw Material Feeders'],
+    complianceGuarantees: ['Factories Act 1948 & West Bengal Factories Rules compliance', 'Valid Form 35 Medical Certificates before floor deployment', '100% EPF (13%), ESIC (3.25%), Bonus (8.33%) & WB LWF', 'Complete Principal Employer insulation under CLRA Section 21'],
+    reportingCadence: 'Daily shift attendance muster, line safety incident zero-logs, and monthly UAN/ESIC audit packs.',
+  },
+
+  'loading-unloading-labour': {
+    slug: 'loading-unloading-labour',
+    name: 'Warehouse Loading, Unloading & Hamali Labour Contractors',
+    sopSteps: [
+      { stepNumber: 1, title: 'Hamali Gang Assembly & Bay Allocation', detail: 'Staging experienced 6-to-12 worker loading squads with shift mukaddam (gang leader) at designated truck/rail bays.' },
+      { stepNumber: 2, title: 'Container Seal & Vehicle Safety Chocking', detail: 'Placement of wheel chocks, ramp leveler inspection, and photographic container seal verification prior to door opening.' },
+      { stepNumber: 3, title: 'Tonnage / Carton Stacking & Lorry Loading', detail: 'Damage-free manual or pallet-jack loading/destuffing in interlocking layers across sacks, cartons, drums, or crates.' },
+      { stepNumber: 4, title: 'Challan Reconciliation & CLRA Form-V Signoff', detail: 'Count verification with warehouse supervisor, tonnage/piece log sign-off, and digital muster closure.' },
+    ],
+    deployedEquipment: ['Wheel Chocks & Mobile Dock Plates', 'Heavy-Duty Hand Trolleys & Pallet Jacks', 'Reinforced Shoulder Pads, Back-Support Belts & Gripped Gloves', 'Steel-Toe Safety Footwear & Fluorescent Vests'],
+    personnelProfiles: ['Experienced Godown Mutia & Hamali Mazdoor Squads', 'Cold-Storage Thermal Suit Loading Hands', 'Container Stuffing/Destuffing Specialists', 'Gang Supervisors (Mukaddams) managing bay turnarounds'],
+    complianceGuarantees: ['CLRA Form-V registered contract labour gang supply', 'Full ESIC medical & Workmen Compensation trauma cover', '13% EPF + 8.33% Bonus + WB Zone A/B minimum wages', 'Zero cash middleman leakage — direct worker bank transfers'],
+    reportingCadence: 'Daily truck turnaround sheet, tonnage/carton count register, and monthly ECR compliance file.',
+  },
+
+  'industrial-electrician-contractors': {
+    slug: 'industrial-electrician-contractors',
+    name: 'Industrial & Commercial Electrician Contractors (HT/LT)',
+    sopSteps: [
+      { stepNumber: 1, title: 'Electrical LOTO & Voltage Isolation Audit', detail: 'De-energizing panels under Lockout/Tagout tags, insulated mat verification, and arc-flash PPE donning.' },
+      { stepNumber: 2, title: 'Transformer, HT/LT Switchgear & DG Set PPM', detail: 'Checking transformer oil levels, tightening busbar lugs, inspecting APFC capacitors, and testing AMF DG auto-start.' },
+      { stepNumber: 3, title: 'Rapid Breakdown & Earth-Fault Rectification', detail: 'Sub-15 minute fault isolation on VFD trips, MCC starter burnouts, and commercial lighting distribution boards.' },
+      { stepNumber: 4, title: 'CEA Statutory Logbook & Energy Signoff', detail: 'Hourly voltage/ampere/PF logging, earth-pit megger values, and diesel run-hour audit reports.' },
+    ],
+    deployedEquipment: ['Fluke Digital Clamp Meters & True-RMS Multimeters', 'Infrared Thermal Imaging Cameras & Earth Meggers', '11kV Insulated Gloves, Arc-Flash Shields & Rubber Mats', 'LOTO Padlock Kits, Hydraulic Lug Crimpers & Insulated Tools'],
+    personnelProfiles: ['Govt. Licensed Wireman Permit & Supervisor Permit Holders', 'HT/LT Panel, VCB/ACB & Busbar Maintenance Electricians', 'Diesel Generator (DG Set) & Synchronizing Panel Operators', 'Industrial Motor, Starter & Lighting Shift Wiremen'],
+    complianceGuarantees: ['Central Electricity Authority (CEA) Safety Regulations adherence', 'West Bengal Electrical Licensing Board permit verification', 'Skilled Category Statutory Wages + 13% EPF + ESIC/WC Insurance', 'Strict Permit-to-Work (PTW) documentation on every site'],
+    reportingCadence: 'Hourly electrical parameter log sheets, weekly IR thermography alerts, and monthly PPM health report.',
+  },
+
+  'commercial-plumbing-contractors': {
+    slug: 'commercial-plumbing-contractors',
+    name: 'Commercial Plumbing, Pipeline & STP/WTP Operator Staffing',
+    sopSteps: [
+      { stepNumber: 1, title: 'Pipeline Network & Utility Header Inspection', detail: 'Morning pressure gauge checks on borewell risers, booster pumps, RO plants, fire-hydrant wet risers, and overhead tanks.' },
+      { stepNumber: 2, title: 'STP / WTP / ETP Daily Water Quality Testing', detail: 'Dosing alum/hypochlorite, monitoring MLSS/pH/TDS levels, cleaning bar screens, and logging pump amperages.' },
+      { stepNumber: 3, title: 'Valve Repair, Pipe Joining & Drain Clearance', detail: 'Preventive gasket replacements, CPVC/GI/MS pipe threading, motorized drain snake rodding, and flush-valve calibration.' },
+      { stepNumber: 4, title: 'PCB Effluent & Consumption Register Signoff', detail: 'Recording treated water reuse volumes, tank chlorination logs, and preventive valve checklists.' },
+    ],
+    deployedEquipment: ['Motorized Drain Cleaning Auger Snakes & Jetters', 'GI/MS Pipe Threading, CPVC Fusion & Flange Wrench Kits', 'Hydro-Testing Pressure Pumps & Flow Meters', 'Digital pH/TDS Testers & Confined-Space Gas Monitors'],
+    personnelProfiles: ['Commercial Plumbers & Industrial Pipeline Fitters', 'STP, WTP & ETP Treatment Plant Shift Operators', 'Hydro-Pneumatic & Fire-Hydrant Pump Mechanics', 'Multi-Utility Sanitary & Washroom Maintenance Plumbers'],
+    complianceGuarantees: ['WB Pollution Control Board STP/ETP operating logbook alignment', 'Confined-space safety harness & gas-detector SOP enforcement', 'Skilled/Semi-Skilled WB minimum wage + 13% EPF + ESIC', 'Zero subcontracting leakage — 100% ACS payroll staff'],
+    reportingCadence: 'Daily water supply & STP/WTP parameter logbooks, leak-closure tracker, and monthly spares utilization sheet.',
+  },
+
+  'hvac-ac-maintenance-staffing': {
+    slug: 'hvac-ac-maintenance-staffing',
+    name: 'Commercial HVAC, Chiller & Cold Storage AC Technicians',
+    sopSteps: [
+      { stepNumber: 1, title: 'Chiller, Cooling Tower & AHU Walkthrough', detail: 'Recording chilled-water supply/return temps, condenser approach temperatures, refrigerant pressures, and cold-room setpoints.' },
+      { stepNumber: 2, title: 'Coil Cleaning, Belt Tensioning & Filter PPM', detail: 'Weekly high-pressure AHU filter washing, blower belt tension checks, cooling tower basin descaling, and VRF drain flushing.' },
+      { stepNumber: 3, title: 'Refrigeration Fault & Temperature Spike Response', detail: 'Nitrogen leak pressure testing, copper brazing, vacuum pulling, refrigerant top-up, and compressor relay replacement.' },
+      { stepNumber: 4, title: 'BMS Thermal Compliance & Energy Logging', detail: 'Compiling cleanroom / cold-storage continuous temperature charts and chiller kW/TR efficiency audits.' },
+    ],
+    deployedEquipment: ['Digital Refrigerant Manifold Gauges & Two-Stage Vacuum Pumps', 'Oxy-Acetylene Brazing Torches & Leak Detectors', 'Anemometers, Psychrometers & Clamp Ammeters', 'High-Pressure Coil Jet Washers & Fin Combs'],
+    personnelProfiles: ['Screw/Centrifugal Chiller Plant Shift Operators', 'Cold Storage Ammonia/Freon Refrigeration Technicians', 'VRF/VRV, Ductable & Split AC AMC Mechanics', 'AHU, FCU & Cleanroom HVAC Balancing Technicians'],
+    complianceGuarantees: ['Ozone-depleting/HFC safe refrigerant handling practices', 'Cold-chain FSSAI / WHO GDP temperature log discipline', 'Skilled HVAC technician WB statutory wages with EPF & ESIC', '24x7 critical server-room & cold-storage standby rosters'],
+    reportingCadence: '2-hourly chiller/cold-room temp logs, quarterly condenser descaling reports, and monthly uptime KPI deck.',
+  },
+
+  'carpentry-painting-civil-labour': {
+    slug: 'carpentry-painting-civil-labour',
+    name: 'Industrial Carpentry, Shed Painting & Civil Maintenance Labour',
+    sopSteps: [
+      { stepNumber: 1, title: 'Scope Survey & Material / PPE Mobilization', detail: 'Measuring wooden crate dimensions, epoxy floor surface cracks, or corporate partition hardware requirements.' },
+      { stepNumber: 2, title: 'Surface Prep, Precision Joinery or Epoxy Coat', detail: 'Scarifying concrete slabs, primer-sealing factory trusses, cutting ISPM-15 export crates, or refitting modular desks.' },
+      { stepNumber: 3, title: 'Work-at-Height Safety & Fume Ventilation Check', detail: 'Enforcing full-body safety harnesses above 6 ft and organic-vapor masks during PU/epoxy coating shifts.' },
+      { stepNumber: 4, title: 'Cure Inspection & Client Snag Clearance', detail: 'Walking finished zones with plant/admin engineer, clearing debris, and signing job completion sheets.' },
+    ],
+    deployedEquipment: ['Industrial Nail Guns, Circular Saws & Mitre Cutters', 'Airless Paint Sprayers, Epoxy Rollers & Floor Scarifiers', 'Full-Body Height Harnesses, Scaffolding Tags & Masks', 'Drill/Driver Kits, Spirit Levels & Masonry Trowels'],
+    personnelProfiles: ['Export Packing Crate & Pallet Carpenters', 'Industrial Epoxy Floor & Shed Structural Painters', 'Commercial Furniture, Lock, Hinge & Partition Carpenters', 'Masons, Plasterers, Waterproofers & Civil Helpers'],
+    complianceGuarantees: ['DISH Height-Safety & Scaffolding Inspection adherence', 'WB Minimum Wages (Skilled Artisan vs Unskilled Helper tiers)', 'Mandatory ESIC & Group Accident policy before ladder/roof entry', '100% EPF ECR & Form-V CLRA contractor shield'],
+    reportingCadence: 'Daily area-covered/crates-built tracker, safety toolbox talk attendance, and completion snag sign-offs.',
+  },
+
+  'office-support-peon-pantry-staff': {
+    slug: 'office-support-peon-pantry-staff',
+    name: 'Corporate Office Boys, Peons, Pantry & Facility Support Staff',
+    sopSteps: [
+      { stepNumber: 1, title: 'Morning Briefing & Pantry/Floor Readiness', detail: 'Roll-call turnout check at 08:30 AM, sanitization of coffee/tea vending machines, boardroom water setup, and stationery restock.' },
+      { stepNumber: 2, title: 'Desk Hospitality, Courier & Document Routing', detail: 'Courteous guest refreshment service, inter-department file dispatch, mailroom couriers, and photocopying support.' },
+      { stepNumber: 3, title: 'Hourly Restroom Inspection & Scrap Segregation', detail: 'Checked washroom odor/consumable sweeps and wet/dry/recyclable waste movement to designated collection bins.' },
+      { stepNumber: 4, title: 'End-of-Day Appliance Switch-Off & Signoff', detail: 'Powering down pantry boilers, securing stationery closets, and submitting supervisor daily checklist.' },
+    ],
+    deployedEquipment: ['Crisp Corporate Waistcoats, Caps & Food-Grade Gloves', 'Microfiber Boardroom Wiping Cloths & Service Trays', 'Restroom Inspection Log Cards & Replenishment Trolleys', 'Color-Coded Waste Bags & Mailroom Dispatch Registers'],
+    personnelProfiles: ['Groomed Corporate Office Boys & Executive Peons', 'Trained Pantry Stewards & Boardroom Hosts', 'Dedicated Restroom Janitors & Hygiene Attendants', 'Office Scrap Handlers, Mailroom & Banking Runners'],
+    complianceGuarantees: ['100% Aadhaar KYC & Local Police Antecedent Verification', 'Minimum Wages Act (Commercial Establishment) Zone A/B parity', 'On-time 7th-of-month NEFT bank salary + EPF/ESIC credit', 'Immediate trained reliever cover within 2 hours for leave/absence'],
+    reportingCadence: 'Hourly washroom checklists, pantry consumable usage logs, and monthly statutory attendance sheets.',
+  },
+
+  'commercial-shifting-relocation-labour': {
+    slug: 'commercial-shifting-relocation-labour',
+    name: 'Commercial Office Moving, Heavy Machinery & Warehouse Shifting Crew',
+    sopSteps: [
+      { stepNumber: 1, title: 'Pre-Move Inventory Tagging & Rigging Plan', detail: 'Barcode-tagging IT workstations, dismantling glass partitions, or calculating center-of-gravity & crane sling capacity for heavy machines.' },
+      { stepNumber: 2, title: 'Protective Wrapping & Controlled Dismantling', detail: 'Anti-static bubble-wrapping servers/monitors, unbolting heavy warehouse pallet racks, and securing loose cables/drawers.' },
+      { stepNumber: 3, title: 'Multi-Crew Loading, Skate Moving & Transit', detail: 'Synchronized trolley movement via freight lifts/ramps using hydraulic pallet jacks, crowbars, machine skates, and lashing belts.' },
+      { stepNumber: 4, title: 'Floor Placement, Rack Re-Bolting & Handover', detail: 'Positioning desks, servers, or factory machinery per floor CAD layout, torque-tightening anchors, and clearing packing scrap.' },
+    ],
+    deployedEquipment: ['Heavy Machinery Rollers/Skates, Hydraulic Jacks & Chain Pulleys', 'Pallet Trucks, Stair-Climbing Dollies & Ratchet Lashing Straps', 'Anti-Static Bubble Rolls, Corrugated Sheets & Stretch Film', 'Cordless Impact Wrenches, Allen Keys & Crate-Sealing Tools'],
+    personnelProfiles: ['Industrial Rigging Foremen & Heavy Equipment Movers', 'Corporate Workstation & IT Rack Shifting Technicians', 'Warehouse Racking Dismantling & Reinstallation Mechanics', 'Uniformed Bulk Packing & Container Loading Helpers'],
+    complianceGuarantees: ['CLRA coverage with mandatory ESIC & Group Accident Insurance', 'Supervisor-led Toolbox Talk & pinch-point safety briefings', 'Strict Non-Disclosure (NDA) discipline for IT/banking moves', 'Clear invoice & bank-paid wage parity with statutory dues'],
+    reportingCadence: 'Zone-by-zone asset tagging manifest, hour-by-hour shift progress logs, and damage-free completion signoff.',
+  },
 };
 
 export function getServiceBlueprint(slug: string): ServiceBlueprint | undefined {

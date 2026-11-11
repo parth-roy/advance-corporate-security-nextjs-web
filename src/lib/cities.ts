@@ -2,7 +2,7 @@
 // ============================================================
 // ACS — Master Pan-India Cities & Locations Dataset
 // Covers all Indian States, UTs, Census Metros, Industrial Corridors & SEZs
-// Total locations: 823
+// Total locations: 852 (including 147 West Bengal industrial & municipal nodes)
 // ============================================================
 
 export interface ACSCity {
@@ -2362,64 +2362,70 @@ export const ACS_CITIES: ACSCity[] = [
     "slug": "kolkata",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-kolkata",
     "placeId": "in-west-bengal-kolkata",
     "aliases": [
       "Calcutta"
-    ]
+    ],
+    "region": "Eastern India"
   },
   {
     "name": "Howrah",
     "slug": "howrah",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-howrah",
-    "placeId": "in-west-bengal-howrah"
+    "placeId": "in-west-bengal-howrah",
+    "region": "Eastern India"
   },
   {
     "name": "Asansol",
     "slug": "asansol",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-asansol",
-    "placeId": "in-west-bengal-asansol"
+    "placeId": "in-west-bengal-asansol",
+    "region": "Eastern India"
   },
   {
     "name": "Durgapur",
     "slug": "durgapur",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-durgapur",
-    "placeId": "in-west-bengal-durgapur"
+    "placeId": "in-west-bengal-durgapur",
+    "region": "Eastern India"
   },
   {
     "name": "Siliguri",
     "slug": "siliguri",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-siliguri",
-    "placeId": "in-west-bengal-siliguri"
+    "placeId": "in-west-bengal-siliguri",
+    "region": "Eastern India"
   },
   {
     "name": "Haldia",
     "slug": "haldia",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-haldia",
-    "placeId": "in-west-bengal-haldia"
+    "placeId": "in-west-bengal-haldia",
+    "region": "Eastern India"
   },
   {
     "name": "Barrackpore",
     "slug": "barrackpore",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-barrackpore",
     "placeId": "in-west-bengal-barrackpore",
     "aliases": [
@@ -2427,16 +2433,18 @@ export const ACS_CITIES: ACSCity[] = [
       "Barrackpur II",
       "North 24 Parganas",
       "Barrackpur"
-    ]
+    ],
+    "region": "Eastern India"
   },
   {
     "name": "Kharagpur",
     "slug": "kharagpur",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-kharagpur",
-    "placeId": "in-west-bengal-kharagpur"
+    "placeId": "in-west-bengal-kharagpur",
+    "region": "Eastern India"
   },
   {
     "name": "Barasat",
@@ -4563,9 +4571,10 @@ export const ACS_CITIES: ACSCity[] = [
     "slug": "dankuni",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-dankuni",
-    "placeId": "in-west-bengal-dankuni"
+    "placeId": "in-west-bengal-dankuni",
+    "region": "Eastern India"
   },
   {
     "name": "Dhulagarh",
@@ -4881,18 +4890,20 @@ export const ACS_CITIES: ACSCity[] = [
     "slug": "salt-lake",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-salt-lake",
-    "placeId": "in-west-bengal-salt-lake"
+    "placeId": "in-west-bengal-salt-lake",
+    "region": "Eastern India"
   },
   {
     "name": "New Town",
     "slug": "new-town",
     "state": "West Bengal",
     "stateSlug": "west-bengal",
-    "tier": 2,
+    "tier": 1,
     "id": "in-west-bengal-new-town",
-    "placeId": "in-west-bengal-new-town"
+    "placeId": "in-west-bengal-new-town",
+    "region": "Eastern India"
   },
   {
     "name": "Esplanade Metro",
@@ -7439,6 +7450,488 @@ export const ACS_CITIES: ACSCity[] = [
     "tier": 3,
     "id": "in-rajasthan-sukher",
     "placeId": "in-rajasthan-sukher"
+  },
+  {
+    "name": "Panagarh",
+    "slug": "panagarh",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-panagarh",
+    "placeId": "in-west-bengal-panagarh",
+    "aliases": [
+      "Panagarh Industrial Park",
+      "Kanksa"
+    ]
+  },
+  {
+    "name": "Falta",
+    "slug": "falta",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-falta",
+    "placeId": "in-west-bengal-falta",
+    "aliases": [
+      "Falta SEZ",
+      "Falta Industrial Estate"
+    ]
+  },
+  {
+    "name": "Petrapole",
+    "slug": "petrapole",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-petrapole",
+    "placeId": "in-west-bengal-petrapole",
+    "aliases": [
+      "Petrapole ICP",
+      "Petrapole Land Port"
+    ]
+  },
+  {
+    "name": "Ranihati",
+    "slug": "ranihati",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-ranihati",
+    "placeId": "in-west-bengal-ranihati",
+    "aliases": [
+      "Ranihati Logistics Belt",
+      "NH-16 Ranihati"
+    ]
+  },
+  {
+    "name": "Panchla",
+    "slug": "panchla",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 3,
+    "region": "Eastern India",
+    "id": "in-west-bengal-panchla",
+    "placeId": "in-west-bengal-panchla"
+  },
+  {
+    "name": "Singur",
+    "slug": "singur",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-singur",
+    "placeId": "in-west-bengal-singur"
+  },
+  {
+    "name": "Gurap",
+    "slug": "gurap",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 3,
+    "region": "Eastern India",
+    "id": "in-west-bengal-gurap",
+    "placeId": "in-west-bengal-gurap"
+  },
+  {
+    "name": "Jangipara",
+    "slug": "jangipara",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 3,
+    "region": "Eastern India",
+    "id": "in-west-bengal-jangipara",
+    "placeId": "in-west-bengal-jangipara"
+  },
+  {
+    "name": "Budge Budge",
+    "slug": "budge-budge",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-budge-budge",
+    "placeId": "in-west-bengal-budge-budge",
+    "aliases": [
+      "Budge Budge Industrial Belt"
+    ]
+  },
+  {
+    "name": "Pujali",
+    "slug": "pujali",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-pujali",
+    "placeId": "in-west-bengal-pujali"
+  },
+  {
+    "name": "Baduria",
+    "slug": "baduria",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 3,
+    "region": "Eastern India",
+    "id": "in-west-bengal-baduria",
+    "placeId": "in-west-bengal-baduria"
+  },
+  {
+    "name": "Kolaghat",
+    "slug": "kolaghat",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-kolaghat",
+    "placeId": "in-west-bengal-kolaghat"
+  },
+  {
+    "name": "Mecheda",
+    "slug": "mecheda",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 3,
+    "region": "Eastern India",
+    "id": "in-west-bengal-mecheda",
+    "placeId": "in-west-bengal-mecheda"
+  },
+  {
+    "name": "Panskura",
+    "slug": "panskura",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-panskura",
+    "placeId": "in-west-bengal-panskura"
+  },
+  {
+    "name": "Tamluk",
+    "slug": "tamluk",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-tamluk",
+    "placeId": "in-west-bengal-tamluk"
+  },
+  {
+    "name": "Contai",
+    "slug": "contai",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-contai",
+    "placeId": "in-west-bengal-contai",
+    "aliases": [
+      "Kanthi"
+    ]
+  },
+  {
+    "name": "Baltikuri",
+    "slug": "baltikuri",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-baltikuri",
+    "placeId": "in-west-bengal-baltikuri",
+    "aliases": [
+      "Baltikuri Engineering Cluster"
+    ]
+  },
+  {
+    "name": "Dasnagar",
+    "slug": "dasnagar",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-dasnagar",
+    "placeId": "in-west-bengal-dasnagar"
+  },
+  {
+    "name": "Liluah",
+    "slug": "liluah",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-liluah",
+    "placeId": "in-west-bengal-liluah"
+  },
+  {
+    "name": "Belur",
+    "slug": "belur",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-belur",
+    "placeId": "in-west-bengal-belur"
+  },
+  {
+    "name": "Ghusuri",
+    "slug": "ghusuri",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-ghusuri",
+    "placeId": "in-west-bengal-ghusuri"
+  },
+  {
+    "name": "Salkia",
+    "slug": "salkia",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-salkia",
+    "placeId": "in-west-bengal-salkia"
+  },
+  {
+    "name": "Kadamtala",
+    "slug": "kadamtala",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-kadamtala",
+    "placeId": "in-west-bengal-kadamtala"
+  },
+  {
+    "name": "Amta",
+    "slug": "amta",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 3,
+    "region": "Eastern India",
+    "id": "in-west-bengal-amta",
+    "placeId": "in-west-bengal-amta"
+  },
+  {
+    "name": "Jagatdal",
+    "slug": "jagatdal",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-jagatdal",
+    "placeId": "in-west-bengal-jagatdal"
+  },
+  {
+    "name": "Bantala",
+    "slug": "bantala",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-bantala",
+    "placeId": "in-west-bengal-bantala",
+    "aliases": [
+      "Kolkata Leather Complex",
+      "Bantala KLC",
+      "Bantala IT Park"
+    ]
+  },
+  {
+    "name": "Tiljala",
+    "slug": "tiljala",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-tiljala",
+    "placeId": "in-west-bengal-tiljala"
+  },
+  {
+    "name": "Cossipore",
+    "slug": "cossipore",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-cossipore",
+    "placeId": "in-west-bengal-cossipore"
+  },
+  {
+    "name": "Park Street",
+    "slug": "park-street",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-park-street",
+    "placeId": "in-west-bengal-park-street"
+  },
+  {
+    "name": "Camac Street",
+    "slug": "camac-street",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-camac-street",
+    "placeId": "in-west-bengal-camac-street"
+  },
+  {
+    "name": "BBD Bagh",
+    "slug": "bbd-bagh",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-bbd-bagh",
+    "placeId": "in-west-bengal-bbd-bagh",
+    "aliases": [
+      "Dalhousie",
+      "Dalhousie Square"
+    ]
+  },
+  {
+    "name": "Burrabazar",
+    "slug": "burrabazar",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-burrabazar",
+    "placeId": "in-west-bengal-burrabazar",
+    "aliases": [
+      "Borobazar"
+    ]
+  },
+  {
+    "name": "Chandni Chowk",
+    "slug": "chandni-chowk",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-chandni-chowk",
+    "placeId": "in-west-bengal-chandni-chowk"
+  },
+  {
+    "name": "Ecospace New Town",
+    "slug": "ecospace",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-ecospace",
+    "placeId": "in-west-bengal-ecospace",
+    "aliases": [
+      "Ecospace Business Park",
+      "Unitech Infospace"
+    ]
+  },
+  {
+    "name": "Kalimpong",
+    "slug": "kalimpong",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-kalimpong",
+    "placeId": "in-west-bengal-kalimpong"
+  },
+  {
+    "name": "Burdwan",
+    "slug": "burdwan",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-burdwan",
+    "placeId": "in-west-bengal-burdwan",
+    "aliases": [
+      "Bardhaman",
+      "Purba Bardhaman"
+    ]
+  },
+  {
+    "name": "Krishnanagar",
+    "slug": "krishnanagar",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-krishnanagar",
+    "placeId": "in-west-bengal-krishnanagar"
+  },
+  {
+    "name": "Ranaghat",
+    "slug": "ranaghat",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-ranaghat",
+    "placeId": "in-west-bengal-ranaghat"
+  },
+  {
+    "name": "Dhulian",
+    "slug": "dhulian",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 3,
+    "region": "Eastern India",
+    "id": "in-west-bengal-dhulian",
+    "placeId": "in-west-bengal-dhulian"
+  },
+  {
+    "name": "Barjora",
+    "slug": "barjora",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-barjora",
+    "placeId": "in-west-bengal-barjora",
+    "aliases": [
+      "Barjora Industrial Park"
+    ]
+  },
+  {
+    "name": "Raghunathpur",
+    "slug": "raghunathpur",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-raghunathpur",
+    "placeId": "in-west-bengal-raghunathpur",
+    "aliases": [
+      "Raghunathpur Industrial Park",
+      "Raghunathpur Thermal"
+    ]
+  },
+  {
+    "name": "Diamond Harbour",
+    "slug": "diamond-harbour",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-diamond-harbour",
+    "placeId": "in-west-bengal-diamond-harbour"
+  },
+  {
+    "name": "Baruipur",
+    "slug": "baruipur",
+    "state": "West Bengal",
+    "stateSlug": "west-bengal",
+    "tier": 2,
+    "region": "Eastern India",
+    "id": "in-west-bengal-baruipur",
+    "placeId": "in-west-bengal-baruipur"
   }
 ];
 

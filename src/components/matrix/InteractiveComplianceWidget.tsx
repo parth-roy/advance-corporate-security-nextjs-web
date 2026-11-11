@@ -2,6 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import {
+  getWBMonthlyWage,
+  WB_EPF_EMPLOYER_RATE,
+  WB_ESIC_EMPLOYER_RATE,
+  WB_BONUS_RATE,
+} from '@/lib/wb-wages';
 
 interface InteractiveComplianceWidgetProps {
   cityName: string;
@@ -20,16 +26,16 @@ export default function InteractiveComplianceWidget({
   const [shifts, setShifts] = useState<'8h' | '12h'>('8h');
   const [zone, setZone] = useState<'A' | 'B'>(defaultZone);
 
-  // Approximate Monthly Base Minimum Wage per worker
-  const baseMonthly = zone === 'A' ? 11615 : 9800;
-  // If 12h shift, OT multiplier ~ 1.5x
+  // Official Monthly Base Minimum Wage per worker (Unskilled baseline from WB Gazette)
+  const baseMonthly = getWBMonthlyWage(zone, 'unskilled');
+  // If 12h shift, OT multiplier ~ 1.45x
   const shiftMultiplier = shifts === '12h' ? 1.45 : 1.0;
   const effectiveBase = baseMonthly * shiftMultiplier;
 
   const totalBase = Math.round(effectiveBase * headcount);
-  const totalEPF = Math.round(totalBase * 0.12);
-  const totalESIC = Math.round(totalBase * 0.0325);
-  const totalBonus = Math.round(totalBase * 0.0833);
+  const totalEPF = Math.round(totalBase * WB_EPF_EMPLOYER_RATE);
+  const totalESIC = Math.round(totalBase * WB_ESIC_EMPLOYER_RATE);
+  const totalBonus = Math.round(totalBase * WB_BONUS_RATE);
   const totalStatutory = totalBase + totalEPF + totalESIC + totalBonus;
 
   return (
@@ -143,7 +149,7 @@ export default function InteractiveComplianceWidget({
                 <span className="text-lg sm:text-xl font-bold text-white">₹{totalBase.toLocaleString('en-IN')}</span>
               </div>
               <div className="pt-2 sm:pt-0">
-                <span className="text-[11px] text-slate-400 block uppercase">EPF Employer (12%)</span>
+                <span className="text-[11px] text-slate-400 block uppercase">EPF Employer (13%)</span>
                 <span className="text-lg sm:text-xl font-bold text-sky-400">₹{totalEPF.toLocaleString('en-IN')}</span>
               </div>
               <div className="pt-2 sm:pt-0">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { ACS_CITIES, ACS_STATES } from "@/lib/cities";
-import { ACS_SERVICE_CATEGORIES } from "@/lib/services";
+import { ACS_SERVICES, ACS_SERVICE_CATEGORIES } from "@/lib/services";
 
 const footerLinks = [
   { label: "About Us", href: "/about" },
@@ -49,7 +49,7 @@ export default function Footer() {
             </div>
           </Link>
           <p className="text-gray-400 text-sm leading-relaxed mb-5">
-            Advance Corporate Security is India&apos;s trusted <strong className="text-gray-300 font-semibold">security guard company</strong> and <strong className="text-gray-300 font-semibold">facility management company</strong>. Deploying PSARA-licensed (WB, Delhi, Jharkhand) <strong className="text-gray-300 font-semibold">security guards</strong>, comprehensive <strong className="text-gray-300 font-semibold">facilities management</strong>, <strong className="text-gray-300 font-semibold">corporate security</strong>, and certified <strong className="text-gray-300 font-semibold">ISO facility management</strong> services across 828+ cities since {siteConfig.foundedYear}.
+            Advance Corporate Security is India&apos;s trusted <strong className="text-gray-300 font-semibold">security guard company</strong> and <strong className="text-gray-300 font-semibold">B2B blue-collar manpower &amp; facility management partner</strong>. Deploying PSARA-licensed (WB, Delhi, Jharkhand) <strong className="text-gray-300 font-semibold">security guards</strong>, warehouse loading crews, industrial MEP technicians, and certified <strong className="text-gray-300 font-semibold">ISO 9001:2015 facility management</strong> across {ACS_CITIES.length}+ cities since {siteConfig.foundedYear}.
           </p>
           <div className="space-y-2 text-sm">
             {siteConfig.phones.map((p) => (
@@ -95,9 +95,21 @@ export default function Footer() {
               </li>
             ))}
             <li className="pt-2 border-t border-white/10 mt-2">
-              <p className="text-xs text-gray-500 mb-1 uppercase tracking-wide">Sub-Services</p>
+              <p className="text-xs text-gray-500 mb-1 uppercase tracking-wide">Blue-Collar &amp; Core Trades</p>
             </li>
-            {siteConfig.services.slice(0, 8).map((s) => (
+            {ACS_SERVICES.filter((s) =>
+              [
+                "security-guard",
+                "loading-unloading-labour",
+                "warehouse-manpower-supply",
+                "industrial-factory-workers",
+                "industrial-electrician-contractors",
+                "commercial-plumbing-contractors",
+                "hvac-ac-maintenance-staffing",
+                "housekeeping",
+                "commercial-shifting-relocation-labour",
+              ].includes(s.slug)
+            ).map((s) => (
               <li key={s.slug}>
                 <Link href={`/services/${s.slug}`} className="text-gray-400 text-xs hover:text-sky transition-colors inline-flex items-center min-h-[28px] py-0.5 gap-1.5">
                   <span className="text-sky/60 text-xs">›</span>
@@ -246,6 +258,30 @@ export default function Footer() {
             >
               ISO Facility Management
             </Link>
+            <Link
+              href="/services/loading-unloading-labour"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Warehouse Hamali &amp; Loaders
+            </Link>
+            <Link
+              href="/services/industrial-electrician-contractors"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Industrial Electricians
+            </Link>
+            <Link
+              href="/services/hvac-ac-maintenance-staffing"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              HVAC &amp; Chiller Techs
+            </Link>
+            <Link
+              href="/services/commercial-shifting-relocation-labour"
+              className="px-3 py-1.5 rounded-md bg-white/5 hover:bg-gold/20 text-gray-300 hover:text-gold border border-white/10 hover:border-gold/40 transition-all font-medium"
+            >
+              Machinery &amp; Office Shifting
+            </Link>
           </div>
         </div>
 
@@ -253,13 +289,43 @@ export default function Footer() {
         <div className="mt-6 pt-6 border-t border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="shrink-0">
             <h4 className="font-roboto font-bold text-white uppercase tracking-wider text-xs">
-              Eastern Industrial Corridors &amp; High-Value Logistics Estates
+              West Bengal &amp; Eastern Industrial Corridors &amp; Logistics Parks
             </h4>
             <p className="text-gray-400 text-xs">
-              PSARA-licensed guarding, 24-48 hr supervisory mobilization &amp; Zone A wage compliance
+              PSARA guarding, bulk loading &amp; MEP mobilization across all 23 WB districts &amp; Eastern India
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href="/location/state/west-bengal"
+              className="px-2.5 py-1 rounded bg-sky/20 hover:bg-sky/30 text-white border border-sky/40 text-xs font-semibold transition-colors"
+            >
+              West Bengal (23 Districts)
+            </Link>
+            <Link
+              href="/corridors/dankuni-hooghly-industrial-belt"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Dankuni–Hooghly Belt
+            </Link>
+            <Link
+              href="/corridors/haldia-petrochemical-port-industrial-zone"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Haldia Petrochemical
+            </Link>
+            <Link
+              href="/corridors/durgapur-asansol-heavy-industrial-belt"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Durgapur–Asansol Belt
+            </Link>
+            <Link
+              href="/corridors/kolkata-it-data-center-corridor-sector-v-new-town"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Kolkata Sector V &amp; New Town
+            </Link>
             <Link
               href="/corridors/bhubaneswar"
               className="px-2.5 py-1 rounded bg-white/5 hover:bg-sky/20 text-sky-light hover:text-white border border-white/10 text-xs transition-colors"
@@ -302,6 +368,36 @@ export default function Footer() {
               className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
             >
               Transindia Dankuni
+            </Link>
+            <Link
+              href="/industrial-parks/panagarh-industrial-park"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Panagarh Industrial Park
+            </Link>
+            <Link
+              href="/industrial-parks/vidyasagar-industrial-park"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Vidyasagar Park (Kharagpur)
+            </Link>
+            <Link
+              href="/industrial-parks/bantala-leather-complex"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Bantala Leather Complex
+            </Link>
+            <Link
+              href="/industrial-parks/falta-sez"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Falta SEZ
+            </Link>
+            <Link
+              href="/industrial-parks/barjora-industrial-park"
+              className="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-400/20 text-amber-300 hover:text-white border border-white/10 text-xs transition-colors"
+            >
+              Barjora Industrial Park
             </Link>
           </div>
         </div>

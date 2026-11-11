@@ -148,7 +148,7 @@ export default function ManpowerCostSheetGuidePage() {
                   num: "1",
                   name: "Basic Wage + Variable Dearness Allowance (VDA)",
                   calc: "As notified by State / Central Labour Commissioner",
-                  desc: "Must equal or exceed the prevailing scheduled employment minimum wage for the specific skill tier (Unskilled, Semi-Skilled, Skilled) and geographic zone (Zone A, B, or C). VDA revisions occur bi-annually (April & October).",
+                  desc: "Must equal or exceed the prevailing scheduled employment minimum wage for the specific skill tier (Unskilled, Semi-Skilled, Skilled) and geographic zone (Zone A, B, or C). VDA revisions occur bi-annually (January & July in West Bengal; April & October in Central Sphere).",
                 },
                 {
                   num: "2",
@@ -230,14 +230,14 @@ export default function ManpowerCostSheetGuidePage() {
                 <tbody className="divide-y divide-gray-100 text-gray-700">
                   <tr className="hover:bg-slate-50/70">
                     <td className="px-5 py-3 font-semibold text-navy">Basic + VDA (26 Duty Days)</td>
-                    <td className="px-5 py-3 text-xs">Labour Commissioner Notification</td>
-                    <td className="px-5 py-3 text-right font-medium">₹10,566</td>
-                    <td className="px-5 py-3 text-right text-gray-500">₹10,566</td>
+                    <td className="px-5 py-3 text-xs">WB Labour Commissioner Notification (Jul–Dec 2026)</td>
+                    <td className="px-5 py-3 text-right font-medium">₹10,558</td>
+                    <td className="px-5 py-3 text-right text-gray-500">₹10,558</td>
                   </tr>
                   <tr className="hover:bg-slate-50/70">
                     <td className="px-5 py-3 font-semibold text-navy">Employer EPF (13%)</td>
                     <td className="px-5 py-3 text-xs">12% EPF + 0.5% EDLI + 0.5% Admin</td>
-                    <td className="px-5 py-3 text-right font-medium">₹1,374</td>
+                    <td className="px-5 py-3 text-right font-medium">₹1,373</td>
                     <td className="px-5 py-3 text-right text-rose-600 font-semibold">₹1,000 (Undercut)</td>
                   </tr>
                   <tr className="hover:bg-slate-50/70">
@@ -249,33 +249,33 @@ export default function ManpowerCostSheetGuidePage() {
                   <tr className="hover:bg-slate-50/70">
                     <td className="px-5 py-3 font-semibold text-navy">Statutory Bonus (8.33%)</td>
                     <td className="px-5 py-3 text-xs">Payment of Bonus Act 1965</td>
-                    <td className="px-5 py-3 text-right font-medium">₹880</td>
+                    <td className="px-5 py-3 text-right font-medium">₹879</td>
                     <td className="px-5 py-3 text-right text-rose-600 font-semibold">₹0 (Omitted)</td>
                   </tr>
                   <tr className="hover:bg-slate-50/70">
                     <td className="px-5 py-3 font-semibold text-navy">Reliever Charges (1/6th)</td>
                     <td className="px-5 py-3 text-xs">Weekly Rest Day Coverage (Mandatory)</td>
-                    <td className="px-5 py-3 text-right font-medium">₹2,194</td>
+                    <td className="px-5 py-3 text-right font-medium">₹2,192</td>
                     <td className="px-5 py-3 text-right text-rose-600 font-semibold">₹0 (Omitted)</td>
                   </tr>
                   <tr className="hover:bg-slate-50/70">
                     <td className="px-5 py-3 font-semibold text-navy">Agency Service Charge (7%)</td>
                     <td className="px-5 py-3 text-xs">Supervision, uniforms, management</td>
-                    <td className="px-5 py-3 text-right font-medium">₹1,075</td>
+                    <td className="px-5 py-3 text-right font-medium">₹1,074</td>
                     <td className="px-5 py-3 text-right text-rose-600 font-semibold">₹1 (Sham 0%)</td>
                   </tr>
                   <tr className="bg-sky-50/70 font-bold text-navy">
                     <td className="px-5 py-3.5">Total Monthly Billing (excl. GST)</td>
                     <td className="px-5 py-3.5 text-xs text-slate-500">Audit-Ready Contract Value</td>
-                    <td className="px-5 py-3.5 text-right text-emerald-800 text-sm">₹16,432</td>
-                    <td className="px-5 py-3.5 text-right text-rose-700 text-sm">₹11,567 (High Risk)</td>
+                    <td className="px-5 py-3.5 text-right text-emerald-800 text-sm">₹16,419</td>
+                    <td className="px-5 py-3.5 text-right text-rose-700 text-sm">₹11,559 (High Risk)</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <p className="text-gray-500 text-xs mt-3 italic">
-              * Note: The &ldquo;Flawed Bid&rdquo; saves ₹4,865 per guard on paper, but directly breaches EPFO guidelines, the Bonus Act, and Weekly Off rules. Any labour inspection will hold the client liable for the deficit plus penalties.
+              * Note: The &ldquo;Flawed Bid&rdquo; saves ₹4,860 per guard on paper, but directly breaches EPFO guidelines, the Bonus Act, and Weekly Off rules. Any labour inspection will hold the client liable for the deficit plus penalties.
             </p>
           </section>
 

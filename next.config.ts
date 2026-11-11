@@ -154,6 +154,24 @@ const nextConfig: NextConfig = {
       { source: "/services/:slug/khardah", destination: "/services/:slug/khardaha", permanent: true },
       { source: "/services/:slug/khardah/", destination: "/services/:slug/khardaha", permanent: true },
 
+      // West Bengal Spelling Alias Consolidation (Berhampore -> Baharampur)
+      { source: "/location/berhampore", destination: "/location/baharampur", permanent: true },
+      { source: "/location/berhampore/", destination: "/location/baharampur", permanent: true },
+      { source: "/services/:slug/berhampore", destination: "/services/:slug/baharampur", permanent: true },
+      { source: "/services/:slug/berhampore/", destination: "/services/:slug/baharampur", permanent: true },
+
+      // Industrial Park & Corridor Long-Slug Aliases (prevent 404 from external citations)
+      { source: "/industrial-parks/esr-uluberia-logistics-park-howrah", destination: "/industrial-parks/esr-uluberia", permanent: true },
+      { source: "/industrial-parks/esr-uluberia-logistics-park-howrah/", destination: "/industrial-parks/esr-uluberia", permanent: true },
+      { source: "/industrial-parks/sfa-logistics-park-dankuni-hooghly", destination: "/industrial-parks/sfa-dankuni", permanent: true },
+      { source: "/industrial-parks/sfa-logistics-park-dankuni-hooghly/", destination: "/industrial-parks/sfa-dankuni", permanent: true },
+      { source: "/industrial-parks/transindia-logistics-park-dankuni", destination: "/industrial-parks/transindia-dankuni", permanent: true },
+      { source: "/industrial-parks/transindia-logistics-park-dankuni/", destination: "/industrial-parks/transindia-dankuni", permanent: true },
+      { source: "/corridors/jamshedpur-adityapur-automotive-industrial-belt", destination: "/corridors/jamshedpur", permanent: true },
+      { source: "/corridors/jamshedpur-adityapur-automotive-industrial-belt/", destination: "/corridors/jamshedpur", permanent: true },
+      { source: "/corridors/guwahati-northeast-logistics-industrial-gateway", destination: "/corridors/guwahati", permanent: true },
+      { source: "/corridors/guwahati-northeast-logistics-industrial-gateway/", destination: "/corridors/guwahati", permanent: true },
+
       { source: "/location/davanagere", destination: "/location/davangere", permanent: true },
       { source: "/location/davanagere/", destination: "/location/davangere", permanent: true },
       { source: "/services/:slug/davanagere", destination: "/services/:slug/davangere", permanent: true },
@@ -240,6 +258,20 @@ const nextConfig: NextConfig = {
       { source: "/contact-us-2", destination: "/contact", permanent: true },
       { source: "/career", destination: "/careers", permanent: true },
       { source: "/career/", destination: "/careers", permanent: true },
+      // Layer 3: West Bengal Blue-Collar Manpower, District & Sitemap Consolidation
+      { source: "/manpower", destination: "/services/manpower-outsourcing", permanent: true },
+      { source: "/manpower/", destination: "/services/manpower-outsourcing", permanent: true },
+      { source: "/west-bengal", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/west-bengal/", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/districts", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/districts/", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/sectors/msme", destination: "/sectors/msme-karkhanas", permanent: true },
+      { source: "/sectors/karkhana", destination: "/sectors/msme-karkhanas", permanent: true },
+      { source: "/industries/msme", destination: "/sectors/msme-karkhanas", permanent: true },
+      { source: "/industries/karkhana", destination: "/sectors/msme-karkhanas", permanent: true },
+      { source: "/locations/west-bengal/:city", destination: "/location/:city", permanent: true },
+      { source: "/locations/west-bengal/:city/", destination: "/location/:city", permanent: true },
+      { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
     ];
   },
 };

@@ -30,15 +30,17 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     "security guard services India",
+    "bulk blue-collar manpower supply West Bengal",
+    "warehouse loading unloading labour contractor Kolkata Dankuni",
+    "industrial electrician HVAC AMC staffing West Bengal",
+    "factory karkhana helper supply Howrah Haldia Durgapur",
     "facility management company India",
     "manpower outsourcing India",
     "security services Kolkata",
     "facility management Kolkata",
     "ISO 9001 security company India",
-    "placement services India",
-    "horticulture services India",
+    "CLRA EPF ESIC compliant manpower vendor",
     "Advance Corporate Security",
-    "ACS security",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -84,7 +86,8 @@ export const metadata: Metadata = {
     ],
   },
   verification: {
-    google: "", // TODO: Add Google Search Console verification token
+    // Set NEXT_PUBLIC_GSC_VERIFICATION in production .env or add token string directly
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "",
   },
 };
 

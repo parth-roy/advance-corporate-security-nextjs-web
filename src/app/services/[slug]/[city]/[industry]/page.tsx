@@ -15,6 +15,7 @@ import { getIndustryRiskProfile } from '@/lib/data/industry-painpoints';
 import { getServiceBlueprint } from '@/lib/data/service-blueprints';
 import { BuyerIntentType, generatePageMetadata } from '@/lib/data/buyer-intents';
 import { getWBHubsForCity } from '@/lib/wb-industrial-hubs';
+import { isWBIndustryComboIndexable } from '@/lib/wb-content-quality';
 
 // Common search & industry aliases mapped to canonical database slugs
 const INDUSTRY_ALIASES: Record<string, string> = {
@@ -45,10 +46,22 @@ const INDUSTRY_ALIASES: Record<string, string> = {
   // Warehouses & Logistics
   logistics: 'warehouses',
   'supply-chain': 'warehouses',
-  'cold-storage': 'warehouses',
+  'cold-storage': 'cold-storage',
+  'cold-chain': 'cold-storage',
+  'cold-chains': 'cold-storage',
+  'reefer-storage': 'cold-storage',
   godown: 'warehouses',
   godowns: 'warehouses',
   fulfillment: 'warehouses',
+  'logistics-parks': 'warehouses',
+
+  // MSMEs & Karkhanas
+  karkhana: 'msme-karkhanas',
+  karkhanas: 'msme-karkhanas',
+  msme: 'msme-karkhanas',
+  msmes: 'msme-karkhanas',
+  workshop: 'msme-karkhanas',
+  foundry: 'msme-karkhanas',
 
   // Healthcare
   healthcare: 'hospitals',
@@ -104,6 +117,19 @@ const SERVICE_ALIASES: Record<string, string> = {
   cctv: 'surveillance-cctv',
   cleaning: 'housekeeping',
   housekeeper: 'housekeeping',
+  hamali: 'loading-unloading-labour',
+  'loading-unloading': 'loading-unloading-labour',
+  electricians: 'industrial-electrician-contractors',
+  electrician: 'industrial-electrician-contractors',
+  plumbers: 'commercial-plumbing-contractors',
+  plumber: 'commercial-plumbing-contractors',
+  hvac: 'hvac-ac-maintenance-staffing',
+  carpenter: 'carpentry-painting-civil-labour',
+  painters: 'carpentry-painting-civil-labour',
+  peon: 'office-support-peon-pantry-staff',
+  'office-boy': 'office-support-peon-pantry-staff',
+  shifting: 'commercial-shifting-relocation-labour',
+  relocation: 'commercial-shifting-relocation-labour',
 };
 
 const CITY_ALIASES: Record<string, string> = {
@@ -133,6 +159,7 @@ export async function generateStaticParams(): Promise<Params[]> {
   const priorityCities = [
     'kolkata',
     'howrah',
+    'dankuni',
     'durgapur',
     'asansol',
     'siliguri',
@@ -140,6 +167,12 @@ export async function generateStaticParams(): Promise<Params[]> {
     'salt-lake',
     'new-town',
     'barrackpore',
+    'kharagpur',
+    'dhulagarh',
+    'panagarh',
+    'kalyani',
+    'uluberia',
+    'burdwan',
   ];
 
   const params: Params[] = [];
@@ -190,12 +223,19 @@ export async function generateMetadata({
   });
 
   const pageUrl = `${siteConfig.url}/services/${resolvedSlug}/${resolvedCity}/${resolvedIndustry}`;
+  const isWestBengal = cityObj.state === 'West Bengal';
+  const shouldIndex = isWestBengal ? isWBIndustryComboIndexable(resolvedCity) : false;
 
   return {
     title: meta.title,
     description: meta.description,
     alternates: {
       canonical: pageUrl,
+    },
+    robots: {
+      index: shouldIndex,
+      follow: true,
+      googleBot: { index: shouldIndex, follow: true },
     },
     openGraph: {
       title: meta.title,

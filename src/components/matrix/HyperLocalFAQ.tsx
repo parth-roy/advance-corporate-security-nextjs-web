@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { getWBMonthlyWage, WB_CURRENT_PERIOD } from '@/lib/wb-wages';
 
 interface HyperLocalFAQProps {
   serviceName: string;
@@ -22,6 +23,7 @@ export default function HyperLocalFAQ({
   slaHours,
 }: HyperLocalFAQProps) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const unskilledMonthly = getWBMonthlyWage(wageZone, 'unskilled').toLocaleString('en-IN');
 
   const faqs = [
     {
@@ -30,7 +32,7 @@ export default function HyperLocalFAQ({
     },
     {
       q: `What are the statutory minimum wage rates for security personnel in ${cityName} (${districtName})?`,
-      a: `${cityName} falls under West Bengal Minimum Wages Act Zone ${wageZone}. As per the latest Government of West Bengal Labour Department notification, the minimum wage for unskilled security personnel is ${wageZone === 'A' ? '₹11,615+' : '₹9,800+'} per month, with statutory EPF (12%), ESIC (3.25%), Bonus (8.33%), and West Bengal Labour Welfare Fund (LWF) contributions. ACS strictly adheres to these mandates with 100% bank-credited wages.`,
+      a: `${cityName} falls under West Bengal Minimum Wages Act Zone ${wageZone}. As per the latest Government of West Bengal Labour Department notification (${WB_CURRENT_PERIOD}), the minimum wage for unskilled personnel is ₹${unskilledMonthly} per month, with statutory EPF (13% employer burden: 12% + 0.5% EDLI + 0.5% Admin), ESIC (3.25%), Bonus (8.33%), and West Bengal Labour Welfare Fund (LWF) contributions. ACS strictly adheres to these mandates with 100% bank-credited wages.`,
     },
     {
       q: `How quickly can ACS mobilize ${serviceName.toLowerCase()} for an enterprise in ${cityName}?`,

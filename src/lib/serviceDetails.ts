@@ -1198,6 +1198,360 @@ export const ENTERPRISE_SERVICE_DETAILS: Record<string, EnterpriseServiceDetail>
       { question: 'How does ACS ensure productivity on assembly lines?', answer: 'We deploy dedicated On-Site Floor Marshalls who monitor hourly production counts, manage line balance, coordinate with plant engineers, and manage worker rotations to eliminate fatigue.' },
       { question: 'Can ACS provide complete on-site floor supervision?', answer: 'Yes. For facilities deploying 20+ workers, ACS embeds dedicated shift supervisors and floor marshalls at zero extra cost to handle muster rolls, grievance redressal, and safety enforcement.' }
     ]
+  },
+
+  // 20. Loading & Unloading Labour (Hamali / Mutia)
+  'loading-unloading-labour': {
+    slug: 'loading-unloading-labour',
+    operationalScope: [
+      '20ft and 40ft container stuffing, destuffing, dock bay leveling, and palletization.',
+      'Bulk truck & railway rake loading/unloading (Hamali / Mutia mazdoor gangs) across warehouses and godowns.',
+      'Cold storage insulated sub-zero loading, crate sorting, and reefer truck turnarounds.',
+      'Manual and hydraulic pallet-jack horizontal material movement across warehouse staging bays.',
+      'Bagged commodity stacking (rice, pulses, cement, fertilizer, polymers) in interlocking safety patterns.',
+      'Scrap clearing, damaged carton repacking, and dock housekeeping support.'
+    ],
+    trainingStandards: {
+      title: 'Manual Material Handling & Ergonomic Safety Certification',
+      hours: '24 Hours Dock Safety & Anti-Shrinkage Drill',
+      certification: 'ACS Certified Logistics Loader (CLL)',
+      modules: [
+        'Safe ergonomic lifting techniques preventing spinal & crush injuries',
+        'Container door unsealing, wheel-chocking, and forklift blind-spot protocols',
+        'SKU stacking stability, fragile cargo handling, and zero-pilferage dress code',
+        'Fire hydrant clearance & dock emergency assembly procedures'
+      ]
+    },
+    gearAndTechnology: [
+      'IS 15298 Steel-toe, anti-skid warehouse safety boots',
+      'Lumbar back-support belts, padded shoulder pads, and high-grip cut-resistant gloves',
+      'Class-2 high-visibility fluorescent vests with pocketless uniform design',
+      'Heavy-duty hydraulic hand pallet trucks (2.5T) and hand sack trolleys'
+    ],
+    sops: [
+      {
+        code: 'SOP-HAM-01',
+        title: 'Container Arrival Chocking & Seal Audit',
+        objective: 'Ensure zero rollaway accidents and dispute-free damage logging prior to unloading.',
+        protocol: 'Gang mukaddam verifies container bolt seal serial against manifest, places rubber wheel chocks, locks dock leveler lip, photographs freight condition, and opens bays under supervisor clearance.'
+      },
+      {
+        code: 'SOP-HAM-02',
+        title: 'Bay Turnaround Count & Tally Sheet Reconciliation',
+        objective: 'Maintain 100% carton/sack count parity between transport lorry challan and warehouse bin receipt.',
+        protocol: 'Loaders segregate damaged vs intact units on staging pallets; supervisor signs tally sheet jointly with driver and client dock executive prior to release.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Critical', metric: '20ft / 40ft Container Destuffing SLA', target: '≤ 90 Mins / ≤ 150 Mins', escalation: 'Deploy standby 4-man reserve loading gang to expedite dock release' },
+      { tier: 'High', metric: 'Daily Shift Gang Fill Rate', target: '≥ 99.0%', escalation: 'Corridor reserve relievers mobilized from Dankuni / Howrah hub' },
+      { tier: 'Standard', metric: 'Handling Damage Incidence Rate', target: '< 0.1%', escalation: 'Root-cause supervisor briefing and carton slinging retraining' }
+    ],
+    complianceShield: [
+      { regulation: 'Contract Labour (R&A) Act 1970', standard: 'CLRA Form-V Principal Employer Insulation', coverage: 'ACS acts as legal contractor-on-record eliminating piece-rate middleman exposure' },
+      { regulation: 'ESIC & EPFO Compliance', standard: 'Day-1 Accident Cover + 13% EPF Deposit', coverage: 'Immediate cashless medical protection against lifting or dock accidents' },
+      { regulation: 'WB Minimum Wages Act', standard: 'Zone A (₹10,558) / Zone B (₹9,760) Baseline', coverage: '100% NEFT bank salary disbursement ensuring zero cash contractor disputes' }
+    ],
+    faqs: [
+      { question: 'Can ACS provide Hamali / loading gangs on tonnage contracts vs fixed monthly headcount?', answer: 'Yes. We support both fixed shift rosters (for consistent warehouse throughput) and rate-per-tonne / rate-per-container SLAs backed by statutory PF/ESIC worker rolls.' },
+      { question: 'How fast can you deploy extra loaders during festive or harvest surges in West Bengal?', answer: 'Backed by staging benches across Dankuni, Dhulagarh, Burrabazar, Haldia, and Siliguri, ACS scales from 10 to 150+ loaders within 24–48 hours.' }
+    ]
+  },
+
+  // 21. Industrial Electrician Contractors
+  'industrial-electrician-contractors': {
+    slug: 'industrial-electrician-contractors',
+    operationalScope: [
+      '24x7 shift operation and preventive maintenance of HT (11kV/33kV) & LT switchgear, VCB, ACB, and PCC/MCC panels.',
+      'Diesel Generator (DG Set) shift operation, AMF synchronizing, diesel dip logging, and battery health checks.',
+      '3-phase industrial wiring, starter/VFD troubleshooting, earthing resistance testing, and motor continuity checks.',
+      'Transformer oil BDV monitoring, silica gel replacement, and APFC capacitor bank power-factor upkeep.',
+      'Commercial floor distribution board maintenance, emergency UPS changeover, and LED high-bay upkeep.'
+    ],
+    trainingStandards: {
+      title: 'WB Electrical Licensing & CEA Safety Protocol',
+      hours: '36 Hours HT/LT Isolation & LOTO Certification',
+      certification: 'Licensed Wireman Permit (WBELB) / ITI Electrical',
+      modules: [
+        'Lockout / Tagout (LOTO) Isolation & Permit-to-Work (PTW) Execution',
+        'IR Thermography Hotspot Analysis & Transformer Maintenance',
+        'Electric Shock Resuscitation, CPR & Class-C Fire Extinguishing',
+        '3-Phase Induction Motor, Star-Delta Starter & VFD Diagnostics'
+      ]
+    },
+    gearAndTechnology: [
+      'True-RMS Digital Clamp Meters, Multimeters & Phase Sequence Indicators',
+      '11kV Rated Insulated Safety Gloves, Arc-Flash Face Shields & Dielectric Boots',
+      'Authorized Personal LOTO Padlocks, Voltage Detectors & Insulated Screwdriver Sets',
+      'Access to Earth Resistance Testers & 1000V/5000V Insulation Meggers'
+    ],
+    sops: [
+      {
+        code: 'SOP-ELC-01',
+        title: 'Energized Panel Lockout/Tagout (LOTO) Procedure',
+        objective: 'Zero arc-flash or electrocution incidents during maintenance shutdowns.',
+        protocol: 'Electrician confirms isolation command from Plant Engineer, trips breaker, racks out breaker/withdraws fuses, tests zero voltage with live tester, attaches personal padlock & Danger Tag before touching busbars.'
+      },
+      {
+        code: 'SOP-ELC-02',
+        title: 'Hourly HT/LT Load, Power Factor & DG Readiness Check',
+        objective: 'Maintain power factor ≥ 0.98 avoiding WBSEDCL/CESC penalty surcharges.',
+        protocol: 'Shift electrician logs incoming kV, load amps per phase, transformer winding temp, capacitor step health, and DG battery trickle charge every 2 hours.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Critical', metric: 'Breaker Trip / Power Outage Response', target: '< 10 Minutes', escalation: 'Site Engineer & Licensed Electrical Supervisor immediate callout' },
+      { tier: 'High', metric: 'Monthly Power Factor Target', target: '≥ 0.98 Lagging', escalation: 'APFC relay & capacitor stage rectification within 4 hours' },
+      { tier: 'Standard', metric: 'Preventive Panel Cleaning & Torque Audit', target: '100% Monthly', escalation: 'Thermal imaging report audited by Technical Lead' }
+    ],
+    complianceShield: [
+      { regulation: 'Central Electricity Authority (CEA) Regs', standard: 'Rule 3 / Licensed Workmen Mandate', coverage: 'Verified Wireman Permit and ITI trade credentials kept on site dossier' },
+      { regulation: 'WB Minimum Wages (Skilled)', standard: 'Zone A (₹12,777) / Zone B (₹11,807)', coverage: 'Full 13% EPF, ESIC, and statutory overtime compliance' }
+    ],
+    faqs: [
+      { question: 'Do ACS electricians carry valid West Bengal Wireman Permits?', answer: 'Yes. All technicians assigned to 3-phase industrial panels, transformers, and commercial HT/LT rooms carry verified ITI credentials and state Electrical Licensing Board Wireman/Supervisor permits.' },
+      { question: 'Can ACS provide round-the-clock DG set operators alongside plant electricians?', answer: 'Yes. We maintain 3-shift continuous 24x7 technical rosters ensuring one reliever technician for every 6 shift positions.' }
+    ]
+  },
+
+  // 22. Commercial Plumbing Contractors
+  'commercial-plumbing-contractors': {
+    slug: 'commercial-plumbing-contractors',
+    operationalScope: [
+      'Preventive and breakdown maintenance of MS, GI, CPVC, UPVC & HDPE utility and chilled-water pipelines.',
+      '24x7 shift operation of Sewage Treatment Plants (STP), Effluent Treatment Plants (ETP), and Water Treatment Plants (WTP).',
+      'Booster pumps, hydro-pneumatic systems, RO skids, and wet-riser fire-hydrant line pressure maintenance.',
+      'Commercial restroom flush-valves, sensor taps, grease traps, and rainwater harvesting drain clearance.',
+      'Raw/treated water TDS, pH, residual chlorine, and daily WBPCB parameter logbook maintenance.'
+    ],
+    trainingStandards: {
+      title: 'Industrial Pipe Fitting & STP/ETP Safety Training',
+      hours: '24 Hours Confined-Space & Utility Compliance',
+      certification: 'Certified Utility Plumber / ITI Pipe Fitter',
+      modules: [
+        'STP MBBR/SBR Aeration, Sludge Dewatering & Dosing Calculations',
+        'Confined-Space Sump Entry Gas Testing & Retrieval Safety',
+        'CPVC Solvent Welding, Flange Bolting & Pressure Valve Sealing',
+        'Hydro-pneumatic Variable Speed Pump Troubleshooting'
+      ]
+    },
+    gearAndTechnology: [
+      'Motorized rotary drain-cleaning auger snakes & hydro-jetter wands',
+      'Heavy-duty pipe wrenches, die threading stocks, and CPVC fusion tools',
+      'Digital pH/TDS meters, chlorine test kits & gland-packing pullers',
+      'Waterproof gumboots, rubber utility gloves & tripods for sump access'
+    ],
+    sops: [
+      {
+        code: 'SOP-PLM-01',
+        title: 'STP / ETP Daily Parameter & Chemical Dosing Log',
+        objective: 'Ensure 100% treated water compliance for West Bengal Pollution Control Board audits.',
+        protocol: 'Operator records raw sewage inflow, aeration blower amps, MLSS settleability, polymer dosing rate, and final discharge pH/TSS twice per shift.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Critical', metric: 'Burst Pipeline / Main Pump Fault Isolation', target: '< 15 Minutes', escalation: 'Emergency valve shutoff and standby utility crew dispatch' },
+      { tier: 'High', metric: 'STP Treated Effluent Clarity & Odor Control', target: '100% WBPCB Spec', escalation: 'Blower calibration & bio-culture dosage shock treatment' }
+    ],
+    complianceShield: [
+      { regulation: 'WB Pollution Control Board & Factories Act', standard: 'Logbook & Confined-Space SOPs', coverage: 'Zero untreated overflow penalties; verified PPE for sump work' },
+      { regulation: 'Statutory Labour Compliance', standard: 'Skilled Zone A/B Wages + EPF/ESIC', coverage: 'Full monthly ECR & ESIC transparency with Client Indemnity' }
+    ],
+    faqs: [
+      { question: 'Can ACS staff operate factory ETPs/STPs on 3-shift contracts?', answer: 'Yes. We supply trained ETP/STP operators and industrial pipe fitters for tanneries (Bantala), chemical plants (Haldia), food parks (Sankrail), and IT towers (Sector V).' }
+    ]
+  },
+
+  // 23. HVAC & AC Maintenance Staffing
+  'hvac-ac-maintenance-staffing': {
+    slug: 'hvac-ac-maintenance-staffing',
+    operationalScope: [
+      '24x7 operation of water-cooled and air-cooled screw/centrifugal chillers and cooling towers.',
+      'Cold storage & pharma cleanroom refrigeration compressor, evaporator coil, and glycol loop maintenance.',
+      'Preventive AMC of VRV/VRF central systems, ductable units, cassette ACs, and precision server-room PAC units.',
+      'AHU filter sanitization, cooling tower descaling, chemical dosing, and belt alignment.',
+      'BMS temperature logging, leak detection via nitrogen testing, brazing, and vacuum refrigerant charging.'
+    ],
+    trainingStandards: {
+      title: 'Commercial HVACR & Cold-Chain Technician Standard',
+      hours: '36 Hours Refrigeration & BMS Operations',
+      certification: 'ITI RAC / Certified HVAC Shift Technician',
+      modules: [
+        'Screw Chiller Approach Temp & Oil Differential Diagnostics',
+        'Cold Room Defrost Cycling & Ammonia/R404A Leak Safety',
+        'Copper Pipe Brazing, Vacuum Pulling & Gauge Calibration',
+        'Server Room Precision AC Humidity & Redundancy Balancing'
+      ]
+    },
+    gearAndTechnology: [
+      'Digital dual-pressure manifold gauges & high-CFM vacuum pumps',
+      'Electronic halogen/refrigerant leak detectors & infrared thermometers',
+      'Oxy-acetylene brazing rigs, tube benders & fin combs',
+      'Insulated freezer gloves, cryo-goggles & clamp ammeters'
+    ],
+    sops: [
+      {
+        code: 'SOP-HVC-01',
+        title: 'Two-Hourly Chiller / Cold-Chamber Telemetry Log',
+        objective: 'Catch refrigerant drops or compressor high-head trips before stock or server heat damage occurs.',
+        protocol: 'Technician logs suction/discharge pressures, evaporator temp, chilled water delta-T, condenser water approach, and compressor run amps continuously.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Critical', metric: 'Cold Room / Server PAC Temperature Drift Response', target: '< 10 Minutes', escalation: 'Standby chiller changeover & emergency HVAC engineer mobilization' },
+      { tier: 'High', metric: 'AHU Filter Cleaning & Coil Hygiene Adherence', target: '100% On Schedule', escalation: 'Facility Manager audit and automated maintenance alert' }
+    ],
+    complianceShield: [
+      { regulation: 'FSSAI / WHO GDP Cold Chain Norms', standard: 'Zero-Gap Thermal Logbooks', coverage: 'Continuous shift coverage with 1/6th trained relief technicians' },
+      { regulation: 'Skilled Technical Wage Mandate', standard: 'WB Zone A (₹12,777+) / EPF / ESIC', coverage: '100% statutory compliance on monthly payroll register' }
+    ],
+    faqs: [
+      { question: 'Do you supply HVAC technicians for cold storages in Hooghly, Dhulagarh, and Siliguri?', answer: 'Yes. We provide dedicated 24x7 cold storage refrigeration operators and commercial VRF/chiller technicians across Greater Kolkata, Hooghly, Haldia, Durgapur, and North Bengal.' }
+    ]
+  },
+
+  // 24. Carpentry, Painting & Civil Labour
+  'carpentry-painting-civil-labour': {
+    slug: 'carpentry-painting-civil-labour',
+    operationalScope: [
+      'Export-grade ISPM-15 wooden packing crate, heavy machinery skids, and pallet fabrication carpenters.',
+      'Industrial epoxy self-leveling flooring, PU warehouse aisle marking, and anti-corrosion factory shed painting.',
+      'Commercial office carpentry: modular workstations, hinges, hydraulic closers, glass door hardware & gypsum partitions.',
+      'Industrial masonry, floor expansion joint filling, roof waterproofing, and tile/plaster civil repairs.',
+      'Seasonal facility pre-monsoon drainage cleaning and civil upkeep workforces.'
+    ],
+    trainingStandards: {
+      title: 'DISH Safe Scaffolding & Artisan Trade Induction',
+      hours: '20 Hours Height Safety & Tool Safety',
+      certification: 'Trade-Tested Industrial Artisan + PPE Certified',
+      modules: [
+        'Safe operation of high-speed circular saws, nailers & grinders',
+        'Work-at-height full-body harness anchoring above 6 ft',
+        'Epoxy resin mixing ratios & ventilated fume-mask discipline',
+        'Heavy crate slinging points & wood moisture verification'
+      ]
+    },
+    gearAndTechnology: [
+      'Industrial pneumatic nail guns, mitre saws, planners & cordless drivers',
+      'Airless epoxy sprayers, spiked rollers & concrete scarifying support',
+      'IS-certified full-body height harnesses, hardhats & organic vapor masks',
+      'Masonry chisels, diamond tile cutters & laser alignment levels'
+    ],
+    sops: [
+      {
+        code: 'SOP-CIV-01',
+        title: 'Work-at-Height & Spray Coat Permit Inspection',
+        objective: 'Guarantee zero falls or toxic fume inhalation during factory shed painting.',
+        protocol: 'Supervisor checks scaffold outriggers/brakes, lifeline harness hook-in points, air ventilation blowers, and fire extinguishers prior to shift start.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Critical', metric: 'Export Crate / Urgent Civil Repair SLA', target: 'Same-Day / 24 Hrs', escalation: 'Additional artisan helper deployed from urban reserve desk' },
+      { tier: 'High', metric: 'Work-at-Height Safety Audit Score', target: '100% Pass Rate', escalation: 'Immediate work stoppage until harness compliance verified' }
+    ],
+    complianceShield: [
+      { regulation: 'Building & Other Construction Workers / Factories Act', standard: 'Safety PPE & ESIC Cover', coverage: 'Complete workmen injury coverage from Hour 1 on-site' },
+      { regulation: 'WB Minimum Wages Act', standard: 'Skilled Artisan vs Unskilled Helper Tiers', coverage: 'Audited EPF/ESIC & bank payment compliance' }
+    ],
+    faqs: [
+      { question: 'Can ACS deploy seasonal epoxy painters or crate carpenters on 1-to-3 month project contracts?', answer: 'Yes. We support both year-round AMC maintenance artisans and short-term industrial shutdown/expansion crews under full CLRA payroll compliance.' }
+    ]
+  },
+
+  // 25. Office Support, Peon & Pantry Staff
+  'office-support-peon-pantry-staff': {
+    slug: 'office-support-peon-pantry-staff',
+    operationalScope: [
+      'Trained corporate office boys, executive peons, document distribution runners, and banking messengers.',
+      'Pantry boys and tea/coffee stewards managing vending machines, executive boardroom hospitality & crockery hygiene.',
+      'Restroom sanitation attendants conducting 30-minute audit sweeps, soap/tissue refills & odor control.',
+      'Scrap removal, cardboard baling support, confidential shredding helpers & waste segregation workers.',
+      'Mailroom courier logging, stationery room inventory management & conference room AV/chair resetting.'
+    ],
+    trainingStandards: {
+      title: 'Corporate Etiquette, Grooming & Pantry Hygiene Standard',
+      hours: '24 Hours Soft-Skills & FSSAI Hygiene',
+      certification: 'ACS Certified Corporate Support Steward',
+      modules: [
+        'Executive greeting, quiet corridor movement & boardroom serving etiquette',
+        'Food-safe utensil sanitization, hairnet/glove & beverage temperature care',
+        'Data & document confidentiality (NDA awareness in offices)',
+        'Emergency office fire exit & waste sorting discipline'
+      ]
+    },
+    gearAndTechnology: [
+      'Smartly tailored corporate waistcoats/shirts, name badges & anti-slip shoes',
+      'Food-grade disposable pantry gloves, aprons & color-coded bar cloths',
+      'Digital/QR washroom audit sheets & microfiber replenishment carts',
+      'Courier & dispatch tracking registers'
+    ],
+    sops: [
+      {
+        code: 'SOP-OFS-01',
+        title: 'Boardroom & Executive Pantry Pre-Meeting Check',
+        objective: 'Guarantee spotless meeting readiness 15 minutes prior to scheduled executive sessions.',
+        protocol: 'Steward sanitizes conference table, aligns notebooks/pens, stocks chilled water bottles, tests beverage flask warmth, and stands ready near corridor zone.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'High', metric: 'Unplanned Absence Backup Replacement', target: '< 90 Minutes', escalation: 'City-hub mobile reliever dispatched from Salt Lake / CBD reserve' },
+      { tier: 'Standard', metric: 'Grooming & Confidentiality Compliance', target: '100% Audit Score', escalation: 'Weekly Facility Coordinator surprise site check' }
+    ],
+    complianceShield: [
+      { regulation: 'Police Character Verification', standard: '100% Pre-Deployment Clearance', coverage: 'Mandatory background & permanent address checks for key-holding office staff' },
+      { regulation: 'WB Shops & Establishments Wages', standard: 'Zone A (₹10,558+) Full EPF/ESIC', coverage: 'Zero cash salary handling; monthly ECR & Form-B slips provided' }
+    ],
+    faqs: [
+      { question: 'Are your office boys and pantry staff police verified before working in sensitive corporate offices?', answer: 'Yes. Every peon, pantry steward, and office runner undergoes mandatory Aadhaar KYC, police antecedent verification, and permanent home address validation prior to placement.' }
+    ]
+  },
+
+  // 26. Commercial Shifting & Relocation Labour
+  'commercial-shifting-relocation-labour': {
+    slug: 'commercial-shifting-relocation-labour',
+    operationalScope: [
+      'Corporate office relocation: modular furniture dismantling, chair/desk wrapping & weekend tower-to-tower moving.',
+      'IT infrastructure & server rack shifting helpers trained in anti-static cushioning, monitor crating & cable tagging.',
+      'Heavy industrial machinery shifting: CNC routers, power presses, lathes & chillers moved via skates, jacks & slings.',
+      'Warehouse selective pallet rack dismantling, bay nut-bolting shifting, and store inventory re-racking.',
+      'After-hours Friday-night to Sunday-night bulk commercial relocations avoiding weekday business interruption.'
+    ],
+    trainingStandards: {
+      title: 'Rigging Safety & Fragile IT Asset Handling Protocol',
+      hours: '24 Hours Heavy Rigging & Packing Drill',
+      certification: 'ACS Certified Relocation & Rigging Crew',
+      modules: [
+        'Low-center-of-gravity jacking, toe-lift skates & crowbar balancing',
+        'Anti-static ESD bubble wrapping for IT racks & TFT displays',
+        'Modular partition & acoustic panel hardware labeling',
+        'Building freight-lift floor protection & corridor corner guarding'
+      ]
+    },
+    gearAndTechnology: [
+      'Heavy-duty machinery skates/rollers (10T–30T capacity) & hydraulic toe jacks',
+      'Floor-safe PU-wheel platform dollies, pallet jacks & ratchet cargo belts',
+      'ESD bubble rolls, edge protectors, corrugated sheets & stretch wrap tools',
+      'Impact drivers, Allen key sets, laser tagging labels & steel-toe safety boots'
+    ],
+    sops: [
+      {
+        code: 'SOP-SHF-01',
+        title: 'Pre-Move Asset Tagging & Origin-Destination Map',
+        objective: 'Ensure every desk, server, and machine lands at the exact CAD zone without lost hardware.',
+        protocol: 'Lead supervisor tags each unit with Floor-Wing-Seat barcode stickers, logs condition photos, bags screws/bolts into labeled zip pouches taped to frame, and reconciles inventory at destination.'
+      }
+    ],
+    slaMatrix: [
+      { tier: 'Critical', metric: 'Weekend IT Floor Cutover Deadline', target: '100% On-Time Monday 08:00 AM', escalation: 'Deploy double crew strength overnight Sunday to guarantee uptime' },
+      { tier: 'High', metric: 'Damage-Free Transit Rate', target: '≥ 99.9%', escalation: 'Foam crating upgrades & dedicated corridor wall protection' }
+    ],
+    complianceShield: [
+      { regulation: 'CLRA & ESIC Injury Coverage', standard: 'Full Trauma & Workmen Compensation Shield', coverage: 'Mandatory safety boots, heavy-lifting belts & ESIC active from Shift 1' },
+      { regulation: 'Corporate NDA Compliance', standard: 'Supervised Closed-Container Handling', coverage: 'Zero unauthorized handling of confidential IT racks or financial filing cabinets' }
+    ],
+    faqs: [
+      { question: 'Can ACS supply 30–80 trained moving & shifting helpers over a weekend in Salt Lake Sector V or New Town?', answer: 'Yes. We specialize in weekend/overnight corporate office shifting across Sector V, New Town, and Kolkata CBD, as well as plant machinery and warehouse rack shifting across Dankuni and Howrah.' }
+    ]
   }
 };
 

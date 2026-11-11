@@ -14,8 +14,11 @@ import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES, getCityBySlug } from "@/lib/cities";
 import { ACS_INDUSTRIES } from "@/lib/industries";
 import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
-import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, buildWBServiceAreaSchema, buildWBIndustrialHubSchema, serializeJsonLd } from "@/lib/schema";
+import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, buildWBServiceAreaSchema, buildWBIndustrialHubSchema, buildBlueCollarServiceSchema, serializeJsonLd } from "@/lib/schema";
 import { getWBHubsForCity, getWBWageZone } from "@/lib/wb-industrial-hubs";
+import { getWBLocationProfile } from "@/lib/data/wb-zone-dictionary";
+import { getWBMonthlyWage, WB_CURRENT_PERIOD } from "@/lib/wb-wages";
+import { isWBCityIndexable } from "@/lib/wb-content-quality";
 import CityMap from "@/components/common/CityMap";
 import ClientMarquee from "@/components/common/ClientMarquee";
 import EvidenceTrustEngine from "@/components/common/EvidenceTrustEngine";
@@ -89,8 +92,10 @@ export async function generateMetadata({
 
   const wbKeywords = isWestBengal
     ? [
+        `${service.name} in ${cityName} West Bengal`,
+        `bulk ${service.shortName.toLowerCase()} contractor ${cityName}`,
+        `CLRA EPF ESIC manpower agency ${cityName}`,
         `security agency in ${cityName} West Bengal`,
-        `security guard company ${cityName}`,
         `housekeeping services ${cityName}`,
         `manpower supply ${cityName} West Bengal`,
         `PSARA licensed security company West Bengal`,
@@ -104,19 +109,27 @@ export async function generateMetadata({
 
   const keywords = [...baseKeywords, ...wbKeywords];
 
+  const wbProfile = isWestBengal ? getWBLocationProfile(citySlug) : null;
+  const wbUnskilledWage = isWestBengal && wbWageZone
+    ? getWBMonthlyWage(wbWageZone, "unskilled").toLocaleString("en-IN")
+    : null;
+
   const description = isWestBengal && wbWageZone
     ? (service.metaDescTemplate
         ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
-        : `Deploy PSARA-licensed ${service.name.toLowerCase()} in ${cityName}, West Bengal — 100% compliant with WB Minimum Wages Act Zone ${wbWageZone} & Labour Welfare Fund. ISO 9001:2015 certified. 24×7 deployment. Free site survey. Get a B2B quote.`)
+        : `Hire ${service.name.toLowerCase()} in ${cityName}, ${wbProfile?.district || "West Bengal"} — 100% WB Zone ${wbWageZone} (₹${wbUnskilledWage ?? "10,558"}+/mo), EPF 13%, ESIC 3.25% & LWF compliant. ${wbProfile?.deploymentSlaHours ?? 24}-hr mobilization from ${wbProfile?.nearestCommandHQ || "Kolkata HQ"}. Get a B2B quote.`)
     : (service.metaDescTemplate
         ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
         : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Security (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`);
 
-  // Indexing strategy: Full indexing enabled across ALL service-city pages (Zero noindex)
+  // Layer 4 Anti-Scaled-Content Quality Gate:
+  // Index verified West Bengal hubs with mapped estates & local corridors;
+  // serve `noindex, follow` on peripheral Tier-3 pockets while keeping UX live.
+  const shouldIndex = isWestBengal ? isWBCityIndexable(citySlug) : true;
   const robotsMeta: Metadata['robots'] = {
-    index: true,
+    index: shouldIndex,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: { index: shouldIndex, follow: true },
   };
 
   return {
@@ -154,10 +167,11 @@ export default async function ServiceCityPage({
   const { name: cityName, state, stateSlug } = cityObj;
   const pageUrl = `${siteConfig.url}/services/${slug}/${citySlug}`;
 
-  // West Bengal enrichment: industrial hubs + wage zone
+  // West Bengal enrichment: industrial hubs + wage zone + district DLC/SLA profile
   const isWestBengal = state === "West Bengal";
   const wbHubs = isWestBengal ? getWBHubsForCity(citySlug) : [];
   const wbWageZone = isWestBengal ? getWBWageZone(citySlug) : null;
+  const wbProfile = isWestBengal ? getWBLocationProfile(citySlug) : null;
 
   const h1 = service.h1Template
     ? service.h1Template.replace(/\[City\]/g, cityName)
@@ -214,12 +228,50 @@ export default async function ServiceCityPage({
   // Other related services
   const relatedServices = ACS_SERVICES.filter((s) => s.slug !== service.slug).slice(0, 4);
 
-  // West Bengal — advanced SAB-model schemas (conditional, zero impact on other states)
+  // West Bengal — advanced SAB-model & Blue-Collar Contracting schemas
   const wbServiceAreaSchema = isWestBengal
-    ? buildWBServiceAreaSchema({ cityName, stateName: state, citySlug, serviceName: service.name, wageZone: wbWageZone ?? undefined })
+    ? buildWBServiceAreaSchema({
+        cityName,
+        stateName: state,
+        citySlug,
+        serviceName: service.name,
+        serviceSlug: slug,
+        wageZone: wbWageZone ?? undefined,
+      })
     : null;
   const wbHubSchema = isWestBengal && wbHubs.length > 0
     ? buildWBIndustrialHubSchema(wbHubs)
+    : null;
+
+  const isBlueCollarTrade = service.category === "manpower" || [
+    "mep-maintenance",
+    "industrial-electrician-contractors",
+    "commercial-plumbing-contractors",
+    "hvac-ac-maintenance-staffing",
+    "office-support-peon-pantry-staff",
+    "housekeeping",
+    "janitorial",
+  ].includes(service.slug);
+
+  const skillTierForService: "unskilled" | "semiSkilled" | "skilled" =
+    ["industrial-electrician-contractors", "commercial-plumbing-contractors", "hvac-ac-maintenance-staffing", "mep-maintenance"].includes(service.slug)
+      ? "skilled"
+      : ["warehouse-manpower-supply", "carpentry-painting-civil-labour", "commercial-shifting-relocation-labour"].includes(service.slug)
+      ? "semiSkilled"
+      : "unskilled";
+
+  const blueCollarSchema = isBlueCollarTrade
+    ? buildBlueCollarServiceSchema({
+        serviceName: service.name,
+        serviceSlug: service.slug,
+        description: service.description,
+        cityName,
+        stateName: state,
+        citySlug,
+        occupationalCategory: service.category === "facility" ? "Technical MEP & Facility Maintenance Trades" : "Bulk Blue-Collar & Industrial Manpower",
+        skillTier: skillTierForService,
+        wageZone: wbWageZone ?? "A",
+      })
     : null;
 
   return (
@@ -228,9 +280,10 @@ export default async function ServiceCityPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(localBusinessSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />}
-      {/* WB-only: SAB service area + industrial hub geospatial signals */}
+      {/* WB-only: SAB service area + industrial hub + blue-collar statutory wage signals */}
       {wbServiceAreaSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(wbServiceAreaSchema) }} />}
       {wbHubSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(wbHubSchema) }} />}
+      {blueCollarSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(blueCollarSchema) }} />}
 
       {/* ── HERO BANNER — Authoritative B2B Enterprise Header ── */}
       <section className="bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white py-12 md:py-16 relative overflow-hidden">
@@ -389,9 +442,16 @@ export default async function ServiceCityPage({
               ))}
             </div>
             {wbWageZone && (
-              <p className="text-[11px] text-slate-500 mt-3 border-t border-sky-100 pt-2">
-                ✅ All ACS personnel deployed in {cityName} are paid per the <strong>West Bengal Minimum Wages Act — Zone {wbWageZone}</strong> notification, with LWF contributions deposited to the West Bengal Labour Welfare Fund Board. Full statutory audit trail available on demand.
-              </p>
+              <div className="mt-3 border-t border-sky-100 pt-2.5 space-y-1.5 text-[11px] text-slate-600">
+                <p>
+                  ✅ All ACS personnel deployed in <strong>{cityName} ({wbProfile?.district || "West Bengal"})</strong> follow the <strong>West Bengal Minimum Wages Act — Zone {wbWageZone}</strong> ({WB_CURRENT_PERIOD}) schedule: Unskilled <strong>₹{getWBMonthlyWage(wbWageZone, "unskilled").toLocaleString("en-IN")}/mo</strong>, Semi-Skilled <strong>₹{getWBMonthlyWage(wbWageZone, "semiSkilled").toLocaleString("en-IN")}/mo</strong>, Skilled <strong>₹{getWBMonthlyWage(wbWageZone, "skilled").toLocaleString("en-IN")}/mo</strong>, plus 13% EPF, 3.25% ESIC, 8.33% Bonus &amp; WB LWF (₹3/₹30).
+                </p>
+                {wbProfile && (
+                  <p className="text-slate-500">
+                    🏛️ Jurisdiction: <strong>{wbProfile.policeJurisdiction}</strong> | ⚖️ Labour Office: <strong>{wbProfile.labourDepartmentOffice}</strong> | ⚡ Mobilization SLA: <strong>{wbProfile.deploymentSlaHours} hrs</strong> from <strong>{wbProfile.nearestCommandHQ}</strong>.
+                  </p>
+                )}
+              </div>
             )}
           </div>
         </section>

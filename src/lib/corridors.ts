@@ -465,6 +465,384 @@ export const EASTERN_CORRIDORS: CorridorData[] = [
       },
     ],
   },
+  // ─── West Bengal Primary Industrial & B2B Manpower Corridors (4 Added) ────
+  {
+    slug: "dankuni-hooghly-industrial-belt",
+    name: "Dankuni – Hooghly Multi-Modal Logistics & NH-19/NH-16 Corridor",
+    tagline: "Eastern India's Largest Warehousing, Loading/Unloading & Factory Manpower Axis",
+    state: "West Bengal",
+    region: "Hooghly & Howrah Logistics Belt",
+    heroHeadline: "Bulk Warehouse Manpower, Hamali Loading Gangs & Industrial Security for Dankuni–Dhulagarh–Uluberia",
+    description:
+      "Dedicated B2B blue-collar manpower supply, container loading/unloading (Hamali/Mutia) gangs, industrial electricians, weighbridge shrinkage controllers, and PSARA guarding across Dankuni, Dhulagarh, Ranihati, Sankrail, Uluberia, and Singur along NH-19 and NH-16.",
+    strategicImportance:
+      "Converging the Eastern Dedicated Freight Corridor (EDFC) rail terminus in Dankuni with the NH-19 (Delhi Road) and NH-16 (Bombay Road) warehousing belts, the Hooghly-Howrah logistics axis processes over 60% of Eastern India's e-commerce, FMCG, cold storage, and automotive distribution volume. Operations here fail without zero-shrinkage gate controls and punctual 24/7 shift labor.",
+    keyIndustrialZones: [
+      {
+        name: "Dankuni Multi-Modal Logistics & EDFC Rail Belt",
+        focus: "E-Commerce Fulfilment, Cold Storage, Rail-Road Freight Terminals",
+        location: "Dankuni, Hooghly (NH-19)",
+      },
+      {
+        name: "Dhulagarh – Ranihati – Panchla Logistics Park Cluster",
+        focus: "FMCG Distribution, Cold Chain Warehouses, Parcel Cross-Docking",
+        location: "NH-16 Bombay Road, Howrah",
+      },
+      {
+        name: "Sankrail Poly Park, Food Park & Sudha Ras Complex",
+        focus: "Plastics Processing, Edible Oils, Beverage Bottling, Cold Storage",
+        location: "Sankrail Block, Howrah",
+      },
+      {
+        name: "Uluberia – ESR & Industrial Growth Centre",
+        focus: "Heavy 3PL Warehousing, Structural Steel, MSME Fabrication",
+        location: "Uluberia, NH-16",
+      },
+      {
+        name: "Baltikuri – Dasnagar – Liluah Karkhana Engineering Cluster",
+        focus: "Foundries, Lathe Workshops, Packaging & Material Handling",
+        location: "North & Central Howrah",
+      },
+    ],
+    targetSectors: [
+      "3PL Warehouses & E-Commerce Fulfilment Centers",
+      "Cold Storage & Agro-Processing Godowns",
+      "Container Freight Stations & Rail Goods Sheds",
+      "FMCG & Beverage Manufacturing Plants",
+      "MSME Karkhanas, Foundries & Sheet Metal Units",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "West Bengal Private Security Agencies (Regulation) Rules, 2007",
+      minimumWageAuthority: "Office of the Labour Commissioner, Government of West Bengal (Zone A Municipal/KMDA/HDA & Zone B Rural Schedules)",
+      clraRequirements: "Form-V Principal Employer registration & Labour License under West Bengal Contract Labour (R&A) Rules, plus half-yearly Form XXIV returns.",
+      keyRegulations: [
+        "West Bengal Minimum Wages Act (Zone A ₹10,558 / Zone B ₹9,760 Unskilled baseline — Jul–Dec 2026)",
+        "EPF Employer Burden at 13.00% (12% EPF + 0.5% EDLI + 0.5% Admin) with monthly TRRN/ECR proof",
+        "ESIC Employer Contribution 3.25% on gross wages up to ₹21,000",
+        "West Bengal Labour Welfare Fund (₹3 Employee / ₹30 Employer biannual June & December)",
+        "The Factories Act, 1948 (West Bengal Rules) & Payment of Bonus Act (8.33%)",
+      ],
+      statutoryAssurance:
+        "All warehouse loaders, machine helpers, electricians, and PSARA sentries along the Dankuni-Hooghly belt receive 100% NEFT bank wage transfers by the 7th of each month with complete ECR and ESIC challan verification.",
+    },
+    operationalCapabilities: [
+      {
+        title: "24-48 Hour Bulk Hamali & Warehouse Loader Mobilization",
+        description:
+          "Staged manpower pools across Dankuni, Serampore, and Howrah enable deploying 15 to 200+ vetted loaders, unloaders, sorters, and barcode helpers within 24–48 hours.",
+      },
+      {
+        title: "100-Ton Weighbridge & Dispatch Anti-Shrinkage Protocols",
+        description:
+          "Independent ACS weighbridge auditors and gate marshals reconcile e-way bills, bolt seals, and gross-tare slips around the clock.",
+      },
+      {
+        title: "24x7 Technical MEP & Chiller Maintenance Crew",
+        description:
+          "On-site licensed HT/LT electricians, cold storage HVAC mechanics, and commercial plumbers maintaining 99.8% facility uptime.",
+      },
+      {
+        title: "Biometric Attendance & CLRA Dispute Insulation",
+        description:
+          "Zero-substitution biometric check-ins with complete Form-V statutory indemnity isolating warehouse operators from union or principal-employer liability.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "24-48 Hours",
+      benchStrength: "450+ Howrah-Hooghly Personnel",
+      supervisoryRatio: "1 Field Officer per 15 Staff",
+      patrolTechnology: "Biometric Turnstiles + Cloud RFID Guard Tour Wands",
+    },
+    faqs: [
+      {
+        question: "Can ACS supply contract loading and unloading labor (Hamali) in Dankuni and Dhulagarh?",
+        answer:
+          "Yes. ACS supplies CLRA-licensed warehouse loading/unloading gangs, dock helpers, and container stuffing/destuffing crews on both monthly fixed-roster and tonnage/volume SLAs across Dankuni, Dhulagarh, Uluberia, and Sankrail.",
+      },
+      {
+        question: "What minimum wage zone applies to Dankuni and Dhulagarh industrial hubs?",
+        answer:
+          "Municipal/notified areas of Dankuni, Serampore, Howrah, and Uluberia operate under WB Wage Zone A (₹10,558 Unskilled / ₹11,615 Semi-Skilled / ₹12,777 Skilled for Jul–Dec 2026), whereas interior Gram Panchayat blocks such as Panchla or Singur follow Zone B schedules.",
+      },
+      {
+        question: "Do you deploy industrial electricians and cold-storage HVAC technicians on contract?",
+        answer:
+          "Yes. Our Technical MEP division deploys licensed 3-phase/HT/LT electricians, DG set operators, and refrigeration mechanics on annual maintenance or dedicated shift contracts.",
+      },
+    ],
+  },
+  {
+    slug: "haldia-petrochemical-port-industrial-zone",
+    name: "Haldia Port, Petrochemical & Coastal Industrial Belt",
+    tagline: "Deep-Water Port, Hazchem Refinery & Purba/Paschim Medinipur Manpower Command",
+    state: "West Bengal",
+    region: "Haldia – Kolaghat – Kharagpur Belt",
+    heroHeadline: "Hazchem-Trained Industrial Workforce, Pipe Fitters & Port Gate Security for Haldia & Kharagpur",
+    description:
+      "Specialized contract manpower, industrial plumbers and pipe fitters, HVAC/utility mechanics, cargo handling helpers, and PSARA fire-safety security across Haldia Dock Complex, Durgachak, Sutahata, Kolaghat Thermal belt, and Vidyasagar Industrial Park (Kharagpur).",
+    strategicImportance:
+      "Home to Haldia Petrochemicals, Indian Oil Refinery, edible oil refineries, chemical tank terminals, and Kolkata Port's deep-water dock system—linked inland via Kolaghat and NH-16 to Kharagpur's Vidyasagar Industrial Park—this corridor demands PPE-disciplined workers trained in ATEX/Hazchem safety, ISPS port protocols, and continuous 3-shift heavy plant uptime.",
+    keyIndustrialZones: [
+      {
+        name: "Haldia Dock Complex (HDC) & Port Bonded Terminals",
+        focus: "Container Handling, Edible Oil Terminals, Dry Bulk Cargo & Dock Warehouses",
+        location: "Haldia, Purba Medinipur",
+      },
+      {
+        name: "Haldia Petrochemical, Refinery & Chemical Cluster",
+        focus: "Polymers, Downstream Petrochemicals, Industrial Gases, Resins",
+        location: "Durgachak – Chiranjibpur, Haldia",
+      },
+      {
+        name: "Vidyasagar Industrial Park (WBIDC — 1,166 Acres)",
+        focus: "Heavy Earthmoving Machinery, Auto Components, Steel Fabrication",
+        location: "Kharagpur, Paschim Medinipur (NH-16)",
+      },
+      {
+        name: "Kolaghat – Mecheda Thermal & Engineering Corridor",
+        focus: "Power Plant Ancillaries, Fly-Ash Processing, Cold Chain Godowns",
+        location: "Kolaghat, NH-16 / NH-116",
+      },
+    ],
+    targetSectors: [
+      "Petrochemicals, Lubricants & Edible Oil Refineries",
+      "Port Freight Forwarding & Bonded Warehouses",
+      "Thermal Power & Heavy Machinery Plants",
+      "Industrial Piping, ETP/STP & Utility Maintenance",
+      "Export Agro-Storage & Coastal Cold Storage",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "West Bengal PSARA Rules & ISPS Port Facility Security Alignment",
+      minimumWageAuthority: "Labour Commissionerate, Government of West Bengal (Zone A for Haldia, Durgachak, Kolaghat, Kharagpur; Zone B for non-municipal pockets)",
+      clraRequirements: "Strict Central/State CLRA licensing, Gate-Pass police clearance verification, and Form 35 Factory Act medical fitness records.",
+      keyRegulations: [
+        "WB Minimum Wages Zone A (₹10,558 Unskilled / ₹12,777 Skilled — Jul–Dec 2026)",
+        "The Petroleum Act & Explosives Rules safety protocol alignment",
+        "Mandatory EPFO 13% + ESIC 3.25% + Group Personal Accident (WC) coverage",
+        "ISPS / Port Trust gate access & hazardous area PPE mandates",
+      ],
+      statutoryAssurance:
+        "Complete CLRA indemnity with verified ECRs, hazardous-duty safety gear compliance, and zero strike/interruption manpower continuity backed by our Haldia Port Command Desk.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Utility Maintenance & STP/WTP Pipe Fitters",
+        description:
+          "Certified industrial plumbers, pipeline fitters, TIG/ARC welders, and pump-house attendants for chemical refineries and industrial estates.",
+      },
+      {
+        title: "Fire Safety Marshals & Hazchem Gate Guarding",
+        description:
+          "Guards trained in industrial hydrant operations, breathalyzer screening of tanker drivers, and strict no-spark / contraband gate checks.",
+      },
+      {
+        title: "Heavy Packing, Bagging & Dock Loading Teams",
+        description:
+          "Contract bagging line helpers, palletizers, and truck loading gangs for fertilizer, polymer, and edible oil plants.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "24-48 Hours",
+      benchStrength: "250+ Medinipur & Haldia Staff",
+      supervisoryRatio: "1 Safety/Field Supervisor per 12 Personnel",
+      patrolTechnology: "EX-Rated Flashlights + Geofenced RFID Patrol Network",
+    },
+    faqs: [
+      {
+        question: "Do you supply skilled ITI fitters, welders, and industrial helpers in Haldia and Kharagpur?",
+        answer:
+          "Yes. ACS supplies tested ITI welders, maintenance fitters, pipe fitters, electricians, and factory floor helpers across Haldia Industrial Belt and Vidyasagar Industrial Park in Kharagpur with full statutory PF/ESIC compliance.",
+      },
+      {
+        question: "What wage zone covers Haldia and Kolaghat deployments?",
+        answer:
+          "Haldia Municipality, Haldia Development Authority notified sectors (Durgachak), Kolaghat thermal township, and Kharagpur Municipality operate under West Bengal Wage Zone A.",
+      },
+    ],
+  },
+  {
+    slug: "durgapur-asansol-heavy-industrial-belt",
+    name: "Durgapur – Panagarh – Asansol Heavy Steel & Coal Belt",
+    tagline: "Rarh Bengal Steel, Sponge Iron, Mining Support & Industrial Manpower Network",
+    state: "West Bengal",
+    region: "Paschim & Purba Bardhaman + Bankura + Purulia",
+    heroHeadline: "Factory Workforce, Heavy Shifting Riggers & Steel Plant Security for Durgapur, Asansol & Panagarh",
+    description:
+      "High-volume factory helpers, karkhana workers, ITI welders/fitters, heavy machinery rigging crews, industrial electricians, and armed/unarmed plant security serving Durgapur, Asansol, Raniganj, Andal, Panagarh Industrial Park, Burdwan, Barjora, and Raghunathpur.",
+    strategicImportance:
+      "The Ruhr of Eastern India spans Durgapur-Asansol's integrated steel plants and sponge iron kilns, the 1,445-acre Panagarh Industrial Park along NH-19, Barjora's engineering cluster in Bankura, and Raghunathpur's thermal/steel corridor in Purulia. Managing labor supply here requires proven union-interface maturity, 24/7 anti-scrap-pilferage security, and certified technical hands.",
+    keyIndustrialZones: [
+      {
+        name: "Panagarh Industrial Park (WBIDC — 1,445 Acres)",
+        focus: "Chemicals, Fertilizers, Heavy Manufacturing, Logistics Parks",
+        location: "Panagarh / Kanksa, NH-19",
+      },
+      {
+        name: "Durgapur Steel Plant (DSP), Alloy Steel & DPL Corridor",
+        focus: "Integrated Steel, Sponge Iron, Industrial Gases, Refractories",
+        location: "Durgapur Municipal Corp.",
+      },
+      {
+        name: "Asansol – Burnpur (IISCO) – Jamuria – Kulti Belt",
+        focus: "Metallurgy, Wire Drawing, Coke Ovens, Railway Equipment",
+        location: "ADDA Jurisdiction, Paschim Bardhaman",
+      },
+      {
+        name: "Barjora Industrial Park & Raghunathpur Power/Steel Zone",
+        focus: "Ferro-Alloys, Iron Foundries, Plastics & Thermal Power",
+        location: "Bankura & Purulia Borders",
+      },
+    ],
+    targetSectors: [
+      "Integrated Steel, Sponge Iron & Ferro-Alloy Plants",
+      "Cement Grinding Units & Refractories",
+      "Chemical & Fertilizer Processing Facilities",
+      "Heavy Engineering Foundries & CNC Workshops",
+      "Mineral Yards & Coal Washeries",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "West Bengal PSARA License + ADPC Commissionerate Police Verification",
+      minimumWageAuthority: "West Bengal Labour Commissionerate (Zone A across ADDA / Durgapur / Asansol / Panagarh / Burdwan; Central Sphere CLC(C) for SAIL/ECL/PSUs)",
+      clraRequirements: "Mandatory Form-V issuance, Standing Orders adherence, and annual bonus provisioning before Puja cycles.",
+      keyRegulations: [
+        "Factories Act 1948 (Hot-Area Safety, PPE, Medical Checkup Form 35)",
+        "EPF 13.00% + ESIC 3.25% + Group Accidental Cover",
+        "Strict adherence to Central Sphere wage orders for PSU/Mining installations",
+        "WB Minimum Wages Zone A for Durgapur/Asansol/Panagarh/Burdwan/Raniganj",
+      ],
+      statutoryAssurance:
+        "Zero wage leakage, dual-audit attendance reconciliation, and battle-tested quick reaction support protecting factory gates across Paschim & Purba Bardhaman.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Skilled ITI Trades, Welders & Furnace Floor Helpers",
+        description:
+          "Deployment of TIG/MIG/ARC welders, crane riggers, material movement helpers, and packaging line staff certified for heavy plant floors.",
+      },
+      {
+        title: "Heavy Machinery Shifting & Plant Relocation Gangs",
+        description:
+          "Contractual rigging and industrial shifting teams equipped for lathe, press, and warehouse rack installations.",
+      },
+      {
+        title: "Weighbridge & Scrap Loss Prevention",
+        description:
+          "Armed sentries and dual-custody weighbridge controllers eliminating alloy and billet diversion at dispatch gates.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "24-48 Hours",
+      benchStrength: "400+ Rarh Bengal Workforce",
+      supervisoryRatio: "1 Field Supervisor per 12 Industrial Workers",
+      patrolTechnology: "GPS + RFID Night Patrol & Weighbridge Gate Sync",
+    },
+    faqs: [
+      {
+        question: "Do you serve Panagarh Industrial Park and Barjora in addition to Durgapur?",
+        answer:
+          "Yes. Our Durgapur regional desk maintains direct operational coverage for Panagarh Industrial Park, Durgapur, Andal, Asansol, Jamuria, Raniganj, Burdwan, Barjora, and Raghunathpur with 24–48 hour deployment SLAs.",
+      },
+      {
+        question: "Can ACS handle Central Sphere wages for PSU plants alongside State Zone A wages?",
+        answer:
+          "Yes. We run dual-sphere payroll tables covering Central Labour Commissioner (CLC-C) orders for PSUs and West Bengal Zone A/B schedules for private MSMEs and factories.",
+      },
+    ],
+  },
+  {
+    slug: "kolkata-it-data-center-corridor-sector-v-new-town",
+    name: "Kolkata IT, CBD & Commercial Support Corridor (Sector V – New Town – CBD)",
+    tagline: "Corporate Housekeeping, MEP Technical Staffing, Pantry/Office Support & Grade-A Security",
+    state: "West Bengal",
+    region: "Salt Lake Sector V – New Town – Kolkata CBD – Bantala",
+    heroHeadline: "IFM, Office Boys, Pantry Staff, HVAC/Electrical Technicians & Corporate Security across Kolkata",
+    description:
+      "End-to-end Integrated Facility Management (IFM), commercial HVAC/chiller technicians, HT/LT electricians, commercial plumbers, mechanized housekeeping, office peon/pantry staff, corporate office shifting crews, and PSARA concierge security for Salt Lake Sector V, New Town Rajarhat, Ecospace, Park Street, Camac Street, BBD Bagh, and Bantala IT/Leather zones.",
+    strategicImportance:
+      "Serving multinational IT/ITES towers in Salt Lake Sector V and New Town, financial headquarters in Park Street–Camac Street–BBD Bagh, wholesale godowns in Burrabazar, and exporters in Bantala Kolkata Leather Complex, Kolkata's commercial core demands groomed, police-verified support staff alongside 24/7 engineering technicians.",
+    keyIndustrialZones: [
+      {
+        name: "Salt Lake Electronics Complex (Sector V — NDITA)",
+        focus: "IT/ITES Campuses, Fintech Data Centers, Telecom & R&D",
+        location: "Bidhannagar, Kolkata",
+      },
+      {
+        name: "New Town Financial Hub & Ecospace – Infospace Corridor",
+        focus: "Tier-1 Corporate Towers, GCCs, Healthcare & Commercial Malls",
+        location: "New Town Rajarhat (NKDA)",
+      },
+      {
+        name: "Park Street – Camac Street – BBD Bagh Central Business District",
+        focus: "Banks, Corporate HQs, Consulates, Law Firms & Retail Plazas",
+        location: "Central Kolkata (KMC)",
+      },
+      {
+        name: "Bantala Kolkata Leather Complex (KLC) & Kasba–Topsia",
+        focus: "Tannery Exports, Footwear Plants, Industrial Estate & IT Zones",
+        location: "East Kolkata / South 24 Parganas",
+      },
+    ],
+    targetSectors: [
+      "IT/ITES Software Parks & Hyperscale Data Centers",
+      "Banking, NBFC & Corporate Headquarters",
+      "Tertiary Hospitals, Laboratories & Educational Campuses",
+      "Wholesale Trade Hubs (Burrabazar) & Export Parks (Bantala)",
+      "Commercial Relocation & Interior Fit-Out Workforces",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "West Bengal PSARA License + Kolkata Police / Bidhannagar Commissionerate Verification",
+      minimumWageAuthority: "West Bengal Minimum Wages Act — Strictly Zone A across KMC, Bidhannagar Municipal Corporation, and NKDA",
+      clraRequirements: "100% EPFO, ESIC, West Bengal LWF, Professional Tax Form VIII, and Form-V contractor compliance.",
+      keyRegulations: [
+        "WB Minimum Wages Zone A (Unskilled ₹10,558 / Semi-Skilled ₹11,615 / Skilled ₹12,777 / Highly Skilled ₹14,054 — Jul–Dec 2026)",
+        "ISO 9001:2015 SOP Audits & Green/Diversey Eco-Chemical Housekeeping Standards",
+        "CLRA Section 21 Principal Employer Indemnity",
+        "Strict Background & Aadhaar/Police Clearance Verification",
+      ],
+      statutoryAssurance:
+        "Audited monthly compliance packs (bank wage register, ECR TRRN, ESIC challan, PT & GST receipts) delivered before billing settlement.",
+    },
+    operationalCapabilities: [
+      {
+        title: "24x7 Technical MEP (Electricians, HVAC & Plumbers)",
+        description:
+          "Licensed 3-phase/HT/LT electricians, BMS/chiller technicians, and commercial plumbers maintaining Tier-A tower uptime.",
+      },
+      {
+        title: "Groomed Office Boys, Peons, Pantry & Executive Support",
+        description:
+          "Uniformed, etiquette-trained corporate office support staff, pantry stewards, boardroom attendants, and mailroom runners.",
+      },
+      {
+        title: "Weekend Commercial Office Shifting & IT Moving Crews",
+        description:
+          "Zero-downtime Friday-to-Sunday office furniture, server rack, and workstation shifting teams.",
+      },
+      {
+        title: "Concierge Guarding & Mechanized Deep Cleaning",
+        description:
+          "Bilingual front-desk security officers paired with ride-on scrubbers and IRATA facade cleaning teams.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "12-24 Hours",
+      benchStrength: "1,200+ Greater Kolkata & Barrackpore Personnel",
+      supervisoryRatio: "1 Operations Officer per Campus",
+      patrolTechnology: "Turnstile Biometrics + Daily Digital FM Checklists",
+    },
+    faqs: [
+      {
+        question: "Can ACS manage both corporate housekeeping, office boys, and MEP electricians under one vendor code?",
+        answer:
+          "Yes. ACS functions as a single-vendor IFM and manpower partner across Sector V, New Town, and Kolkata CBD, consolidating electricians, HVAC techs, plumbers, cleaners, pantry/peon staff, and PSARA guards on one compliant invoice.",
+      },
+      {
+        question: "Do you handle commercial office shifting in Salt Lake Sector V and Park Street?",
+        answer:
+          "Yes. Our commercial shifting division executes after-hours and weekend office relocations, server rack handling, and modular furniture movement with trained packers and supervisors.",
+      },
+    ],
+  },
 ];
 
 export const CORRIDORS = EASTERN_CORRIDORS;

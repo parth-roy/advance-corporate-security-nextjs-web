@@ -6,6 +6,7 @@
 // ============================================================
 
 import { siteConfig } from "./config";
+import { getWBMonthlyWage } from "./wb-wages";
 
 /** Safe JSON-LD serialisation — prevents XSS via </script> injection */
 export function serializeJsonLd(obj: object): string {
@@ -20,7 +21,7 @@ export function buildOrganizationSchema() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["Organization", "SecurityService"],
+        "@type": ["Organization", "EmploymentAgency", "LocalBusiness", "SecurityService"],
         "@id": siteConfig.entityId,
         name: siteConfig.name,
         alternateName: siteConfig.shortName,
@@ -43,13 +44,20 @@ export function buildOrganizationSchema() {
         },
         knowsAbout: [
           "Private Security Agencies (Regulation) Act 2005 (PSARA Form-V)",
-          "Contract Labour (Regulation and Abolition) Act 1970",
+          "Contract Labour (Regulation and Abolition) Act 1970 (CLRA)",
           "Employees' Provident Funds Act 1952 (Section 7A Principal Employer Liability Shield)",
-          "Employees' State Insurance Act 1948",
-          "Minimum Wages Act 1948 (Central & State Spheres)",
-          "Government e-Marketplace (GeM 4.0) Security Procurement Guidelines",
+          "Employees' State Insurance Act 1948 (ESIC 3.25%)",
+          "West Bengal Minimum Wages Act 1948 (Zone A & Zone B Jan/Jul VDA Cycles)",
+          "West Bengal Labour Welfare Fund (LWF)",
+          "Government e-Marketplace (GeM 4.0) Security & Manpower Procurement Guidelines",
+          "Warehouse Loading, Unloading, Hamali & Container Stuffing Contracting",
+          "Industrial HT/LT Panel Electricians, DG Operators & MEP Maintenance",
+          "Factory, Karkhana & Manufacturing Floor Workforce Supply (Helpers, Welders, CNC Operators)",
+          "Commercial Plumbing, STP/WTP Operation & Industrial Pipe Fitting",
+          "HVAC, Chiller Plant & Cold Storage Refrigeration Maintenance Staffing",
+          "Mechanized Housekeeping, Commercial Cleaning & Corporate Office Support (Peon/Pantry)",
+          "Commercial Office Shifting, Warehouse Rack Dismantling & Heavy Machinery Rigging",
           "Grade-A Logistics & Industrial Park Security Protocols",
-          "Integrated Corporate Facility Management & MEP Maintenance",
         ],
         areaServed: [
           { "@type": "AdministrativeArea", name: "West Bengal" },
@@ -57,6 +65,21 @@ export function buildOrganizationSchema() {
           { "@type": "AdministrativeArea", name: "Jharkhand" },
           { "@type": "AdministrativeArea", name: "Odisha" },
           { "@type": "AdministrativeArea", name: "Assam" },
+          { "@type": "City", name: "Kolkata" },
+          { "@type": "City", name: "Howrah" },
+          { "@type": "City", name: "Dankuni" },
+          { "@type": "City", name: "Dhulagarh" },
+          { "@type": "City", name: "Durgapur" },
+          { "@type": "City", name: "Asansol" },
+          { "@type": "City", name: "Haldia" },
+          { "@type": "City", name: "Siliguri" },
+          { "@type": "City", name: "Kharagpur" },
+          { "@type": "City", name: "Barrackpore" },
+          { "@type": "City", name: "Kalyani" },
+          { "@type": "City", name: "Panagarh" },
+          { "@type": "City", name: "Falta" },
+          { "@type": "City", name: "Salt Lake Sector V" },
+          { "@type": "City", name: "New Town" },
           { "@type": "Country", name: "India" },
         ],
         numberOfEmployees: { "@type": "QuantitativeValue", value: 5000 },
@@ -131,15 +154,67 @@ export function buildOrganizationSchema() {
         ],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Security, Facility Management & Manpower Services",
-          itemListElement: siteConfig.services.map((s) => ({
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: s.name,
-              url: `${siteConfig.url}/services/${s.slug}`,
+          name: "West Bengal & Pan-India B2B Manpower, Technical MEP & Security Solutions",
+          itemListElement: [
+            {
+              "@type": "OfferCatalog",
+              name: "Pillar A: Warehouse Loading, Unloading & Material Handling",
+              itemListElement: [
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Warehouse Loading & Unloading (Hamali) Labour", url: `${siteConfig.url}/services/loading-unloading-labour` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Warehouse Pickers, Packers & Forklift Support", url: `${siteConfig.url}/services/warehouse-manpower-supply` } },
+              ],
             },
-          })),
+            {
+              "@type": "OfferCatalog",
+              name: "Pillar B: Industrial & Commercial Technical MEP Trades",
+              itemListElement: [
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Industrial HT/LT Electricians & DG Operators", url: `${siteConfig.url}/services/industrial-electrician-contractors` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Commercial Plumbers & STP/WTP Plant Operators", url: `${siteConfig.url}/services/commercial-plumbing-contractors` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "HVAC, Chiller & Cold Storage Refrigeration Techs", url: `${siteConfig.url}/services/hvac-ac-maintenance-staffing` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Carpentry, Shed Painting & Epoxy Civil Crews", url: `${siteConfig.url}/services/carpentry-painting-civil-labour` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Integrated MEP Facility Maintenance Hub", url: `${siteConfig.url}/services/mep-maintenance` } },
+              ],
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Pillar C: Factory & Karkhana Manufacturing Workforce",
+              itemListElement: [
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Factory & Karkhana General Helpers, Welders & CNC Staff", url: `${siteConfig.url}/services/industrial-factory-workers` } },
+              ],
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Pillar D: Mechanized Housekeeping, Sanitation & Office Support",
+              itemListElement: [
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Corporate & Industrial Housekeeping", url: `${siteConfig.url}/services/housekeeping` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Boy, Peon & Pantry Support Staff", url: `${siteConfig.url}/services/office-support-peon-pantry-staff` } },
+              ],
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Pillar E: Commercial Shifting & Heavy Machinery Rigging",
+              itemListElement: [
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Shifting, Racking & Heavy Machinery Rigging", url: `${siteConfig.url}/services/commercial-shifting-relocation-labour` } },
+              ],
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Pillar F: PSARA Security, Armed Guards & Event Protection",
+              itemListElement: [
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "PSARA Licensed Security Guards", url: `${siteConfig.url}/services/security-guard` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Armed Security & Industrial Perimeter Sentries", url: `${siteConfig.url}/services/armed-guard` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Corporate Event Bouncers & Crowd Marshals", url: `${siteConfig.url}/services/event-security` } },
+              ],
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Pillar G: Statutory Compliance, Third-Party Payroll & Bulk Outsourcing",
+              itemListElement: [
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bulk Contract Manpower Outsourcing", url: `${siteConfig.url}/services/manpower-outsourcing` } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "CLRA / EPF / ESIC Statutory Payroll Management", url: `${siteConfig.url}/services/payroll-management` } },
+              ],
+            },
+          ],
         },
         priceRange: "₹₹",
       },
@@ -159,7 +234,7 @@ export function buildOrganizationSchema() {
         },
       },
       {
-        "@type": ["LocalBusiness", "SecurityService"],
+        "@type": ["LocalBusiness", "EmploymentAgency", "SecurityService"],
         "@id": `${siteConfig.url}/#localbusiness`,
         name: siteConfig.name,
         image: `${siteConfig.url}/images/acs-official-logo.avif`,
@@ -431,21 +506,24 @@ export function buildWBServiceAreaSchema({
   stateName,
   citySlug,
   serviceName,
+  serviceSlug,
   wageZone,
 }: {
   cityName: string;
   stateName: string;
   citySlug: string;
   serviceName?: string;
+  serviceSlug?: string;
   wageZone?: 'A' | 'B';
 }) {
-  const pageUrl = serviceName
-    ? `${siteConfig.url}/services/${serviceName.toLowerCase().replace(/\s+/g, '-')}/${citySlug}`
+  const canonicalServiceSlug = serviceSlug || serviceName?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const pageUrl = canonicalServiceSlug
+    ? `${siteConfig.url}/services/${canonicalServiceSlug}/${citySlug}`
     : `${siteConfig.url}/location/${citySlug}`;
 
   return {
     '@context': 'https://schema.org',
-    '@type': ['LocalBusiness', 'SecurityService'],
+    '@type': ['LocalBusiness', 'EmploymentAgency', 'SecurityService'],
     '@id': `${pageUrl}#servicearea`,
     name: serviceName
       ? `Advance Corporate Security — ${serviceName} in ${cityName}`
@@ -473,8 +551,10 @@ export function buildWBServiceAreaSchema({
       `West Bengal Minimum Wages Act Zone ${wageZone || 'A'} Compliance`,
       'West Bengal Labour Welfare Fund (LWF) Statutory Compliance',
       'Contract Labour (Regulation & Abolition) Act 1970',
-      'West Bengal Shops and Establishments Act',
-      'ESIC & PF Statutory Deposit Management',
+      'Warehouse Loading, Unloading, Hamali & Mutia Contracting West Bengal',
+      'Karkhana Helper, ITI Welder & Factory Manufacturing Contract Staffing',
+      'Industrial Electrician, Plumber, HVAC & Chiller Maintenance Manpower',
+      'ESIC (3.25%) & EPF (13.00%) Statutory Deposit Management',
     ],
     hasCredential: [
       {
@@ -532,5 +612,76 @@ export function buildWBIndustrialHubSchema(
         },
       },
     })),
+  };
+}
+
+/**
+ * Blue-Collar & Technical MEP Contracting Service Schema with
+ * West Bengal Statutory Wage Band Reference (Jul–Dec 2026 Gazette).
+ */
+export function buildBlueCollarServiceSchema({
+  serviceName,
+  serviceSlug,
+  description,
+  cityName,
+  stateName,
+  citySlug,
+  occupationalCategory,
+  skillTier = 'unskilled',
+  wageZone = 'A',
+}: {
+  serviceName: string;
+  serviceSlug: string;
+  description: string;
+  cityName: string;
+  stateName: string;
+  citySlug: string;
+  occupationalCategory: string;
+  skillTier?: 'unskilled' | 'semiSkilled' | 'skilled' | 'highlySkilled';
+  wageZone?: 'A' | 'B';
+}) {
+  const pageUrl = `${siteConfig.url}/services/${serviceSlug}/${citySlug}`;
+  const isWB = stateName === 'West Bengal';
+  const monthlyBase = isWB ? getWBMonthlyWage(wageZone, skillTier) : getWBMonthlyWage('A', skillTier);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${pageUrl}#bluecollar-contract`,
+    name: `${serviceName} in ${cityName}, ${stateName}`,
+    serviceType: serviceName,
+    category: occupationalCategory,
+    description,
+    url: pageUrl,
+    provider: {
+      '@id': siteConfig.entityId,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: cityName,
+      containedInPlace: {
+        '@type': 'State',
+        name: stateName,
+      },
+    },
+    termsOfService: `${siteConfig.url}/compliance`,
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      eligibleRegion: {
+        '@type': 'AdministrativeArea',
+        name: stateName,
+      },
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        priceCurrency: 'INR',
+        minPrice: monthlyBase,
+        unitText: 'MONTH',
+        name: isWB
+          ? `West Bengal Zone ${wageZone} Gazette Base Wage (${skillTier}, excl. EPF 13%, ESIC 3.25%, Bonus 8.33%)`
+          : `Statutory Base Wage Reference (${skillTier})`,
+      },
+    },
   };
 }

@@ -36,10 +36,10 @@ const SERVICES: BrochureServiceItem[] = [
     description:
       "Comprehensive workforce sourcing and corporate placement solutions delivering pre-screened, verified, and statutory-compliant human resources across corporate and industrial sectors.",
     offerings: [
-      "Career Placement Services",
-      "Employment Placement Services",
-      "Executive Placement Services",
-      "Direct Placement Services",
+      "Warehouse & Loading (Hamali) Labour",
+      "Factory Helpers, Fitters & Operators",
+      "Commercial Shifting & Rigging Crews",
+      "Executive & Direct Placement",
     ],
     illustrationType: "placement",
   },
@@ -54,12 +54,12 @@ const SERVICES: BrochureServiceItem[] = [
     description:
       "Enterprise-grade facility operations adhering to ISO 9001:2015 documented SOPs. We manage physical environments, mechanized sanitization, and statutory payroll across commercial complexes.",
     offerings: [
-      "Housekeeping",
-      "PayRoll Services",
-      "Building Maintenance",
-      "Cleaning & Janitorial",
-      "Waste Management",
-      "Event Management",
+      "Housekeeping & Office/Pantry Support",
+      "Industrial HT/LT Electricians",
+      "Commercial Plumbers & STP/ETP",
+      "HVAC & Cold Storage AC AMC",
+      "Carpentry, Shed Painting & Civil",
+      "Payroll Management",
     ],
     illustrationType: "facility",
   },
@@ -157,6 +157,47 @@ export default function CoreServicesAccordionGrid() {
               onMobileToggle={() => toggleMobileCard(service.id)}
             />
           ))}
+        </div>
+
+        {/* Direct Anchor Strip for Specialized B2B Blue-Collar & MEP Trade Verticals (Zero Orphan Pages) */}
+        <div className="mt-10 rounded-2xl border border-slate-200/90 bg-slate-50/80 p-5 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-sky-700">
+                Direct B2B Blue-Collar &amp; Technical MEP Staffing Verticals
+              </p>
+              <h3 className="text-base sm:text-lg font-extrabold text-slate-900">
+                Specialized West Bengal &amp; Enterprise Contract Workforce Divisions
+              </h3>
+            </div>
+            <Link
+              href="/services"
+              className="text-xs font-bold text-sky-700 hover:text-navy transition-colors shrink-0"
+            >
+              View All 26 Services &rarr;
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { label: "Loading & Unloading (Hamali)", href: "/services/loading-unloading-labour" },
+              { label: "Industrial HT/LT Electricians", href: "/services/industrial-electrician-contractors" },
+              { label: "Commercial Plumbers & STP", href: "/services/commercial-plumbing-contractors" },
+              { label: "HVAC & Chiller Technicians", href: "/services/hvac-ac-maintenance-staffing" },
+              { label: "Carpentry & Shed Painting", href: "/services/carpentry-painting-civil-labour" },
+              { label: "Office Boy, Peon & Pantry", href: "/services/office-support-peon-pantry-staff" },
+              { label: "Office & Machinery Shifting", href: "/services/commercial-shifting-relocation-labour" },
+              { label: "Warehouse Logistics Manpower", href: "/services/warehouse-manpower-supply" },
+              { label: "Factory & Karkhana Helpers", href: "/services/industrial-factory-workers" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-800 hover:border-sky-400 hover:text-sky-700 hover:shadow-xs transition-all"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>

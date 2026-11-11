@@ -72,7 +72,7 @@ const faqs = [
   {
     question: "How does ACS handle mid-year wage revisions by state governments?",
     answer:
-      "ACS tracks all State Labour Department gazette notifications and CLC(C) semi-annual VDA orders (typically issued in April and October) through its statutory compliance desk. Whenever a state revises minimum wages, ACS implements the revised rate from the statutory gazette effective date. Client billing is updated alongside formal circular documentation, ensuring seamless compliance without operational disruption.",
+      "ACS tracks all State Labour Department gazette notifications (including West Bengal's January and July VDA circulars) and CLC(C) Central Sphere semi-annual VDA orders (April and October) through its statutory compliance desk. Whenever a state revises minimum wages, ACS implements the revised rate from the statutory gazette effective date. Client billing is updated alongside formal circular documentation, ensuring seamless compliance without operational disruption.",
   },
 ] as const;
 

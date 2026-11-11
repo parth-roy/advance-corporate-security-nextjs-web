@@ -4,6 +4,14 @@ import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { ShieldCheck, AlertTriangle, Calculator, Download, CheckCircle2, Building2, HelpCircle, ArrowRight } from "lucide-react";
+import {
+  WB_WAGES_ZONE_A,
+  WB_WAGES_ZONE_B,
+  WB_CURRENT_PERIOD,
+  WB_EPF_EMPLOYER_RATE,
+  WB_ESIC_EMPLOYER_RATE,
+  WB_BONUS_RATE,
+} from "@/lib/wb-wages";
 
 interface WageZoneConfig {
   stateName: string;
@@ -21,27 +29,27 @@ interface WageZoneConfig {
 const WAGE_ZONES: Record<string, WageZoneConfig> = {
   "wb-zone-a": {
     stateName: "West Bengal",
-    zoneName: "Zone A (Kolkata, Howrah, 24 Parganas, Hooghly, Asansol, Durgapur, Siliguri)",
+    zoneName: "Zone A (All Municipal Corporations, Municipalities, KMDA, HDA, SJDA, ADDA & WBIDC Parks)",
     rates: {
-      unskilled: 10558,
-      semiSkilled: 11614,
-      skilled: 12776,
-      highlySkilled: 14053,
+      unskilled: WB_WAGES_ZONE_A.unskilled.monthly,
+      semiSkilled: WB_WAGES_ZONE_A.semiSkilled.monthly,
+      skilled: WB_WAGES_ZONE_A.skilled.monthly,
+      highlySkilled: WB_WAGES_ZONE_A.highlySkilled.monthly,
     },
-    gazetteRef: "WB Labour Commissioner Circular No. 12/Stat/2RW/29/16/LCS/JLC (Zone A)",
-    effectivePeriod: "1 Jan 2026 – 30 Jun 2026",
+    gazetteRef: "WB Labour Commissioner Semi-Annual VDA Circular (Zone A)",
+    effectivePeriod: `1 ${WB_CURRENT_PERIOD}`,
   },
   "wb-zone-b": {
     stateName: "West Bengal",
-    zoneName: "Zone B (Semi-Urban & Rural Districts — Bankura, Purulia, Malda, Birbhum, etc.)",
+    zoneName: "Zone B (Non-Municipal Rural / Gram Panchayat Industrial Blocks in West Bengal)",
     rates: {
-      unskilled: 9758,
-      semiSkilled: 10733,
-      skilled: 11807,
-      highlySkilled: 12988,
+      unskilled: WB_WAGES_ZONE_B.unskilled.monthly,
+      semiSkilled: WB_WAGES_ZONE_B.semiSkilled.monthly,
+      skilled: WB_WAGES_ZONE_B.skilled.monthly,
+      highlySkilled: WB_WAGES_ZONE_B.highlySkilled.monthly,
     },
-    gazetteRef: "WB Labour Commissioner Circular No. 12/Stat/2RW/29/16/LCS/JLC (Zone B)",
-    effectivePeriod: "1 Jan 2026 – 30 Jun 2026",
+    gazetteRef: "WB Labour Commissioner Semi-Annual VDA Circular (Zone B)",
+    effectivePeriod: `1 ${WB_CURRENT_PERIOD}`,
   },
   "delhi-ncr": {
     stateName: "Delhi NCR",
@@ -109,15 +117,15 @@ export default function RateCardCalculator() {
 
     // 2. EPF Employer (13% on Basic+VDA, capped at ₹15,000 threshold or exact calculation)
     const epfBase = Math.min(base, 15000);
-    const epfEmployer = Math.round(epfBase * 0.13);
+    const epfEmployer = Math.round(epfBase * WB_EPF_EMPLOYER_RATE);
 
     // 3. ESIC Employer (3.25% of Gross, applicable if monthly gross <= ₹21,000)
     const esicApplicable = base <= 21000;
-    const esicEmployer = esicApplicable ? Math.round(base * 0.0325) : 0;
+    const esicEmployer = esicApplicable ? Math.round(base * WB_ESIC_EMPLOYER_RATE) : 0;
 
     // 4. Statutory Bonus (8.33% of Basic+VDA, capped at ₹7,000 or actual as per state notifications)
     const bonusBase = Math.min(base, 7000);
-    const statutoryBonus = Math.round(bonusBase * 0.0833);
+    const statutoryBonus = Math.round(bonusBase * WB_BONUS_RATE);
 
     // 5. Leave / Reliever provision (~1/6th of Basic for 24/7 continuous operations to cover 1 weekly off per guard)
     const relieverCost = isContinuous247 ? Math.round(base / 6) : 0;

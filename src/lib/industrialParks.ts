@@ -470,6 +470,446 @@ export const WB_INDUSTRIAL_PARKS: IndustrialParkData[] = [
       },
     ],
   },
+  // ─── Additional WBIDC / SEZ Industrial Parks (5 Added -> 8 Total) ─────────
+  {
+    slug: "panagarh-industrial-park",
+    name: "Panagarh Industrial Park (WBIDC)",
+    parkDeveloper: "West Bengal Industrial Development Corporation (WBIDC)",
+    tagline: "NH-19 Heavy Manufacturing, Chemical, Fertilizer & Bulk Factory Manpower Hub",
+    location: "Panagarh, Kanksa, Paschim Bardhaman, West Bengal",
+    district: "Paschim Bardhaman",
+    wageZone: "Zone A",
+    totalArea: "1,445 Acres of Heavy & Medium Industrial Estate",
+    heroHeadline: "Bulk Factory Workforce, Skilled Industrial Trades & Gate Security for Panagarh Industrial Park",
+    overview:
+      "Spanning 1,445 acres directly along National Highway 19 (old NH-2) in Paschim Bardhaman, WBIDC's Panagarh Industrial Park hosts anchor fertilizer, chemical, engineering, and textile installations near Kazi Nazrul Islam Airport (Andal). ACS provides CLRA-licensed factory floor helpers, ITI welders and fitters, HT/LT electricians, heavy rigging labor, and 24/7 anti-pilferage gate guarding.",
+    proximities: [
+      {
+        destination: "National Highway 19 (NH-19 / GT Road)",
+        distance: "0.3 km",
+        travelTime: "Direct Access",
+        significance: "Seamless freight connectivity linking Kolkata/Dankuni with Jharkhand and North India.",
+      },
+      {
+        destination: "Kazi Nazrul Islam Airport (Andal)",
+        distance: "18 km",
+        travelTime: "22 minutes",
+        significance: "Regional air cargo and corporate executive transit corridor.",
+      },
+      {
+        destination: "Durgapur Industrial Hub",
+        distance: "16 km",
+        travelTime: "20 minutes",
+        significance: "Access to steel/alloy ancillary network and ACS Durgapur Command Desk.",
+      },
+      {
+        destination: "Panagarh Railway Freight Station",
+        distance: "3.5 km",
+        travelTime: "8 minutes",
+        significance: "Raw material rake handling and rail siding logistics.",
+      },
+    ],
+    gateSecuritySOPs: [
+      {
+        step: "Hazchem & Tanker Safety Inspection",
+        procedure: "Checking spark arrestors, Hazchem placards, driver PPE, and breathalyzer clearance before chemical plant ingress.",
+        techEnabler: "Digital Safety Checklist Tablets & ATEX Torches",
+      },
+      {
+        step: "Contract Laborer Biometric Form-B Screening",
+        procedure: "Every factory helper, fitter, and loader authenticates via biometric turnstiles ensuring zero unauthorized entry.",
+        techEnabler: "Biometric Optical Turnstiles synced to CLRA Muster Roll",
+      },
+      {
+        step: "Outbound Raw Material & Scrap Audit",
+        procedure: "Gross-tare weighbridge matching against dispatch ERP challans and serialized gate-pass verification.",
+        techEnabler: "Weighbridge Dual-Custody Logger",
+      },
+    ],
+    weighbridgeShrinkageControls: [
+      {
+        protocol: "Bulk Fertilizer & Bagged Dispatch Tally",
+        description: "Physical bag/pallet tally at dock doors cross-checked against computer weighbridge gross weights.",
+      },
+      {
+        protocol: "Authorized Tool & Copper Scrap Escort",
+        description: "Strict gate-pass control over electrical cables, valve scrap, and engineering spares leaving manufacturing blocks.",
+      },
+    ],
+    perimeterPatrolProtocols: [
+      {
+        feature: "High-Mast Boundary RFID Sweeps",
+        detail: "Synchronized 45-minute motorized and foot patrols along boundary walls adjoining NH-19 and feeder roads.",
+      },
+      {
+        feature: "Plant Night Supervision Audits",
+        detail: "Twice-weekly surprise midnight audits by ACS Field Officers ensuring 100% post alertness.",
+      },
+    ],
+    statutoryCompliance: {
+      minimumWageZone: "West Bengal Zone A (WBIDC Notified Industrial Park, Paschim Bardhaman)",
+      applicableSchedule: "Scheduled Employment: Heavy Engineering, Chemicals & Manufacturing",
+      ecrTransparency: "Monthly EPFO ECR challan with UAN breakdown and ESIC remittance schedule delivered with every tax invoice.",
+      auditGuarantee: "100% Principal Employer indemnification under Section 21 of the Contract Labour (R&A) Act.",
+    },
+    recommendedPersonnelStructure: [
+      {
+        role: "Site Manpower Coordinator & Compliance Officer",
+        ratioOrCount: "1 dedicated plant coordinator",
+        responsibilities: "CLRA Form-V muster tracking, PPE enforcement, shift handover coordination.",
+      },
+      {
+        role: "Factory Helpers, Bagging & Loading Laborers",
+        ratioOrCount: "20 to 150+ per plant roster",
+        responsibilities: "Production line assistance, raw material feeding, warehouse palletization, truck loading.",
+      },
+      {
+        role: "Licensed Industrial Electricians, Welders & Guards",
+        ratioOrCount: "Scaled to plot acreage",
+        responsibilities: "HT/LT panel maintenance, pipe fitting, and 24/7 perimeter & gate control.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can ACS mobilize factory floor helpers and ITI trades at Panagarh Industrial Park within 48 hours?",
+        answer:
+          "Yes. From our nearby Durgapur-Andal staging hub, ACS deploys tested factory helpers, ITI fitters/welders, electricians, and PSARA guards within 24 to 48 hours.",
+      },
+      {
+        question: "Which wage zone applies to Panagarh Industrial Park?",
+        answer:
+          "Notified industrial estates under WBIDC/ADDA in the Durgapur-Panagarh corridor are remunerated under West Bengal Zone A schedules with 13% EPF and 3.25% ESIC.",
+      },
+    ],
+  },
+  {
+    slug: "vidyasagar-industrial-park",
+    name: "Vidyasagar Industrial Park, Kharagpur (WBIDC)",
+    parkDeveloper: "West Bengal Industrial Development Corporation (WBIDC)",
+    tagline: "1,166-Acre Heavy Machinery, Engineering & Haldia-Linked Manufacturing Hub on NH-16",
+    location: "Kharagpur, Paschim Medinipur, West Bengal",
+    district: "Paschim Medinipur",
+    wageZone: "Zone A",
+    totalArea: "1,166 Acres of Heavy Industrial & Engineering Estate",
+    heroHeadline: "Skilled Machine Operators, Rigging Labor & Plant Security for Vidyasagar Industrial Park",
+    overview:
+      "Strategically developed across 1,166 acres along NH-16 (old NH-6) just 60 km from Haldia Port, WBIDC's Vidyasagar Industrial Park hosts earthmoving machinery giants, auto-ancillaries, and heavy engineering plants. ACS deploys CNC/lathe helpers, ITI welders, heavy shifting crews, industrial plumbers, and PSARA security forces.",
+    proximities: [
+      {
+        destination: "National Highway 16 (NH-16 / Bombay Road)",
+        distance: "0.5 km",
+        travelTime: "2 minutes",
+        significance: "Direct heavy-haul freight link toward Kolkata, Odisha, and Mumbai.",
+      },
+      {
+        destination: "Haldia Deep-Water Port",
+        distance: "60 km",
+        travelTime: "75 minutes",
+        significance: "Primary export-import ocean terminal for industrial machinery.",
+      },
+      {
+        destination: "Kharagpur Railway Junction",
+        distance: "8 km",
+        travelTime: "15 minutes",
+        significance: "Major eastern rail logistics hub and IIT Kharagpur talent corridor.",
+      },
+    ],
+    gateSecuritySOPs: [
+      {
+        step: "Heavy ODC Vehicle & Component Manifest Audit",
+        procedure: "Escort logging for over-dimensional machinery trailers, spare components, and factory dispatch passes.",
+        techEnabler: "Digital Gate Register & Barcode Challan Sync",
+      },
+      {
+        step: "Shop-Floor PPE & Safety Helmet Gate Enforcement",
+        procedure: "Mandatory steel-toe boots, safety vest, and hardhat checks for all third-party contractors.",
+        techEnabler: "Daily Safety Induction Tracking",
+      },
+    ],
+    weighbridgeShrinkageControls: [
+      {
+        protocol: "Ferrous Scrap & Turning Swarf Segregation Audits",
+        description: "Supervision of high-value steel scrap weighing and certified carrier dispatch to eliminate metal pilferage.",
+      },
+    ],
+    perimeterPatrolProtocols: [
+      {
+        feature: "24/7 Perimeter Boundary Patrols",
+        detail: "RFID checkpoint patrols covering expansive 10+ acre industrial plot perimeters and equipment yards.",
+      },
+    ],
+    statutoryCompliance: {
+      minimumWageZone: "West Bengal Zone A (Kharagpur Notified Industrial Corridor)",
+      applicableSchedule: "Engineering, Heavy Machinery & Metal Trades Schedule",
+      ecrTransparency: "Zero-defect monthly EPFO ECR & ESIC statutory dossier provided to plant HR heads.",
+      auditGuarantee: "Complete CLRA Form-V Principal Employer compliance assurance.",
+    },
+    recommendedPersonnelStructure: [
+      {
+        role: "Skilled ITI Fitters, Welders & Crane Helpers",
+        ratioOrCount: "10 to 80 per engineering bay",
+        responsibilities: "Fabrication support, component assembly, material rigging, and floor maintenance.",
+      },
+      {
+        role: "PSARA Industrial Guards & Weighbridge Controllers",
+        ratioOrCount: "4 per shift",
+        responsibilities: "Access screening, tool-room loss prevention, and trailer weighment audit.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you supply specialized engineering labor and welders in Kharagpur?",
+        answer:
+          "Yes. ACS supplies ITI-certified welders, structural fabricators, assembly helpers, and maintenance electricians for facilities across Vidyasagar Industrial Park and Kharagpur.",
+      },
+    ],
+  },
+  {
+    slug: "bantala-leather-complex",
+    name: "Bantala Kolkata Leather Complex (KLC)",
+    parkDeveloper: "West Bengal Industrial Infrastructure Development / MLCL",
+    tagline: "1,150-Acre Integrated Leather, Footwear, Export Processing & IT Hub in East Kolkata",
+    location: "Bantala, South 24 Parganas / East Kolkata, West Bengal",
+    district: "South 24 Parganas",
+    wageZone: "Zone A",
+    totalArea: "1,150 Acres (400+ Operational Export Units & IT Zones)",
+    heroHeadline: "Bulk Factory Labor, ETP Utility Staff, Loading Gangs & Security for Bantala Leather Complex",
+    overview:
+      "Asia's largest integrated leather complex across 1,150 acres on the Basanti Highway corridor east of EM Bypass, Bantala houses hundreds of export-oriented tanneries, footwear manufacturing units, effluent treatment plants (CETPs), and emerging IT parks. ACS supplies bulk production helpers, packing/container loading teams, ETP plumbing/mechanical technicians, and 24/7 export gate security.",
+    proximities: [
+      {
+        destination: "EM Bypass (Science City – Ruby Crossing)",
+        distance: "14 km",
+        travelTime: "22 minutes",
+        significance: "Direct urban link to Central Kolkata and Sector V IT Hub.",
+      },
+      {
+        destination: "Kolkata Port (Netaji Subhas Dock)",
+        distance: "24 km",
+        travelTime: "40 minutes",
+        significance: "Export container haulage corridor via Maa Flyover / Taratala.",
+      },
+      {
+        destination: "Salt Lake Sector V",
+        distance: "12 km",
+        travelTime: "20 minutes",
+        significance: "Rapid commute corridor for IT & managerial workforce.",
+      },
+    ],
+    gateSecuritySOPs: [
+      {
+        step: "Export Carton Sealing & Customs Manifest Match",
+        procedure: "Verification of finished leather & footwear export container seals against factory packing lists.",
+        techEnabler: "Digital Gate Register with Seal Photo Proof",
+      },
+      {
+        step: "Shift Attendance & Contractor Turnstile Control",
+        procedure: "Biometric shift check-in for batch production workers, helpers, and chemical handling crews.",
+        techEnabler: "Aadhaar/Biometric Attendance Logging",
+      },
+    ],
+    weighbridgeShrinkageControls: [
+      {
+        protocol: "Finished Export Goods & Chemical Inventory Control",
+        description: "Strict gate-pass auditing preventing unauthorized pilferage of finished hides, dyes, and leather accessories.",
+      },
+    ],
+    perimeterPatrolProtocols: [
+      {
+        feature: "ETP Utility & Perimeter Night Rounds",
+        detail: "24/7 patrolling covering tannery loading docks, chemical warehouses, and perimeter lanes.",
+      },
+    ],
+    statutoryCompliance: {
+      minimumWageZone: "West Bengal Zone A (Bantala KLC Notified Industrial Estate / KMDA)",
+      applicableSchedule: "Leather, Tannery, Export Goods & Commercial IT Schedule",
+      ecrTransparency: "Full EPF 13%, ESIC 3.25%, and WB LWF documentation supporting buyer CSR / SA8000 social audits.",
+      auditGuarantee: "Audit-ready wage & welfare records tailored for European and US export buyer compliance inspections.",
+    },
+    recommendedPersonnelStructure: [
+      {
+        role: "Packing, Sorting & Container Loading Crews",
+        ratioOrCount: "10 to 100+ per export factory",
+        responsibilities: "Export carton packing, container stuffing, material movement, and floor cleanliness.",
+      },
+      {
+        role: "ETP Plumbers, Electricians & PSARA Sentries",
+        ratioOrCount: "Tailored per unit shift",
+        responsibilities: "Effluent pump operation, electrical switchboard upkeep, and gate access control.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do your compliance records pass European/US export buyer social audits (BSCI / SEDEX) at Bantala?",
+        answer:
+          "Yes. Our payroll files provide complete bank payment proofs, verified ECRs, ESIC cards, age verification, and weekly rest day reliever logs required by international footwear and leather audit standards.",
+      },
+    ],
+  },
+  {
+    slug: "falta-sez",
+    name: "Falta Special Economic Zone (FSEZ)",
+    parkDeveloper: "Ministry of Commerce & Industry (FSEZ Authority)",
+    tagline: "Eastern India's Export Processing SEZ Manpower, Customs Gate & Packing Workforce Hub",
+    location: "Falta, Sector II–IV, South 24 Parganas, West Bengal",
+    district: "South 24 Parganas",
+    wageZone: "Zone A",
+    totalArea: "275+ Acres of Multi-Product Export Processing SEZ",
+    heroHeadline: "SEZ-Verified Assembly Workforce, Export Loaders & Customs Gate Security for Falta SEZ",
+    overview:
+      "Located along the Hooghly Riverfront in South 24 Parganas, Falta SEZ houses leading export-oriented units manufacturing engineering products, food & agro-commodities, apparel, plastics, and pharmaceuticals. Operating inside a Customs-bonded zone requires police-cleared contract personnel, seamless container loading/stuffing labor, HVAC/MEP upkeep, and strict SEZ pass accountability.",
+    proximities: [
+      {
+        destination: "Diamond Harbour Road (NH-117)",
+        distance: "9 km",
+        travelTime: "15 minutes",
+        significance: "Main highway link northward toward Budge Budge and Kolkata.",
+      },
+      {
+        destination: "Kolkata Port (Syama Prasad Mookerjee Port)",
+        distance: "45 km",
+        travelTime: "70 minutes",
+        significance: "Container drayage corridor for customs-sealed export cargo.",
+      },
+      {
+        destination: "Budge Budge Industrial Hub",
+        distance: "28 km",
+        travelTime: "45 minutes",
+        significance: "Linked coastal & oil logistics belt.",
+      },
+    ],
+    gateSecuritySOPs: [
+      {
+        step: "SEZ Customs Gate Pass Reconciliation",
+        procedure: "Verification of temporary contractor passes, bonded cargo shipping bills, and exit security clearance.",
+        techEnabler: "Digital Visitor & Contractor Pass Register",
+      },
+      {
+        step: "Frisking & Finished Export Protection",
+        procedure: "Trained male/female frisking sentries conducting shift-end checks for export manufacturing units.",
+        techEnabler: "HHMD Screening & Biometric Shift Logs",
+      },
+    ],
+    weighbridgeShrinkageControls: [
+      {
+        protocol: "Customs Container Seal Verification",
+        description: "End-to-end logging of bottle seal serial numbers and loaded carton tallies at SEZ loading bays.",
+      },
+    ],
+    perimeterPatrolProtocols: [
+      {
+        feature: "Riverfront & Warehouse Perimeter Security",
+        detail: "Synchronized guard tours protecting customs bonded godowns and power backup zones.",
+      },
+    ],
+    statutoryCompliance: {
+      minimumWageZone: "West Bengal Zone A (Falta SEZ Notified Industrial Zone)",
+      applicableSchedule: "SEZ Manufacturing & Export Logistics Schedule",
+      ecrTransparency: "Zero-defect monthly ECR & ESIC schedules ready for SEZ Development Commissioner reviews.",
+      auditGuarantee: "100% police-verified labor force ensuring hassle-free SEZ ID card issuance.",
+    },
+    recommendedPersonnelStructure: [
+      {
+        role: "Export Production Helpers & Container Loaders",
+        ratioOrCount: "15 to 120 per unit",
+        responsibilities: "Sorting, shrink-wrapping, palletizing, and bonded container loading.",
+      },
+      {
+        role: "Technical MEP & Female Frisking / Security Staff",
+        ratioOrCount: "6 to 20 per shift",
+        responsibilities: "Chiller/electrical maintenance, gate frisking, and round-the-clock unit security.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can ACS provide police-verified workers eligible for Falta SEZ customs entry passes?",
+        answer:
+          "Yes. Every ACS worker deployed in Falta SEZ carries verified Aadhaar KYC, police clearance dossiers, and ESIC cards enabling smooth SEZ pass issuance.",
+      },
+    ],
+  },
+  {
+    slug: "barjora-industrial-park",
+    name: "Barjora Industrial Park (WBIDC)",
+    parkDeveloper: "West Bengal Industrial Infrastructure Development Corp (WBIIDC)",
+    tagline: "Bankura's Heavy Sponge Iron, Ferro-Alloy, Plastic & Engineering Growth Centre",
+    location: "Barjora, Bankura District (Durgapur Link Highway), West Bengal",
+    district: "Bankura",
+    wageZone: "Zone B",
+    totalArea: "300+ Acres of Medium & Heavy Industrial Growth Centre",
+    heroHeadline: "Foundry Helpers, Maintenance Fitters & Loss Prevention Security for Barjora Industrial Park",
+    overview:
+      "Located just south of the Damodar River opposite Durgapur, Barjora Industrial Park is Bankura's flagship industrial cluster, anchored by ferro-alloy units, sponge iron plants, rolling mills, polymer factories, and logistics yards. ACS extends Durgapur-backed rapid deployment to supply furnace helpers, ITI fitters/electricians, weighbridge auditors, and armed/unarmed guards.",
+    proximities: [
+      {
+        destination: "Durgapur Industrial City (via Durgapur Barrage)",
+        distance: "14 km",
+        travelTime: "20 minutes",
+        significance: "Direct bridge connection to NH-19 and ACS Durgapur Command Desk.",
+      },
+      {
+        destination: "Bankura Town",
+        distance: "34 km",
+        travelTime: "45 minutes",
+        significance: "District administrative headquarters and regional labor workforce pool.",
+      },
+      {
+        destination: "Mejia Thermal Power Station (DVC)",
+        distance: "18 km",
+        travelTime: "25 minutes",
+        significance: "Industrial power & fly-ash supply synergy.",
+      },
+    ],
+    gateSecuritySOPs: [
+      {
+        step: "Coal, Iron Ore & Finished Alloy Weighbridge Gate Check",
+        procedure: "Dual verification of inward mineral trucks and outward steel ingot/alloy dispatches.",
+        techEnabler: "Digital Weighbridge Register & Under-Vehicle Mirrors",
+      },
+      {
+        step: "PPE & Foundry Heat-Zone Safety Audit",
+        procedure: "Checking protective footwear, masks, and reflective gear at rolling mill entry gates.",
+        techEnabler: "Shift Supervisor Inspection Logs",
+      },
+    ],
+    weighbridgeShrinkageControls: [
+      {
+        protocol: "Ferro-Alloy & Metal Billet Theft Deterrence",
+        description: "Armed patrol supervision and strict driver-out-of-cab weighing protocols minimizing metal shrinkage.",
+      },
+    ],
+    perimeterPatrolProtocols: [
+      {
+        feature: "Motorized Boundary Patrol & Raw Material Yard Watch",
+        detail: "24/7 watchtowers and patrol circuits protecting bulk mineral dumps and substation transformers.",
+      },
+    ],
+    statutoryCompliance: {
+      minimumWageZone: "West Bengal Zone B (Bankura Rural Industrial Block)",
+      applicableSchedule: "Scheduled Employment: Iron & Steel Foundries, Engineering & General Labor",
+      ecrTransparency: "Monthly EPFO ECR, ESIC cards, and WB LWF records furnished transparently with every bill.",
+      auditGuarantee: "Full CLRA Form-V indemnity shielding factory owners against joint labor liabilities.",
+    },
+    recommendedPersonnelStructure: [
+      {
+        role: "Factory Helpers, Loaders & Rolling Mill Hands",
+        ratioOrCount: "15 to 100 per unit",
+        responsibilities: "Material feeding, finished goods bundling, scrap clearing, and warehouse loading.",
+      },
+      {
+        role: "Electricians, Fitters & Weighbridge Security",
+        ratioOrCount: "Scaled per furnace shift",
+        responsibilities: "Panel/motor maintenance, weighbridge calibration checks, and 24/7 perimeter guarding.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How fast can ACS deploy factory manpower to Barjora Industrial Park?",
+        answer:
+          "Because Barjora is just 20 minutes across the Damodar Barrage from our Durgapur Operations Command, ACS mobilizes vetted factory helpers, electricians, and security guards within 24 to 48 hours.",
+      },
+    ],
+  },
 ];
 
 export const INDUSTRIAL_PARKS = WB_INDUSTRIAL_PARKS;

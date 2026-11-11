@@ -1,110 +1,211 @@
-# Advance Corporate Security (ACS)
+# Advance Corporate Security (ACS) — West Bengal & Pan-India B2B Blue-Collar Manpower, Technical MEP & Security Authority
 
-> Advance Corporate Security (ACS) is an ISO 9001:2015 certified, PSARA-licensed enterprise security guarding, bulk industrial manpower outsourcing, and integrated facility management (IFM) corporation headquartered in Barrackpore, Kolkata, West Bengal. Established in 2000 by Mr. Jai Gopal Roy, ACS possesses over 25 years of uninterrupted operational history, deploying 5,000+ verified professionals across Eastern India, Delhi NCR, and national industrial manufacturing corridors.
-
-## Corporate Entity & Statutory Ground Truth
-
-- **Legal Entity Name:** Advance Corporate Security
-- **Founder & Managing Director:** Mr. Jai Gopal Roy
-- **Founding Year:** 2000 (established as an enterprise guarding and manpower firm in Barrackpore)
-- **Permanent Account Number (PAN):** AJKPR7582B
-- **Goods and Services Tax Identification Number (GSTIN):** 19AJKPR7582B1ZR (registered under CGST/WBGST Act since 1 July 2017)
-- **Headquarters Address:** 1/2, Bhattacharjee Para Road, Barrackpore, Kolkata, West Bengal — 700120, India
-- **Active Operational Headcount:** 5,000+ deployed personnel across guarding, facility, and bulk manpower divisions
-- **Operating Hours:** 24 hours a day, 7 days a week, 365 days a year (continuous centralized control room)
-- **Quality Management Certification:** ISO 9001:2015 Certified Quality Management System
-- **Government e-Marketplace (GeM 4.0):** Active Empanelled Primary Service Provider for Central Ministries, Armed Forces, and PSUs
-- **PSARA Form-V Licenses & Jurisdictions:**
-  - *West Bengal Controlling Authority:* License covering Kolkata, Howrah, Hooghly, North 24 Parganas, South 24 Parganas, Paschim/Purba Bardhaman, Medinipur, and North Bengal.
-  - *Delhi NCR Controlling Authority:* License covering New Delhi, Noida, Greater Noida, and Gurgaon.
-  - *Jharkhand Controlling Authority:* License covering Ranchi, Jamshedpur (Adityapur), Bokaro, and Dhanbad.
+> **Canonical Domain:** https://advancecorporatesecurity.com (strict non-www)
+> **Legal Entity:** Advance Corporate Security (Sole Proprietorship, Founder & MD: Mr. Jai Gopal Roy)
+> **Established:** 2000 (25+ Years Continuous Operational Legacy)
+> **Registered HQ:** 1/2, Bhattacharjee Para Lane, Barrackpore, Kolkata - 700120, West Bengal, India
+> **Tax & Statutory IDs:** GSTIN `19AJKPR7582B1ZR` | PAN `AJKPR7582B` | ISO 9001:2015 Certified
+> **Direct PSARA Jurisdictions:** West Bengal, Delhi NCR, Jharkhand (Pan-India partner grid across 850+ cities)
+> **Active Workforce Scale:** 5,000+ deployed personnel across 852 cities (147 West Bengal hubs across all 23 districts)
+> **Mobilization SLA:** 24–48 Hours across Greater Kolkata, Howrah, Dankuni, Haldia, Durgapur, Asansol, Panagarh & Siliguri
+> **24x7 Command Helpline:** +91 93399 88999 | +91 79801 47044 | +91 94770 06681 | Email: advancedcorporatesecurityj@gmail.com
 
 ---
 
-## Core Service Divisions
-
-### 1. Enterprise Security & Manned Guarding
-- **PSARA Armed & Unarmed Sentries:** Background-verified personnel with 160 hours mandatory training in perimeter security, access control, and emergency response.
-- **Ex-Servicemen (ESM) Cadres:** Retired Indian Armed Forces and CAPF veterans deployed for high-security industrial perimeters and defense installations.
-- **Lady Security Officers (LSO):** Specialized female security personnel for corporate IT campuses, hospitals, universities, and female dormitory screening.
-- **Quick Reaction Teams (QRT) & Bouncers:** Motorized emergency response squads equipped with VHF communication, searchlights, and crowd control training.
-- **Industrial Loss Prevention & Weighbridge In-Charges:** Dual-custody tare/gross weight verification, cargo seal integrity auditing, and truck access control to eliminate freight pilferage.
-
-### 2. Bulk Industrial & Warehouse Manpower Outsourcing
-- **Warehouse Logistics Labor:** Pickers, packers, sorters, barcode scanners, pallet jack handlers, and container unstuffing gangs for 3PL and eCommerce hubs.
-- **Factory Floor Technical Labor:** Assembly line operators, certified machine operators, maintenance fitters, and foundry helpers.
-- **Technical MEP Workforce:** Licensed electricians, commercial plumbers, HVAC chiller technicians, and DG set operators with 99.8% facility uptime SLAs.
-- **Statutory Indemnity Shield:** 100% deployment under CLRA Form-V with complete Principal Employer insulation from labor disputes.
-
-### 3. Integrated Facility Management (IFM) & Sanitation
-- **Mechanized Corporate Housekeeping:** Ride-on scrubber-driers, HEPA filtration vacuums, and Diversey eco-certified chemicals (R1 to R9 dilution systems).
-- **Hospital-Grade Infection Control:** NABH 5th Edition compliant sanitation, 4-color biomedical waste segregation, and modular OT ultraviolet sterilization.
-- **Commercial Horticulture & Pest Control:** Industrial green belt development, factory perimeter arboriculture, food-grade warehouse fumigation (HACCP/FSSAI compliant).
-- **High-Rise Facade Cleaning:** IRATA-certified rope access technicians with specialized fall-arrest cradles.
+## West Bengal Statutory Minimum Wages & Payroll Ground Truth
+- **Gazette Cycle:** July 2026 – December 2026 (Semi-annual VDA revision every January & July)
+- **Zone A (All Municipal Corporations, Municipalities, Dankuni, Salt Lake, New Town, Industrial & Development Authorities):**
+  - Unskilled: ₹10,558/month (₹406/day)
+  - Semi-Skilled: ₹11,615/month (₹447/day)
+  - Skilled: ₹12,777/month (₹491/day)
+  - Highly Skilled: ₹14,054/month (₹541/day)
+- **Zone B (Non-Municipal Rural Gram Panchayat Industrial Pockets):**
+  - Unskilled: ₹9,760/month (₹375/day)
+  - Semi-Skilled: ₹10,733/month (₹413/day)
+  - Skilled: ₹11,807/month (₹454/day)
+  - Highly Skilled: ₹12,990/month (₹500/day)
+- **Mandatory Statutory Employer Overheads:** EPF 13.00% (12% + 0.5% EDLI + 0.5% Admin), ESIC 3.25%, Statutory Bonus 8.33%, WB Labour Welfare Fund (Employee ₹NaN / Employer ₹NaN half-yearly).
 
 ---
 
-## Statutory Cost Sheet & Wage Architecture
-
-ACS guarantees 100% transparent statutory billing with zero labor court or audit liability for enterprise clients:
-
-- **The Statutory 1/6th Reliever Formula:**
-  $$\text{Relievers Required} = \left\lceil \frac{\text{Base Guards}}{6} \right\rceil$$
-  $$\text{Total Billable Workforce} = \text{Base Guards} + \text{Relievers} \quad (+16.67\% \text{ Headcount})$$
-  Eliminates illegal 30-day double shifts and complies with Section 13 of the *Minimum Wages Act 1948* and Section 52 of the *Factories Act 1948*.
-- **Employer Statutory Contributions:**
-  - *EPF (13.00% Burden):* 3.67% EPF + 8.33% EPS + 0.50% EDLI + 0.50% Administrative charges.
-  - *ESIC (3.25% Share):* Applied to gross monthly wages up to ₹21,000.
-  - *Annual Bonus (8.33%):* Payment of Bonus Act, 1965.
-  - *Labour Welfare Fund (LWF):* Semi-annual state remittances (e.g. ₹33/worker in West Bengal).
-- **60-Day Liquid Payroll Float:** ACS maintains dedicated financial reserves ensuring workers receive wages strictly by the 7th of every month regardless of client billing credit cycles.
-
----
-
-## Verified Institutional & PSU Client Portfolio
-
-ACS is proud to have served premier defense, regulatory, and industrial establishments across India:
-
-- **Defence & Armed Forces:** Indian Air Force (IAF), Indian Navy, Ordnance Factory Board (OFB), Hindustan Aeronautics Limited (HAL - Barrackpore Division).
-- **Government Ministries & PSUs:** Income Tax Department (Ministry of Finance), Ministry of Ayush, Central Pollution Control Board (CPCB), Indian Council of Medical Research (ICMR), Bharat Sanchar Nigam Limited (BSNL), Food Safety and Standards Authority of India (FSSAI), National Institute of Electronics & IT (NIELIT), National Test House (NTH), Sports Authority of India (SAI), Petroleum and Explosives Safety Organisation (PESO), Directorate General of Lighthouses and Lightships (DGLL), Kendriya Vidyalaya Sangathan (KVS), Public Health Engineering (PHE) Department, Chief Medical Officer of Health (CMOH).
-- **Heavy Industry & Corporate Conglomerates:** Bhushan Power & Steel Ltd., Hindusthan National Glass & Industries (HNG), Rama Group of Industries, TRS Logistics & Supply Chain, Grade-A IT Parks in Salt Lake Sector V, and leading tertiary healthcare networks.
-
----
-
-## Key Industrial Corridors & Serviceability
-
-- **Dedicated Logistics Parks:**
-  - [ESR Uluberia Logistics Park (Howrah, NH-16)](https://advancecorporatesecurity.com/industrial-parks/esr-uluberia-logistics-park-howrah): Grade-A distribution security and 100-ton weighbridge governance.
-  - [SFA Logistics Park Dankuni (Hooghly, NH-19)](https://advancecorporatesecurity.com/industrial-parks/sfa-logistics-park-dankuni-hooghly): Expressway cross-docking security and distribution gate control.
-  - [Transindia Logistics Park Dankuni](https://advancecorporatesecurity.com/industrial-parks/transindia-logistics-park-dankuni): FMCG logistics and multi-temperature cold chain protection.
-- **Eastern Industrial Corridors:**
-  - [Dankuni–Hooghly Freight Hub](https://advancecorporatesecurity.com/corridors/dankuni-hooghly-industrial-belt): Rail-road freight terminals, heavy engineering security.
-  - [Haldia Petrochemical & Port Corridor](https://advancecorporatesecurity.com/corridors/haldia-petrochemical-port-industrial-zone): Port container security, refinery protection, Hazchem access control.
-  - [Durgapur–Asansol Heavy Industrial Belt](https://advancecorporatesecurity.com/corridors/durgapur-asansol-heavy-industrial-belt): Integrated steel plants, engineering foundries, and mining security.
-  - [Salt Lake Sector V & New Town](https://advancecorporatesecurity.com/corridors/kolkata-it-data-center-corridor-sector-v-new-town): Corporate IT/ITES parks, financial data centers, 24/7 access control.
-  - [Jamshedpur–Adityapur Auto Cluster](https://advancecorporatesecurity.com/corridors/jamshedpur-adityapur-automotive-industrial-belt): AIADA industrial zones, auto ancillaries, scrap loss prevention.
-  - [Guwahati–Amingaon Gateway](https://advancecorporatesecurity.com/corridors/guwahati-northeast-logistics-industrial-gateway): Inland Container Depot (ICD) access control, tea warehousing, FMCG hubs.
+## Complete 26-Vertical Service Directory (7 B2B Pillars)
+- [Security Guard Services](https://advancecorporatesecurity.com/services/security-guard): Professional PSARA-licensed security guard deployment for corporate, industrial, and government establishments. (PSARA security guard, factory gatekeeper, time-office guard, warehouse weighbridge guard)
+- [Armed Guard Services](https://advancecorporatesecurity.com/services/armed-guard): Licensed armed security personnel for banks, jewelry stores, high-value asset protection and cash-in-transit.
+- [Surveillance & CCTV Monitoring](https://advancecorporatesecurity.com/services/surveillance-cctv): Round-the-clock CCTV surveillance, control room operations, and integrated electronic security monitoring.
+- [Night Patrolling Services](https://advancecorporatesecurity.com/services/night-patrol): Trained security personnel for nighttime perimeter patrol, guard rounds, and after-hours premises security.
+- [Executive & VIP Protection](https://advancecorporatesecurity.com/services/executive-protection): Close protection and personal security services for corporate executives, dignitaries, and high-net-worth individuals.
+- [Fire Fighting & Safety Services](https://advancecorporatesecurity.com/services/fire-fighting): Trained fire fighting teams, fire safety equipment management, mock drills, and emergency response planning.
+- [Event Security Services](https://advancecorporatesecurity.com/services/event-security): Crowd management, access control, and event-specific security for corporate events, exhibitions, and public gatherings.
+- [Industrial Security Services](https://advancecorporatesecurity.com/services/industrial-security): Specialized security for factories, power plants, oil & gas facilities, and other industrial establishments.
+- [Corporate Housekeeping Services](https://advancecorporatesecurity.com/services/housekeeping): Professional corporate housekeeping and office cleaning services for offices, hospitals, hotels, and institutions. (factory floor cleaner, ride-on scrubber operator, hospital sanitation staff, washroom cleaner)
+- [Janitorial & Deep Cleaning Services](https://advancecorporatesecurity.com/services/janitorial): Deep cleaning, floor care, sanitation, and specialized janitorial services for commercial establishments.
+- [Commercial Pest Control Services](https://advancecorporatesecurity.com/services/pest-control): Integrated pest management for commercial premises including offices, warehouses, hotels, and food processing units.
+- [Facade & Glass Cleaning Services](https://advancecorporatesecurity.com/services/facade-cleaning): Professional exterior facade cleaning, glass curtain wall cleaning, and rope access cleaning for commercial buildings.
+- [MEP Maintenance Services](https://advancecorporatesecurity.com/services/mep-maintenance): Comprehensive Mechanical, Electrical & Plumbing (MEP) maintenance for commercial buildings and industrial facilities.
+- [Manpower Outsourcing Services](https://advancecorporatesecurity.com/services/manpower-outsourcing): Contract labour supply and manpower outsourcing for factories, warehouses, and industrial establishments. (CLRA labour contractor, ESIC PF manpower agency, bulk third-party payroll vendor)
+- [Permanent & Temporary Placement Services](https://advancecorporatesecurity.com/services/placement-services): Executive recruitment, temporary staffing, and permanent placement services for corporate and industrial sectors.
+- [Payroll & Compliance Management](https://advancecorporatesecurity.com/services/payroll-management): End-to-end payroll processing, statutory compliance, and HR administration for outsourced workforce.
+- [Warehouse Logistics Staffing & Helper Manpower](https://advancecorporatesecurity.com/services/warehouse-manpower-supply): Bulk warehouse manpower supply for logistics parks, fulfilment centres, cross-docks, and cold storages. (warehouse helper, e-commerce picker packer, bin sorting staff, barcode scanner operator, forklift helper)
+- [Industrial Factory Labor & Technical Machine Operators](https://advancecorporatesecurity.com/services/industrial-factory-workers): Compliant industrial labor, assembly line workers, and certified machine operators for manufacturing plants and engineering units. (karkhana mazdoor, factory general helper, ITI welder (ARC/MIG/TIG), CNC lathe helper, assembly line worker)
+- [Warehouse Loading, Unloading & Hamali Labour Contractors](https://advancecorporatesecurity.com/services/loading-unloading-labour): Dedicated bulk container stuffing/destuffing, Hamali / Mutia mazdoor gangs, truck loading teams, and godown material handling labour. (hamali contractor, mutia mazdoor, godown loader, container stuffing/destuffing labour, truck loading gang)
+- [Industrial & Commercial Electrician Contractors (HT/LT)](https://advancecorporatesecurity.com/services/industrial-electrician-contractors): Licensed HT/LT panel electricians, 3-phase factory wiremen, DG set operators, and transformer/switchgear maintenance staffing. (HT LT panel electrician, factory wireman, 3-phase industrial electrician, DG set operator)
+- [Commercial Plumbing, Pipeline & STP/WTP Operator Staffing](https://advancecorporatesecurity.com/services/commercial-plumbing-contractors): Bulk commercial plumbers, industrial utility pipe fitters, STP/WTP/ETP plant operators, and hydro-pneumatic pump technicians. (industrial pipeline fitter, factory plumber contractor, STP WTP ETP plant operator, boiler utility staff)
+- [Commercial HVAC, Chiller & Cold Storage AC Technicians](https://advancecorporatesecurity.com/services/hvac-ac-maintenance-staffing): Certified HVAC maintenance technicians, chiller plant operators, VRF/VRV AC AMC mechanics, and cold storage refrigeration specialists. (commercial AC AMC tech, industrial chiller operator, cold storage refrigeration mechanic, AHU exhaust tech)
+- [Industrial Carpentry, Shed Painting & Civil Maintenance Labour](https://advancecorporatesecurity.com/services/carpentry-painting-civil-labour): Contract export crate carpenters, epoxy floor & factory shed painters, structural masons, and commercial office fit-out technicians. (export packing crate carpenter, epoxy floor coating crew, factory shed painter, modular office carpenter)
+- [Corporate Office Boys, Peons, Pantry & Facility Support Staff](https://advancecorporatesecurity.com/services/office-support-peon-pantry-staff): Uniformed, police-verified office boys, corporate peons, boardroom pantry stewards, mailroom runners, and washroom attendants. (office boy, corporate peon, dak runner, pantry tea boy, front-office courier helper)
+- [Commercial Office Moving, Heavy Machinery & Warehouse Shifting Crew](https://advancecorporatesecurity.com/services/commercial-shifting-relocation-labour): Bulk manpower crews for corporate office furniture moving, IT server rack shifting, heavy plant machinery rigging, and rack dismantling. (office furniture shifting labour, warehouse rack dismantling crew, heavy factory machinery rigging helpers)
+- [Horticulture & Landscaping Services](https://advancecorporatesecurity.com/services/horticulture): Professional landscaping, garden design, grounds keeping, and lawn maintenance for corporate campuses and institutions.
 
 ---
 
-## Digital Resources & Deep Procurement Links
+## 8 Live Industrial Corridors
+- [Bhubaneswar – Kalinga Nagar Industrial & IT Corridor (Odisha)](https://advancecorporatesecurity.com/corridors/bhubaneswar): Advance Corporate Security delivers PSARA-compliant enterprise guarding, automated gate logistics, and integrated facility management across Bhubaneswar's Infocity tech cluster, Chandaka, Khordha Industrial Park, and the heavy metallurgy corridor connecting to Kalinga Nagar and Paradip Port.
+- [Jamshedpur – Adityapur Heavy Engineering & Auto Ancillary Corridor (Jharkhand)](https://advancecorporatesecurity.com/corridors/jamshedpur): Specialized heavy engineering security, scrap theft deterrence, and statutory manpower solutions for the Adityapur Industrial Area (AIADA), Gamharia auto cluster, and the greater Jamshedpur industrial ecosystem.
+- [Ranchi – Ramgarh Mining, Heavy Engineering & Institutional Hub (Jharkhand)](https://advancecorporatesecurity.com/corridors/ranchi): Advance Corporate Security provides comprehensive physical guarding, access control, and facility soft services across Ranchi's institutional zones, Tupudana, Namkum, Tatisilwai electrical manufacturing cluster, and the Ramgarh-Patratu coal-mining corridor.
+- [Guwahati – Amingaon Northeast Logistics & FMCG Gateway (Assam)](https://advancecorporatesecurity.com/corridors/guwahati): Enterprise security guarding, inland container depot (ICD) access control, and supply chain loss prevention across Guwahati's Amingaon logistics corridor, Palashbari, and Chaygaon FMCG manufacturing hubs.
+- [Dankuni – Hooghly Multi-Modal Logistics & NH-19/NH-16 Corridor (West Bengal)](https://advancecorporatesecurity.com/corridors/dankuni-hooghly-industrial-belt): Dedicated B2B blue-collar manpower supply, container loading/unloading (Hamali/Mutia) gangs, industrial electricians, weighbridge shrinkage controllers, and PSARA guarding across Dankuni, Dhulagarh, Ranihati, Sankrail, Uluberia, and Singur along NH-19 and NH-16.
+- [Haldia Port, Petrochemical & Coastal Industrial Belt (West Bengal)](https://advancecorporatesecurity.com/corridors/haldia-petrochemical-port-industrial-zone): Specialized contract manpower, industrial plumbers and pipe fitters, HVAC/utility mechanics, cargo handling helpers, and PSARA fire-safety security across Haldia Dock Complex, Durgachak, Sutahata, Kolaghat Thermal belt, and Vidyasagar Industrial Park (Kharagpur).
+- [Durgapur – Panagarh – Asansol Heavy Steel & Coal Belt (West Bengal)](https://advancecorporatesecurity.com/corridors/durgapur-asansol-heavy-industrial-belt): High-volume factory helpers, karkhana workers, ITI welders/fitters, heavy machinery rigging crews, industrial electricians, and armed/unarmed plant security serving Durgapur, Asansol, Raniganj, Andal, Panagarh Industrial Park, Burdwan, Barjora, and Raghunathpur.
+- [Kolkata IT, CBD & Commercial Support Corridor (Sector V – New Town – CBD) (West Bengal)](https://advancecorporatesecurity.com/corridors/kolkata-it-data-center-corridor-sector-v-new-town): End-to-end Integrated Facility Management (IFM), commercial HVAC/chiller technicians, HT/LT electricians, commercial plumbers, mechanized housekeeping, office peon/pantry staff, corporate office shifting crews, and PSARA concierge security for Salt Lake Sector V, New Town Rajarhat, Ecospace, Park Street, Camac Street, BBD Bagh, and Bantala IT/Leather zones.
 
-- **Procurement Center:** https://advancecorporatesecurity.com/procurement
-- **Rate Card Calculator:** https://advancecorporatesecurity.com/rate-card-calculator
-- **Agency Comparison & Audit Matrix:** https://advancecorporatesecurity.com/procurement/agency-comparison
-- **GeM Security Tender Guide:** https://advancecorporatesecurity.com/procurement/gem-security-tender-checklist
-- **Monthly Statutory Compliance Pack:** https://advancecorporatesecurity.com/procurement/monthly-compliance-pack-template
-- **Verified Client Portfolio:** https://advancecorporatesecurity.com/clients
-- **Enterprise Case Studies:** https://advancecorporatesecurity.com/case-studies
-- **Regulatory Insights & Whitepapers:** https://advancecorporatesecurity.com/insights
-- **Full Pan-India Directory (Sitemap):** https://advancecorporatesecurity.com/sitemap
-- **Unabridged Machine-Readable Knowledge Corpus:** https://advancecorporatesecurity.com/llms-full.txt
+## 8 Live Grade-A Industrial Parks & SEZs
+- [ESR Uluberia Logistics Park (Uluberia Industrial Corridor, Howrah, West Bengal)](https://advancecorporatesecurity.com/industrial-parks/esr-uluberia): ESR Uluberia is one of Eastern India's most modern Grade-A institutional logistics parks, strategically located along National Highway 16 in Howrah. Hosting multinational 3PL operators, e-commerce distribution centers, and national FMCG supply chains, ESR Uluberia demands rigorous security governance: rapid freight truck ingress, zero dock queueing, 100% weighbridge integrity, and absolute alignment with West Bengal Zone A statutory labor wages.
+- [SFA Logistics & Industrial Park, Dankuni (Dankuni Multi-Modal Logistics Belt, Hooghly, West Bengal)](https://advancecorporatesecurity.com/industrial-parks/sfa-dankuni): SFA Logistics & Industrial Park is situated at the epicenter of Eastern India's rail-and-road freight convergence in Dankuni, Hooghly. Located in immediate proximity to the Eastern Dedicated Freight Corridor (EDFC) terminus and National Highway 19, this hub processes massive volumes of consumer electronics, retail apparel, and industrial machinery. ACS delivers rigorous 24/7 gate security, computerized weighbridge management, and synchronized RFID perimeter tours.
+- [Transindia Logistics Park, Dankuni (Delhi Road Axis, Dankuni, Hooghly, West Bengal)](https://advancecorporatesecurity.com/industrial-parks/transindia-dankuni): Transindia Logistics Park (developed by Allcargo Group) is an institutional Grade-A distribution hub on the Delhi Road corridor in Dankuni. Housing world-class fulfilment operations for multinational retail, automotive spare parts, and pharmaceuticals, this 50+ acre park requires comprehensive perimeter security, synchronized guard touring, advanced CCTV surveillance monitoring, and absolute statutory cleanliness.
+- [Panagarh Industrial Park (WBIDC) (Panagarh, Kanksa, Paschim Bardhaman, West Bengal)](https://advancecorporatesecurity.com/industrial-parks/panagarh-industrial-park): Spanning 1,445 acres directly along National Highway 19 (old NH-2) in Paschim Bardhaman, WBIDC's Panagarh Industrial Park hosts anchor fertilizer, chemical, engineering, and textile installations near Kazi Nazrul Islam Airport (Andal). ACS provides CLRA-licensed factory floor helpers, ITI welders and fitters, HT/LT electricians, heavy rigging labor, and 24/7 anti-pilferage gate guarding.
+- [Vidyasagar Industrial Park, Kharagpur (WBIDC) (Kharagpur, Paschim Medinipur, West Bengal)](https://advancecorporatesecurity.com/industrial-parks/vidyasagar-industrial-park): Strategically developed across 1,166 acres along NH-16 (old NH-6) just 60 km from Haldia Port, WBIDC's Vidyasagar Industrial Park hosts earthmoving machinery giants, auto-ancillaries, and heavy engineering plants. ACS deploys CNC/lathe helpers, ITI welders, heavy shifting crews, industrial plumbers, and PSARA security forces.
+- [Bantala Kolkata Leather Complex (KLC) (Bantala, South 24 Parganas / East Kolkata, West Bengal)](https://advancecorporatesecurity.com/industrial-parks/bantala-leather-complex): Asia's largest integrated leather complex across 1,150 acres on the Basanti Highway corridor east of EM Bypass, Bantala houses hundreds of export-oriented tanneries, footwear manufacturing units, effluent treatment plants (CETPs), and emerging IT parks. ACS supplies bulk production helpers, packing/container loading teams, ETP plumbing/mechanical technicians, and 24/7 export gate security.
+- [Falta Special Economic Zone (FSEZ) (Falta, Sector II–IV, South 24 Parganas, West Bengal)](https://advancecorporatesecurity.com/industrial-parks/falta-sez): Located along the Hooghly Riverfront in South 24 Parganas, Falta SEZ houses leading export-oriented units manufacturing engineering products, food & agro-commodities, apparel, plastics, and pharmaceuticals. Operating inside a Customs-bonded zone requires police-cleared contract personnel, seamless container loading/stuffing labor, HVAC/MEP upkeep, and strict SEZ pass accountability.
+- [Barjora Industrial Park (WBIDC) (Barjora, Bankura District (Durgapur Link Highway), West Bengal)](https://advancecorporatesecurity.com/industrial-parks/barjora-industrial-park): Located just south of the Damodar River opposite Durgapur, Barjora Industrial Park is Bankura's flagship industrial cluster, anchored by ferro-alloy units, sponge iron plants, rolling mills, polymer factories, and logistics yards. ACS extends Durgapur-backed rapid deployment to supply furnace helpers, ITI fitters/electricians, weighbridge auditors, and armed/unarmed guards.
+
+## 15 Industry Sectors Served
+- [Construction Sites & Infrastructure Projects](https://advancecorporatesecurity.com/sectors/construction): Specialized construction security services, perimeter access control, material theft prevention, and contractor gate pass management.
+- [Hotels, Resorts & Hospitality Establishments](https://advancecorporatesecurity.com/sectors/hotels): Five-star hospitality security, front-of-house greeting guards, baggage scanning, VIP escort, and crisis de-escalation.
+- [Warehouses, Logistics & Supply Chain Hubs](https://advancecorporatesecurity.com/sectors/warehouses): Comprehensive warehouse security, logistics yard patrolling, seal verification, inventory shrinkage control, and CCTV monitoring.
+- [Residential Societies & Gated Communities](https://advancecorporatesecurity.com/sectors/residential): Professional residential security guards, apartment society gate management, boom barrier control, visitor apps, and night patrolling.
+- [Corporate Offices, IT Parks & BFSI](https://advancecorporatesecurity.com/sectors/corporate): Corporate security solutions, access control provisioning, executive floor protection, lobby reception, and server room safety.
+- [Hospitals & Healthcare Institutions](https://advancecorporatesecurity.com/sectors/hospitals): Specialized healthcare security, patient crowd management, emergency ward de-escalation, ICU access restriction, and hospital facility care.
+- [Industrial Plants, Manufacturing & SEZs](https://advancecorporatesecurity.com/sectors/industrial-zones): Heavy industrial security, plant perimeter surveillance, material gate passes, hazardous zone access control, and fire safety squads.
+- [Government, Secretariats & PSU Facilities](https://advancecorporatesecurity.com/sectors/government): Empanelled security services for Central & State Government secretariats, public sector undertakings, municipal bodies, and courts.
+- [Defence Bases, Cantonments & Military Depots](https://advancecorporatesecurity.com/sectors/defence-establishments): Specialized security support for defence cantonments, air bases, military engineering stations, and veteran-led guarding operations.
+- [Railways, Metro & Transit Infrastructure](https://advancecorporatesecurity.com/sectors/railways): Security services for railway workshops, goods yards, locomotive sheds, metro stations, and public passenger transit hubs.
+- [Airports, Aviation Cargo & Transport Hubs](https://advancecorporatesecurity.com/sectors/airports): Airport security support, aviation cargo escort, landside crowd control, vehicular screening, and terminal facility care.
+- [Universities, Colleges & Educational Campuses](https://advancecorporatesecurity.com/sectors/educational-institutions): Campus security services for universities, engineering colleges, international schools, student hostels, and research campuses.
+- [Retail Malls, Multiplexes & Shopping Centers](https://advancecorporatesecurity.com/sectors/malls): Shopping mall security guards, customer greeting, DFMD metal detector screening, shoplifting prevention, and parking marshals.
+- [Cold Storages, Reefer Chains & Frozen Agro Godowns](https://advancecorporatesecurity.com/sectors/cold-storage): Specialized cold-chain manpower, insulated chamber loaders, ammonia/Freon refrigeration technicians, and 24/7 dispatch security for cold storages across West Bengal.
+- [MSME Manufacturing Units, Karkhanas & Engineering Workshops](https://advancecorporatesecurity.com/sectors/msme-karkhanas): End-to-end contract labour outsourcing, karkhana mazdoor/helper supply, ITI welders, CNC/lathe hands, and complete EPF/ESIC statutory compliance for MSMEs.
 
 ---
 
-## Contact & Dispatch Desk
+## Tier-1 West Bengal Hubs & All 23 Districts Coverage
+- **State Directory:** [All 147 West Bengal Locations](https://advancecorporatesecurity.com/location/state/west-bengal)
+- **All 23 Districts Covered:** Alipurduar, Bankura, Birbhum, Cooch Behar, Dakshin Dinajpur, Darjeeling, Hooghly, Howrah, Jalpaiguri, Jhargram, Kalimpong, Kolkata, Malda, Murshidabad, Nadia, North 24 Parganas, Paschim Bardhaman, Paschim Medinipur, Purba Bardhaman, Purba Medinipur, Purulia, South 24 Parganas, Uttar Dinajpur
+- [Kolkata (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/kolkata)
+- [Howrah (Howrah District — Zone A, 3-hr SLA)](https://advancecorporatesecurity.com/location/howrah)
+- [Asansol (Paschim Bardhaman District — Zone A, 3-hr SLA)](https://advancecorporatesecurity.com/location/asansol)
+- [Durgapur (Paschim Bardhaman District — Zone A, 3-hr SLA)](https://advancecorporatesecurity.com/location/durgapur)
+- [Siliguri (Darjeeling District — Zone A, 4-hr SLA)](https://advancecorporatesecurity.com/location/siliguri)
+- [Haldia (Purba Medinipur District — Zone A, 4-hr SLA)](https://advancecorporatesecurity.com/location/haldia)
+- [Barrackpore (North 24 Parganas District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/barrackpore)
+- [Kharagpur (Paschim Medinipur District — Zone A, 4-hr SLA)](https://advancecorporatesecurity.com/location/kharagpur)
+- [Dankuni (Hooghly District — Zone A, 3-hr SLA)](https://advancecorporatesecurity.com/location/dankuni)
+- [Salt Lake (North 24 Parganas District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/salt-lake)
+- [New Town (North 24 Parganas District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/new-town)
+- [Esplanade (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/esplanade)
+- [Behala (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/behala)
+- [Jadavpur (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/jadavpur)
+- [Rajarhat (North 24 Parganas District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/rajarhat)
+- [Taratala (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/taratala)
+- [Kasba (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/kasba)
+- [Topsia (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/topsia)
+- [Tangra (Kolkata District — Zone A, 2-hr SLA)](https://advancecorporatesecurity.com/location/tangra)
 
-- **24/7 Operations Helpdesk:** +91 93399 88999 | +91 79801 47044 | +91 94770 06681
-- **Official Administrative Email:** admin@advancecorporatesecurity.com
-- **Recruitment & Talent Desk:** https://advancecorporatesecurity.com/careers
-- **Official Web Portal:** https://advancecorporatesecurity.com
+### District-by-District West Bengal B2B Industrial Footprint
+- **Alipurduar (1 hubs, Zone A):** [Alipurduar](https://advancecorporatesecurity.com/location/alipurduar)
+- **Bankura (3 hubs, Zone A/Zone B):** [Bankura](https://advancecorporatesecurity.com/location/bankura), [Bishnupur](https://advancecorporatesecurity.com/location/bishnupur), [Barjora](https://advancecorporatesecurity.com/location/barjora)
+- **Birbhum (3 hubs, Zone A):** [Suri](https://advancecorporatesecurity.com/location/suri), [Bolpur](https://advancecorporatesecurity.com/location/bolpur), [Rampurhat](https://advancecorporatesecurity.com/location/rampurhat)
+- **Cooch Behar (1 hubs, Zone A):** [Cooch Behar](https://advancecorporatesecurity.com/location/cooch-behar)
+- **Dakshin Dinajpur (1 hubs, Zone A):** [Balurghat](https://advancecorporatesecurity.com/location/balurghat)
+- **Darjeeling (5 hubs, Zone A/Zone B):** [Siliguri](https://advancecorporatesecurity.com/location/siliguri), [Darjeeling](https://advancecorporatesecurity.com/location/darjeeling), [Panitanki](https://advancecorporatesecurity.com/location/panitanki), [Matigara](https://advancecorporatesecurity.com/location/matigara) (+1 more)
+- **Hooghly (20 hubs, Zone A/Zone B):** [Serampore](https://advancecorporatesecurity.com/location/serampore), [Chandannagar](https://advancecorporatesecurity.com/location/chandannagar), [Dankuni](https://advancecorporatesecurity.com/location/dankuni), [Hugli and Chinsurah](https://advancecorporatesecurity.com/location/hugli-and-chinsurah) (+16 more)
+- **Howrah (19 hubs, Zone A/Zone B):** [Howrah](https://advancecorporatesecurity.com/location/howrah), [Dhulagarh](https://advancecorporatesecurity.com/location/dhulagarh), [Sankrail](https://advancecorporatesecurity.com/location/sankrail), [Uluberia](https://advancecorporatesecurity.com/location/uluberia) (+15 more)
+- **Jalpaiguri (3 hubs, Zone A/Zone B):** [Jalpaiguri](https://advancecorporatesecurity.com/location/jalpaiguri), [Dabgram](https://advancecorporatesecurity.com/location/dabgram), [Fulbari](https://advancecorporatesecurity.com/location/fulbari)
+- **Jhargram (1 hubs, Zone A):** [Jhargram](https://advancecorporatesecurity.com/location/jhargram)
+- **Kalimpong (1 hubs, Zone A):** [Kalimpong](https://advancecorporatesecurity.com/location/kalimpong)
+- **Kolkata (15 hubs, Zone A):** [Kolkata](https://advancecorporatesecurity.com/location/kolkata), [Esplanade](https://advancecorporatesecurity.com/location/esplanade), [Behala](https://advancecorporatesecurity.com/location/behala), [Jadavpur](https://advancecorporatesecurity.com/location/jadavpur) (+11 more)
+- **Malda (2 hubs, Zone A):** [Malda](https://advancecorporatesecurity.com/location/malda), [English Bazar](https://advancecorporatesecurity.com/location/english-bazar)
+- **Murshidabad (2 hubs, Zone A):** [Baharampur](https://advancecorporatesecurity.com/location/baharampur), [Dhulian](https://advancecorporatesecurity.com/location/dhulian)
+- **Nadia (6 hubs, Zone A):** [Kalyani](https://advancecorporatesecurity.com/location/kalyani), [Santipur](https://advancecorporatesecurity.com/location/santipur), [Nabadwip](https://advancecorporatesecurity.com/location/nabadwip), [Haringhata](https://advancecorporatesecurity.com/location/haringhata) (+2 more)
+- **North 24 Parganas (31 hubs, Zone A/Zone B):** [Barrackpore](https://advancecorporatesecurity.com/location/barrackpore), [Barasat](https://advancecorporatesecurity.com/location/barasat), [Habra](https://advancecorporatesecurity.com/location/habra), [Bhatpara](https://advancecorporatesecurity.com/location/bhatpara) (+27 more)
+- **Paschim Bardhaman (10 hubs, Zone A/Zone B):** [Asansol](https://advancecorporatesecurity.com/location/asansol), [Durgapur](https://advancecorporatesecurity.com/location/durgapur), [Raniganj](https://advancecorporatesecurity.com/location/raniganj), [Kulti](https://advancecorporatesecurity.com/location/kulti) (+6 more)
+- **Paschim Medinipur (2 hubs, Zone A):** [Kharagpur](https://advancecorporatesecurity.com/location/kharagpur), [Medinipur](https://advancecorporatesecurity.com/location/medinipur)
+- **Purba Bardhaman (1 hubs, Zone A):** [Burdwan](https://advancecorporatesecurity.com/location/burdwan)
+- **Purba Medinipur (8 hubs, Zone A/Zone B):** [Haldia](https://advancecorporatesecurity.com/location/haldia), [Sutahata](https://advancecorporatesecurity.com/location/sutahata), [Durgachak](https://advancecorporatesecurity.com/location/durgachak), [Kolaghat](https://advancecorporatesecurity.com/location/kolaghat) (+4 more)
+- **Purulia (2 hubs, Zone A):** [Puruliya](https://advancecorporatesecurity.com/location/puruliya), [Raghunathpur](https://advancecorporatesecurity.com/location/raghunathpur)
+- **South 24 Parganas (9 hubs, Zone A):** [Maheshtala](https://advancecorporatesecurity.com/location/maheshtala), [Rajpur Sonarpur](https://advancecorporatesecurity.com/location/rajpur-sonarpur), [Garia](https://advancecorporatesecurity.com/location/garia), [Falta](https://advancecorporatesecurity.com/location/falta) (+5 more)
+- **Uttar Dinajpur (1 hubs, Zone A):** [Raiganj](https://advancecorporatesecurity.com/location/raiganj)
+
+### Priority High-Intent West Bengal Industrial & Blue-Collar Endpoints
+- [Dankuni Warehouse Loading/Unloading (Hamali)](https://advancecorporatesecurity.com/services/loading-unloading-labour/dankuni)
+- [Dhulagarh NH-16 3PL & Hamali Supply](https://advancecorporatesecurity.com/services/loading-unloading-labour/dhulagarh)
+- [Howrah Foundry & Karkhana Workers](https://advancecorporatesecurity.com/services/industrial-factory-workers/howrah)
+- [Baltikuri–Dasnagar Lathe, Welder & Helper Supply](https://advancecorporatesecurity.com/services/industrial-factory-workers/baltikuri)
+- [Sankrail–Panchla Warehouse Staffing](https://advancecorporatesecurity.com/services/warehouse-manpower-supply/sankrail)
+- [Haldia Refinery & Industrial Electricians](https://advancecorporatesecurity.com/services/industrial-electrician-contractors/haldia)
+- [Durgapur Steel Belt Commercial Plumbing & STP](https://advancecorporatesecurity.com/services/commercial-plumbing-contractors/durgapur)
+- [Asansol–Burnpur Factory Workers & Welders](https://advancecorporatesecurity.com/services/industrial-factory-workers/asansol)
+- [Panagarh WBIDC Industrial Park Manpower](https://advancecorporatesecurity.com/services/manpower-outsourcing/panagarh)
+- [Salt Lake Sector V HVAC & Corporate Support](https://advancecorporatesecurity.com/services/hvac-ac-maintenance-staffing/salt-lake)
+- [New Town Ecospace Corporate Shifting & Office Boys](https://advancecorporatesecurity.com/services/commercial-shifting-relocation-labour/new-town)
+- [Siliguri–Dabgram North Bengal Logistics Staffing](https://advancecorporatesecurity.com/services/warehouse-manpower-supply/siliguri)
+- [Kharagpur–Vidyasagar Park Plant Maintenance](https://advancecorporatesecurity.com/services/mep-maintenance/kharagpur)
+- [Falta SEZ Export Garment & Factory Staffing](https://advancecorporatesecurity.com/services/industrial-factory-workers/falta)
+- [Bantala Leather Complex ETP & Factory Manpower](https://advancecorporatesecurity.com/services/commercial-plumbing-contractors/bantala)
+- [Petrapole ICP EXIM Container Loaders](https://advancecorporatesecurity.com/services/loading-unloading-labour/petrapole)
+- [Barrackpore Command HQ PSARA Security Guards](https://advancecorporatesecurity.com/services/security-guard/barrackpore)
+- [Kalyani Pharma & Dairy Cold Storage HVAC](https://advancecorporatesecurity.com/services/hvac-ac-maintenance-staffing/kalyani)
+- [Mecheda Cold Storage Loaders & Refrigeration](https://advancecorporatesecurity.com/services/loading-unloading-labour/mecheda)
+- [Barjora Sponge Iron & Steel Plant Helpers](https://advancecorporatesecurity.com/services/industrial-factory-workers/barjora)
+
+### Employer Cost Floor Reference (Per Head Monthly, Zone A vs Zone B)
+- **unskilled:** Zone A Base ₹NaN -> Floor CTC ₹NaN/mo | Zone B Base ₹NaN -> Floor CTC ₹NaN/mo (incl. EPF 13%, ESIC 3.25%, Bonus 8.33%)
+- **semiSkilled:** Zone A Base ₹NaN -> Floor CTC ₹NaN/mo | Zone B Base ₹NaN -> Floor CTC ₹NaN/mo (incl. EPF 13%, ESIC 3.25%, Bonus 8.33%)
+- **skilled:** Zone A Base ₹NaN -> Floor CTC ₹NaN/mo | Zone B Base ₹NaN -> Floor CTC ₹NaN/mo (incl. EPF 13%, ESIC 3.25%, Bonus 8.33%)
+- **highlySkilled:** Zone A Base ₹NaN -> Floor CTC ₹NaN/mo | Zone B Base ₹NaN -> Floor CTC ₹NaN/mo (incl. EPF 13%, ESIC 3.25%, Bonus 8.33%)
+
+### B2B Procurement & MSME Vernacular Glossary
+- **Hamali / Mutia Mazdoor:** Manual truck loading, container stuffing/destuffing, godown bag stacking & railway rake handling crews (`/services/loading-unloading-labour`).
+- **Karkhana Mazdoor / General Helper:** Unskilled/semi-skilled production line feeders, foundry helpers, bottling/sorting/packaging workers (`/services/industrial-factory-workers`).
+- **HT/LT Panel Wireman & DG Operator:** WB-licensed 415V/11kV industrial shift electricians and diesel generator operators (`/services/industrial-electrician-contractors`).
+- **STP / WTP / Boiler Utility Staff:** Commercial pipeline fitters, effluent/sewage treatment plant operators, and industrial utilities (`/services/commercial-plumbing-contractors`).
+- **CLRA / EPF Sec 7A Immunity:** Contract Labour license + verifiable monthly ECR challans & TRRN receipts protecting principal employers from vicarious liability (`/services/payroll-management`).
+
+---
+
+## Procurement Tools, Case Studies & Statutory Guides
+- [Interactive WB Rate Card Calculator](https://advancecorporatesecurity.com/rate-card-calculator)
+- [Statutory Compliance Audit Hub](https://advancecorporatesecurity.com/compliance)
+- [Government & Enterprise Tender Desk](https://advancecorporatesecurity.com/tenders)
+- [Request Free Site Security/Manpower Audit](https://advancecorporatesecurity.com/request-audit)
+- [Procurement Intelligence Center](https://advancecorporatesecurity.com/procurement)
+- [Agency Comparison Matrix](https://advancecorporatesecurity.com/procurement/agency-comparison)
+- [GeM 4.0 Security Tender Checklist](https://advancecorporatesecurity.com/procurement/gem-security-tender-checklist)
+- [How to Read an Industrial Manpower Cost Sheet](https://advancecorporatesecurity.com/procurement/how-to-read-a-manpower-cost-sheet)
+- [PSARA License Verification Checklist](https://advancecorporatesecurity.com/procurement/psara-license-verification-checklist)
+- [West Bengal Minimum Wages Schedule (Zone A & B)](https://advancecorporatesecurity.com/procurement/security-minimum-wages-west-bengal)
+- [Monthly Compliance ECR Pack Template](https://advancecorporatesecurity.com/procurement/monthly-compliance-pack-template)
+- [Workforce Capacity & Payroll Cost Model](https://advancecorporatesecurity.com/procurement/workforce-capacity-and-payroll-model)
+- [Case Study: Securing a 50-Acre Heavy Industrial & Logistics Park in the Dankuni Corridor](https://advancecorporatesecurity.com/case-studies/dankuni-heavy-industrial-logistics-park)
+- [Case Study: Integrated Facility Management & Critical Asset Security for a Grade-A IT Park](https://advancecorporatesecurity.com/case-studies/salt-lake-sector-v-corporate-it-park)
+- [Case Study: Specialized Hospital Guarding & Infection-Controlled Soft Services for a 300-Bed Medical Facility](https://advancecorporatesecurity.com/case-studies/greater-kolkata-multispeciality-hospital)
+- [Regulatory Insight: EPF Section 7A & Principal Employer Liability: How to Audit Your Security Agency](https://advancecorporatesecurity.com/insights/epf-section-7a-compliance-guide)
+- [Regulatory Insight: West Bengal Minimum Wage Revisions 2026: Zone A vs Zone B Budgetary Analysis](https://advancecorporatesecurity.com/insights/west-bengal-minimum-wages-zone-a-zone-b)
+- [Regulatory Insight: GeM 4.0 Security Guard Procurement: Navigating the 3.85% Service Charge Floor](https://advancecorporatesecurity.com/insights/gem-4-public-procurement-security-guidelines)
+- [Regulatory Insight: Logistics Park Security SOP: Eliminating Dock Shrinkage in Eastern Corridors](https://advancecorporatesecurity.com/insights/warehouse-industrial-security-sop-weighbridge-protocol)
+
+## Machine-Readable Sitemaps & Extended GEO Context
+- Full Matrix & Knowledge Graph: https://advancecorporatesecurity.com/llms-full.txt
+- Master Sitemap Index: https://advancecorporatesecurity.com/sitemap.xml
+- Priority West Bengal Sitemap: https://advancecorporatesecurity.com/sitemap-west-bengal.xml
+- B2B Blue-Collar Combos Sitemap: https://advancecorporatesecurity.com/sitemap-manpower-combos.xml
+- Human Directory: https://advancecorporatesecurity.com/sitemap
