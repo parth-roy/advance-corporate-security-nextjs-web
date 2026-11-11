@@ -13,6 +13,9 @@ import {
 export const metadata: Metadata = {
   title: "West Bengal Minimum Wage Calculator 2026 | ACS Procurement",
   description: "Official Labour Commissioner Zone A & Zone B minimum wage guidelines for security guards & blue-collar workers in West Bengal. Calculate PF, ESIC, and statutory bonuses.",
+  alternates: {
+    canonical: `${siteConfig.url}/procurement/security-minimum-wages-west-bengal`,
+  },
 };
 
 export default function MinimumWagePage() {

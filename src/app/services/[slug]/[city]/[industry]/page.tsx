@@ -5,7 +5,7 @@
 // ============================================================
 
 import type { Metadata } from 'next';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { siteConfig } from '@/lib/config';
 import { ACS_SERVICES, getServiceBySlug } from '@/lib/services';
 import { ACS_CITIES } from '@/lib/cities';
@@ -135,6 +135,12 @@ const SERVICE_ALIASES: Record<string, string> = {
 const CITY_ALIASES: Record<string, string> = {
   calcutta: 'kolkata',
   haora: 'howrah',
+  barrackpur: 'barrackpore',
+  darjiling: 'darjeeling',
+  khardah: 'khardaha',
+  berhampore: 'baharampur',
+  dumdum: 'dum-dum',
+  gurgaon: 'gurugram',
 };
 
 // Modular Components
@@ -264,9 +270,9 @@ export default async function ServiceCityIndustryPage({
   const resolvedCity = CITY_ALIASES[citySlug] || citySlug;
   const resolvedIndustry = INDUSTRY_ALIASES[industrySlug] || industrySlug;
 
-  // Seamless 301 / redirect from aliases (e.g. /manufacturing -> /industrial-zones, /it-parks -> /corporate)
+  // Seamless 308 redirect from aliases (e.g. /manufacturing -> /industrial-zones, /it-parks -> /corporate)
   if (resolvedSlug !== slug || resolvedCity !== citySlug || resolvedIndustry !== industrySlug) {
-    redirect(`/services/${resolvedSlug}/${resolvedCity}/${resolvedIndustry}`);
+    permanentRedirect(`/services/${resolvedSlug}/${resolvedCity}/${resolvedIndustry}`);
   }
 
   const service = getServiceBySlug(resolvedSlug);
@@ -435,6 +441,9 @@ export default async function ServiceCityIndustryPage({
         cityName={cityObj.name}
         serviceName={service.name}
         industryName={industry.name}
+        serviceSlug={resolvedSlug}
+        citySlug={resolvedCity}
+        industrySlug={resolvedIndustry}
         defaultZone={wageZone}
       />
 

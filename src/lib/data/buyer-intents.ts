@@ -129,6 +129,6 @@ export function generatePageMetadata({
     title,
     description,
     h1,
-    canonicalUrl: `/services/${serviceName.toLowerCase().replace(/\\s+/g, '-')}/${cityName.toLowerCase().replace(/\\s+/g, '-')}/${industryName.toLowerCase().replace(/\\s+/g, '-')}`,
+    canonicalUrl: `/services/${serviceName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}/${cityName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}/${industryName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`,
   };
 }

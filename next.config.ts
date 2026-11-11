@@ -1,5 +1,35 @@
 import type { NextConfig } from "next";
 
+// Legacy service.name slugifications emitted historically in LocalBusiness JSON-LD (fixed in schema.ts)
+const LEGACY_SERVICE_SLUG_MAP: Record<string, string> = {
+  "warehouse-logistics-staffing-&-helper-manpower": "warehouse-manpower-supply",
+  "industrial-factory-labor-&-technical-machine-operators": "industrial-factory-workers",
+  "manpower-outsourcing-services": "manpower-outsourcing",
+  "facade-&-glass-cleaning-services": "facade-cleaning",
+  "commercial-pest-control-services": "pest-control",
+  "surveillance-&-cctv-monitoring": "surveillance-cctv",
+  "surveillance": "surveillance-cctv",
+  "event-security-services": "event-security",
+  "payroll-&-compliance-management": "payroll-management",
+  "payroll-compliance": "payroll-management",
+  "night-patrolling-services": "night-patrol",
+  "security-guard-services": "security-guard",
+  "executive-&-vip-protection": "executive-protection",
+  "industrial-security-services": "industrial-security",
+  "armed-guard-services": "armed-guard",
+  "janitorial-&-deep-cleaning-services": "janitorial",
+  "mep-maintenance-services": "mep-maintenance",
+  "fire-fighting-&-safety-services": "fire-fighting",
+  "permanent-&-temporary-placement-services": "placement-services",
+  "horticulture-&-landscaping-services": "horticulture",
+  "corporate-housekeeping-services": "housekeeping",
+};
+
+const legacyServiceRedirects = Object.entries(LEGACY_SERVICE_SLUG_MAP).flatMap(([legacy, canonical]) => [
+  { source: `/services/${legacy}`, destination: `/services/${canonical}`, permanent: true },
+  { source: `/services/${legacy}/:city`, destination: `/services/${canonical}/:city`, permanent: true },
+]);
+
 const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false, // Suppress X-Powered-By: Next.js
@@ -83,6 +113,20 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Canonical Host Enforcement (www -> non-www 308 Permanent)
+      {
+        source: "/",
+        has: [{ type: "host", value: "www.advancecorporatesecurity.com" }],
+        destination: "https://advancecorporatesecurity.com/",
+        permanent: true,
+      },
+      {
+        source: "/:path+",
+        has: [{ type: "host", value: "www.advancecorporatesecurity.com" }],
+        destination: "https://advancecorporatesecurity.com/:path+",
+        permanent: true,
+      },
+
       // Core alias redirects (prevent 404 on plural/shorthand URLs)
       { source: "/locations", destination: "/location", permanent: true },
       { source: "/locations/", destination: "/location", permanent: true },
@@ -271,7 +315,16 @@ const nextConfig: NextConfig = {
       { source: "/industries/karkhana", destination: "/sectors/msme-karkhanas", permanent: true },
       { source: "/locations/west-bengal/:city", destination: "/location/:city", permanent: true },
       { source: "/locations/west-bengal/:city/", destination: "/location/:city", permanent: true },
+      { source: "/corridors", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/corridors/", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/industrial-parks", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/industrial-parks/", destination: "/location/state/west-bengal", permanent: true },
+      { source: "/India", destination: "/location", permanent: true },
+      { source: "/india", destination: "/location", permanent: true },
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
+
+      // GSC 404 remediation: legacy service.name slugifications & variants
+      ...legacyServiceRedirects,
     ];
   },
 };

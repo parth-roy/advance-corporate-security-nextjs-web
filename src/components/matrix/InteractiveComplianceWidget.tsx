@@ -13,6 +13,9 @@ interface InteractiveComplianceWidgetProps {
   cityName: string;
   serviceName: string;
   industryName: string;
+  serviceSlug?: string;
+  citySlug?: string;
+  industrySlug?: string;
   defaultZone: 'A' | 'B';
 }
 
@@ -20,6 +23,9 @@ export default function InteractiveComplianceWidget({
   cityName,
   serviceName,
   industryName,
+  serviceSlug,
+  citySlug,
+  industrySlug,
   defaultZone,
 }: InteractiveComplianceWidgetProps) {
   const [headcount, setHeadcount] = useState<number>(6);
@@ -169,7 +175,12 @@ export default function InteractiveComplianceWidget({
               *Preliminary statutory estimate excluding management fee and GST. Subject to formal site survey.
             </span>
             <Link
-              href={`/quote?service=${serviceName}&city=${cityName}&industry=${industryName}`}
+              href={`/quote?${new URLSearchParams({
+                service: serviceSlug || serviceName,
+                city: citySlug || cityName,
+                industry: industrySlug || industryName,
+              }).toString()}`}
+              rel="nofollow"
               className="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-xs sm:text-sm shadow-md transition-all shrink-0 text-center w-full sm:w-auto"
             >
               Get Itemized {cityName} Quotation &rarr;

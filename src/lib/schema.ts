@@ -224,14 +224,6 @@ export function buildOrganizationSchema() {
         url: siteConfig.url,
         name: siteConfig.name,
         publisher: { "@id": siteConfig.entityId },
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: `${siteConfig.url}/?s={search_term_string}`,
-          },
-          "query-input": "required name=search_term_string",
-        },
       },
       {
         "@type": ["LocalBusiness", "EmploymentAgency", "SecurityService"],
@@ -351,7 +343,7 @@ export function buildServiceSchema(service: {
   const url = service.citySlug
     ? `${siteConfig.url}/services/${service.slug}/${service.citySlug}`
     : service.cityName
-    ? `${siteConfig.url}/services/${service.slug}/${service.cityName.toLowerCase().replace(/\s+/g, "-")}`
+    ? `${siteConfig.url}/services/${service.slug}/${service.cityName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`
     : `${siteConfig.url}/services/${service.slug}`;
 
   const type = service.schemaType ?? "ProfessionalService";
@@ -414,6 +406,7 @@ export function buildCityLocalBusinessSchema({
   stateName,
   citySlug,
   serviceName,
+  serviceSlug,
   lat,
   lng,
 }: {
@@ -421,11 +414,17 @@ export function buildCityLocalBusinessSchema({
   stateName: string;
   citySlug: string;
   serviceName?: string;
+  serviceSlug?: string;
   lat?: number;
   lng?: number;
 }) {
-  const pageUrl = serviceName
-    ? `${siteConfig.url}/services/${serviceName.toLowerCase().replace(/\s+/g, "-")}/${citySlug}`
+  const canonicalServiceSlug = serviceSlug
+    ? serviceSlug
+    : serviceName
+    ? serviceName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+    : undefined;
+  const pageUrl = canonicalServiceSlug
+    ? `${siteConfig.url}/services/${canonicalServiceSlug}/${citySlug}`
     : `${siteConfig.url}/location/${citySlug}`;
 
   return {

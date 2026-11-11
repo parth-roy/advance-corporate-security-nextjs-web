@@ -163,6 +163,9 @@ export default async function ServiceCityPage({
   }
   const cityObj = getCityBySlug(citySlug) || ACS_CITIES.find((c) => c.slug === citySlug);
   if (!service || !cityObj) notFound();
+  if (cityObj.slug !== citySlug) {
+    redirect(`/services/${service.slug}/${cityObj.slug}`);
+  }
 
   const { name: cityName, state, stateSlug } = cityObj;
   const pageUrl = `${siteConfig.url}/services/${slug}/${citySlug}`;
@@ -214,6 +217,7 @@ export default async function ServiceCityPage({
     stateName: state,
     citySlug,
     serviceName: service.name,
+    serviceSlug: slug,
   });
 
   // Nearby & related cities for SEO crawl graph

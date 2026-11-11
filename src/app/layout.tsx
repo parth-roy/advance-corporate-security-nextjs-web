@@ -72,9 +72,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: ["/images/og-default.jpg"],
   },
-  alternates: {
-    canonical: siteConfig.url,
-  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
