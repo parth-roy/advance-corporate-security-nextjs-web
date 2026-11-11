@@ -26,11 +26,13 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             npm install
-            # Clean previous .next build directory completely to prevent ENOTEMPTY standalone conflicts
-            rm -rf .next 2>/dev/null || true
+            # Stop PM2 before cleaning/building so live ISR cache writes into .next/standalone cannot cause ENOTEMPTY
+            pm2 stop acs-web 2>/dev/null || true
+            # Clean previous .next build directory completely before rebuilding
+            rm -rf .next
             npm run build
             # Copy static assets into standalone folder
             cp -r .next/static .next/standalone/.next/static
             cp -r public .next/standalone/public
-            pm2 reload acs-web || pm2 restart acs-web || pm2 start ecosystem.config.js --only acs-web
+            pm2 restart acs-web || pm2 start ecosystem.config.js --only acs-web
             pm2 save
