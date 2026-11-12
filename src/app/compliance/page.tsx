@@ -850,14 +850,15 @@ export default function StatutoryCompliancePage() {
           {/* Statutory acts reference strip */}
           <div className="mt-10 p-6 bg-navy/5 border border-navy/20 rounded-2xl">
             <h3 className="font-roboto font-bold text-navy text-sm uppercase tracking-wide mb-4">
-              Key Statutory Acts ACS Complies With
+              Key Statutory Acts ACS Complies With Across Security, IFM &amp; Blue-Collar Manpower
             </h3>
             <div className="flex flex-wrap gap-2">
               {[
                 "Private Security Agencies (Regulation) Act 2005 (PSARA)",
-                "Contract Labour (R&A) Act 1970",
-                "Minimum Wages Act 1948",
-                "EPF & Miscellaneous Provisions Act 1952",
+                "Jan Vishwas (Amendment of Provisions) Act 2026",
+                "Contract Labour (R&A) Act 1970 (Sec 21(4) Shield)",
+                "Minimum Wages Act 1948 (Zone A & B)",
+                "EPF & Miscellaneous Provisions Act 1952 (Sec 7A)",
                 "Employees' State Insurance Act 1948",
                 "Payment of Bonus Act 1965",
                 "Payment of Gratuity Act 1972",
@@ -874,6 +875,32 @@ export default function StatutoryCompliancePage() {
                   ✓ {act}
                 </span>
               ))}
+            </div>
+          </div>
+
+          {/* Jan Vishwas Act 2026 vs Principal Employer Strict Liability Briefing */}
+          <div className="mt-8 bg-slate-900 text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-lg">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div className="max-w-3xl">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/15 text-amber-300 border border-amber-400/30 text-[11px] font-bold uppercase tracking-wider mb-3">
+                  2026 Regulatory Advisory • Security, IFM &amp; Factory/Warehouse Contractors
+                </span>
+                <h3 className="font-roboto font-extrabold text-xl sm:text-2xl text-white mb-2">
+                  Jan Vishwas Act 2026 vs. Principal Employer Strict Liability (CLRA Sec 21(4) &amp; EPF Sec 7A)
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  While the <strong className="text-white">Jan Vishwas (Amendment of Provisions) Act 2026</strong> decriminalizes minor procedural PSARA &amp; register-display infractions into civil penalties, it leaves <strong className="text-amber-300">Principal Employer strict vicarious liability completely unchanged</strong>. If a guarding, housekeeping, warehouse Hamali, factory helper, or MEP vendor defaults on wages or EPF/ESIC, authorities recover 100% arrears directly from your factory or corporate entity under CLRA Section 21(4) and EPF Section 7A.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Link
+                  href="/insights/jan-vishwas-act-impact-on-psara"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky hover:bg-sky-dark text-white font-bold text-xs sm:text-sm transition-colors whitespace-nowrap"
+                >
+                  <span>Read Full 2026 Advisory</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -6,6 +6,8 @@ import { ACS_SERVICES } from "../src/lib/services.ts";
 import { ACS_INDUSTRIES } from "../src/lib/industries.ts";
 import { getAllCorridors } from "../src/lib/corridors.ts";
 import { getAllIndustrialParks } from "../src/lib/industrialParks.ts";
+import { getAllInsights } from "../src/lib/insights.ts";
+import { getAllCaseStudies } from "../src/lib/caseStudies.ts";
 import {
   isWBCityIndexable,
   isWBIndustryComboIndexable,
@@ -78,6 +80,9 @@ async function main() {
   const indexableWbCities = wbCities.filter((c) => isWBCityIndexable(c.slug));
   const coreIndustrialWbCities = wbCities.filter((c) => isWBIndustryComboIndexable(c.slug));
 
+  const insights = getAllInsights();
+  const caseStudies = getAllCaseStudies();
+
   // 1. Core pages, Procurement & Industry Sector hubs
   const coreUrls = [
     { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" },
@@ -94,14 +99,17 @@ async function main() {
     { loc: `${BASE_URL}/sitemap`, priority: "0.95", changefreq: "weekly" },
     { loc: `${BASE_URL}/lp/industrial-security`, priority: "0.85", changefreq: "monthly" },
     { loc: `${BASE_URL}/insights`, priority: "0.95", changefreq: "weekly" },
-    { loc: `${BASE_URL}/insights/epf-section-7a-compliance-guide`, priority: "0.90", changefreq: "monthly" },
-    { loc: `${BASE_URL}/insights/west-bengal-minimum-wages-zone-a-zone-b`, priority: "0.90", changefreq: "monthly" },
-    { loc: `${BASE_URL}/insights/gem-4-public-procurement-security-guidelines`, priority: "0.90", changefreq: "monthly" },
-    { loc: `${BASE_URL}/insights/warehouse-industrial-security-sop-weighbridge-protocol`, priority: "0.90", changefreq: "monthly" },
+    ...insights.map((article) => ({
+      loc: `${BASE_URL}/insights/${article.slug}`,
+      priority: "0.90",
+      changefreq: "monthly",
+    })),
     { loc: `${BASE_URL}/case-studies`, priority: "0.95", changefreq: "weekly" },
-    { loc: `${BASE_URL}/case-studies/dankuni-heavy-industrial-logistics-park`, priority: "0.90", changefreq: "monthly" },
-    { loc: `${BASE_URL}/case-studies/salt-lake-sector-v-corporate-it-park`, priority: "0.90", changefreq: "monthly" },
-    { loc: `${BASE_URL}/case-studies/greater-kolkata-multispeciality-hospital`, priority: "0.90", changefreq: "monthly" },
+    ...caseStudies.map((cs) => ({
+      loc: `${BASE_URL}/case-studies/${cs.slug}`,
+      priority: "0.90",
+      changefreq: "monthly",
+    })),
     { loc: `${BASE_URL}/sectors`, priority: "0.9", changefreq: "weekly" },
     { loc: `${BASE_URL}/tenders`, priority: "0.90", changefreq: "weekly" },
     { loc: `${BASE_URL}/compliance`, priority: "0.85", changefreq: "monthly" },

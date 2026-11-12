@@ -145,12 +145,12 @@ const CREDENTIAL_GROUPS = [
     items: [
       {
         id: "gem-vendor",
-        title: "Government e-Marketplace (GeM) Vendor",
+        title: "Government e-Marketplace (GeM) Empanelled Seller",
         issuer: "GeM SPV, Ministry of Commerce & Industry",
-        reference: "Verified Service Provider",
+        reference: "Verified Multi-Service Provider (₹51.99L – ₹1.40 Cr+ Bid Track)",
         status: "Bid-Ready & Pre-Qualified",
-        scope: "Pan-India Central & State Tenders",
-        description: "Pre-qualified for government security, facility management, and housekeeping bids adhering to the Ministry of Finance ≥ 3.85% floor.",
+        scope: "Pan-India Guarding, IFM & Blue-Collar Manpower Tenders",
+        description: "Pre-qualified for high-value government security (SAC 998525), mechanized facility management, and outsourced industrial/office manpower bids (including ₹51.99 Lakh to ₹1.40 Crore+ multi-year public procurement packages) adhering strictly to the Ministry of Finance ≥ 3.85% floor.",
       },
       {
         id: "cppp-portal",
@@ -496,7 +496,7 @@ export default function CredentialsPage() {
               </div>
               <div className="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-bold text-navy flex items-center justify-between">
                 <span>Contractual SLA Guarantee:</span>
-                <span className="text-emerald-700 font-mono">24×7 Central Control Room: +91 94770 06681</span>
+                <span className="text-emerald-700 font-mono">24×7 Integrated Command &amp; Response Hub: +91 94770 06681</span>
               </div>
             </div>
           </div>

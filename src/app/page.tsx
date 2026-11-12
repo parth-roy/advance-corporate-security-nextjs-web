@@ -7,6 +7,8 @@ import HeroSection from "@/components/home/HeroSection";
 import DynamicGeoFactBox from "@/components/home/DynamicGeoFactBox";
 import CoreServicesAccordionGrid from "@/components/home/CoreServicesAccordionGrid";
 import IntegratedSolutionsSection from "@/components/home/IntegratedSolutionsSection";
+import EnterpriseTrustStrip from "@/components/home/EnterpriseTrustStrip";
+import ComplianceShieldAndCorridors from "@/components/home/ComplianceShieldAndCorridors";
 import CorporateTrustSuite from "@/components/home/CorporateTrustSuite";
 import DynamicHomeFaqs from "@/components/home/DynamicHomeFaqs";
 import ClientMarquee from "@/components/common/ClientMarquee";
@@ -95,13 +97,19 @@ export default function HomePage() {
       {/* ===== NEW HERO SECTION (replaces HeroSlider) ===== */}
       <HeroSection />
 
+      {/* ===== ENTERPRISE TRUST BANNER (Static High-Contrast Grayscale Logos) ===== */}
+      <EnterpriseTrustStrip />
+
       {/* ===== CORE SERVICES ACCORDION GRID (Commented out per user request) ===== */}
       {/* <CoreServicesAccordionGrid /> */}
 
-      {/* ===== INTEGRATED SOLUTIONS SECTION (Image 2 Design: Our Services) ===== */}
+      {/* ===== INTEGRATED SOLUTIONS SECTION (4-Card SLA Grid) ===== */}
       <IntegratedSolutionsSection />
 
-      {/* ===== CORPORATE TRUST & SOLUTIONS SUITE (Image 2 Design: Why Choose -> Industries -> Trusted Orgs -> Process -> CTA Banner) ===== */}
+      {/* ===== SECTION 3 & 4: COMPLIANCE SHIELD + RAPID MOBILIZATION CORRIDORS ===== */}
+      <ComplianceShieldAndCorridors />
+
+      {/* ===== CORPORATE TRUST & SOLUTIONS SUITE ===== */}
       <CorporateTrustSuite />
 
       {/* ===== ABOUT STRIP (Commented out per user request) ===== */}

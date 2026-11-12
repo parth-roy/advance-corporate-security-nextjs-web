@@ -94,7 +94,7 @@ export default function CorporateTrustSuite() {
               </div>
             </div>
 
-            {/* Card 4: 24x7 Control Room */}
+            {/* Card 4: Integrated Command & Response Hub */}
             <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-blue-100/70 shadow-[0_2px_12px_rgba(13,36,88,0.05)] hover:shadow-[0_8px_24px_rgba(13,36,88,0.09)] hover:-translate-y-0.5 transition-all duration-200 flex items-start gap-3.5 group">
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#e8f3fe] border border-blue-100/80 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                 <svg className="w-5.5 h-5.5 sm:w-6 sm:h-6 text-[#0052cc]" viewBox="0 0 24 24" fill="currentColor">
@@ -104,10 +104,10 @@ export default function CorporateTrustSuite() {
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-[14px] sm:text-[15px] font-bold text-[#0d2458] mb-0.5 leading-snug group-hover:text-[#0052cc] transition-colors">
-                  24×7 Control Room
+                  Integrated Command &amp; Response Hub
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] text-[#0d2458]/75 font-medium leading-relaxed">
-                  Round-the-clock monitoring and quick response.
+                  Hyper-local Tier-1/2/3 cluster supervision, GPS QRT dispatch &amp; real-time shift accountability.
                 </p>
               </div>
             </div>
@@ -514,10 +514,10 @@ export default function CorporateTrustSuite() {
             {/* Right Action Button & Direct Contacts */}
             <div className="flex flex-col items-start lg:items-end shrink-0">
               <Link
-                href="/contact"
+                href="/quote"
                 className="group inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#da1e25] font-roboto font-extrabold text-[13px] sm:text-sm px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-lg transition-all duration-200 active:scale-95 cursor-pointer"
               >
-                <span>Request a Free Consultation</span>
+                <span>Request a Commercial Quotation</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
 

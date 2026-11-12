@@ -169,7 +169,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         label: "Security & Safety",
         href: "/services/security-safety",
-        desc: "PSARA armed & unarmed guards, mobile patrol, and 24/7 central control room surveillance.",
+        desc: "PSARA armed & unarmed guards, mobile patrol, and 24/7 Integrated Command & Response Hub surveillance.",
       },
       {
         label: "Facility Management",
@@ -391,11 +391,12 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Right item: Description with responsive length */}
+          {/* Right item: Command Hub, GeM Empanelment & Multi-State PSARA */}
           <div className="flex items-center shrink-0 ml-3 sm:ml-4">
-            <span className="text-white/90 font-medium text-[11px] sm:text-xs">
-              <span className="hidden xl:inline">India&apos;s Trusted Security &amp; Facility Management Since 2000 | </span>
-              <span>PSARA Licensed</span>
+            <span className="text-white/95 font-medium text-[11px] sm:text-xs">
+              <span className="hidden xl:inline">24x7 Command Center: +91 93399 88999 | GeM Empanelled | </span>
+              <span className="xl:hidden">Command Hub: +91 93399 88999 | </span>
+              <span>Multi-State PSARA Licensed</span>
             </span>
           </div>
         </div>

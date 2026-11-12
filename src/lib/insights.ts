@@ -186,6 +186,63 @@ export const ACS_INSIGHTS: InsightArticle[] = [
       ],
     },
   },
+  {
+    slug: "jan-vishwas-act-impact-on-psara",
+    title: "Jan Vishwas Act 2026 vs. Principal Employer Strict Liability: What Factory & Facility Heads Must Know",
+    excerpt:
+      "How the Jan Vishwas (Amendment of Provisions) Act 2026 replaces minor administrative imprisonment with civil penalties under PSARA — and why Principal Employers still face strict liability under CLRA Section 21(4) and EPF Section 7A across security, IFM, and blue-collar manpower contracts.",
+    date: "2026-11-10",
+    readTime: "7 min read",
+    category: "Regulatory Compliance",
+    author: {
+      name: "ACS Statutory & Labor Law Desk",
+      role: "CLRA, PSARA & EPF/ESIC Governance Practice",
+    },
+    keywords: [
+      "Jan Vishwas Act 2026 PSARA",
+      "Principal Employer strict liability CLRA Section 21(4)",
+      "EPF Section 7A vicarious liability India",
+      "blue collar contract labour compliance West Bengal",
+      "PSARA licensed security & factory manpower vendor",
+    ],
+    content: {
+      lead: "The Jan Vishwas (Amendment of Provisions) Act 2026 decriminalizes minor technical and procedural contraventions across labour and licensing statutes — converting procedural paperwork defaults into graded civil monetary penalties. However, many manufacturing directors, logistics heads, and procurement teams misread this reform as a relaxation of vendor vetting. In reality, Principal Employer strict financial and prosecutorial exposure under CLRA Section 21(4), EPF Section 7A, and ESIC 45A remains completely intact across private security, integrated facility management (IFM), and factory/warehouse blue-collar manpower contracts.",
+      sections: [
+        {
+          heading: "1. What the Jan Vishwas Act 2026 Actually Changes for PSARA & Contract Licensing",
+          body: [
+            "Historically, minor administrative lapses — such as delayed register formatting, notice-board display omissions, or clerical license renewal endorsement lags — carried legacy criminal imprisonment clauses on statute books, creating disproportionate compliance anxiety for regional agencies and corporate HR teams.",
+            "Under the 2026 Jan Vishwas framework, purely procedural and record-keeping defaults migrate toward adjudicating-officer civil penalties and compounded fines, aligning ease-of-doing-business standards with digital Shram Suvidha and state labour portals. Operating without a valid state-specific PSARA license for guarding, or deploying unverified manpower, however, remains a disqualifying tender and statutory breach.",
+          ],
+          callout: {
+            title: "Crucial Distinction for Procurement Teams",
+            text: "Decriminalizing minor clerical infractions for a vendor does NOT insulate the Principal Employer from paying 100% unpaid wages, EPF arrears, 12% Section 7Q interest, and up to 100% Section 14B penal damages if the manpower or security vendor defaults.",
+          },
+        },
+        {
+          heading: "2. Why Principal Employer Vicarious Liability Is Unchanged (CLRA Sec 21(4) & EPF Sec 7A)",
+          body: [
+            "Whether your plant engages armed/unarmed PSARA guards, mechanized housekeeping crews, warehouse Hamali/loading gangs, ITI electricians, HVAC technicians, or assembly-line helpers, the Principal Employer holds statutory backstop responsibility at the establishment level.",
+            "Under Section 21(4) of the Contract Labour (Regulation and Abolition) Act, 1970 (and corresponding Industrial Relations / Social Security Code provisions), if a contractor short-pays notified minimum wages — such as West Bengal Zone A/B basic + VDA — or delays salary past the 7th/10th wage cycle, the Principal Employer must disburse the shortfall and recover it from vendor bills.",
+            "Simultaneously, EPFO Regional Commissioners routinely attach Principal Employer bank accounts under EPF Section 7A & 8F when fly-by-night blue-collar or guarding contractors submit lump-sum challans rather than employee-wise Electronic Challan-cum-Return (ECR) proofs matched with bank UTRs.",
+          ],
+          keyTakeaways: [
+            "Verify individual UAN-seeded ECR lines — not only summary TRRN payment screenshots — for every guard, cleaner, loader, and factory helper.",
+            "Demand active state-by-state PSARA certificates (West Bengal, Delhi NCR, Maharashtra, Odisha, Jharkhand) before gate mobilization.",
+            "Benchmark vendor quotes against current WB Zone A/B & Central Labour Commissioner minimum wage ceilings; predatory sub-statutory pricing is the #1 audit red flag.",
+          ],
+        },
+        {
+          heading: "3. Extending the Compliance Shield Beyond Security to All Blue-Collar & MEP Trades",
+          body: [
+            "While PSARA governs private security deployment, Indian industrial estates face acute compliance leakage in non-PSARA blue-collar trades: warehouse pickers, loading/unloading Hamali crews, packaging line workers, HT/LT electrical operators, STP/WTP plumbers, cold-storage HVAC technicians, and pantry/peon support.",
+            "Many facilities split vendors — hiring one national guard agency and unorganized local labour brokers for factory floor and housekeeping staff. That fragmented structure multiplies CLRA Form XIII/V audit risk, ESIC medical liability during shift accidents, and factory gate disruption.",
+            "Consolidating Corporate Security, Soft IFM, and Blue-Collar Manpower under a single GeM-empanelled, ISO 9001:2015 certified partner with unified biometric attendance, EPF/ESIC 100% pass-through billing, and an Integrated Command and Response Hub eliminates Principal Employer exposure across every shift and trade.",
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 export const INSIGHTS = ACS_INSIGHTS;

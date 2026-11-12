@@ -28,6 +28,18 @@ export const WB_PERIPHERAL_TIER3_SLUGS: ReadonlySet<string> = new Set([
   "amta",
   "gurap",
   "jangipara",
+  // Additional residential/commuter municipal pockets excluded from 2-tier PSEO
+  // so crawl equity concentrates on industrial corridors, SEZs & district HQs
+  "rajpur-sonarpur",
+  "south-dum-dum",
+  "north-dum-dum",
+  "north-barrackpur",
+  "basirhat",
+  "bongaon",
+  "diamond-harbour",
+  "baruipur",
+  "ranaghat",
+  "contai",
 ]);
 
 /**

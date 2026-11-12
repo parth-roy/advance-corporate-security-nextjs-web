@@ -137,17 +137,17 @@ export const SERVICE_BLUEPRINTS: Record<string, ServiceBlueprint> = {
 
   housekeeping: {
     slug: 'housekeeping',
-    name: 'Corporate Housekeeping Services',
+    name: 'Corporate Housekeeping & Soft Facility Management',
     sopSteps: [
-      { stepNumber: 1, title: 'Pre-Shift Briefing & Chemical Dilution', detail: 'Inspection of clean uniform, PPE, and precise dilution of Taski / Diversey eco-friendly cleaning agents.' },
-      { stepNumber: 2, title: 'Daily Core Area Cleaning', detail: 'Sweeping, vacuuming, and damp mopping of workspaces, executive cabins, conference halls, and lift lobbies.' },
-      { stepNumber: 3, title: 'Hourly Washroom Sanitization', detail: 'Rigorous 10-point washroom cleaning, faucet descaling, liquid soap replenishment, and inspection sheet sign-off.' },
-      { stepNumber: 4, title: 'Waste Segregation & Disposal', detail: 'Color-coded bin clearance (wet, dry, recyclable, bio-medical) to municipal collection points.' },
+      { stepNumber: 1, title: 'Soft FM Asset Audit & Chemical Dosing Calibration', detail: 'Flooring surface classification (epoxy, Italian marble, ESD IT tiles) and automated dilution calibration to extend floor & fixture lifecycle ROI.' },
+      { stepNumber: 2, title: 'Mechanized Scrubber-Drier & Workspace Cycles', detail: 'High-efficiency mechanized scrubbing of IT corridors, clean shopfloors, executive cabins, and reception atriums with minimal wet-floor downtime.' },
+      { stepNumber: 3, title: 'Audit-Ready Restroom & Pantry Hygiene SLAs', detail: 'Digitally logged 10-point washroom sanitization, touchpoint disinfection, and bundled corporate pantry/peon replenishment checks.' },
+      { stepNumber: 4, title: 'ESG Waste Segregation & Depreciation Tracking', detail: 'Color-coded stream disposal (wet, dry, recyclable, e-waste/industrial) paired with monthly Soft FM consumption and asset-health reporting.' },
     ],
-    deployedEquipment: ['Single-Disc Floor Scrubbers', 'Industrial Wet & Dry Vacuum Cleaners', 'Color-Coded Microfiber Mops & Dusters', 'Janitor Carts & Squeeze Buckets', 'Eco-Friendly Cleaning Chemicals (Taski R1-R9 equivalent)'],
-    personnelProfiles: ['Trained housekeeping professionals in crisp, neat uniforms', 'Knowledgeable in cross-contamination prevention and chemical dilution', 'Background checked and medically certified', 'Courteous, non-intrusive behavior in active office spaces'],
-    complianceGuarantees: ['West Bengal Minimum Wages (Sweeping & Cleaning Sphere)', '100% EPF and ESIC contribution remittance', 'Compliance with Solid Waste Management Rules 2016', 'Full PPE provisioning (gloves, masks, rubber boots)'],
-    reportingCadence: 'Hourly restroom inspection charts, daily consumption logs, and weekly client feedback ratings.',
+    deployedEquipment: ['Ride-On & Single-Disc Floor Scrubbers', 'Industrial HEPA Wet & Dry Vacuums', 'Microfiber Color-Coded Soft FM Kits', 'Automated Dilution Dispensers & Janitor Carts', 'Low-VOC Green Seal Certified Surface Agents'],
+    personnelProfiles: ['Trained Soft FM technicians & uniformed corporate stewards', 'Certified in ESD IT-park & GMP manufacturing hygiene protocols', 'Police-verified, medically screened, ESI-covered payroll staff', 'Often bundled cleanly with ACS office peons, pantry boys & MEP support'],
+    complianceGuarantees: ['West Bengal Zone A/B Minimum Wages across IFM & Support Trades', '100% line-item EPF ECR & ESIC remittance with every invoice', 'Solid Waste & Biomedical Compliance Rules 2016', 'Full OSHA-aligned PPE (antiskid boots, nitrile gloves, masks)'],
+    reportingCadence: 'QR-coded hourly restroom & shopfloor logs, chemical ROI consumption tracking, and SLA scorecards reviewed via the Integrated Command & Response Hub.',
   },
 
   janitorial: {

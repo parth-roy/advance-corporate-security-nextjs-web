@@ -179,30 +179,30 @@ export default function HeroSection() {
               className="font-extrabold leading-[1.15] mb-5 tracking-tight font-roboto"
               style={{ fontSize: "clamp(1.85rem, 3.2vw, 2.75rem)" }}
             >
-              <span className="text-[#0d2458]">Compliance-First Security,</span>
+              <span className="text-[#0d2458]">100% Statutory Compliant</span>
               <br />
-              <span className="text-[#0d2458]">Facility Management &amp;</span>
+              <span className="text-[#0d2458]">Security, Facility &amp; Industrial</span>
               <br />
-              <span className="text-[#da1e25]">Manpower Solutions.</span>
+              <span className="text-[#da1e25]">Manpower for India.</span>
             </h1>
 
             {/* Description: Dark navy blue with little bold font (font-medium) */}
-            <p className="text-[#0d2458] font-medium text-[14px] sm:text-[15px] leading-relaxed mb-6 max-w-[490px]">
-              Advance Corporate Security is a PSARA licensed and ISO
-              9001:2015 certified company delivering reliable security,
-              facility management and manpower outsourcing services to
-              corporates, industries, government bodies and institutions
-              across Kolkata and pan India.
+            <p className="text-[#0d2458] font-medium text-[14px] sm:text-[15px] leading-relaxed mb-6 max-w-[515px]">
+              GeM-empanelled (₹51.99L – ₹1.40 Cr+ tender-ready), multi-state
+              PSARA licensed &amp; ISO 9001:2015 certified — deploying 5,000+
+              trained guards, mechanized Soft IFM crews &amp; verified factory,
+              warehouse &amp; MEP blue-collar workers across 500+ industrial and
+              corporate estates.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3.5 mb-7">
-              {/* Primary Consultation Button in ACS Brand Red with Comment/Speech-Bubble Tail */}
+              {/* Primary Commercial Quotation Button in ACS Brand Red with Speech-Bubble Tail */}
               <Link
-                href="/contact"
+                href="/quote"
                 className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#da1e25] hover:bg-[#c4161d] text-white font-bold text-sm transition-all shadow-md active:scale-[0.98] cursor-pointer"
               >
-                <span>Request a Free Consultation</span>
+                <span>Request a Commercial Quotation</span>
                 <span className="text-sm font-bold leading-none transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
 
                 {/* Speech Bubble / Comment Box Tail Pointer */}
@@ -216,9 +216,9 @@ export default function HeroSection() {
                 </svg>
               </Link>
 
-              {/* Secondary Expert Button in Royal Blue with Chat Bubble Icon */}
+              {/* Secondary Compliance Dossier Button in Royal Blue */}
               <Link
-                href="/contact?type=expert"
+                href="/compliance"
                 className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-[#1d4ed8] text-[#1d4ed8] hover:bg-[#1d4ed8] hover:text-white font-bold text-sm transition-all cursor-pointer bg-white shadow-xs"
               >
                 <svg
@@ -231,9 +231,9 @@ export default function HeroSection() {
                   strokeLinejoin="round"
                   aria-hidden="true"
                 >
-                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
-                <span>Talk to an Expert</span>
+                <span>Download Statutory Compliance Dossier</span>
               </Link>
             </div>
 
@@ -279,7 +279,7 @@ export default function HeroSection() {
                 >
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
                 </svg>
-                <span>Kolkata, West Bengal, India</span>
+                <span>GeM Empanelled (₹1.40 Cr+ Track) • Pan India</span>
               </div>
             </div>
           </div>

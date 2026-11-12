@@ -8,6 +8,7 @@ import { trackEvent } from "@/lib/analytics";
 
 interface QuoteFormData {
   companyName: string;
+  gstin: string;
   pinCode: string;
   serviceType: string;
   siteType: string;
@@ -17,6 +18,7 @@ interface QuoteFormData {
   startDate: string;
   contractDuration: string;
   contactName: string;
+  designation: string;
   phone: string;
   email: string;
   additionalRequirements: string;
@@ -33,7 +35,9 @@ interface QuoteFormErrors {
   manpowerCount?: string;
   startDate?: string;
   contactName?: string;
+  designation?: string;
   phone?: string;
+  email?: string;
 }
 
 interface AuditFormData {
@@ -128,6 +132,7 @@ function inputCls(hasError: boolean) {
 export function EnterpriseQuotationForm() {
   const [formData, setFormData] = useState<QuoteFormData>({
     companyName: "",
+    gstin: "",
     pinCode: "",
     serviceType: "",
     siteType: "",
@@ -137,6 +142,7 @@ export function EnterpriseQuotationForm() {
     startDate: "",
     contractDuration: "",
     contactName: "",
+    designation: "",
     phone: "",
     email: "",
     additionalRequirements: "",
@@ -173,9 +179,11 @@ export function EnterpriseQuotationForm() {
   const numberOfPostsRef = useRef<HTMLSelectElement>(null);
   const shiftCoverageRef = useRef<HTMLSelectElement>(null);
   const manpowerCountRef = useRef<HTMLSelectElement>(null);
-  const startDateRef = useRef<HTMLSelectElement>(null);
+  const startDateRef = useRef<HTMLInputElement>(null);
   const contactNameRef = useRef<HTMLInputElement>(null);
+  const designationRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
 
   // ─── Validation ───────────────────────────────────────────────────────────
 
@@ -204,16 +212,26 @@ export function EnterpriseQuotationForm() {
         if (!value) return "Please specify the manpower count or range";
         return undefined;
       case "startDate":
-        if (!value) return "Please indicate your target deployment timeline";
+        if (!value) return "Please select your target mobilization date";
         return undefined;
       case "contactName":
         if (!value.trim()) return "Contact person name is required";
         if (value.trim().length < 2) return "Name must be at least 2 characters";
         return undefined;
+      case "designation":
+        if (!value.trim()) return "Please enter your role or designation";
+        return undefined;
       case "phone": {
         if (!value.trim()) return "Phone number is required";
         const digits = value.replace(/\D/g, "");
         if (digits.length < 10) return "Please enter a valid 10-digit phone number";
+        return undefined;
+      }
+      case "email": {
+        if (!value.trim()) return "Official corporate email is required";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
+          return "Please enter a valid official email address";
+        }
         return undefined;
       }
       default:
@@ -232,7 +250,9 @@ export function EnterpriseQuotationForm() {
       "manpowerCount",
       "startDate",
       "contactName",
+      "designation",
       "phone",
+      "email",
     ];
 
     const newErrors: QuoteFormErrors = {};
@@ -257,7 +277,9 @@ export function EnterpriseQuotationForm() {
     else if (newErrors.manpowerCount && manpowerCountRef.current) manpowerCountRef.current.focus();
     else if (newErrors.startDate && startDateRef.current) startDateRef.current.focus();
     else if (newErrors.contactName && contactNameRef.current) contactNameRef.current.focus();
+    else if (newErrors.designation && designationRef.current) designationRef.current.focus();
     else if (newErrors.phone && phoneRef.current) phoneRef.current.focus();
+    else if (newErrors.email && emailRef.current) emailRef.current.focus();
 
     return Object.keys(newErrors).length === 0;
   };
@@ -321,9 +343,11 @@ export function EnterpriseQuotationForm() {
         body: JSON.stringify({
           // Identification
           name: formData.contactName.trim(),
+          designation: formData.designation.trim(),
           phone: formData.phone.trim(),
-          email: formData.email.trim() || undefined,
+          email: formData.email.trim(),
           organization: formData.companyName.trim(),
+          gstin: formData.gstin.trim().toUpperCase(),
           city: formData.pinCode.trim(),
           // Quote-specific fields (Section 1 & 7 Procurement Engine)
           service: formData.serviceType || "Enterprise Security Quotation",
@@ -338,7 +362,7 @@ export function EnterpriseQuotationForm() {
           contractDuration: formData.contractDuration || "Not specified",
           message:
             formData.additionalRequirements.trim() ||
-            `Enterprise procurement request for ${formData.serviceType || "security services"} at ${formData.siteType || "facility"} (${formData.numberOfPosts}, ${formData.shiftCoverage}, start: ${formData.startDate}).`,
+            `Enterprise procurement request (${formData.designation}) for ${formData.serviceType || "security services"} at ${formData.siteType || "facility"} (${formData.numberOfPosts}, ${formData.shiftCoverage}, target date: ${formData.startDate}${formData.gstin ? `, GSTIN: ${formData.gstin}` : ""}).`,
           // Form source tag for CRM triage
           formType: "enterprise_quotation",
           // Attribution metadata
@@ -391,6 +415,7 @@ export function EnterpriseQuotationForm() {
         // Reset form
         setFormData({
           companyName: "",
+          gstin: "",
           pinCode: "",
           serviceType: "",
           siteType: "",
@@ -400,6 +425,7 @@ export function EnterpriseQuotationForm() {
           startDate: "",
           contractDuration: "",
           contactName: "",
+          designation: "",
           phone: "",
           email: "",
           additionalRequirements: "",
@@ -473,29 +499,48 @@ export function EnterpriseQuotationForm() {
             {touched.companyName && <FieldError id="companyName-error" message={errors.companyName} />}
           </div>
 
-          {/* Pin Code */}
-          <div>
-            <label htmlFor="pinCode" className="block text-sm font-semibold text-gray-800 mb-1.5">
-              Pin Code / Deployment Location <span className="text-red-500">*</span>
-            </label>
-            <input
-              ref={pinCodeRef}
-              type="text"
-              id="pinCode"
-              name="pinCode"
-              required
-              aria-required="true"
-              aria-invalid={!!(errors.pinCode && touched.pinCode)}
-              aria-describedby={errors.pinCode && touched.pinCode ? "pinCode-error" : undefined}
-              value={formData.pinCode}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              disabled={isSubmitting}
-              autoComplete="postal-code"
-              placeholder="e.g. 700120 or Barrackpore, West Bengal"
-              className={inputCls(!!(errors.pinCode && touched.pinCode))}
-            />
-            {touched.pinCode && <FieldError id="pinCode-error" message={errors.pinCode} />}
+          {/* Pin Code + Optional GSTIN */}
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label htmlFor="pinCode" className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Pin Code / Deployment Location <span className="text-red-500">*</span>
+              </label>
+              <input
+                ref={pinCodeRef}
+                type="text"
+                id="pinCode"
+                name="pinCode"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.pinCode && touched.pinCode)}
+                aria-describedby={errors.pinCode && touched.pinCode ? "pinCode-error" : undefined}
+                value={formData.pinCode}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={isSubmitting}
+                autoComplete="postal-code"
+                placeholder="e.g. 700120 or Dankuni, West Bengal"
+                className={inputCls(!!(errors.pinCode && touched.pinCode))}
+              />
+              {touched.pinCode && <FieldError id="pinCode-error" message={errors.pinCode} />}
+            </div>
+
+            <div>
+              <label htmlFor="gstin" className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Company GSTIN <span className="text-xs font-normal text-gray-500">(optional, for formal BOQ / ITC)</span>
+              </label>
+              <input
+                type="text"
+                id="gstin"
+                name="gstin"
+                maxLength={15}
+                value={formData.gstin}
+                onChange={handleChange}
+                disabled={isSubmitting}
+                placeholder="e.g. 19AABCU9603R1ZM"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 uppercase font-mono text-sm focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all bg-white"
+              />
+            </div>
           </div>
         </fieldset>
 
@@ -526,7 +571,7 @@ export function EnterpriseQuotationForm() {
               className={`${inputCls(!!(errors.serviceType && touched.serviceType))} cursor-pointer`}
             >
               <option value="">— Select the primary service required —</option>
-              <optgroup label="Security Services">
+              <optgroup label="Security Services (PSARA Licensed)">
                 <option value="Security Guards">Security Guards (PSARA Licensed)</option>
                 <option value="Armed Guards">Armed Guards / Gunman Services</option>
                 <option value="Event Security">Event Security &amp; Crowd Management</option>
@@ -536,23 +581,34 @@ export function EnterpriseQuotationForm() {
                 <option value="Surveillance CCTV">Surveillance &amp; CCTV Monitoring</option>
                 <option value="Fire Fighting Safety">Fire Fighting &amp; NBC Safety Teams</option>
               </optgroup>
-              <optgroup label="Facility Management">
-                <option value="Facility Management">Integrated Facility Management</option>
-                <option value="Corporate Housekeeping">Corporate Housekeeping &amp; Cleaning</option>
+              <optgroup label="Industrial Blue-Collar &amp; Warehouse Manpower">
+                <option value="Warehouse Manpower & Pickers">Warehouse Manpower, Pickers &amp; Packers</option>
+                <option value="Factory Workers & Machine Operators">Industrial Factory Workers &amp; Karkhana Operators</option>
+                <option value="Loading Unloading Hamali">Warehouse Loading / Unloading &amp; Hamali Gangs</option>
+                <option value="Commercial Shifting & Machinery Rigging">Commercial Shifting &amp; Machinery Rigging Crews</option>
+                <option value="Manpower Outsourcing">Bulk Contract Labour &amp; Manpower Outsourcing</option>
+              </optgroup>
+              <optgroup label="Technical MEP &amp; Commercial Support Trades">
+                <option value="Industrial Electricians & DG Operators">Industrial HT/LT Electricians &amp; DG Operators</option>
+                <option value="Commercial Plumbers & STP/WTP">Commercial Plumbers, Fitters &amp; STP/WTP Staff</option>
+                <option value="HVAC & Cold Storage Techs">HVAC, Chiller &amp; Cold-Storage Technicians</option>
+                <option value="Carpentry Painting & Civil Labour">Commercial Carpentry, Painting &amp; Civil Labour</option>
+                <option value="Office Peon Pantry & Dispatch">Office Boys, Peons, Pantry &amp; Document Dispatch</option>
+              </optgroup>
+              <optgroup label="Soft IFM &amp; Facility Management">
+                <option value="Facility Management">Integrated Facility Management (IFM)</option>
+                <option value="Corporate Housekeeping">Corporate Housekeeping &amp; Soft FM ROI</option>
                 <option value="Pest Control">Commercial Pest Control (IPM)</option>
-                <option value="MEP Maintenance">MEP Maintenance</option>
+                <option value="MEP Maintenance">Building MEP Maintenance</option>
                 <option value="Horticulture Landscaping">Horticulture &amp; Landscaping</option>
               </optgroup>
-              <optgroup label="Manpower &amp; Staffing">
-                <option value="Manpower Outsourcing">Contract Labour &amp; Manpower Outsourcing</option>
+              <optgroup label="Staffing, Payroll &amp; Govt / PSU">
                 <option value="Permanent Placement">Permanent / Executive Staffing</option>
                 <option value="Payroll Compliance">Payroll &amp; Statutory Compliance (PF/ESIC)</option>
+                <option value="Government PSU Contract">Government / PSU Security &amp; Manpower Tender</option>
+                <option value="Defence Establishment">Defence Establishment Contract</option>
               </optgroup>
-              <optgroup label="Government / PSU">
-                <option value="Government PSU Contract">Government / PSU Security Contract</option>
-                <option value="Defence Establishment">Defence Establishment Security</option>
-              </optgroup>
-              <option value="Integrated Multi-Service">Integrated Security + Facility Contract</option>
+              <option value="Integrated Multi-Service">Integrated Security + IFM + Blue-Collar Contract</option>
               <option value="Other Consultation">Other / General Consultation</option>
             </select>
             {touched.serviceType && <FieldError id="serviceType-error" message={errors.serviceType} />}
@@ -596,7 +652,7 @@ export function EnterpriseQuotationForm() {
             {/* Number of Posts */}
             <div>
               <label htmlFor="numberOfPosts" className="block text-sm font-semibold text-gray-800 mb-1.5">
-                Number of Guard Posts / Points <span className="text-red-500">*</span>
+                Deployment Points / Duty Stations / Trade Teams <span className="text-red-500">*</span>
               </label>
               <select
                 ref={numberOfPostsRef}
@@ -674,10 +730,9 @@ export function EnterpriseQuotationForm() {
                 disabled={isSubmitting}
                 className={`${inputCls(!!(errors.manpowerCount && touched.manpowerCount))} cursor-pointer`}
               >
-                <option value="">— Select personnel count —</option>
-                <option value="1-5">1 – 5 personnel</option>
-                <option value="5-20">5 – 20 personnel</option>
-                <option value="20-50">20 – 50 personnel</option>
+                <option value="">— Select workforce headcount —</option>
+                <option value="1-10">1 – 10 personnel</option>
+                <option value="11-50">11 – 50 personnel</option>
                 <option value="50-100">50 – 100 personnel</option>
                 <option value="100-500">100 – 500 personnel</option>
                 <option value="500+">500+ personnel</option>
@@ -685,13 +740,14 @@ export function EnterpriseQuotationForm() {
               {touched.manpowerCount && <FieldError id="manpowerCount-error" message={errors.manpowerCount} />}
             </div>
 
-            {/* Target Start Date */}
+            {/* Target Mobilization Date */}
             <div>
               <label htmlFor="startDate" className="block text-sm font-semibold text-gray-800 mb-1.5">
-                Target Deployment Start Date <span className="text-red-500">*</span>
+                Target Mobilization Date <span className="text-red-500">*</span>
               </label>
-              <select
+              <input
                 ref={startDateRef}
+                type="date"
                 id="startDate"
                 name="startDate"
                 required
@@ -703,13 +759,7 @@ export function EnterpriseQuotationForm() {
                 onBlur={handleBlur}
                 disabled={isSubmitting}
                 className={`${inputCls(!!(errors.startDate && touched.startDate))} cursor-pointer`}
-              >
-                <option value="">— Select deployment timeline —</option>
-                <option value="Immediate (24-48 Hours Rapid Mobilisation)">Immediate (24–48 Hours Rapid Mobilisation)</option>
-                <option value="Within 7 Days (Standard Mobilisation)">Within 7 Days (Standard Mobilisation)</option>
-                <option value="Within 15-30 Days (Planned Transition)">Within 15–30 Days (Planned Transition)</option>
-                <option value="Next Month / Future Financial Quarter">Next Month / Future Financial Quarter</option>
-              </select>
+              />
               {touched.startDate && <FieldError id="startDate-error" message={errors.startDate} />}
             </div>
           </div>
@@ -744,36 +794,62 @@ export function EnterpriseQuotationForm() {
             Your Contact Details
           </legend>
 
-          {/* Contact Name */}
-          <div>
-            <label htmlFor="contactName" className="block text-sm font-semibold text-gray-800 mb-1.5">
-              Contact Person Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              ref={contactNameRef}
-              type="text"
-              id="contactName"
-              name="contactName"
-              required
-              aria-required="true"
-              aria-invalid={!!(errors.contactName && touched.contactName)}
-              aria-describedby={errors.contactName && touched.contactName ? "contactName-error" : undefined}
-              value={formData.contactName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              disabled={isSubmitting}
-              autoComplete="name"
-              placeholder="e.g. Rajesh Kumar (HR Manager / Admin)"
-              className={inputCls(!!(errors.contactName && touched.contactName))}
-            />
-            {touched.contactName && <FieldError id="contactName-error" message={errors.contactName} />}
+          {/* Contact Name + Designation */}
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label htmlFor="contactName" className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Contact Person Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                ref={contactNameRef}
+                type="text"
+                id="contactName"
+                name="contactName"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.contactName && touched.contactName)}
+                aria-describedby={errors.contactName && touched.contactName ? "contactName-error" : undefined}
+                value={formData.contactName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={isSubmitting}
+                autoComplete="name"
+                placeholder="e.g. Rajesh Kumar"
+                className={inputCls(!!(errors.contactName && touched.contactName))}
+              />
+              {touched.contactName && <FieldError id="contactName-error" message={errors.contactName} />}
+            </div>
+
+            <div>
+              <label htmlFor="designation" className="block text-sm font-semibold text-gray-800 mb-1.5">
+                Designation / Role <span className="text-red-500">*</span>
+              </label>
+              <input
+                ref={designationRef}
+                type="text"
+                id="designation"
+                name="designation"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.designation && touched.designation)}
+                aria-describedby={errors.designation && touched.designation ? "designation-error" : undefined}
+                value={formData.designation}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={isSubmitting}
+                autoComplete="organization-title"
+                placeholder="e.g. HR / Plant Head / Procurement Officer"
+                className={inputCls(!!(errors.designation && touched.designation))}
+              />
+              {touched.designation && <FieldError id="designation-error" message={errors.designation} />}
+            </div>
           </div>
 
-          {/* Phone + Email grid */}
+          {/* Phone + Official Email grid */}
           <div className="grid sm:grid-cols-2 gap-5">
             <div>
               <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 mb-1.5">
-                Phone Number <span className="text-red-500">*</span>
+                Direct Mobile / Phone Number <span className="text-red-500">*</span>
               </label>
               <input
                 ref={phoneRef}
@@ -797,19 +873,26 @@ export function EnterpriseQuotationForm() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-1.5">
-                Email Address
+                Official Email Address <span className="text-red-500">*</span>
               </label>
               <input
+                ref={emailRef}
                 type="email"
                 id="email"
                 name="email"
+                required
+                aria-required="true"
+                aria-invalid={!!(errors.email && touched.email)}
+                aria-describedby={errors.email && touched.email ? "email-error" : undefined}
                 value={formData.email}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 disabled={isSubmitting}
                 autoComplete="email"
-                placeholder="hr@company.com (optional)"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all bg-white"
+                placeholder="procurement@company.com"
+                className={inputCls(!!(errors.email && touched.email))}
               />
+              {touched.email && <FieldError id="email-error" message={errors.email} />}
             </div>
           </div>
         </fieldset>

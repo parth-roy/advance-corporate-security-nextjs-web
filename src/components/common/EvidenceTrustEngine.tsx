@@ -49,7 +49,7 @@ export default function EvidenceTrustEngine({
       id: 4,
       name: "Operational Hub",
       badge: `${cityName ? cityName + " Regional Hub" : "Zonal Command"}`,
-      summary: `Dedicated operational office and 24x7 control room servicing ${locationContext} with resident field supervisors and night checking officers.`,
+      summary: `Dedicated operational office and Integrated Command and Response Hub servicing ${locationContext} with resident field supervisors and night checking officers.`,
       category: "authority",
     },
     {
@@ -62,8 +62,8 @@ export default function EvidenceTrustEngine({
     {
       id: 6,
       name: "Actual Site Capability",
-      badge: "1 to 500+ Guards",
-      summary: "Equipped to deploy turnkey security detachments from single-guard posts to 500+ security personnel with complete uniforms, batons, metal detectors, and tactical gear within 24–72 hours.",
+      badge: "1 to 500+ Personnel",
+      summary: "Equipped to deploy turnkey detachments from single-guard posts to 500+ security, Soft IFM, and industrial blue-collar workers with uniforms, PPE, and compliance readiness within 24–72 hours.",
       category: "deployment",
     },
     {
@@ -206,21 +206,21 @@ export default function EvidenceTrustEngine({
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="border border-slate-200 rounded-xl p-5 bg-gradient-to-br from-white to-sky-50/30">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="badge-sky text-xs">Parameter 01</span>
+                      <span className="badge-sky text-xs">PSARA Authority</span>
                       <span className="text-xs font-bold text-navy">Controlling Authority</span>
                     </div>
                     <h3 className="text-base font-bold text-navy mb-2">PSARA Licensing &amp; Jurisdiction</h3>
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
-                      ACS holds valid Private Security Agencies (Regulation) Act 2005 licenses granted by the Home Department. Full jurisdictional authorization covers commercial, industrial, and institutional premises across {locationContext}.
+                      ACS holds valid Private Security Agencies (Regulation) Act 2005 licenses granted by the Home Department, plus CLRA labour licenses across factory, warehousing, and facility trades. Full jurisdictional authorization covers commercial, industrial, and institutional premises across {locationContext}.
                     </p>
                     <div className="text-xs text-slate-500 bg-white p-2.5 rounded border border-slate-200">
-                      <strong>Form V Permit:</strong> Regularly renewed with statutory police verification of directors, training institute affiliation, and weapon management protocols.
+                      <strong>Form V &amp; Jan Vishwas 2026 Ready:</strong> Regularly renewed with statutory police verification, CLRA Section 21(4) zero-default shielding, and verified EPF/ESIC pass-through.
                     </div>
                   </div>
 
                   <div className="border border-slate-200 rounded-xl p-5 bg-gradient-to-br from-white to-amber-50/30">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="badge-gold text-xs">Parameter 02 &amp; 03</span>
+                      <span className="badge-gold text-xs">ISO &amp; Legacy</span>
                       <span className="text-xs font-bold text-navy">Accreditation &amp; Track Record</span>
                     </div>
                     <h3 className="text-base font-bold text-navy mb-2">ISO 9001:2015 &amp; 25+ Years of Leadership</h3>
@@ -228,7 +228,7 @@ export default function EvidenceTrustEngine({
                       Operating continuously since the year 2000, ACS pairs quarter-century veteran leadership with globally audited ISO 9001:2015 Quality Management Systems.
                     </p>
                     <div className="text-xs text-slate-500 bg-white p-2.5 rounded border border-slate-200">
-                      <strong>IAF / IAS Recognized:</strong> Certified standard operating procedures for incident logging, guard supervision, emergency evacuation, and client escalation.
+                      <strong>IAF / IAS Recognized:</strong> Certified standard operating procedures for incident logging, shift supervision, Soft IFM checklists, emergency evacuation, and client escalation.
                     </div>
                   </div>
                 </div>
@@ -236,18 +236,18 @@ export default function EvidenceTrustEngine({
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="border border-slate-200 rounded-xl p-5">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="badge-sky text-xs">Parameter 04</span>
+                      <span className="badge-sky text-xs">Field Command Hub</span>
                       <span className="text-xs font-bold text-navy">Field Presence</span>
                     </div>
                     <h3 className="text-base font-bold text-navy mb-2">Dedicated Operational Hub</h3>
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                      Unlike broker agencies, ACS maintains local regional hubs with active field officers, emergency vehicles, and 24x7 control room dispatch covering {locationContext}.
+                      Unlike broker agencies, ACS maintains local regional hubs with active field officers, emergency vehicles, and 24x7 Integrated Command and Response Hub dispatch covering {locationContext}.
                     </p>
                   </div>
 
                   <div className="border border-slate-200 rounded-xl p-5">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="badge-sky text-xs">Parameter 05</span>
+                      <span className="badge-sky text-xs">National Scale</span>
                       <span className="text-xs font-bold text-navy">Pan-India Footprint</span>
                     </div>
                     <h3 className="text-base font-bold text-navy mb-2">828+ Cities Comprehensive Coverage</h3>
@@ -264,7 +264,7 @@ export default function EvidenceTrustEngine({
                 {/* 4-Stage Deployment Roadmap */}
                 <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="badge-sky text-xs">Parameter 09</span>
+                    <span className="badge-sky text-xs">Mobilization Blueprint</span>
                     <span className="text-xs font-bold text-slate-500">Procurement-to-Deployment SLA</span>
                   </div>
                   <h3 className="text-lg font-bold text-navy mb-4">4-Stage Systematic Deployment Process</h3>
@@ -303,10 +303,10 @@ export default function EvidenceTrustEngine({
                 {/* 3-Tier Escalation SLA & Pricing/Site Capability */}
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-sky text-xs mb-3 inline-block">Parameter 06</span>
+                    <span className="badge-sky text-xs mb-3 inline-block">Workforce Scale</span>
                     <h3 className="font-bold text-navy text-sm mb-1">Site Manning Capability</h3>
                     <p className="text-slate-600 text-xs leading-relaxed mb-3">
-                      Scalable deployment from 1 to 500+ security personnel. Active relief pool maintained in {locationContext} to ensure zero guard post abandonment.
+                      Scalable deployment from 1 to 500+ security, Soft IFM, and factory/warehouse personnel. Active relief pool maintained in {locationContext} to ensure zero shift abandonment.
                     </p>
                     <div className="text-xs font-semibold text-sky-700 bg-sky-50 p-2 rounded">
                       ⚡ 100% On-Duty Attendance Guarantee
@@ -314,17 +314,17 @@ export default function EvidenceTrustEngine({
                   </div>
 
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-gold text-xs mb-3 inline-block">Parameter 14</span>
+                    <span className="badge-gold text-xs mb-3 inline-block">Command Escalation SLA</span>
                     <h3 className="font-bold text-navy text-sm mb-1">3-Tier Emergency SLA</h3>
                     <ul className="text-xs text-slate-600 space-y-1.5">
                       <li><strong>Tier 1 (0–15 Min):</strong> On-site Supervisor intervenes.</li>
                       <li><strong>Tier 2 (15–45 Min):</strong> Regional Field Inspector arrives.</li>
-                      <li><strong>Tier 3 (&lt; 2 Hrs):</strong> QRT van &amp; Senior Ops Director on-scene.</li>
+                      <li><strong>Tier 3 (&lt; 2 Hrs):</strong> QRT van &amp; Command Hub Director on-scene.</li>
                     </ul>
                   </div>
 
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-sky text-xs mb-3 inline-block">Parameter 15</span>
+                    <span className="badge-sky text-xs mb-3 inline-block">Commercial Proposal</span>
                     <h3 className="font-bold text-navy text-sm mb-1">24-Hour Quotation Process</h3>
                     <p className="text-slate-600 text-xs leading-relaxed mb-3">
                       Complimentary site visit in {locationContext} followed by a line-item statutory BOQ breakdown with zero hidden overheads.
@@ -341,24 +341,24 @@ export default function EvidenceTrustEngine({
               <div className="space-y-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-sky text-xs mb-3 inline-block">Parameter 07</span>
+                    <span className="badge-sky text-xs mb-3 inline-block">Sector Breadth</span>
                     <h3 className="font-bold text-navy text-sm mb-2">Cross-Industry Mastery</h3>
                     <p className="text-slate-600 text-xs leading-relaxed">
-                      Over 25 years securing sensitive establishments across heavy manufacturing, petrochemical refineries, IT parks, retail malls, healthcare, and educational campuses.
+                      Over 25 years securing and staffing sensitive establishments across heavy manufacturing, petrochemical refineries, logistics parks, IT hubs, tertiary hospitals, and educational campuses.
                     </p>
                   </div>
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-gold text-xs mb-3 inline-block">Parameter 08</span>
+                    <span className="badge-gold text-xs mb-3 inline-block">Proven SLAs</span>
                     <h3 className="font-bold text-navy text-sm mb-2">Documented Real Case Studies</h3>
                     <p className="text-slate-600 text-xs leading-relaxed">
-                      Zero-loss track records across 50,000+ cargo shipments, 850-apartment residential townships, and critical defence engineering depots.
+                      Zero-loss track records across 50,000+ cargo shipments, multi-shift factory lines, Grade-A IT parks, 600-bed hospitals, and critical defence engineering depots.
                     </p>
                   </div>
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-sky text-xs mb-3 inline-block">Parameter 11</span>
+                    <span className="badge-sky text-xs mb-3 inline-block">Enterprise Proof</span>
                     <h3 className="font-bold text-navy text-sm mb-2">Verifiable Client References</h3>
                     <p className="text-slate-600 text-xs leading-relaxed">
-                      Trusted by Central Ministries, leading PSUs, Fortune 500 tech campuses, and tier-1 national infrastructure developers. References available on audit request.
+                      Trusted by Central Ministries, Defence establishments, leading PSUs, Fortune 500 tech campuses, and tier-1 industrial estate developers. References available on audit request.
                     </p>
                   </div>
                 </div>
@@ -407,7 +407,7 @@ export default function EvidenceTrustEngine({
               <div className="space-y-6">
                 <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="badge-sky text-xs">Parameter 10</span>
+                    <span className="badge-sky text-xs">Audit Compliance Pack</span>
                     <span className="text-xs font-bold text-emerald-700">Dossier Ready for Committee Review</span>
                   </div>
                   <h3 className="text-lg font-bold text-navy mb-3">Statutory Compliance &amp; Verification Matrix</h3>
@@ -465,10 +465,10 @@ export default function EvidenceTrustEngine({
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-gold text-xs mb-3 inline-block">Parameter 12</span>
+                    <span className="badge-gold text-xs mb-3 inline-block">GeM &amp; CPPP Empanelment</span>
                     <h3 className="font-bold text-navy text-sm mb-2">Government &amp; PSU Bidding Readiness</h3>
                     <p className="text-slate-600 text-xs leading-relaxed mb-3">
-                      Empanelled GeM Seller with capability to participate in custom bids, BOQ bids, PAC purchases, and CPPP tenders with MSME exemptions where applicable.
+                      Empanelled GeM Seller (₹51.99 Lakh to ₹1.40 Crore+ tender track) with capability to participate in custom bids, BOQ bids, PAC purchases, and CPPP tenders across Security Guarding, IFM &amp; Manpower Outsourcing.
                     </p>
                     <Link href="/procurement" className="text-sky font-bold text-xs hover:underline inline-flex items-center gap-1">
                       Visit Government &amp; PSU Procurement Center →
@@ -476,10 +476,10 @@ export default function EvidenceTrustEngine({
                   </div>
 
                   <div className="border border-slate-200 rounded-xl p-5 bg-white">
-                    <span className="badge-sky text-xs mb-3 inline-block">Parameter 13</span>
-                    <h3 className="font-bold text-navy text-sm mb-2">Local Wage Law Indemnity</h3>
+                    <span className="badge-sky text-xs mb-3 inline-block">Principal Employer Indemnity</span>
+                    <h3 className="font-bold text-navy text-sm mb-2">Local Wage Law &amp; CLRA Sec 21(4) Indemnity</h3>
                     <p className="text-slate-600 text-xs leading-relaxed mb-3">
-                      Complete principal employer indemnity. All deployed staff receive gazetted minimum wages via bank transfer (NEFT/ECS), with zero liability passed to the client.
+                      Complete principal employer indemnity across security guards, housekeeping, and factory/warehouse workers. All deployed staff receive gazetted minimum wages via bank transfer (NEFT/ECS) with line-item UAN ECRs before billing.
                     </p>
                     <div className="text-xs text-slate-500 bg-slate-50 p-2 rounded">
                       <strong>Zero Legal Risk:</strong> Monthly compliance docket submitted before billing.

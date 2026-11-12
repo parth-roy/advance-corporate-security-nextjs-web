@@ -70,6 +70,11 @@ export interface CaseStudy {
     title: string;
     slug: string;
   }[];
+  relatedParks?: {
+    title: string;
+    slug: string;
+    corridor?: string;
+  }[];
 }
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -248,9 +253,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     },
     relatedServices: [
       { title: "Armed & Unarmed Security Guard Services", slug: "security-guard-services" },
-      { title: "Industrial Manpower Outsourcing", slug: "manpower-outsourcing" },
-      { title: "Electronic Surveillance & CCTV Management", slug: "surveillance" },
+      { title: "Warehouse Manpower & Dispatch Staffing", slug: "warehouse-manpower-supply" },
+      { title: "Loading / Unloading (Hamali) Gangs", slug: "loading-unloading-labour" },
       { title: "Statutory Payroll & Compliance Management", slug: "payroll-management" },
+    ],
+    relatedParks: [
+      { title: "SFA Logistics & Industrial Park, Dankuni", slug: "sfa-dankuni", corridor: "NH-19 & EDFC Rail Terminus (WBIP 2026)" },
+      { title: "ESR Uluberia Logistics Park, Howrah", slug: "esr-uluberia", corridor: "NH-16 Bombay Road Logistics Belt" },
     ],
   },
   {
@@ -595,6 +604,157 @@ export const CASE_STUDIES: CaseStudy[] = [
       { title: "Hospital Infection-Control Housekeeping", slug: "corporate-housekeeping" },
       { title: "Healthcare Manpower & Paramedical Support", slug: "manpower-outsourcing" },
       { title: "Disinfection & Pest Management", slug: "pest-control" },
+    ],
+  },
+  {
+    id: "cs-04",
+    slug: "overcoming-labor-code-friction-industrial-manpower",
+    whitepaperCode: "ACS-WP-2026-WBIP-LABOR-CODE",
+    title: "Overcoming Labor Code Friction & Multi-Vendor Chaos Across High-Growth WBIP 2026 Industrial Corridors",
+    subtitle: "How an agile single-vendor Security, IFM & Blue-Collar Manpower model eliminated contractor friction, cut statutory audit risk to zero, and mobilized 180+ multi-trade personnel across Dankuni and Uluberia.",
+    sector: "Manufacturing, 3PL Warehousing & WBIP 2026 Estates",
+    client: "Multi-Site Cold Chain & Consumer Packaging Conglomerate",
+    location: "Dankuni – Uluberia – Panagarh Industrial Axis, West Bengal",
+    state: "West Bengal",
+    deploymentScope: "3 Multi-Shift Manufacturing & Fulfillment Plants (180+ Guards, Factory Operators, Loaders & MEP Techs)",
+    personnelStrength: "64 PSARA Security Guards, 72 Factory & Warehouse Helpers/Hamalis, 28 Mechanized Housekeeping Staff, 16 HT/LT Electricians & HVAC Techs",
+    timeline: "Deployed in 72 Hours Across 3 Estates (Multi-Year Annual Contract)",
+    heroImage: "/images/manpower.jpg",
+    executiveSummary:
+      "Expanding aggressively under the West Bengal Investment Promotion Policy 2026 (WBIP 2026), a multi-plant consumer packaging and cold-chain manufacturer struggled with severe friction from legacy national conglomerates: slow HQ ticket escalations, opaque margin padding masking Zone A/B wage misclassifications, and split unorganized labour brokers handling loading/unloading and utility trades. By consolidating PSARA Security, Soft IFM, and Blue-Collar Factory/Warehouse Manpower under ACS's single-vendor model backed by our Integrated Command and Response Hub, the client achieved 100% EPF/ESIC/CLRA audit immunity and 99.4% shift attendance.",
+    keyMetrics: [
+      {
+        value: "0%",
+        label: "Labor Code / ECR Friction",
+        description: "Eliminated Principal Employer notices under CLRA Section 21(4) and EPF Section 7A via line-by-line UAN ECR matching.",
+      },
+      {
+        value: "180+",
+        label: "Unified Blue-Collar & Security Force",
+        description: "Guards, factory floor helpers, Hamali loading gangs, electricians, and HVAC techs under one compliant invoice.",
+      },
+      {
+        value: "72 Hrs",
+        label: "Multi-Estate Mobilization",
+        description: "Rapid bench deployment across Dankuni, Uluberia, and Panagarh without rigid national-chain bureaucratic delays.",
+      },
+      {
+        value: "14%",
+        label: "Net Procurement Cost Optimization",
+        description: "Removed fragmented sub-contractor markups while upgrading every worker to full Zone A statutory wage + bonus parity.",
+      },
+    ],
+    challenges: [
+      {
+        title: "Fragmented Liability Between Mega-Guard Vendors & Local Labour Brokers",
+        description:
+          "A national security chain supplied only gate guards at high HQ overheads while unorganized local contractors supplied factory floor helpers, warehouse loaders, and electricians without valid CLRA or EPF ECRs — exposing the Principal Employer directly under CLRA Section 21(4).",
+        riskSeverity: "Critical",
+      },
+      {
+        title: "Misinterpretation of Jan Vishwas Act 2026 & Minimum Wage Compliance",
+        description:
+          "Previous sub-vendors assumed procedural relaxations reduced wage enforcement, resulting in short VDA payouts across Zone A vs Zone B hubs and sparking shift-change slowdowns.",
+        riskSeverity: "High",
+      },
+      {
+        title: "Cold-Chain MEP & Warehouse Loading Attrition",
+        description:
+          "Chronic morning shift shortages in Hamali loading/unloading crews and chiller/HT electrical technicians delayed dispatch SLAs across NH-19 and NH-16 logistics parks.",
+        riskSeverity: "High",
+      },
+    ],
+    solutionArchitecture: [
+      {
+        layer: "Integrated Multi-Trade SLA Consolidation",
+        title: "Single-Vendor Security + IFM + Blue-Collar Trade Consolidation",
+        specification:
+          "Replaced four fragmented contractors with one GeM-empanelled, ISO 9001:2015 certified master SLA covering PSARA guards, factory production helpers, Hamali gangs, mechanized housekeeping, and licensed MEP/HVAC technicians.",
+        operationalOutcome:
+          "Zero gate demarcation disputes and unified shift handovers monitored 24/7 from the ACS Integrated Command and Response Hub.",
+      },
+      {
+        layer: "Statutory Wage & UAN ECR Governance",
+        title: "Automated Zone A/B Payroll & Line-Item UAN ECR Shield",
+        specification:
+          "Engineered biometric attendance synced directly to WB July–December 2026 Minimum Wage brackets across Unskilled, Semi-Skilled, and Skilled trades with 100% EPF (13%) and ESIC (3.25%) pass-through.",
+        operationalOutcome:
+          "Zero non-conformances during third-party Labor Code & Principal Employer due diligence audits.",
+      },
+      {
+        layer: "Regional Corridor Bench Reserve",
+        title: "Dedicated Bench Reserve for Dankuni, Uluberia & Panagarh",
+        specification:
+          "Maintained a pre-verified regional reliever pool within 20 minutes of NH-19 and NH-16 hubs to absorb festival spikes and unplanned absenteeism.",
+        operationalOutcome:
+          "99.4% continuous man-shift fulfillment across cold-storage docks and assembly lines.",
+      },
+    ],
+    statutoryComplianceFramework: {
+      minimumWageZone: "West Bengal Zone A & Zone B Corridor Mapping (Hooghly / Howrah / Paschim Bardhaman)",
+      actsGoverned: [
+        "Jan Vishwas (Amendment of Provisions) Act 2026 & PSARA 2005 Alignment",
+        "Contract Labour (Regulation & Abolition) Act, 1970 (Section 21(4) Zero-Default Shield)",
+        "EPF & MP Act, 1952 (Section 7A Audited Pass-Through)",
+        "ESIC Act, 1948 & Workmen's Compensation Coverage",
+        "West Bengal Minimum Wages Gazette (Unskilled to Highly Skilled Trades)",
+      ],
+      complianceRate: "100.0% Principal Employer Audit Shield",
+      auditVerification:
+        "Every monthly invoice includes employee-wise UAN ECR receipts, ESIC challans, bank NEFT UTR proof, Form XIII registers, and PSARA Form-V validation — outperforming rigid national conglomerates on local accountability.",
+    },
+    operationalSOPs: [
+      {
+        category: "Unified Morning Trade & Guarding Parade",
+        protocol: "Simultaneous 06:00 AM briefing across gate sentries, dock Hamali supervisors, factory floor helpers, and DG/HVAC operators logged into the Integrated Command & Response Hub.",
+        auditCycle: "Daily 3-Shift Roll Call",
+      },
+      {
+        category: "Zero-Friction Labor Code Audit Pack",
+        protocol: "Pre-invoice digital dossier delivering Zone-verified payslips, EPF TRRN/ECR CSV match, and ESIC biometric injury cover before 7th-of-month wage credit.",
+        auditCycle: "Monthly Pre-Billing Gate",
+      },
+    ],
+    measurableImpact: [
+      {
+        metric: "Principal Employer CLRA / EPF Audit Notices",
+        before: "2 Show-Cause Notices under prior fragmented brokers",
+        after: "Zero notices across 6 consecutive quarters",
+        timeframe: "18 Months Post-Consolidation",
+        verifiedBy: "External Industrial Relations & Labor Audit Counsel",
+      },
+      {
+        metric: "Blue-Collar & Guard Shift Fill Rate",
+        before: "86% (frequent Hamali & electrician gaps)",
+        after: "99.4% continuous shift coverage",
+        timeframe: "Within 30 Days of Hub Mobilization",
+        verifiedBy: "Plant HR & Biometric Attendance Logs",
+      },
+      {
+        metric: "Vendor Overhead & Escalation SLA",
+        before: "72+ hr HQ escalation loop with mega-agency",
+        after: "< 4 hr on-ground cluster officer resolution",
+        timeframe: "Continuous SLA Benchmark",
+        verifiedBy: "Regional Plant Head Quarterly Review",
+      },
+    ],
+    clientTestimonial: {
+      quote:
+        "Large pan-India agencies gave us rigid layers and zero ownership of our factory helpers or loading crews, while local brokers created huge EPF/CLRA headaches. Switching to ACS gave us one accountable partner for PSARA guarding, factory manpower, Hamali teams, and electrical/HVAC maintenance — with direct access to senior operations command and spotless ECR packs every month.",
+      author: "Vice President — Manufacturing & Supply Chain",
+      role: "VP Manufacturing",
+      organizationType: "FMCG & Cold-Chain Packaging Group (WBIP 2026 Investor)",
+    },
+    relatedServices: [
+      { title: "Industrial Factory & Production Workers", slug: "industrial-factory-workers" },
+      { title: "Warehouse Manpower & Dispatch Staffing", slug: "warehouse-manpower-supply" },
+      { title: "Armed & Unarmed Security Guard Services", slug: "security-guard-services" },
+      { title: "Industrial Electricians & MEP Staffing", slug: "industrial-electrician-contractors" },
+    ],
+    relatedParks: [
+      { title: "ESR Uluberia Logistics Park, Howrah", slug: "esr-uluberia", corridor: "NH-16 Bombay Road Logistics Belt" },
+      { title: "SFA Logistics & Industrial Park, Dankuni", slug: "sfa-dankuni", corridor: "NH-19 & EDFC Terminus" },
+      { title: "Panagarh Industrial Park (WBIDC)", slug: "panagarh-industrial-park", corridor: "Durgapur–Asansol NH-19 Axis" },
     ],
   },
 ];

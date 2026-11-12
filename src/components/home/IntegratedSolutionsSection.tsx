@@ -26,9 +26,9 @@ interface ServiceItem {
 const SERVICES: ServiceItem[] = [
   {
     id: "security",
-    title: "Security & Safety Services",
+    title: "Corporate Security",
     description:
-      "Trained, vigilant and technology-enabled security solutions for people, assets and premises.",
+      "PSARA armed & unarmed guarding, gate weighbridge access control, and 24/7 Integrated Command and Response Hub escalation.",
     href: "/services/security-safety",
     image: "/images/services/service-security.webp",
     iconType: "shield",
@@ -36,30 +36,30 @@ const SERVICES: ServiceItem[] = [
   },
   {
     id: "facility",
-    title: "Facility Management Services",
+    title: "Mechanized Housekeeping",
     description:
-      "Comprehensive facility management for clean, safe and efficient work environments.",
-    href: "/services/facility-management",
+      "Soft Facility Management ROI using scrubber-drier fleets to cut IT-park asset depreciation and keep plant floors audit-ready.",
+    href: "/services/housekeeping",
     image: "/images/services/service-facility.webp",
     iconType: "cog",
     ringColor: "red",
   },
   {
-    id: "placement",
-    title: "Placement / Manpower Outsourcing",
+    id: "manpower",
+    title: "Factory & Warehouse Manpower",
     description:
-      "Skilled and semi-skilled manpower for diverse business needs across industries.",
-    href: "/services/placement-services",
+      "CLRA-compliant blue-collar trades: Hamali loading/unloading gangs, factory operators, HT/LT electricians, plumbers, HVAC & office support.",
+    href: "/services/warehouse-manpower-supply",
     image: "/images/services/service-placement.webp",
     iconType: "users",
     ringColor: "blue",
   },
   {
-    id: "horticulture",
-    title: "Horticulture",
+    id: "ifm",
+    title: "Integrated Facility Management",
     description:
-      "Professional landscaping and horticulture services for greener, healthier and more vibrant spaces.",
-    href: "/services/horticulture",
+      "Single-vendor IFM consolidating guarding, Soft FM, MEP utilities, horticulture & 100% EPF/ESIC pass-through governance.",
+    href: "/services/integrated-facility-management",
     image: "/images/services/service-horticulture.webp",
     iconType: "leaf",
     ringColor: "red",
@@ -165,10 +165,10 @@ export default function IntegratedSolutionsSection() {
                   {service.description}
                 </p>
 
-                {/* Know More CTA with Sliding Arrow */}
+                {/* View SLA Specifications CTA with Sliding Arrow */}
                 <div className="mt-auto pt-1">
                   <span className="inline-flex items-center gap-1.5 text-[12px] sm:text-[13px] font-bold text-[#0052cc] group-hover:text-[#0041a8] group-hover:gap-2 transition-all">
-                    <span>Know More</span>
+                    <span>View SLA Specifications</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>

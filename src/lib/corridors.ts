@@ -476,7 +476,7 @@ export const EASTERN_CORRIDORS: CorridorData[] = [
     description:
       "Dedicated B2B blue-collar manpower supply, container loading/unloading (Hamali/Mutia) gangs, industrial electricians, weighbridge shrinkage controllers, and PSARA guarding across Dankuni, Dhulagarh, Ranihati, Sankrail, Uluberia, and Singur along NH-19 and NH-16.",
     strategicImportance:
-      "Converging the Eastern Dedicated Freight Corridor (EDFC) rail terminus in Dankuni with the NH-19 (Delhi Road) and NH-16 (Bombay Road) warehousing belts, the Hooghly-Howrah logistics axis processes over 60% of Eastern India's e-commerce, FMCG, cold storage, and automotive distribution volume. Operations here fail without zero-shrinkage gate controls and punctual 24/7 shift labor.",
+      "Converging the Eastern Dedicated Freight Corridor (EDFC) rail terminus in Dankuni with the NH-19 (Delhi Road) and NH-16 (Bombay Road) warehousing belts — and accelerated by the West Bengal Investment Promotion Policy 2026 (WBIP 2026) warehousing, cold-chain, and manufacturing incentives — the Hooghly-Howrah logistics axis processes over 60% of Eastern India's e-commerce, FMCG, cold storage, and automotive distribution volume. Operations across ESR Uluberia and SFA Logistics Park Dankuni fail without zero-shrinkage gate controls and punctual 24/7 shift labor.",
     keyIndustrialZones: [
       {
         name: "Dankuni Multi-Modal Logistics & EDFC Rail Belt",
@@ -581,7 +581,7 @@ export const EASTERN_CORRIDORS: CorridorData[] = [
     description:
       "Specialized contract manpower, industrial plumbers and pipe fitters, HVAC/utility mechanics, cargo handling helpers, and PSARA fire-safety security across Haldia Dock Complex, Durgachak, Sutahata, Kolaghat Thermal belt, and Vidyasagar Industrial Park (Kharagpur).",
     strategicImportance:
-      "Home to Haldia Petrochemicals, Indian Oil Refinery, edible oil refineries, chemical tank terminals, and Kolkata Port's deep-water dock system—linked inland via Kolaghat and NH-16 to Kharagpur's Vidyasagar Industrial Park—this corridor demands PPE-disciplined workers trained in ATEX/Hazchem safety, ISPS port protocols, and continuous 3-shift heavy plant uptime.",
+      "Home to Haldia Petrochemicals, Indian Oil Refinery, edible oil refineries, chemical tank terminals, and Kolkata Port's deep-water dock system—linked inland via Kolaghat and NH-16 to Kharagpur's Vidyasagar Industrial Park and catalyzed by the West Bengal Investment Promotion Policy 2026 (WBIP 2026) coastal chemical, logistics, and green-manufacturing incentives—this corridor demands PPE-disciplined workers trained in ATEX/Hazchem safety, ISPS port protocols, pipe-fitting/MEP maintenance, and continuous 3-shift heavy plant uptime.",
     keyIndustrialZones: [
       {
         name: "Haldia Dock Complex (HDC) & Port Bonded Terminals",

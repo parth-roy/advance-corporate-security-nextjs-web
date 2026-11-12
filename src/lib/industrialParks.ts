@@ -67,7 +67,7 @@ export const WB_INDUSTRIAL_PARKS: IndustrialParkData[] = [
     totalArea: "38+ Acres of Grade-A Pre-Engineered Warehouses",
     heroHeadline: "Institutional Security & Dock Logistics Management for ESR Uluberia Logistics Park",
     overview:
-      "ESR Uluberia is one of Eastern India's most modern Grade-A institutional logistics parks, strategically located along National Highway 16 in Howrah. Hosting multinational 3PL operators, e-commerce distribution centers, and national FMCG supply chains, ESR Uluberia demands rigorous security governance: rapid freight truck ingress, zero dock queueing, 100% weighbridge integrity, and absolute alignment with West Bengal Zone A statutory labor wages.",
+      "ESR Uluberia is one of Eastern India's most modern Grade-A institutional logistics parks, strategically located along National Highway 16 in Howrah and directly benefiting from the West Bengal Investment Promotion Policy 2026 (WBIP 2026) logistics and industrial corridor incentives. Hosting multinational 3PL operators, e-commerce distribution centers, and national FMCG supply chains, ESR Uluberia demands rigorous single-vendor governance: rapid freight truck ingress, zero dock queueing, 100% weighbridge integrity, certified warehouse loading/unloading & Hamali manpower, and absolute alignment with West Bengal Zone A statutory labor wages.",
     proximities: [
       {
         destination: "National Highway 16 (NH-16 / Mumbai Road)",
@@ -211,7 +211,7 @@ export const WB_INDUSTRIAL_PARKS: IndustrialParkData[] = [
     totalArea: "45+ Acres of High-Throughput Industrial & Distribution Facilities",
     heroHeadline: "Multi-Modal Freight Security & Anti-Shrinkage Operations for SFA Logistics Park, Dankuni",
     overview:
-      "SFA Logistics & Industrial Park is situated at the epicenter of Eastern India's rail-and-road freight convergence in Dankuni, Hooghly. Located in immediate proximity to the Eastern Dedicated Freight Corridor (EDFC) terminus and National Highway 19, this hub processes massive volumes of consumer electronics, retail apparel, and industrial machinery. ACS delivers rigorous 24/7 gate security, computerized weighbridge management, and synchronized RFID perimeter tours.",
+      "SFA Logistics & Industrial Park is situated at the epicenter of Eastern India's rail-and-road freight convergence in Dankuni, Hooghly, within the priority expansion belt of the West Bengal Investment Promotion Policy 2026 (WBIP 2026). Located in immediate proximity to the Eastern Dedicated Freight Corridor (EDFC) terminus and National Highway 19, this hub processes massive volumes of consumer electronics, retail apparel, and industrial machinery. ACS delivers integrated single-vendor 24/7 gate security, computerized weighbridge management, synchronized RFID perimeter tours, and statutory warehouse pickers, loaders, and electrical/MEP maintenance teams.",
     proximities: [
       {
         destination: "National Highway 19 (NH-19 / Delhi Highway)",

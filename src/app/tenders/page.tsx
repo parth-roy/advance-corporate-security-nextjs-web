@@ -148,9 +148,9 @@ const QUALIFICATION_CHECKLIST = [
       "Police verification, antecedent screening, and reference checks for all deployed personnel.",
   },
   {
-    point: "24×7 Control Room Operations",
+    point: "Integrated Command and Response Hub",
     detail:
-      "Round-the-clock command centre with motorized QRT supervisor patrolling.",
+      "Round-the-clock Integrated Command and Response Hub with GPS-tracked QRT supervisor patrolling across security, IFM & plant shifts.",
   },
 ] as const;
 
@@ -173,7 +173,7 @@ const GOVT_PORTALS = [
     domain: "gem.gov.in",
     icon: "🛒",
     description:
-      "ACS is an active GeM Seller for Guarding Services (SAC 998525). Supports Direct Purchase, L1 Comparison, Custom Bids, and Reverse Auction (RA).",
+      "ACS is an active GeM Empanelled Seller for Security Guarding (SAC 998525), Housekeeping/IFM, and Skilled/Unskilled Manpower Outsourcing — backed by ₹51.99 Lakh to ₹1.40 Crore+ institutional contract execution readiness across Direct Purchase, L1, Custom Bids & Reverse Auction (RA).",
     badgeClass: "bg-emerald-100 text-emerald-800",
   },
   {
@@ -327,28 +327,28 @@ export default function TendersPage() {
           {/* Credential badges */}
           <div className="flex flex-wrap items-center gap-2 mb-5">
             <span className="badge-gold">✅ PSARA Licensed</span>
-            <span className="badge-sky">🛒 GeM Registered</span>
+            <span className="badge-sky">🛒 GeM Empanelled (₹51.99L – ₹1.40 Cr+ Track)</span>
             <span className="badge-navy border border-white/20">
               ISO 9001:2015
             </span>
             <span className="badge-navy border border-white/20">
-              25+ Years | Zero Blacklisting
+              25+ Years | Security, IFM &amp; Blue-Collar Manpower
             </span>
           </div>
 
           {/* H1 */}
           <h1 className="text-white font-roboto font-black text-3xl sm:text-5xl lg:text-6xl leading-tight mb-4 max-w-5xl">
-            Government Security{" "}
-            <span className="text-sky">Tender Intelligence</span> &amp; Bid
-            Support
+            Government Security,{" "}
+            <span className="text-sky">IFM &amp; Manpower</span> Tender
+            Intelligence
           </h1>
 
           {/* Subtitle */}
           <p className="text-sky-200 font-roboto text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
             ACS actively monitors <strong className="text-white">CPPP</strong>,{" "}
             <strong className="text-white">GeM</strong>, and all state
-            e-procurement portals for security guard tenders — including{" "}
-            <strong className="text-white">QCBS</strong> bids, Rate Contracts,
+            e-procurement portals for security guarding, mechanized housekeeping (IFM), and industrial manpower tenders — including{" "}
+            <strong className="text-white">QCBS</strong> bids, Rate Contracts (₹51.99 Lakh to ₹1.40 Crore+ capability),
             and Custom Bids. As a pre-qualified PSARA-licensed vendor, ACS is
             bid-ready for Central Ministries, PSUs, Railways, Defence, Hospitals
             &amp; Universities.
@@ -357,11 +357,11 @@ export default function TendersPage() {
           {/* Hero CTAs */}
           <div className="flex flex-wrap gap-4 items-center mb-10">
             <Link
-              href="/contact"
+              href="/quote"
               className="btn-primary text-sm px-7 py-3.5 shadow-lg"
               aria-label="Submit tender interest to ACS"
             >
-              Submit Tender Interest
+              Submit Tender / RFP Inquiry
             </Link>
             <Link href="/procurement" className="btn-secondary text-sm px-6 py-3.5">
               Full Procurement Center →
@@ -378,18 +378,18 @@ export default function TendersPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/15 max-w-5xl">
             <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs">
               <div className="text-gold font-bold text-sm mb-0.5">
-                CPPP Registered
+                CPPP &amp; GeM Track
               </div>
               <div className="text-slate-200 text-xs">
-                Central Govt NIT monitoring daily
+                ₹51.99L – ₹1.40 Cr+ tender capability
               </div>
             </div>
             <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs">
               <div className="text-sky font-bold text-sm mb-0.5">
-                GeM Active Seller
+                Multi-Category Seller
               </div>
               <div className="text-slate-200 text-xs">
-                Direct Purchase, RA &amp; Custom Bids
+                SAC 998525 Guarding, IFM &amp; Manpower
               </div>
             </div>
             <div className="bg-white/10 border border-white/15 rounded-xl p-3.5 backdrop-blur-xs">

@@ -521,6 +521,35 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 </Link>
               ))}
             </div>
+
+            {study.relatedParks && study.relatedParks.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-slate-200/80">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                  Linked Industrial Parks &amp; WBIP 2026 Freight Hubs
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {study.relatedParks.map((park, idx) => (
+                    <Link
+                      key={idx}
+                      href={`/industrial-parks/${park.slug}`}
+                      className="p-4 bg-slate-900 text-white rounded-xl border border-slate-800 hover:border-sky transition-all duration-200 group flex items-center justify-between"
+                    >
+                      <div>
+                        <span className="text-xs font-bold block group-hover:text-sky transition-colors">
+                          {park.title}
+                        </span>
+                        {park.corridor && (
+                          <span className="text-[11px] text-slate-400 mt-0.5 block">
+                            {park.corridor}
+                          </span>
+                        )}
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-sky shrink-0 group-hover:translate-x-0.5 transition-all" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
 
           {/* Action Callout */}
