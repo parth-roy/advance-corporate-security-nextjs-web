@@ -1077,6 +1077,30 @@ export default function HtmlSitemapPage() {
                     Official wage gazette circulars for security guards, head guards, and supervisors across Zone A and Zone B.
                   </p>
                 </Link>
+
+                <Link
+                  href="/procurement/security-minimum-wages-maharashtra"
+                  className="block p-3.5 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-white hover:border-emerald-500 hover:shadow-xs transition-all group"
+                >
+                  <h4 className="text-xs font-bold text-slate-900 group-hover:text-emerald-800">
+                    Maharashtra Minimum Wages &amp; Mathadi Act Compliance (Zone I, II &amp; III)
+                  </h4>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    Shops &amp; Engineering industry statutory schedules, VDA notifications, MLWF, and Mathadi Act Section 5/22 mechanized exemptions.
+                  </p>
+                </Link>
+
+                <Link
+                  href="/procurement/security-minimum-wages-karnataka"
+                  className="block p-3.5 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-white hover:border-emerald-500 hover:shadow-xs transition-all group"
+                >
+                  <h4 className="text-xs font-bold text-slate-900 group-hover:text-emerald-800">
+                    Karnataka Unified Minimum Wages Schedule (Consolidated Notification)
+                  </h4>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    Consolidated Notification No. KAE 411 LWA 2023 for Zone 1, 2, and 3 with KLWF and KIADB single-window compliance.
+                  </p>
+                </Link>
               </div>
             </div>
           </div>

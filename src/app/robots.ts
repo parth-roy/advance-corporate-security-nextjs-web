@@ -25,7 +25,11 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: [
       `${siteConfig.url}/sitemap.xml`,
       `${siteConfig.url}/sitemap-west-bengal.xml`,
+      `${siteConfig.url}/sitemap-maharashtra.xml`,
+      `${siteConfig.url}/sitemap-karnataka.xml`,
       `${siteConfig.url}/sitemap-manpower-combos.xml`,
+      `${siteConfig.url}/sitemap-manpower-combos-mh.xml`,
+      `${siteConfig.url}/sitemap-manpower-combos-ka.xml`,
       `${siteConfig.url}/sitemap-corridors.xml`,
       `${siteConfig.url}/sitemap-industrial-parks.xml`,
       `${siteConfig.url}/sitemap-wb-matrix-security.xml`,

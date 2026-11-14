@@ -7,6 +7,8 @@
 
 import { siteConfig } from "./config";
 import { getWBMonthlyWage } from "./wb-wages";
+import { getMHMonthlyWage, type MHWageZone } from "./mh-wages";
+import { getKAMonthlyWage, type KAWageZone } from "./ka-wages";
 
 /** Safe JSON-LD serialisation — prevents XSS via </script> injection */
 export function serializeJsonLd(obj: object): string {
@@ -614,9 +616,246 @@ export function buildWBIndustrialHubSchema(
   };
 }
 
+// ============================================================
+// MH-Specific Schema Enhancements
+// Service Area Business model with Maharashtra statutory compliance signals
+// ============================================================
+
+/**
+ * SAB-model LocalBusiness schema for Maharashtra city/service pages.
+ */
+export function buildMHServiceAreaSchema({
+  cityName,
+  stateName,
+  citySlug,
+  serviceName,
+  serviceSlug,
+  wageZone,
+}: {
+  cityName: string;
+  stateName: string;
+  citySlug: string;
+  serviceName?: string;
+  serviceSlug?: string;
+  wageZone?: 'I' | 'II' | 'III';
+}) {
+  const canonicalServiceSlug = serviceSlug || serviceName?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const pageUrl = canonicalServiceSlug
+    ? `${siteConfig.url}/services/${canonicalServiceSlug}/${citySlug}`
+    : `${siteConfig.url}/location/${citySlug}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'EmploymentAgency', 'SecurityService'],
+    '@id': `${pageUrl}#servicearea`,
+    name: serviceName
+      ? `Advance Corporate Security — ${serviceName} in ${cityName}`
+      : `Advance Corporate Security — ${cityName} Service Hub`,
+    url: pageUrl,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    priceRange: '₹₹',
+    areaServed: {
+      '@type': 'City',
+      name: cityName,
+      containedInPlace: {
+        '@type': 'State',
+        name: stateName,
+        containedInPlace: {
+          '@type': 'Country',
+          name: 'India',
+        },
+      },
+    },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cityName + ', Maharashtra, India')}`,
+    knowsAbout: [
+      'PSARA License Maharashtra Controlling Authority (ADGP Special Operations)',
+      `Maharashtra Minimum Wages Act Zone ${wageZone || 'I'} Compliance`,
+      'Maharashtra Mathadi, Hamal and Other Manual Workers Act 1969 Mechanized Exemption Section 5 & 22',
+      'Maharashtra Labour Welfare Fund (MLWF ₹25/₹75) Compliance',
+      'Contract Labour (Regulation & Abolition) Act 1970',
+      'MIDC Industrial Parks Manpower & Guarding Protocols',
+      'ESIC (3.25%) & EPF (13.00%) Statutory Deposit Management',
+    ],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'PSARA License — Maharashtra Jurisdiction',
+        credentialCategory: 'Government Security Regulatory License',
+        recognizedBy: {
+          '@type': 'GovernmentOrganization',
+          name: 'Controlling Authority & ADGP (Special Operations), Maharashtra Police',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'ISO 9001:2015 Quality Management System',
+        credentialCategory: 'Quality Management Certification',
+      },
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  };
+}
+
+/**
+ * ItemList schema representing ACS deployment corridors near a Maharashtra city.
+ */
+export function buildMHIndustrialHubSchema(
+  hubs: { name: string; type: string; district: string; lat: number; lng: number }[]
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'ACS Maharashtra MIDC Industrial Deployment Corridors',
+    description:
+      'Key MIDC industrial hubs, auto belts, and logistics corridors served by Advance Corporate Security in Maharashtra',
+    itemListElement: hubs.map((hub, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Place',
+        name: hub.name,
+        description: `${hub.type} — ${hub.district} District, Maharashtra`,
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: hub.lat,
+          longitude: hub.lng,
+        },
+        containedInPlace: {
+          '@type': 'State',
+          name: 'Maharashtra',
+        },
+      },
+    })),
+  };
+}
+
+// ============================================================
+// KA-Specific Schema Enhancements
+// Service Area Business model with Karnataka statutory compliance signals
+// ============================================================
+
+/**
+ * SAB-model LocalBusiness schema for Karnataka city/service pages.
+ */
+export function buildKAServiceAreaSchema({
+  cityName,
+  stateName,
+  citySlug,
+  serviceName,
+  serviceSlug,
+  wageZone,
+}: {
+  cityName: string;
+  stateName: string;
+  citySlug: string;
+  serviceName?: string;
+  serviceSlug?: string;
+  wageZone?: 1 | 2 | 3;
+}) {
+  const canonicalServiceSlug = serviceSlug || serviceName?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const pageUrl = canonicalServiceSlug
+    ? `${siteConfig.url}/services/${canonicalServiceSlug}/${citySlug}`
+    : `${siteConfig.url}/location/${citySlug}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'EmploymentAgency', 'SecurityService'],
+    '@id': `${pageUrl}#servicearea`,
+    name: serviceName
+      ? `Advance Corporate Security — ${serviceName} in ${cityName}`
+      : `Advance Corporate Security — ${cityName} Service Hub`,
+    url: pageUrl,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    priceRange: '₹₹',
+    areaServed: {
+      '@type': 'City',
+      name: cityName,
+      containedInPlace: {
+        '@type': 'State',
+        name: stateName,
+        containedInPlace: {
+          '@type': 'Country',
+          name: 'India',
+        },
+      },
+    },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cityName + ', Karnataka, India')}`,
+    knowsAbout: [
+      'PSARA License Karnataka Controlling Authority & ADGP (Internal Security Division)',
+      `Karnataka Minimum Wages Consolidated Notification No. KAE 411 LWA 2023 Zone ${wageZone || 1} Compliance`,
+      'Karnataka Labour Welfare Fund (KLWF ₹50/₹100) Annual Remittance',
+      'Contract Labour (Regulation & Abolition) Act 1970',
+      'KIADB Industrial Area & Tech SEZ Manpower Protocols',
+      'ESIC (3.25%) / Workmen Compensation & EPF (13.00%) Statutory Deposit Management',
+    ],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'PSARA License — Karnataka Jurisdiction',
+        credentialCategory: 'Government Security Regulatory License',
+        recognizedBy: {
+          '@type': 'GovernmentOrganization',
+          name: 'Controlling Authority & ADGP (Internal Security Division), Karnataka Police',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'ISO 9001:2015 Quality Management System',
+        credentialCategory: 'Quality Management Certification',
+      },
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  };
+}
+
+/**
+ * ItemList schema representing ACS deployment corridors near a Karnataka city.
+ */
+export function buildKAIndustrialHubSchema(
+  hubs: { name: string; type: string; district: string; lat: number; lng: number }[]
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'ACS Karnataka KIADB Industrial Deployment Corridors',
+    description:
+      'Key KIADB industrial areas, tech corridors, and aerospace belts served by Advance Corporate Security in Karnataka',
+    itemListElement: hubs.map((hub, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Place',
+        name: hub.name,
+        description: `${hub.type} — ${hub.district} District, Karnataka`,
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: hub.lat,
+          longitude: hub.lng,
+        },
+        containedInPlace: {
+          '@type': 'State',
+          name: 'Karnataka',
+        },
+      },
+    })),
+  };
+}
+
 /**
  * Blue-Collar & Technical MEP Contracting Service Schema with
- * West Bengal Statutory Wage Band Reference (Jul–Dec 2026 Gazette).
+ * Multi-State Statutory Wage Band Reference (WB, MH, KA Gazettes).
  */
 export function buildBlueCollarServiceSchema({
   serviceName,
@@ -637,11 +876,35 @@ export function buildBlueCollarServiceSchema({
   citySlug: string;
   occupationalCategory: string;
   skillTier?: 'unskilled' | 'semiSkilled' | 'skilled' | 'highlySkilled';
-  wageZone?: 'A' | 'B';
+  wageZone?: string;
 }) {
   const pageUrl = `${siteConfig.url}/services/${serviceSlug}/${citySlug}`;
   const isWB = stateName === 'West Bengal';
-  const monthlyBase = isWB ? getWBMonthlyWage(wageZone, skillTier) : getWBMonthlyWage('A', skillTier);
+  const isMH = stateName === 'Maharashtra';
+  const isKA = stateName === 'Karnataka';
+
+  let monthlyBase: number;
+  let wageOfferName: string;
+
+  if (isWB) {
+    const wbZone = (wageZone === 'B' ? 'B' : 'A') as 'A' | 'B';
+    monthlyBase = getWBMonthlyWage(wbZone, skillTier);
+    wageOfferName = `West Bengal Zone ${wbZone} Gazette Base Wage (${skillTier}, excl. EPF 13%, ESIC 3.25%, Bonus 8.33%)`;
+  } else if (isMH) {
+    const mhZone = (['I', 'II', 'III'].includes(wageZone) ? wageZone : 'I') as MHWageZone;
+    const mhSchedule = occupationalCategory.includes('Technical') ? 'engineering' : 'shopsAndCommercial';
+    const mhTier = (skillTier === 'highlySkilled' ? 'skilled' : skillTier) as 'unskilled' | 'semiSkilled' | 'skilled';
+    monthlyBase = getMHMonthlyWage(mhZone, mhTier, mhSchedule);
+    wageOfferName = `Maharashtra Zone ${mhZone} Minimum Wage (${skillTier}, excl. EPF 13%, ESIC 3.25%, Bonus 8.33%, MLWF)`;
+  } else if (isKA) {
+    const kaZone = ([1, 2, 3].includes(Number(wageZone)) ? Number(wageZone) : 1) as KAWageZone;
+    const kaTier = (skillTier === 'highlySkilled' ? 'skilled' : skillTier) as 'unskilled' | 'semiSkilled' | 'skilled';
+    monthlyBase = getKAMonthlyWage(kaZone, kaTier);
+    wageOfferName = `Karnataka Consolidated Notification Zone ${kaZone} Minimum Wage (${skillTier}, excl. EPF 13%, ESIC 3.25%, Bonus 8.33%, KLWF)`;
+  } else {
+    monthlyBase = getWBMonthlyWage('A', skillTier);
+    wageOfferName = `Statutory Base Wage Reference (${skillTier})`;
+  }
 
   return {
     '@context': 'https://schema.org',
@@ -677,9 +940,7 @@ export function buildBlueCollarServiceSchema({
         priceCurrency: 'INR',
         minPrice: monthlyBase,
         unitText: 'MONTH',
-        name: isWB
-          ? `West Bengal Zone ${wageZone} Gazette Base Wage (${skillTier}, excl. EPF 13%, ESIC 3.25%, Bonus 8.33%)`
-          : `Statutory Base Wage Reference (${skillTier})`,
+        name: wageOfferName,
       },
     },
   };

@@ -12,6 +12,14 @@ import {
   isWBCityIndexable,
   isWBIndustryComboIndexable,
 } from "../src/lib/wb-content-quality.ts";
+import {
+  isMHCityIndexable,
+  isMHIndustryComboIndexable,
+} from "../src/lib/mh-content-quality.ts";
+import {
+  isKACityIndexable,
+  isKAIndustryComboIndexable,
+} from "../src/lib/ka-content-quality.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.resolve(__dirname, "../public");
@@ -80,6 +88,14 @@ async function main() {
   const indexableWbCities = wbCities.filter((c) => isWBCityIndexable(c.slug));
   const coreIndustrialWbCities = wbCities.filter((c) => isWBIndustryComboIndexable(c.slug));
 
+  const mhCities = ACS_CITIES.filter((c) => c.state === "Maharashtra");
+  const indexableMhCities = mhCities.filter((c) => isMHCityIndexable(c.slug));
+  const coreIndustrialMhCities = mhCities.filter((c) => isMHIndustryComboIndexable(c.slug));
+
+  const kaCities = ACS_CITIES.filter((c) => c.state === "Karnataka");
+  const indexableKaCities = kaCities.filter((c) => isKACityIndexable(c.slug));
+  const coreIndustrialKaCities = kaCities.filter((c) => isKAIndustryComboIndexable(c.slug));
+
   const insights = getAllInsights();
   const caseStudies = getAllCaseStudies();
 
@@ -95,6 +111,8 @@ async function main() {
     { loc: `${BASE_URL}/procurement/psara-license-verification-checklist`, priority: "0.90", changefreq: "monthly" },
     { loc: `${BASE_URL}/procurement/how-to-read-a-manpower-cost-sheet`, priority: "0.90", changefreq: "monthly" },
     { loc: `${BASE_URL}/procurement/security-minimum-wages-west-bengal`, priority: "0.90", changefreq: "monthly" },
+    { loc: `${BASE_URL}/procurement/security-minimum-wages-maharashtra`, priority: "0.90", changefreq: "monthly" },
+    { loc: `${BASE_URL}/procurement/security-minimum-wages-karnataka`, priority: "0.90", changefreq: "monthly" },
     { loc: `${BASE_URL}/procurement/workforce-capacity-and-payroll-model`, priority: "0.90", changefreq: "monthly" },
     { loc: `${BASE_URL}/sitemap`, priority: "0.95", changefreq: "weekly" },
     { loc: `${BASE_URL}/lp/industrial-security`, priority: "0.85", changefreq: "monthly" },
@@ -169,9 +187,13 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-cities.xml"), generateUrlXml(cityUrls), "utf8");
   console.log(`✅ sitemap-cities.xml generated (${cityUrls.length} URLs)`);
 
-  // Helper to guard against submitting noindex Tier-3 WB combinations
-  const isCityAllowedForService = (city: (typeof ACS_CITIES)[number]) =>
-    city.state !== "West Bengal" || isWBCityIndexable(city.slug);
+  // Helper to guard against submitting noindex Tier-3 peripheral combinations across WB, MH, KA
+  const isCityAllowedForService = (city: (typeof ACS_CITIES)[number]) => {
+    if (city.state === "West Bengal") return isWBCityIndexable(city.slug);
+    if (city.state === "Maharashtra") return isMHCityIndexable(city.slug);
+    if (city.state === "Karnataka") return isKACityIndexable(city.slug);
+    return true;
+  };
 
   // 6. Security & Safety
   const securityServices = ACS_SERVICES.filter((s) => s.category === "security");
@@ -184,14 +206,19 @@ async function main() {
       if (!isCityAllowedForService(city)) continue;
       securityUrls.push({
         loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
-        priority: city.state === "West Bengal" && city.tier === 1 ? "0.95" : city.tier === 1 ? "0.85" : "0.75",
+        priority:
+          (city.state === "West Bengal" || city.state === "Maharashtra" || city.state === "Karnataka") && city.tier === 1
+            ? "0.95"
+            : city.tier === 1
+            ? "0.85"
+            : "0.75",
       });
     }
   }
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-security.xml"), generateUrlXml(securityUrls), "utf8");
   console.log(`✅ sitemap-security.xml generated (${securityUrls.length} URLs)`);
 
-  // 7. Facility Management (excludes WB blue-collar/MEP combos owned by sitemap-manpower-combos.xml)
+  // 7. Facility Management (excludes WB/MH/KA blue-collar/MEP combos owned by dedicated combo sitemaps)
   const facilityServices = ACS_SERVICES.filter((s) => s.category === "facility");
   const facilityUrls: Array<{ loc: string; priority: string }> = [
     { loc: `${BASE_URL}/services/facility-management`, priority: "0.9" },
@@ -200,7 +227,12 @@ async function main() {
   for (const s of facilityServices) {
     for (const city of ACS_CITIES) {
       if (!isCityAllowedForService(city)) continue;
-      if (city.state === "West Bengal" && BLUE_COLLAR_COMBO_SLUGS.has(s.slug)) continue;
+      if (
+        (city.state === "West Bengal" || city.state === "Maharashtra" || city.state === "Karnataka") &&
+        BLUE_COLLAR_COMBO_SLUGS.has(s.slug)
+      ) {
+        continue;
+      }
       facilityUrls.push({
         loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
         priority: city.tier === 1 ? "0.85" : "0.7",
@@ -210,7 +242,7 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-facility.xml"), generateUrlXml(facilityUrls), "utf8");
   console.log(`✅ sitemap-facility.xml generated (${facilityUrls.length} URLs)`);
 
-  // 8. Manpower & Staffing (pan-India + general staffing; WB blue-collar combos in sitemap-manpower-combos.xml)
+  // 8. Manpower & Staffing (pan-India; WB/MH/KA blue-collar combos in dedicated combo sitemaps)
   const manpowerServices = ACS_SERVICES.filter((s) => s.category === "manpower");
   const manpowerUrls: Array<{ loc: string; priority: string }> = [
     ...manpowerServices.map((s) => ({ loc: `${BASE_URL}/services/${s.slug}`, priority: "0.90" })),
@@ -218,7 +250,12 @@ async function main() {
   for (const s of manpowerServices) {
     for (const city of ACS_CITIES) {
       if (!isCityAllowedForService(city)) continue;
-      if (city.state === "West Bengal" && BLUE_COLLAR_COMBO_SLUGS.has(s.slug)) continue;
+      if (
+        (city.state === "West Bengal" || city.state === "Maharashtra" || city.state === "Karnataka") &&
+        BLUE_COLLAR_COMBO_SLUGS.has(s.slug)
+      ) {
+        continue;
+      }
       manpowerUrls.push({
         loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
         priority: city.tier === 1 ? "0.85" : "0.7",
@@ -246,6 +283,42 @@ async function main() {
     "utf8"
   );
   console.log(`✅ sitemap-manpower-combos.xml generated (${manpowerComboUrls.length} priority WB blue-collar URLs)`);
+
+  // 9b. Priority Maharashtra Blue-Collar Manpower & MEP Trade Combos (9 Trades × Indexable MH Hubs)
+  const mhManpowerComboUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const s of blueCollarServices) {
+    for (const city of indexableMhCities) {
+      mhManpowerComboUrls.push({
+        loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
+        priority: city.tier === 1 ? "0.95" : city.tier === 2 ? "0.90" : "0.80",
+        changefreq: "weekly",
+      });
+    }
+  }
+  await fs.writeFile(
+    path.join(PUBLIC_DIR, "sitemap-manpower-combos-mh.xml"),
+    generateUrlXml(mhManpowerComboUrls),
+    "utf8"
+  );
+  console.log(`✅ sitemap-manpower-combos-mh.xml generated (${mhManpowerComboUrls.length} priority MH blue-collar URLs)`);
+
+  // 9c. Priority Karnataka Blue-Collar Manpower & MEP Trade Combos (9 Trades × Indexable KA Hubs)
+  const kaManpowerComboUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const s of blueCollarServices) {
+    for (const city of indexableKaCities) {
+      kaManpowerComboUrls.push({
+        loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
+        priority: city.tier === 1 ? "0.95" : city.tier === 2 ? "0.90" : "0.80",
+        changefreq: "weekly",
+      });
+    }
+  }
+  await fs.writeFile(
+    path.join(PUBLIC_DIR, "sitemap-manpower-combos-ka.xml"),
+    generateUrlXml(kaManpowerComboUrls),
+    "utf8"
+  );
+  console.log(`✅ sitemap-manpower-combos-ka.xml generated (${kaManpowerComboUrls.length} priority KA blue-collar URLs)`);
 
   // 10. Horticulture & Green
   const horticultureServices = ACS_SERVICES.filter((s) => s.category === "horticulture");
@@ -285,6 +358,52 @@ async function main() {
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-west-bengal.xml"), generateUrlXml(wbUrls), "utf8");
   console.log(
     `✅ sitemap-west-bengal.xml generated (${wbUrls.length} URLs across ${wbCities.length} WB hubs / ${indexableWbCities.length} quality-gated service hubs)`
+  );
+
+  // 11b. Maharashtra Priority State Sitemap (All 99 City Hubs + Indexable Service Combos)
+  const mhUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const city of mhCities) {
+    mhUrls.push({
+      loc: `${BASE_URL}/location/${city.slug}`,
+      priority: city.tier === 1 ? "0.95" : city.tier === 2 ? "0.90" : "0.75",
+      changefreq: "weekly",
+    });
+  }
+  for (const s of ACS_SERVICES) {
+    for (const city of indexableMhCities) {
+      mhUrls.push({
+        loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
+        priority: city.tier === 1 ? "0.95" : city.tier === 2 ? "0.85" : "0.75",
+        changefreq: "weekly",
+      });
+    }
+  }
+  await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-maharashtra.xml"), generateUrlXml(mhUrls), "utf8");
+  console.log(
+    `✅ sitemap-maharashtra.xml generated (${mhUrls.length} URLs across ${mhCities.length} MH hubs / ${indexableMhCities.length} quality-gated service hubs)`
+  );
+
+  // 11c. Karnataka Priority State Sitemap (All 56 City Hubs + Indexable Service Combos)
+  const kaUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  for (const city of kaCities) {
+    kaUrls.push({
+      loc: `${BASE_URL}/location/${city.slug}`,
+      priority: city.tier === 1 ? "0.95" : city.tier === 2 ? "0.90" : "0.75",
+      changefreq: "weekly",
+    });
+  }
+  for (const s of ACS_SERVICES) {
+    for (const city of indexableKaCities) {
+      kaUrls.push({
+        loc: `${BASE_URL}/services/${s.slug}/${city.slug}`,
+        priority: city.tier === 1 ? "0.95" : city.tier === 2 ? "0.85" : "0.75",
+        changefreq: "weekly",
+      });
+    }
+  }
+  await fs.writeFile(path.join(PUBLIC_DIR, "sitemap-karnataka.xml"), generateUrlXml(kaUrls), "utf8");
+  console.log(
+    `✅ sitemap-karnataka.xml generated (${kaUrls.length} URLs across ${kaCities.length} KA hubs / ${indexableKaCities.length} quality-gated service hubs)`
   );
 
   // 12. West Bengal 3-Tier Matrix: Partition 1 — Security (8 Services × 65 Core WB Hubs × 15 Industries)
@@ -351,7 +470,11 @@ async function main() {
   // 15. Master Index (sitemap.xml)
   const sitemapFiles = [
     "sitemap-west-bengal.xml",
+    "sitemap-maharashtra.xml",
+    "sitemap-karnataka.xml",
     "sitemap-manpower-combos.xml",
+    "sitemap-manpower-combos-mh.xml",
+    "sitemap-manpower-combos-ka.xml",
     "sitemap-corridors.xml",
     "sitemap-industrial-parks.xml",
     "sitemap-wb-matrix-security.xml",
@@ -378,7 +501,12 @@ async function main() {
     facilityUrls.length +
     manpowerUrls.length +
     manpowerComboUrls.length +
+    mhManpowerComboUrls.length +
+    kaManpowerComboUrls.length +
     horticultureUrls.length +
+    wbUrls.length +
+    mhUrls.length +
+    kaUrls.length +
     wbMatrixSecUrls.length +
     wbMatrixFacUrls.length +
     wbMatrixManUrls.length;

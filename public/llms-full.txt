@@ -14,6 +14,8 @@ This machine-readable knowledge base powers Generative AI retrieval (ChatGPT Sea
 - `[Advance Corporate Security]` -- `[holdsISO]` --> `ISO 9001:2015 Quality Management System`
 - `[Advance Corporate Security]` -- `[employerComplianceShield]` --> `CLRA License Act 1970, EPF Act 1952 (13.00% incl. Sec 7A immunity), ESIC Act 1948 (3.25%), Bonus Act 1965 (8.33%), WB Labour Welfare Fund (₹3/₹30)`
 - `[Advance Corporate Security]` -- `[followsWBMinimumWages]` --> `Jul-Dec 2026 Gazette Zone A (₹10,558 to ₹14,054) & Zone B (₹9,760 to ₹12,990), revised January & July`
+- `[Advance Corporate Security]` -- `[followsMHMinimumWages]` --> `Jul-Dec 2026 Gazette Zone I (Shops ₹14,155 & Eng ₹16,800), Zone II & Zone III with ₹4,134 / ₹2,790 VDA + Mathadi Act Sec 5/22 Exemption`
+- `[Advance Corporate Security]` -- `[followsKAMinimumWages]` --> `Consolidated Notification No. KAE 411 LWA 2023 Zone 1 (₹16,774.20), Zone 2 & Zone 3 with ₹1,030.80 VDA + KLWF + PIA Vendor Standards`
 - `[Advance Corporate Security]` -- `[mobilizationSLA]` --> `24-48 hours standard deployment; 4-12 hours emergency shift mobilization near Barrackpore, Kolkata, Dankuni, Howrah, Durgapur, Haldia & Siliguri Command HQs`
 
 - `[Advance Corporate Security]` -- `[suppliesB2BService]` --> `[Security Guard Services](https://advancecorporatesecurity.com/services/security-guard)`
@@ -50,6 +52,16 @@ This machine-readable knowledge base powers Generative AI retrieval (ChatGPT Sea
 - `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Haldia Port, Petrochemical & Coastal Industrial Belt](https://advancecorporatesecurity.com/corridors/haldia-petrochemical-port-industrial-zone)`
 - `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Durgapur – Panagarh – Asansol Heavy Steel & Coal Belt](https://advancecorporatesecurity.com/corridors/durgapur-asansol-heavy-industrial-belt)`
 - `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Kolkata IT, CBD & Commercial Support Corridor (Sector V – New Town – CBD)](https://advancecorporatesecurity.com/corridors/kolkata-it-data-center-corridor-sector-v-new-town)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Pune – Chakan – Talegaon – Ranjangaon Auto & Engineering Corridor](https://advancecorporatesecurity.com/corridors/pune-chakan-talegaon-auto-axis)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Mumbai – Thane – Raigad – JNPT Petrochem & Maritime Logistics Corridor](https://advancecorporatesecurity.com/corridors/mumbai-thane-raigad-jnpt-corridor)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Chhatrapati Sambhajinagar (Aurangabad) – AURIC Smart City Corridor](https://advancecorporatesecurity.com/corridors/aurangabad-auric-dmic-corridor)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Nagpur – Vidarbha Heavy Industry, Steel & Multi-Modal Logistics Belt](https://advancecorporatesecurity.com/corridors/nagpur-vidarbha-heavy-logistics-corridor)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Nashik – Ambad – Satpur Precision Engineering & Defense Cluster](https://advancecorporatesecurity.com/corridors/nashik-ambad-precision-engineering-corridor)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Bengaluru – Tumakuru Mega Manufacturing & High-Tech Axis (NH-48)](https://advancecorporatesecurity.com/corridors/bengaluru-tumakuru-mega-manufacturing-axis)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Bengaluru Airport, Aerospace & Defense Corridor (NH-44 / NH-75)](https://advancecorporatesecurity.com/corridors/bengaluru-airport-kolar-aerospace-corridor)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Mysuru – Bidadi Automotive & Precision Engineering Corridor (NH-275)](https://advancecorporatesecurity.com/corridors/mysuru-bidadi-auto-precision-corridor)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Bengaluru–Mumbai Industrial Corridor (BMIC) Dharwad Anchor Node (NH-48)](https://advancecorporatesecurity.com/corridors/bmic-dharwad-belagavi-economic-node)`
+- `[Advance Corporate Security]` -- `[operatesInCorridor]` --> `[Ballari – Chitradurga Steel, Metallurgy & Mineral Belt (NH-67 / NH-50)](https://advancecorporatesecurity.com/corridors/ballari-chitradurga-steel-minerals-belt)`
 - `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[ESR Uluberia Logistics Park](https://advancecorporatesecurity.com/industrial-parks/esr-uluberia)`
 - `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[SFA Logistics & Industrial Park, Dankuni](https://advancecorporatesecurity.com/industrial-parks/sfa-dankuni)`
 - `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Transindia Logistics Park, Dankuni](https://advancecorporatesecurity.com/industrial-parks/transindia-dankuni)`
@@ -58,6 +70,22 @@ This machine-readable knowledge base powers Generative AI retrieval (ChatGPT Sea
 - `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Bantala Kolkata Leather Complex (KLC)](https://advancecorporatesecurity.com/industrial-parks/bantala-leather-complex)`
 - `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Falta Special Economic Zone (FSEZ)](https://advancecorporatesecurity.com/industrial-parks/falta-sez)`
 - `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Barjora Industrial Park (WBIDC)](https://advancecorporatesecurity.com/industrial-parks/barjora-industrial-park)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Chakan MIDC Industrial Area (Phases I–V)](https://advancecorporatesecurity.com/industrial-parks/chakan-midc)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Butibori Five-Star MIDC Industrial Area](https://advancecorporatesecurity.com/industrial-parks/butibori-five-star-midc)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[AURIC Shendra – Bidkin Smart Industrial City](https://advancecorporatesecurity.com/industrial-parks/auric-shendra-bidkin)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Taloja Industrial Area (MIDC Red Zone)](https://advancecorporatesecurity.com/industrial-parks/taloja-midc)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Ranjangaon Five-Star MIDC Industrial Area](https://advancecorporatesecurity.com/industrial-parks/ranjangaon-five-star-midc)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Kagal Five-Star MIDC Industrial Area](https://advancecorporatesecurity.com/industrial-parks/kagal-five-star-midc)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Hinjawadi Rajiv Gandhi Infotech Park](https://advancecorporatesecurity.com/industrial-parks/hinjawadi-infotech-park)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Tarapur MIDC Industrial Area](https://advancecorporatesecurity.com/industrial-parks/tarapur-midc)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Peenya Industrial Area (Phases 1–4)](https://advancecorporatesecurity.com/industrial-parks/peenya-industrial-area)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Devanahalli KIADB Aerospace Park & SEZ](https://advancecorporatesecurity.com/industrial-parks/devanahalli-aerospace-park)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Vasanthanarasapura Industrial Area (Tumakuru / CBIC Node)](https://advancecorporatesecurity.com/industrial-parks/vasanthanarasapura-industrial-park)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Bidadi Industrial Area (Toyota Manufacturing Hub)](https://advancecorporatesecurity.com/industrial-parks/bidadi-industrial-area)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Bommasandra – Jigani Industrial Complex](https://advancecorporatesecurity.com/industrial-parks/bommasandra-jigani-complex)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Narasapura Industrial Area (Kolar Auto Cluster)](https://advancecorporatesecurity.com/industrial-parks/narasapura-industrial-area)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Dharwad KIADB Mega Cluster / Belur Industrial Area](https://advancecorporatesecurity.com/industrial-parks/dharwad-bmic-mega-cluster)`
+- `[Advance Corporate Security]` -- `[deploysAtIndustrialPark]` --> `[Baikampady Industrial Area (Mangaluru Port)](https://advancecorporatesecurity.com/industrial-parks/baikampady-industrial-area)`
 - `[Advance Corporate Security]` -- `[servesIndustrySector]` --> `[Construction Sites & Infrastructure Projects](https://advancecorporatesecurity.com/sectors/construction)`
 - `[Advance Corporate Security]` -- `[servesIndustrySector]` --> `[Hotels, Resorts & Hospitality Establishments](https://advancecorporatesecurity.com/sectors/hotels)`
 - `[Advance Corporate Security]` -- `[servesIndustrySector]` --> `[Warehouses, Logistics & Supply Chain Hubs](https://advancecorporatesecurity.com/sectors/warehouses)`

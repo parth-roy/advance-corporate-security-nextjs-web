@@ -5,7 +5,11 @@
 // ============================================================
 
 import { WB_EXTRA_LOCAL_ZONES } from "./data/wb-local-zones";
+import { MH_EXTRA_LOCAL_ZONES } from "./data/mh-local-zones";
+import { KA_EXTRA_LOCAL_ZONES } from "./data/ka-local-zones";
 import { WB_WAGES_ZONE_A, WB_WAGES_ZONE_B, WB_CURRENT_PERIOD } from "./wb-wages";
+import { MH_WAGES_ZONE_I, MH_WAGES_ENG_ZONE_I, MH_CURRENT_PERIOD } from "./mh-wages";
+import { KA_WAGES_ZONE_1, KA_CURRENT_PERIOD } from "./ka-wages";
 
 export interface FAQ {
   question: string;
@@ -143,6 +147,24 @@ export function generateServiceCityFaqs(ctx: FaqContext): FAQ[] {
       question: `What are the ${WB_CURRENT_PERIOD} West Bengal Minimum Wages (Zone A vs Zone B) applicable in ${cityName}?`,
       answer: `Under the West Bengal Labour Commissioner Gazette (${WB_CURRENT_PERIOD}), Zone A municipal/industrial rates are ₹${WB_WAGES_ZONE_A.unskilled.monthly.toLocaleString('en-IN')}/mo (Unskilled), ₹${WB_WAGES_ZONE_A.semiSkilled.monthly.toLocaleString('en-IN')}/mo (Semi-Skilled), ₹${WB_WAGES_ZONE_A.skilled.monthly.toLocaleString('en-IN')}/mo (Skilled), and ₹${WB_WAGES_ZONE_A.highlySkilled.monthly.toLocaleString('en-IN')}/mo (Highly Skilled). Zone B non-municipal Gram Panchayat industrial pockets follow ₹${WB_WAGES_ZONE_B.unskilled.monthly.toLocaleString('en-IN')}/mo to ₹${WB_WAGES_ZONE_B.highlySkilled.monthly.toLocaleString('en-IN')}/mo, revised every January and July alongside 13.00% EPF, 3.25% ESIC, 8.33% Bonus, and WB LWF (₹3/₹30).`
     });
+  } else if (stateName === 'Maharashtra') {
+    baseFaqs.push({
+      question: `What are the ${MH_CURRENT_PERIOD} Maharashtra Minimum Wages (Zone I / II / III) applicable in ${cityName}?`,
+      answer: `Under the Maharashtra Labour Commissionerate notification (${MH_CURRENT_PERIOD}), Shops & Commercial rates in Zone I (including Pune, Mumbai, Thane, Chakan) are ₹${MH_WAGES_ZONE_I.unskilled.monthly.toLocaleString('en-IN')}/mo (Unskilled) to ₹${MH_WAGES_ZONE_I.skilled.monthly.toLocaleString('en-IN')}/mo (Skilled), incorporating ₹4,134/mo VDA. Engineering Industry rates are ₹${MH_WAGES_ENG_ZONE_I.unskilled.monthly.toLocaleString('en-IN')}/mo to ₹${MH_WAGES_ENG_ZONE_I.skilled.monthly.toLocaleString('en-IN')}/mo, with ₹2,790/mo VDA. All deployments incorporate 13.00% EPF, 3.25% ESIC, 8.33% statutory bonus, 4.81% gratuity, and MLWF (₹25 employee / ₹75 employer).`
+    });
+    baseFaqs.push({
+      question: `How does ACS handle Mathadi Act compliance for warehouse and loading operations in ${cityName}?`,
+      answer: `In ${cityName} and surrounding MIDC belts (such as Chakan, Bhiwandi, and Taloja), ACS supplies mechanized warehouse and cargo-handling teams (operating forklifts, reach trucks, and electric pallet trucks). Under Section 5 and Section 22 of the Maharashtra Mathadi, Hamal and Other Manual Workers Act, 1969, mechanized captive handling is legally exempt from manual headloader toli jurisdictions, guaranteeing smooth, dispute-free 24×7 loading operations.`
+    });
+  } else if (stateName === 'Karnataka') {
+    baseFaqs.push({
+      question: `What are the ${KA_CURRENT_PERIOD} Karnataka Minimum Wages under Consolidated Notification KAE 411 LWA 2023 in ${cityName}?`,
+      answer: `Under Karnataka's unified Gazette Notification No. KAE 411 LWA 2023 (${KA_CURRENT_PERIOD}), Zone 1 (Greater Bengaluru Authority / BBMP) wages are ₹${KA_WAGES_ZONE_1.unskilled.monthly.toLocaleString('en-IN')}/mo (Unskilled), ₹${KA_WAGES_ZONE_1.semiSkilled.monthly.toLocaleString('en-IN')}/mo (Semi-Skilled), and ₹${KA_WAGES_ZONE_1.skilled.monthly.toLocaleString('en-IN')}/mo (Skilled), incorporating ₹1,030.80/mo VDA. All deployments include 13.00% EPF, 3.25% ESIC (or 2.0% Workmen's Compensation & GPA for salaries > ₹21,000), 8.33% Bonus, 4.81% Gratuity, and Karnataka Labour Welfare Fund (KLWF ₹50/₹100).`
+    });
+    baseFaqs.push({
+      question: `How does ACS mitigate union and labor supply disruptions in industrial clusters like Peenya, Bidadi, or Narasapura near ${cityName}?`,
+      answer: `ACS operates dedicated regional hiring centers and biometric deployment control across Karnataka industrial hubs. We maintain compliant third-party CLRA payroll, liaison with KIADB single-window cells, and adhere to Peenya Industrial Association (PIA) vendor standards, providing guaranteed attendance and non-unionized shift continuity.`
+    });
   }
 
   return baseFaqs;
@@ -205,7 +227,7 @@ export function getStateWageFramework(stateName: string): StateWageFramework {
   if (normState.includes("west bengal")) {
     lwfDetails = "₹3 Employee / ₹30 Employer (Bi-annual June & December remittance to West Bengal Labour Welfare Board).";
   } else if (normState.includes("maharashtra")) {
-    lwfDetails = "₹12 Employee / ₹36 Employer (Bi-annual June & December remittance to Maharashtra Labour Welfare Board).";
+    lwfDetails = "₹25 Employee / ₹75 Employer (Bi-annual June & December remittance to Maharashtra Labour Welfare Board).";
   } else if (normState.includes("delhi")) {
     lwfDetails = "₹0.75 Employee / ₹2.25 Employer (Bi-annual remittance to Delhi Labour Welfare Board).";
   } else if (normState.includes("haryana")) {
@@ -213,7 +235,7 @@ export function getStateWageFramework(stateName: string): StateWageFramework {
   } else if (normState.includes("gujarat")) {
     lwfDetails = "₹6 Employee / ₹12 Employer (Bi-annual June & December remittance to Gujarat Labour Welfare Board).";
   } else if (normState.includes("karnataka")) {
-    lwfDetails = "₹20 Employee / ₹40 Employer (Annual December remittance to Karnataka Labour Welfare Board).";
+    lwfDetails = "₹50 Employee / ₹100 Employer (Annual December remittance to Karnataka Labour Welfare Board under KLWF Act).";
   } else if (normState.includes("tamil nadu")) {
     lwfDetails = "₹20 Employee / ₹40 Employer (Annual December remittance to Tamil Nadu Labour Welfare Board).";
   } else if (normState.includes("telangana") || normState.includes("andhra")) {
@@ -678,6 +700,8 @@ const KNOWN_CITY_ZONES: Record<string, LocalZone[]> = {
     { name: "Vatva & Naroda GIDC", type: "Chemical & Industrial Estate", distance: "East Ahmedabad" },
   ],
   ...WB_EXTRA_LOCAL_ZONES,
+  ...MH_EXTRA_LOCAL_ZONES,
+  ...KA_EXTRA_LOCAL_ZONES,
 };
 
 export function getLocalDeploymentZones(cityName: string, stateName: string): LocalZone[] {

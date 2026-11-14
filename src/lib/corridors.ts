@@ -845,12 +845,941 @@ export const EASTERN_CORRIDORS: CorridorData[] = [
   },
 ];
 
-export const CORRIDORS = EASTERN_CORRIDORS;
+
+
+export const MAHARASHTRA_CORRIDORS: CorridorData[] = [
+  {
+    slug: "pune-chakan-talegaon-auto-axis",
+    name: "Pune – Chakan – Talegaon – Ranjangaon Auto & Engineering Corridor",
+    tagline: "Automotive, Heavy Engineering & EV Manufacturing Workforce & Security Network",
+    state: "Maharashtra",
+    region: "Western Maharashtra (Pune Belt)",
+    heroHeadline: "Integrated B2B Industrial Workforce, Technical Manpower & PSARA Security for Maharashtra Premier Automotive Hub",
+    description:
+      "Advance Corporate Security is an Integrated B2B Industrial Workforce & Facility Partner delivering PSARA-compliant enterprise guarding, automated gate logistics, factory blue-collar assembly workers, licensed HT/LT electricians, and Mathadi-compliant loading gangs across Chakan, Talegaon, Bhosari, and Ranjangaon MIDC.",
+    strategicImportance:
+      "As the Detroit of India, the Pune-Chakan-Talegaon-Ranjangaon axis generates over 20% of the nation automobile and EV output. ACS provides high-reliability 24x7 workforce solutions that prevent production downtime, cargo hijackings along highway bottlenecks, and local union friction.",
+    keyIndustrialZones: [
+      {
+        name: "Chakan MIDC (Phases I–V)",
+        focus: "Automotive OEMs (Mercedes, VW, Bajaj, Mahindra), EV Battery Assembly, Heavy Engineering",
+        location: "NH-60 / Chakan-Talegaon Highway Axis",
+      },
+      {
+        name: "Talegaon MIDC (Industrial & Floriculture)",
+        focus: "Heavy Fabrication, Automobile Assembly (General Motors Node), Logistics Parks",
+        location: "Old Mumbai-Pune Highway (NH-48)",
+      },
+      {
+        name: "Bhosari & Pimpri MIDC Engineering Complex",
+        focus: "High-Precision Machining, Tool & Die Making, Auto Components, Hydraulics",
+        location: "PCMC Municipal Corporation Core",
+      },
+      {
+        name: "Ranjangaon 5-Star MIDC",
+        focus: "White Goods (LG, Whirlpool), Automotive Powertrains (Stellantis/Fiat), Electronics",
+        location: "Pune-Ahmednagar Highway (SH-27)",
+      },
+      {
+        name: "Shirwal & Khandala MIDC",
+        focus: "Consumer Durables (Godrej), Industrial Refrigeration, Auto Ancillaries",
+        location: "Pune-Satara Highway Axis",
+      },
+    ],
+    targetSectors: [
+      "Automobile OEMs & Tier-1/Tier-2 Ancillaries",
+      "Electric Vehicle (EV) Powertrain & Battery Assembly",
+      "White Goods & Heavy Consumer Electronics",
+      "Precision CNC Machining, Tooling & Hydraulics",
+      "Mega Logistics Parks & Grade-A Automated Warehousing",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Maharashtra Private Security Agencies Rules, 2007 (Home Department Controlling Authority)",
+      minimumWageAuthority: "Office of the Labour Commissioner, Government of Maharashtra (Engineering & Shops/Commercial Zone I Notifications)",
+      clraRequirements: "Mandatory registration under Contract Labour (Regulation & Abolition) Maharashtra Rules with Unified Portal Form V principal verification.",
+      keyRegulations: [
+        "Maharashtra Mathadi, Hamal and Other Manual Workers Act, 1969 (Section 5 / Section 22 Captive Exemption Compliance)",
+        "Maharashtra Fire Prevention and Life Safety Measures Act, 2006 (Form B Biannual Audit Certification)",
+        "The Factories Act, 1948 (Maharashtra Rules 1963 — Section 2(n) Occupier Strict Liability Protection)",
+        "Bharatiya Nyaya Sanhita (BNS), 2023 — Section 106 Negligence Indemnity & Section 112 Cargo Theft Protection",
+        "Maharashtra Labour Welfare Fund (MLWF) Act (2024/2026 Revised Rates: Employee ₹25 / Employer ₹75 Biannual)",
+      ],
+      statutoryAssurance:
+        "100% transparent statutory compliance dossiers with bank transfer proof, monthly EPF ECRs, ESIC payment challans, and MLWF filings delivered prior to monthly invoicing, guaranteeing zero joint-and-several liability for the Principal Employer.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Integrated Industrial Workforce Deployment",
+        description:
+          "Turnkey provision of machine operators, assembly helpers, fitters, welders, and licensed HT/LT electricians with complete EHS training and LOTO (Lockout/Tagout) certification.",
+      },
+      {
+        title: "Mathadi-Compliant & Mechanized Loading Operations",
+        description:
+          "Dispute-free container loading/unloading, reach truck and pallet jack operations operating under verified captive handling exemptions to prevent wildcat toli extortion.",
+      },
+      {
+        title: "24x7 Quick Reaction & Perimeter Security",
+        description:
+          "PSARA-licensed armed sentries, automated boom barrier gate automation, AI-powered CCTV surveillance for PPE compliance, and roving night highway patrols.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "2 Hours (Emergency Mobilization across Chakan, Bhosari & Talegaon)",
+      benchStrength: "650+ Active Industrial Guards & Blue-Collar Tradesmen on Standby",
+      supervisoryRatio: "1:8 Dedicated Field Officer-to-Guard Ratio",
+      patrolTechnology: "GPS Real-Time Geofenced Guard Tour Patrol & RFID Checkpoints",
+    },
+    faqs: [
+      {
+        question: "How does ACS resolve Mathadi toli disputes in Chakan and Talegaon MIDC?",
+        answer:
+          "ACS employs mechanized material handling crews (forklifts, reach trucks, dock levelers) operated by certified industrial technicians. Under Section 5 and Section 22 of the Mathadi Act, mechanized internal warehouse handling by regular staff is legally differentiated from manual headloading, preventing unauthorized toli extortion while remaining 100% compliant.",
+      },
+      {
+        question: "Can ACS provide licensed HT electricians and STP operators in Pune MIDC?",
+        answer:
+          "Yes. ACS supplies state-certified industrial electricians holding PWD 'A' and 'B' licenses for 33kV/11kV substations, transformer maintenance, DG synchronization, and STP/ETP operations with continuous safety oversight.",
+      },
+    ],
+  },
+  {
+    slug: "mumbai-thane-raigad-jnpt-corridor",
+    name: "Mumbai – Thane – Raigad – JNPT Petrochem & Maritime Logistics Corridor",
+    tagline: "Port Logistics, TAPA FSR Warehousing & Red-Zone Hazchem Industrial Manpower",
+    state: "Maharashtra",
+    region: "Konkan / Mumbai Metropolitan Region (MMR)",
+    heroHeadline: "Turnkey Workforce Outsourcing & Maritime Gate Logistics for Nhava Sheva, Bhiwandi & Taloja",
+    description:
+      "Advance Corporate Security operates as an Integrated B2B Workforce & Facility Partner across the MMR freight belt, supplying TAPA FSR-compliant warehouse security, container freight destuffing gangs, Hazchem-certified chemical plant helpers, and corporate IFM from Nhava Sheva to Bhiwandi.",
+    strategicImportance:
+      "Handling over 50% of India containerized maritime trade via JNPT Nhava Sheva and hosting over 40 million sq. ft. of Grade-A warehousing in Bhiwandi alongside Taloja chemical park, this corridor requires enterprise-level physical security and strict statutory compliance.",
+    keyIndustrialZones: [
+      {
+        name: "Bhiwandi Warehousing & Fulfillment Hub",
+        focus: "Mega E-Commerce Distribution (Amazon, Flipkart), 3PL Logistics, Retail Supply Chains",
+        location: "Mumbai-Nashik Highway (NH-160)",
+      },
+      {
+        name: "JNPT Nhava Sheva Port & CFS Axis",
+        focus: "Container Freight Stations, Bonded Warehouses, Customs Cargo Examination",
+        location: "Uran / Raigad Coastal Corridor",
+      },
+      {
+        name: "Taloja Industrial Area (MIDC Red Zone)",
+        focus: "Petrochemicals, Specialty Chemicals, Bulk Drug Intermediates, Glass & Fertilizers",
+        location: "Navi Mumbai-Panvel Link",
+      },
+      {
+        name: "Trans-Thane Creek (TTC) Industrial Area",
+        focus: "Data Centers, IT/ITES Campuses, Specialty Engineering, Cold Storage",
+        location: "Thane-Belapur Road Axis",
+      },
+      {
+        name: "Tarapur Industrial Area",
+        focus: "Bulk Drug APIs, Fine Chemicals, Textile Processing",
+        location: "Palghar Coastal Highway",
+      },
+    ],
+    targetSectors: [
+      "3PL, Cold Chain & E-Commerce Freight Fulfillment",
+      "Maritime Container Logistics & Inland Container Depots (ICDs)",
+      "Petrochemicals, Hazardous Chemicals & Bulk Drugs",
+      "Hyperscale Data Centers & Corporate Technology Parks",
+      "Heavy Marine Engineering & Ship Repair Facilities",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Maharashtra Private Security Agencies Rules, 2007 (Controlling Authority, Mumbai/Thane)",
+      minimumWageAuthority: "Labour Commissionerate Maharashtra (Zone I Shops & Establishments and Chemical Schedules)",
+      clraRequirements: "Comprehensive CLRA contractor licensing with Form V principal validation and ESIC/EPF sub-codes.",
+      keyRegulations: [
+        "TAPA (Transported Asset Protection Association) FSR Level-A Physical Security Protocols",
+        "Maharashtra Fire Prevention and Life Safety Measures Act, 2006 (Form B Mandate for Chemical Parks)",
+        "The Factories Act, 1948 & Major Accident Hazards (MAH) Rules",
+        "Bharatiya Nyaya Sanhita, 2023 — Section 112 Cargo Theft Syndicate Suppression",
+        "Maharashtra Labour Welfare Fund (MLWF) Compliance",
+      ],
+      statutoryAssurance:
+        "Complete immunity for logistics park occupiers and plant heads through audited monthly wage transfers, ECR filings, and statutory register maintenance.",
+    },
+    operationalCapabilities: [
+      {
+        title: "TAPA FSR Logistics & Container Gate Security",
+        description:
+          "Automated ANPR vehicle logging, container bolt seal verification, driver biometric screening, and anti-shrinkage sentry governance across high-velocity loading docks.",
+      },
+      {
+        title: "Hazchem & Confined Space Industrial Helpers",
+        description:
+          "Specially trained workforce equipped with level-appropriate PPE, breathing apparatus, and HAZWOPER protocols for chemical manufacturing in Taloja and Tarapur.",
+      },
+      {
+        title: "Mechanized Logistics Warehouse Staffing",
+        description:
+          "Bulk deployment of WMS barcode scanner associates, sortation line helpers, high-reach forklift operators, and 24x7 shift loading crews across Bhiwandi.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "2 Hours (Immediate response across Bhiwandi, Taloja & Navi Mumbai)",
+      benchStrength: "800+ Vetted Logistics Associates & Armed Marine Guards",
+      supervisoryRatio: "1:10 Field Officer Ratio with 24x7 Control Room Monitoring",
+      patrolTechnology: "AI-Enabled CCTV Thermal Perimeter Monitoring & GPS Roving Patrols",
+    },
+    faqs: [
+      {
+        question: "Do you provide TAPA FSR compliant security for warehouses in Bhiwandi?",
+        answer:
+          "Yes. ACS designs and executes TAPA FSR Level-A and Level-B compliant security programs for 3PL and e-commerce warehouses in Bhiwandi, including high-security dock controls, CCTV coverage, vehicle undercarriage mirrors, and dual-sentry gate inspections.",
+      },
+      {
+        question: "Are ACS chemical plant workers trained for Hazchem safety in Taloja?",
+        answer:
+          "Yes. All workforce members deployed to Taloja and Tarapur chemical estates undergo certified industrial safety induction covering chemical splash response, eye-wash stations, gas detection awareness, and Factory Rule 73 EHS procedures.",
+      },
+    ],
+  },
+  {
+    slug: "aurangabad-auric-dmic-corridor",
+    name: "Chhatrapati Sambhajinagar (Aurangabad) – AURIC Smart City Corridor",
+    tagline: "DMIC Greenfield Node, EV Manufacturing & Precision Tooling Workforce Hub",
+    state: "Maharashtra",
+    region: "Marathwada / Samruddhi Expressway Belt",
+    heroHeadline: "Industrial Manpower Outsourcing & Enterprise Facility Management for AURIC Shendra-Bidkin & Waluj",
+    description:
+      "Advance Corporate Security delivers integrated blue-collar workforce solutions, precision machine operators, licensed substation electricians, and PSARA security across AURIC (Shendra-Bidkin) and the Waluj auto manufacturing cluster.",
+    strategicImportance:
+      "As India first greenfield smart industrial city under the Delhi-Mumbai Industrial Corridor (DMIC) spanning 10,000 acres, Chhatrapati Sambhajinagar is a global hub for auto engineering, defense hardware, and pharmaceutical synthesis connected by the Samruddhi Mahamarg.",
+    keyIndustrialZones: [
+      {
+        name: "AURIC Shendra Smart City Node",
+        focus: "Electric Vehicles, Green Hydrogen, Electronics System Design (ESDM), Precision Auto Components",
+        location: "Jalna Road / Samruddhi Mahamarg Access",
+      },
+      {
+        name: "AURIC Bidkin Industrial Node",
+        focus: "Mega Manufacturing, Heavy Metallurgy, Defense Hardware, Food Processing",
+        location: "Bidkin-Paithan Highway Corridor",
+      },
+      {
+        name: "Waluj Industrial Area (MIDC)",
+        focus: "Automotive Two-Wheeler Cluster (Bajaj Ecosystem), White Goods, Foundry & Stamping",
+        location: "Pune-Aurangabad Highway (SH-60)",
+      },
+      {
+        name: "Chikalthana MIDC",
+        focus: "Pharmaceutical Formulations, Bulk Drugs, Electrical Engineering",
+        location: "Chhatrapati Sambhajinagar Urban Periphery",
+      },
+      {
+        name: "Jalna MIDC & Steel Cluster",
+        focus: "Steel Re-Rolling Mills, Heavy Ingot Furnaces, Seed Biotechnology",
+        location: "Jalna Industrial Highway",
+      },
+    ],
+    targetSectors: [
+      "Electric Vehicles (EV) & Smart Mobility Infrastructure",
+      "Two-Wheeler & Three-Wheeler Auto Component Stamping",
+      "Heavy Steel Re-Rolling, Forging & Metallurgy",
+      "Pharmaceutical Formulations & Biotechnology",
+      "Electronics Manufacturing Services (EMS)",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Maharashtra Private Security Agencies Rules, 2007 (Chhatrapati Sambhajinagar Police Jurisdiction)",
+      minimumWageAuthority: "Deputy Labour Commissioner Office, Aurangabad Division (Engineering Zone I/II Rates)",
+      clraRequirements: "Form V principal verification, centralized wage register maintenance, and CLRA statutory licensing.",
+      keyRegulations: [
+        "DMIC Smart Industrial Township Life Safety & Environmental Regulations",
+        "Maharashtra Factories Rules, 1963 — Occupier Liability Protection",
+        "Industrial Employment (Standing Orders) Central / State Model",
+        "Maharashtra Labour Welfare Fund (MLWF) Remittance",
+      ],
+      statutoryAssurance:
+        "Comprehensive legal indemnity for plant heads and project managers through verified biometric muster rolls, direct bank salary credits, and zero-defect audit compliance.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Smart City Utility & Substation Maintenance",
+        description:
+          "Turnkey deployment of licensed HT/LT electricians, underground utility line inspectors, DG set operators, and water treatment technicians for AURIC plug-and-play estates.",
+      },
+      {
+        title: "Automotive Assembly & Stamping Blue-Collar Gangs",
+        description:
+          "Vetted machine helpers, press operators, robotic line loaders, and packaging associates trained for high-speed auto manufacturing in Waluj and Shendra.",
+      },
+      {
+        title: "High-Security Industrial Gate Logistics",
+        description:
+          "ANPR vehicle tracking, 100-ton weighbridge verification, visitor access control, and 24x7 motorized patrol networks.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "3 Hours (Rapid deployment across Shendra, Waluj & Chikalthana)",
+      benchStrength: "450+ Certified Industrial Operators & Security Personnel",
+      supervisoryRatio: "1:8 Field Supervisor-to-Worker Ratio",
+      patrolTechnology: "Smart City Integrated CCTV Monitoring & Geofenced RFID Guard Tour",
+    },
+    faqs: [
+      {
+        question: "Can ACS support greenfield industrial unit setups in AURIC Shendra-Bidkin?",
+        answer:
+          "Yes. ACS provides end-to-end workforce mobilization for greenfield plants in AURIC, starting with construction-phase security, machinery rigging and positioning labor, electrical substation commissioning, through to permanent operational workforce.",
+      },
+      {
+        question: "What are the minimum wage rates applicable to industrial workers in Waluj MIDC?",
+        answer:
+          "Under the Maharashtra Minimum Wages Act (Engineering Schedule Zone I), unskilled workers earn a minimum basic+VDA of ₹16,800/mo, semi-skilled ₹17,815/mo, and skilled ₹19,240/mo (effective July–Dec 2026), complete with 13% EPF, 3.25% ESIC, and MLWF contributions.",
+      },
+    ],
+  },
+  {
+    slug: "nagpur-vidarbha-heavy-logistics-corridor",
+    name: "Nagpur – Vidarbha Heavy Industry, Steel & Multi-Modal Logistics Belt",
+    tagline: "Central India Cargo Transit, 5-Star MIDC Metallurgy & Aerospace Workforce",
+    state: "Maharashtra",
+    region: "Vidarbha (Zero-Mile India Logistics Hub)",
+    heroHeadline: "Enterprise Security Guarding & Heavy Industrial Blue-Collar Staffing for Butibori & MIHAN SEZ",
+    description:
+      "Advance Corporate Security operates as an Integrated Industrial Workforce & Facility Partner across Central India, providing heavy metallurgy helpers, weighbridge security guards, rail-siding cargo handlers, and aerospace facility staff in Nagpur.",
+    strategicImportance:
+      "Located at the geographical crossroads of India (North-South and East-West corridors), Nagpur is home to Butibori Five-Star MIDC (2,428 hectares), MIHAN SEZ (Boeing MRO, Dassault Reliance), and major multi-modal logistics terminals.",
+    keyIndustrialZones: [
+      {
+        name: "Butibori Five-Star MIDC",
+        focus: "Heavy Metallurgy, Transmission Towers, Paper Mills, Synthetic Textiles, Heavy Fabrication",
+        location: "NH-44 (Nagpur-Hyderabad Highway)",
+      },
+      {
+        name: "MIHAN SEZ & Multi-Modal Cargo Hub",
+        focus: "Aerospace MRO (Boeing), Aviation Components (Dassault), Global IT/ITES Campuses",
+        location: "Wardha Road / Nagpur Airport Corridor",
+      },
+      {
+        name: "Hingna MIDC",
+        focus: "Engineering, Foundry, Packaging, FMCG Manufacturing",
+        location: "Nagpur Urban Western Belt",
+      },
+      {
+        name: "Chandrapur Heavy Industrial Axis",
+        focus: "Cement Plants (UltraTech, ACC), Thermal Power Generation, Coal Mining Support",
+        location: "Nagpur-Chandrapur Corridor (SH-264)",
+      },
+    ],
+    targetSectors: [
+      "Heavy Metallurgy, Structural Steel & Transmission Towers",
+      "Multi-Modal Logistics, Rail Rakes & Air Cargo Freight",
+      "Aerospace Manufacturing, Maintenance & Defense SEZ",
+      "Cement Manufacturing, Power Generation & Mining Services",
+      "Synthetic Textiles & Industrial Packaging",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Maharashtra Private Security Agencies Rules, 2007 (Nagpur Police Commissionerate)",
+      minimumWageAuthority: "Additional Labour Commissioner Office, Nagpur Division (Zone I / Group D+ Schedules)",
+      clraRequirements: "Full CLRA registration with statutory Form V verification, computerized wage slip delivery.",
+      keyRegulations: [
+        "Factories Act, 1948 — High-Temperature Metallurgy Safety & EHS Rules",
+        "MIDC Group D+ Special Incentive Compliance Regulations",
+        "Bharatiya Nyaya Sanhita, 2023 — Section 303 Heavy Scrap Anti-Theft Protection",
+        "Maharashtra Labour Welfare Fund (MLWF) Filings",
+      ],
+      statutoryAssurance:
+        "Complete statutory protection with monthly proof of bank transfers, EPF/ESIC remittance, and safety indemnity protecting the factory Occupier from personal liability.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Heavy Metallurgy & Foundry Workforce",
+        description:
+          "Deployment of furnace helpers, crane operators, structural fitters, and certified riggers with continuous high-temperature PPE enforcement.",
+      },
+      {
+        title: "100-Ton Weighbridge & Rail Siding Guarding",
+        description:
+          "Strict gross/tare weighbridge inspection, rail-rake loading verification, scrap yard anti-shrinkage sentries, and perimeter drone monitoring.",
+      },
+      {
+        title: "Aerospace & Tech Campus Facility Management",
+        description:
+          "Cleanroom maintenance, mechanized floor scrubbing, BMS control, and executive security for MIHAN aviation and software centers.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "3 Hours (Rapid mobilization across Butibori, Hingna & MIHAN)",
+      benchStrength: "500+ Heavy Industry Workers & Security Guards on Standby",
+      supervisoryRatio: "1:8 Supervisory Ratio with Mobile Patrol Command",
+      patrolTechnology: "GPS Geofenced Patrols & High-Mast Infrared Perimeter Cameras",
+    },
+    faqs: [
+      {
+        question: "Do you provide scrap pilferage protection for steel plants in Butibori?",
+        answer:
+          "Yes. ACS specializes in heavy metallurgy security across Butibori and Chandrapur, utilizing double-check weighbridge protocols, randomized tare-weight verification, magnet-free gate checks, and 24x7 scrap yard physical sentries backed by BNS Section 303 anti-theft prosecution SOPs.",
+      },
+      {
+        question: "Can ACS supply blue-collar labor under MIDC Group D+ incentive schemes in Vidarbha?",
+        answer:
+          "Yes. ACS manages full statutory compliance documentation required by industrial units to claim state government SGST reimbursements and electricity duty exemptions under Maharashtra Package Scheme of Incentives (PSI).",
+      },
+    ],
+  },
+  {
+    slug: "nashik-ambad-precision-engineering-corridor",
+    name: "Nashik – Ambad – Satpur Precision Engineering & Defense Cluster",
+    tagline: "Aerospace Tooling, Electrical Switchgear & Agro-Industrial Workforce Network",
+    state: "Maharashtra",
+    region: "North Maharashtra (Khandesh Belt)",
+    heroHeadline: "Specialized Technical Blue-Collar Contractors & Corporate Security for Ambad, Satpur & Sinnar MIDC",
+    description:
+      "Advance Corporate Security is an Integrated B2B Industrial Workforce & Facility Partner across North Maharashtra, supplying certified CNC operators, high-voltage electrical switchgear technicians, agricultural processing manpower, and PSARA security.",
+    strategicImportance:
+      "Nashik is a premier manufacturing triangle hosting Hindustan Aeronautics Limited (HAL Ozar), major defense aerospace suppliers, Bosch, ABB, Schneider Electric, and Mahindra & Mahindra, requiring high-precision technical talent and secure installations.",
+    keyIndustrialZones: [
+      {
+        name: "Ambad MIDC Precision Cluster",
+        focus: "Automotive Electricals, Tool & Die Making, Precision Machining, Starter Motors",
+        location: "Mumbai-Agra Highway (NH-848)",
+      },
+      {
+        name: "Satpur MIDC Heavy Fabrication Belt",
+        focus: "Electrical Switchgear, Transmission Equipment, Heavy Auto Components",
+        location: "Trimbak Road Axis",
+      },
+      {
+        name: "Sinnar MIDC & SEZ",
+        focus: "Textiles, Agro-Processing, Thermal Power Equipment, Light Engineering",
+        location: "Nashik-Pune Highway (NH-60)",
+      },
+      {
+        name: "Ozar Defense Aerospace Node",
+        focus: "Fighter Aircraft Assembly (HAL), Avionics, Defense Research & Testing",
+        location: "Nashik Airport Corridor",
+      },
+    ],
+    targetSectors: [
+      "Precision Tooling, Dies & Hydraulic Components",
+      "High-Voltage Electrical Switchgear & Transformer Assembly",
+      "Aerospace & Defense Hardware Manufacturing",
+      "Automotive Tier-1 & Tier-2 Component Fabrication",
+      "Winery, Beverage & Modern Agro-Food Processing",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Maharashtra Private Security Agencies Rules, 2007 (Nashik Police Commissionerate)",
+      minimumWageAuthority: "Deputy Labour Commissioner Office, Nashik Division (Zone I / II Schedules)",
+      clraRequirements: "Mandatory Form V principal employer validation, wage register Form B compliance.",
+      keyRegulations: [
+        "The Factories Act, 1948 & Maharashtra Factories Rules 1963",
+        "Industrial Employment (Standing Orders) Framework",
+        "Maharashtra Labour Welfare Fund (MLWF) Compliance",
+      ],
+      statutoryAssurance:
+        "100% statutory transparency backed by computerized payroll registers, EPF ECRs, ESIC challans, and complete occupier indemnity.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Precision CNC Operators & Tooling Technicians",
+        description:
+          "Provision of ITI-certified CNC lathe operators, VMC technicians, grinding specialists, and assembly line fitters with EHS induction.",
+      },
+      {
+        title: "Industrial Electrical & Switchgear Maintenance",
+        description:
+          "Substation electricians, control panel wirers, and transformer maintenance technicians certified for industrial high-voltage facilities.",
+      },
+      {
+        title: "Facility Security & Defense-Grade Guarding",
+        description:
+          "PSARA-licensed perimeter guards, access control, material inward/outward gate pass tracking, and 24x7 control room surveillance.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "3 Hours (Rapid mobilization across Ambad, Satpur & Sinnar)",
+      benchStrength: "400+ Industrial Technicians & Guarding Personnel",
+      supervisoryRatio: "1:8 Supervisory Ratio",
+      patrolTechnology: "RFID Checkpoint Logging & Mobile Patrol Units",
+    },
+    faqs: [
+      {
+        question: "Do you provide skilled CNC machine operators in Ambad MIDC?",
+        answer:
+          "Yes. ACS supplies screened, trade-tested CNC and VMC machine operators, quality inspectors, and assembly line helpers in Ambad and Satpur MIDC with full statutory compliance under the Engineering Minimum Wage schedule.",
+      },
+      {
+        question: "Can ACS provide defense-adjacent facility security near HAL Ozar?",
+        answer:
+          "Yes. ACS deploys ex-servicemen security guards with rigorous background verification through Maharashtra Police for high-security defense engineering and aerospace ancillary installations.",
+      },
+    ],
+  },
+];
+
+
+
+export const KARNATAKA_CORRIDORS: CorridorData[] = [
+  {
+    slug: "bengaluru-tumakuru-mega-manufacturing-axis",
+    name: "Bengaluru – Tumakuru Mega Manufacturing & High-Tech Axis (NH-48)",
+    tagline: "Machine Tools, CBIC Priority Nodes & Mega Logistics Workforce Shield",
+    state: "Karnataka",
+    region: "South-Central Karnataka (NH-48 Axis)",
+    heroHeadline: "Integrated B2B Industrial Workforce, Technical MEP & PSARA Security for Peenya to Vasanthanarasapura",
+    description:
+      "Advance Corporate Security operates as an Integrated B2B Industrial Workforce & Facility Partner across NH-48, supplying factory assembly labor, licensed HT/LT electricians, container unloading hamali gangs, and PSARA security from Peenya to Tumakuru.",
+    strategicImportance:
+      "The heaviest manufacturing and freight logistics spine in South India connecting Bengaluru to Mumbai along Asian Highway 47. Houses over 12,000 factories across Peenya (South Asia largest MSME estate), Nelamangala logistics parks, and the 8,484-acre CBIC node at Vasanthanarasapura.",
+    keyIndustrialZones: [
+      {
+        name: "Peenya Industrial Area (Phases 1–4)",
+        focus: "CNC Machine Tools, Hydraulic Valves, Electroplating, Precision Automotive Parts (40 Sq. Km)",
+        location: "NH-48 / Tumkur Road, Bengaluru Urban",
+      },
+      {
+        name: "Nelamangala Logistics & Warehousing Hub",
+        focus: "3PL Mega Warehouses, E-Commerce Fulfillment, Container Freight Stations",
+        location: "Bengaluru Rural Highway Junction",
+      },
+      {
+        name: "Dobbaspet Industrial Area",
+        focus: "Heavy Machine Fabrication, Pre-Engineered Buildings (PEB), Electrical Equipment",
+        location: "NH-48 / NH-648 Junction",
+      },
+      {
+        name: "Vasanthanarasapura Mega Industrial Park",
+        focus: "Chennai-Bengaluru Industrial Corridor (CBIC) Mega Node, Food Park, Machine Tool Park (8,484 Acres)",
+        location: "Tumakuru (120 km from Bengaluru)",
+      },
+    ],
+    targetSectors: [
+      "Machine Tools, CNC Machining & Precision Fabrication",
+      "Automotive Stamping, Hydraulics & Electrical Switchgear",
+      "Mega E-Commerce Warehousing & Logistics Fulfillment",
+      "Pre-Engineered Steel Structures (PEB) & Heavy Engineering",
+      "Food Processing, Cold Chains & Agricultural Packaging",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Karnataka Private Security Agencies Rules, 2008 (ADGP Internal Security Division Controlling Authority)",
+      minimumWageAuthority: "Government of Karnataka Labour Department (Notification No. KAE 411 LWA 2023 - May 2026 Consolidated Sched)",
+      clraRequirements: "Mandatory registration under Contract Labour (Regulation & Abolition) Karnataka Rules with Form V principal verification.",
+      keyRegulations: [
+        "Karnataka Factories Rules, 1969 — Section 2(n) Occupier Strict Liability Protection & Rule 88/91 Safety Mandates",
+        "Karnataka Industrial Employment (Standing Orders) Rules, 1961 (Fixed Term Employment Parity)",
+        "Bharatiya Nyaya Sanhita, 2023 — Section 112 Cargo Theft Syndicate Suppression",
+        "Karnataka Labour Welfare Fund (KLWF) Act (2025 Revised Rate: Employee ₹50 / Employer ₹100 Annual Remittance)",
+        "Peenya Industrial Association (PIA) Labor Dispute & Unrest Mitigation SOPs",
+      ],
+      statutoryAssurance:
+        "Guaranteed 7th-of-the-month bank wage payouts backed by ACS liquid float, monthly EPF ECRs, ESIC slips, and KLWF challans eliminating union strikes and occupier liability.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Peenya Union-Mitigated Factory Staffing",
+        description:
+          "Turnkey supply of machine operators, assembly helpers, fitters, and welders with strict biometric attendance, 100% PF/ESI compliance, and local police station liaison.",
+      },
+      {
+        title: "High-Capacity Warehouse Hamali & Dock Labor",
+        description:
+          "Dedicated crews for container stuffing/destuffing, pallet jack movement, godown stacking, and inventory putaway across Nelamangala and Dobbaspet warehouses.",
+      },
+      {
+        title: "PSARA Enterprise Guarding & Weighbridge Audit",
+        description:
+          "Licensed security personnel, automated boom barrier gate passes, weighbridge gross/tare audit, and roving highway night patrols.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "2 Hours (Immediate response across Peenya, Nelamangala & Dobbaspet)",
+      benchStrength: "700+ Vetted Industrial Workers & Guards on Active Roster",
+      supervisoryRatio: "1:8 Field Supervisor-to-Guard Ratio",
+      patrolTechnology: "RFID Geofenced Checkpoints & Mobile QR Patrol System",
+    },
+    faqs: [
+      {
+        question: "How does ACS prevent labor disputes and union friction in Peenya Industrial Area?",
+        answer:
+          "ACS mitigates labor friction through strict 7th-of-the-month direct bank wage transfers, biometric muster verification, complete EPF/ESIC transparency delivered directly to the plant HR, and active coordination with Peenya and Nelamangala police stations.",
+      },
+      {
+        question: "What are the statutory minimum wage rates in Karnataka Zone 1 for security and factory workers?",
+        answer:
+          "Under Karnataka May 2026 unified notification, Zone 1 (Greater Bengaluru Authority) prescribes minimum monthly wages of ₹24,407 for unskilled workers, ₹26,745 for semi-skilled/security guards, ₹29,316 for skilled electricians, and ₹32,145 for highly skilled supervisors, inclusive of ₹1,030.80 monthly VDA.",
+      },
+    ],
+  },
+  {
+    slug: "bengaluru-airport-kolar-aerospace-corridor",
+    name: "Bengaluru Airport, Aerospace & Defense Corridor (NH-44 / NH-75)",
+    tagline: "Cleanroom Aerospace Janitorial, Avionics Security & Two-Wheeler OEM Manpower",
+    state: "Karnataka",
+    region: "Eastern Karnataka (Bengaluru Rural & Kolar)",
+    heroHeadline: "High-Precision Technical Workforce & AS9100/ISO-Compliant Facility Services for Devanahalli to Narasapura",
+    description:
+      "Advance Corporate Security is an Integrated B2B Workforce & Facility Partner across eastern Karnataka, delivering cleanroom sanitization, avionics facility security, automotive assembly line staffing, and mega-warehouse pickers from Devanahalli to Narasapura.",
+    strategicImportance:
+      "India premier aerospace, defense electronics, and automobile manufacturing belt. Hosts Kempegowda International Airport (BLR), the 3,000-acre Devanahalli Aerospace Park (Boeing, Airbus Tier-1s, Collins), and massive automotive plants in Narasapura (Honda, Scania).",
+    keyIndustrialZones: [
+      {
+        name: "Devanahalli KIADB Aerospace Park & SEZ",
+        focus: "Avionics R&D, Aircraft Components, Defense Electronics, Aviation Logistics (3,000+ Acres)",
+        location: "Adjacent to BLR Airport / NH-44",
+      },
+      {
+        name: "Hoskote Industrial Area",
+        focus: "Automotive OEMs, Commercial Trucks, Heavy Auto Stamping, 3PL Warehousing",
+        location: "Old Madras Road (NH-75)",
+      },
+      {
+        name: "Narasapura Industrial Area",
+        focus: "Two-Wheeler OEM (Honda), Commercial Vehicles (Scania), Auto Ancillaries (1,800 Acres)",
+        location: "NH-75 / Bengaluru-Tirupati Highway",
+      },
+      {
+        name: "Vemgal Industrial Area",
+        focus: "Aerospace Machining, Defense Components, Electric Vehicles",
+        location: "Kolar Industrial Belt",
+      },
+      {
+        name: "Malur Logistics & Industrial Hub",
+        focus: "Warehousing, FMCG Packaging, Food Processing, Cold Storage Units",
+        location: "Kolar-Bengaluru Border Axis",
+      },
+    ],
+    targetSectors: [
+      "Aerospace, Defense Electronics & Avionics Hardware",
+      "Automotive OEMs & Tier-1 Stamping Suppliers",
+      "Air Cargo Warehousing & Cold Chain Logistics",
+      "Electronics System Design & Manufacturing (ESDM)",
+      "Cleanroom Pharmaceutical Formulations & Medical Devices",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Karnataka Private Security Agencies Rules, 2008 (ADGP Internal Security Division, Palace Road)",
+      minimumWageAuthority: "Labour Department Karnataka (Zone 1 Devanahalli / Zone 2 Hoskote & Narasapura Schedules)",
+      clraRequirements: "Mandatory Form V principal employer issuance, computerized wage registers, and digital ECRs.",
+      keyRegulations: [
+        "AS9100 / ISO 27001 Physical Security & Cleanroom Hygiene Standards",
+        "Karnataka Factories Rules, 1969 & Hazardous Process Disclosure (Sec 41B)",
+        "Bharatiya Nyaya Sanhita, 2023 — Section 303 & Section 112 Cargo Theft Suppression",
+        "Karnataka Labour Welfare Fund (KLWF) Remittance",
+      ],
+      statutoryAssurance:
+        "100% background-verified staff with police clearance, digital attendance, and comprehensive Workmen Compensation / ESIC coverage protecting enterprise occupiers.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Aerospace Cleanroom Janitorial & Facility Management",
+        description:
+          "ISO Class 7 and Class 8 cleanroom sanitization, anti-static ESD floor care, Diversey-certified chemical protocols, and BMS technician support.",
+      },
+      {
+        title: "Automotive OEM Assembly Line Workforce",
+        description:
+          "Turnkey deployment of assembly helpers, CNC operators, quality sorters, and high-voltage maintenance electricians across Hoskote and Narasapura.",
+      },
+      {
+        title: "Airport-Adjacent High Security & Air Cargo Escorts",
+        description:
+          "Armed sentries, biometric turnstile integration, bonded cargo transit escorts, and 24x7 control room CCTV monitoring.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "2 Hours (Immediate response across Devanahalli, Hoskote & Narasapura)",
+      benchStrength: "600+ Screened Industrial Technicians & Security Officers",
+      supervisoryRatio: "1:8 Dedicated Field Officer Ratio",
+      patrolTechnology: "Automated ANPR Boom Barriers & Real-Time GPS Guard Tour Tracking",
+    },
+    faqs: [
+      {
+        question: "Do you provide cleanroom janitorial services for aerospace facilities in Devanahalli?",
+        answer:
+          "Yes. ACS supplies trained cleanroom housekeeping personnel certified in particle-control protocols, lint-free wiping procedures, ESD grounding, and hospital/aviation-grade disinfectant standards.",
+      },
+      {
+        question: "Can ACS handle assembly workforce scaling for automotive OEMs in Narasapura?",
+        answer:
+          "Yes. ACS has mobilised 100 to 500+ semi-skilled assembly helpers, material handlers, and packaging associates within 48 to 72 hours for automotive plants in Narasapura and Hoskote.",
+      },
+    ],
+  },
+  {
+    slug: "mysuru-bidadi-auto-precision-corridor",
+    name: "Mysuru – Bidadi Automotive & Precision Engineering Corridor (NH-275)",
+    tagline: "10-Lane Expressway Auto Cluster, JIT Dock Labor & Biopharma Facility Support",
+    state: "Karnataka",
+    region: "Southern Karnataka (Bengaluru-Mysuru Expressway)",
+    heroHeadline: "Just-In-Time Assembly Helpers, Wastewater STP/ETP Techs & Plant Security for Bidadi & Mysuru",
+    description:
+      "Advance Corporate Security operates as an Integrated Industrial Workforce & Facility Partner along the 10-lane expressway, providing Toyota-ecosystem dock labor, biopharma ETP operators, and PSARA security from Bidadi to Nanjangud.",
+    strategicImportance:
+      "Home to Toyota Kirloskar Motor (TKM), Bosch, Coca-Cola, specialty plastics in Harohalli, and large pharmaceutical formulation plants in Nanjangud (Jubilant, Nestlé), connected by the high-speed NH-275 expressway.",
+    keyIndustrialZones: [
+      {
+        name: "Bidadi Industrial Area (Phases 1 & 2)",
+        focus: "Automotive OEMs (Toyota), Powertrains, Stamping, Auto Electronics, Beverages (1,410 Acres)",
+        location: "Bengaluru-Mysuru Expressway (NH-275), Ramanagara",
+      },
+      {
+        name: "Harohalli Industrial Area (Phases 1–5)",
+        focus: "Polymers, Rubber Molding, Electrical Equipment & Packaging (3,500 Acres)",
+        location: "Kanakapura Road (NH-948)",
+      },
+      {
+        name: "Hebbal & Koorgalli Industrial Areas (Mysuru)",
+        focus: "Precision Automotive Components, Pharmaceuticals, Optics & IT SEZ",
+        location: "Mysuru Ring Road Industrial Belt",
+      },
+      {
+        name: "Nanjangud Industrial Area",
+        focus: "Bulk Drug APIs, Formulations, FMCG Bottling & Specialty Chemicals",
+        location: "Mysuru-Ooty Highway (NH-766)",
+      },
+    ],
+    targetSectors: [
+      "Automotive OEMs, Powertrains & Press Stamping",
+      "Polymers, Rubber Injection Molding & Packaging Materials",
+      "Pharmaceutical Bulk Drugs, APIs & Formulations",
+      "Precision Optics, Heavy Hydraulics & Electrical Machinery",
+      "FMCG Beverage Bottling & Food Processing Plants",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Karnataka Private Security Agencies Rules, 2008 (Ramanagara / Mysuru Police Commissionerate)",
+      minimumWageAuthority: "Labour Department Karnataka (Zone 2 Mysuru & Ramanagara Municipal Schedules)",
+      clraRequirements: "Complete CLRA contractor licensing with Form V principal validation and digital muster rolls.",
+      keyRegulations: [
+        "Karnataka Factories Rules, 1969 — Rule 88 (Safety Committee) & Rule 91 (Safety Officers)",
+        "Karnataka State Pollution Control Board (KSPCB) Environmental Operator Standards",
+        "Payment of Wages Act — Mandatory 7th-of-the-Month Direct Bank Credit",
+        "Karnataka Labour Welfare Fund (KLWF) Remittance",
+      ],
+      statutoryAssurance:
+        "Zero liability for plant directors through monthly delivery of bank transfer receipts, EPF ECRs, and comprehensive Workmen Compensation insurance policies.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Just-In-Time (JIT) Automotive Dock Staffing",
+        description:
+          "Synchronized dock loading/unloading gangs, sequencing helpers, and forklift drivers trained to maintain zero buffer-stock delays for Toyota suppliers.",
+      },
+      {
+        title: "Wastewater STP, WTP & ETP Plant Operations",
+        description:
+          "Certified environmental technicians managing chemical dosing, clarifiers, filter press dewatering, and KSPCB log compliance for biopharma units in Nanjangud.",
+      },
+      {
+        title: "Factory Perimeter Guarding & Emergency QRT",
+        description:
+          "PSARA-licensed security guards, fire safety wardens, vehicle inspection mirrors, and quick reaction motorized patrols along the expressway.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "3 Hours (Rapid deployment across Bidadi, Harohalli & Mysuru)",
+      benchStrength: "500+ Industrial Associates & Security Personnel on Standby",
+      supervisoryRatio: "1:8 Field Officer Ratio with Centralized Operations Desk",
+      patrolTechnology: "Biometric Gate Turnstiles & GPS Geofenced Patrol Logging",
+    },
+    faqs: [
+      {
+        question: "Can ACS provide ETP and STP operators for pharmaceutical factories in Nanjangud?",
+        answer:
+          "Yes. ACS provides trained, certified wastewater operators for industrial Effluent Treatment Plants (ETP) and Sewage Treatment Plants (STP), ensuring continuous biological monitoring, chemical dosing, and compliance with KSPCB discharge standards.",
+      },
+      {
+        question: "How fast can ACS scale blue-collar manpower for automotive suppliers in Bidadi?",
+        answer:
+          "With our regional command hub in Bidadi, ACS deploys 50 to 200+ trained assembly helpers, material handlers, and press operators within 24 to 48 hours, fully covered under statutory EPF, ESIC, and safety PPE.",
+      },
+    ],
+  },
+  {
+    slug: "bmic-dharwad-belagavi-economic-node",
+    name: "Bengaluru–Mumbai Industrial Corridor (BMIC) Dharwad Anchor Node (NH-48)",
+    tagline: "Commercial Vehicles, Foundries & Precision Hydraulics Industrial Workforce",
+    state: "Karnataka",
+    region: "North Karnataka (Hubballi-Dharwad & Belagavi)",
+    heroHeadline: "Bulk Blue-Collar Factory Labor, Riggers & Industrial Guarding for Dharwad & Belagavi Foundries",
+    description:
+      "Advance Corporate Security operates as an Integrated B2B Workforce Partner across North Karnataka, supplying commercial vehicle assembly helpers, foundry molders, heavy machinery riggers, and PSARA security across the 6,042-acre BMIC Dharwad node.",
+    strategicImportance:
+      "A flagship national manufacturing hub under the Bengaluru-Mumbai Industrial Corridor (NICDC/KIADB). Anchored by Tata Motors Commercial Vehicles, Marcopolo bus body building, precision foundries in Belagavi, and multi-modal freight logistics.",
+    keyIndustrialZones: [
+      {
+        name: "Belur & Mummigatti Industrial Area (Dharwad BMIC Node)",
+        focus: "Commercial Vehicles (Tata Motors), Heavy Engineering, Consumer Durables (6,042 Acres)",
+        location: "NH-48 / Hubballi-Dharwad Twin Cities",
+      },
+      {
+        name: "Belagavi Foundry & Precision Engineering Cluster",
+        focus: "Cast Iron Foundries, Hydraulic Cylinders, Machining, Aerospace Forgings",
+        location: "Machhe & Udyambag Industrial Estates, Belagavi",
+      },
+      {
+        name: "Tarihal & Rayapur Industrial Estates",
+        focus: "MSME Fabrication, Food Processing, Agricultural Machinery",
+        location: "Hubballi Urban Industrial Belt",
+      },
+      {
+        name: "Davangere Industrial Estate",
+        focus: "Textiles, Agro-Processing, Light Engineering Units",
+        location: "NH-48 Central Axis",
+      },
+    ],
+    targetSectors: [
+      "Commercial Vehicle & Automotive Bus Body Assembly",
+      "Cast Iron Foundries, Heavy Forging & Metallurgy",
+      "Precision Hydraulic Cylinders & Valves Manufacturing",
+      "Multi-Modal Logistics Parks & Freight Terminals",
+      "Agro-Machinery & Textile Manufacturing",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Karnataka Private Security Agencies Rules, 2008 (Hubballi-Dharwad Police Commissionerate)",
+      minimumWageAuthority: "Labour Department Karnataka (Zone 2 Municipal Corporation Schedules)",
+      clraRequirements: "Comprehensive CLRA contractor licensing with Form V principal validation.",
+      keyRegulations: [
+        "Karnataka Factories Rules, 1969 — Foundry & High-Heat Metallurgy Safety EHS",
+        "Industrial Employment (Standing Orders) Rules",
+        "Bharatiya Nyaya Sanhita, 2023 — Section 303 Scrap Anti-Pilferage Enforcement",
+        "Karnataka Labour Welfare Fund (KLWF) Remittance",
+      ],
+      statutoryAssurance:
+        "100% statutory transparency backed by direct bank salary credits, EPF ECRs, ESIC challans, and full occupier legal indemnity.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Heavy Foundry & Commercial Vehicle Blue-Collar Labor",
+        description:
+          "Screened foundry molders, coremakers, robotic welding helpers, and chassis assembly line workers equipped with heavy-duty PPE.",
+      },
+      {
+        title: "Heavy Machinery Rigging & Equipment Relocation",
+        description:
+          "Certified riggers, crane operators, and hydraulic jack crews executing safe machinery positioning, press dismantling, and line re-erection.",
+      },
+      {
+        title: "Industrial Perimeter Guarding & Weighbridge Security",
+        description:
+          "PSARA-licensed guards, material gate pass verification, weighbridge anti-pilferage sentries, and 24x7 roving motorized patrols.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "3 Hours (Rapid deployment across Belur, Mummigatti & Belagavi)",
+      benchStrength: "450+ Skilled Industrial Laborers & Security Personnel",
+      supervisoryRatio: "1:8 Supervisory Ratio",
+      patrolTechnology: "RFID Guard Tour System & High-Definition CCTV Gate Logging",
+    },
+    faqs: [
+      {
+        question: "Do you supply foundry helpers and furnace laborers in Belagavi?",
+        answer:
+          "Yes. ACS provides screened, medically fit foundry workers, molders, fettling helpers, and furnace crews trained in high-heat PPE, molten metal safety, and continuous EHS protocols across Belagavi industrial estates.",
+      },
+      {
+        question: "Can ACS handle heavy machinery rigging in Dharwad BMIC node?",
+        answer:
+          "Yes. Our specialized rigging division executes turnkey factory machine positioning, CNC lathe leveling, and heavy hydraulic press relocation with certified rigging foremen, crane operators, and load-tested slings.",
+      },
+    ],
+  },
+  {
+    slug: "ballari-chitradurga-steel-minerals-belt",
+    name: "Ballari – Chitradurga Steel, Metallurgy & Mineral Belt (NH-67 / NH-50)",
+    tagline: "Extreme-Environment Integrated Steel Guarding & Rail-Rake Loading Gangs",
+    state: "Karnataka",
+    region: "Central & Northern Mining Corridor",
+    heroHeadline: "High-Temperature Metallurgy Workforce, Weighbridge Audit & Security for Toranagallu JSW & Ballari",
+    description:
+      "Advance Corporate Security is an Integrated Industrial Workforce Partner across Karnataka mineral belt, supplying high-temperature blast furnace helpers, rail-rake loading gangs, weighbridge security, and scrap anti-pilferage sentries in Ballari.",
+    strategicImportance:
+      "Home to JSW Steel Toranagallu complex (one of the world largest integrated steel plants at 12+ MTPA), major sponge iron clusters, iron ore handling rail yards, and heavy cement manufacturing along NH-67 and NH-50.",
+    keyIndustrialZones: [
+      {
+        name: "Toranagallu JSW Integrated Steel Complex",
+        focus: "Integrated Steel (12+ MTPA), Blast Furnaces, Hot Strip Mills, Pellet Plants",
+        location: "NH-67 between Ballari and Hosapete",
+      },
+      {
+        name: "Ballari Industrial Area & Sponge Iron Belt",
+        focus: "Sponge Iron Plants, Induction Furnaces, Steel Rolling Mills, Mining Equipment",
+        location: "Ballari Urban & Rural Belt",
+      },
+      {
+        name: "Hosapete Freight & Mineral Yard Axis",
+        focus: "Railway Freight Sidings, Iron Ore Beneficiation, Mineral Logistics",
+        location: "Vijayanagara District Corridor",
+      },
+      {
+        name: "Chitradurga Mining & Cement Cluster",
+        focus: "Cement Plants, Mining Machinery, Renewable Energy Equipment",
+        location: "NH-48 / NH-50 Junction",
+      },
+    ],
+    targetSectors: [
+      "Integrated Steel Manufacturing & Continuous Casting",
+      "Sponge Iron, Direct Reduced Iron (DRI) & Pelletization",
+      "Railway Rake Bulk Freight Loading & Unloading",
+      "Heavy Mining Equipment Maintenance & Transport",
+      "Cement Manufacturing & Mineral Extraction",
+    ],
+    stateComplianceFramework: {
+      psaraRule: "Karnataka Private Security Agencies Rules, 2008 (Ballari / Vijayanagara District Police)",
+      minimumWageAuthority: "Labour Department Karnataka (Zone 2 District Headquarters / Metallurgy Schedules)",
+      clraRequirements: "Mandatory Form V principal issuance, computerized wage slips, and ESI/WC coverage.",
+      keyRegulations: [
+        "The Mines Act, 1952 & Factories Act, 1948 High-Temperature Safety Protocols",
+        "Central Motor Vehicles Act (Overloading & Mineral Transport Surveillance)",
+        "Bharatiya Nyaya Sanhita, 2023 — Section 303 Scrap Metal Theft Suppression",
+        "Karnataka Labour Welfare Fund (KLWF) Remittance",
+      ],
+      statutoryAssurance:
+        "100% legal compliance with documented safety inductions, high-heat PPE supply, and zero-default payroll management protecting plant management.",
+    },
+    operationalCapabilities: [
+      {
+        title: "Extreme-Environment Steel & Furnace Labor",
+        description:
+          "Provision of furnace helpers, tundish preparers, slag rakers, and billet handling crews with mandatory high-heat aluminized PPE.",
+      },
+      {
+        title: "Rail-Rake Bulk Loading & Unloading Gangs",
+        description:
+          "24x7 heavy cargo labor gangs for box-wagon iron ore destuffing, coal unloading, and finished steel coil lashing onto freight rakes.",
+      },
+      {
+        title: "Weighbridge Integrity & Scrap Anti-Pilferage Sentries",
+        description:
+          "Randomized tare weighbridge checks, CCTV monitoring of scrap dumping bays, under-vehicle scanning, and anti-shrinkage patrols.",
+      },
+    ],
+    deploymentMetrics: {
+      turnaroundHours: "4 Hours (Emergency deployment across Toranagallu, Ballari & Hosapete)",
+      benchStrength: "400+ Metallurgy Laborers & Armed Industrial Sentries",
+      supervisoryRatio: "1:8 Dedicated Field Officer Ratio",
+      patrolTechnology: "Long-Range Thermal Cameras & Geofenced Sentry Checkpoints",
+    },
+    faqs: [
+      {
+        question: "How does ACS prevent scrap metal theft in integrated steel plants in Ballari?",
+        answer:
+          "ACS enforces a strict multi-tier anti-shrinkage protocol: dual-scale gross and tare weighbridge cross-verification, magnetic scanning at egress gates, undercover scrap yard audit sentries, and legal coordination with local police under BNS Section 303.",
+      },
+      {
+        question: "Do you provide high-temperature PPE trained labor for induction furnaces?",
+        answer:
+          "Yes. All workforce personnel assigned to blast furnaces and rolling mills in Ballari and Toranagallu are certified in heat exhaustion prevention, wear mandatory Kevlar/aluminized protective gear, and undergo daily EHS tool-box talks.",
+      },
+    ],
+  },
+];
+
+
+export const ALL_CORRIDORS: CorridorData[] = [
+  ...EASTERN_CORRIDORS,
+  ...MAHARASHTRA_CORRIDORS,
+  ...KARNATAKA_CORRIDORS,
+];
+
+export const CORRIDORS = ALL_CORRIDORS;
 
 export function getAllCorridors(): CorridorData[] {
-  return EASTERN_CORRIDORS;
+  return ALL_CORRIDORS;
 }
 
 export function getCorridorBySlug(slug: string): CorridorData | undefined {
-  return EASTERN_CORRIDORS.find((c) => c.slug === slug);
+  return ALL_CORRIDORS.find((c) => c.slug === slug);
 }

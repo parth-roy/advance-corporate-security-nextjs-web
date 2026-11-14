@@ -833,6 +833,96 @@ export default function ProcurementCenterPage() {
                 </Link>
               </div>
             </div>
+
+            {/* Guide 7: West Bengal Minimum Wages Schedule */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-emerald-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <FileSpreadsheet size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">
+                    WB Statutory Gazette
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  West Bengal Minimum Wages (Zone A &amp; B)
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Labour Commissionerate semi-annual VDA circulars, Zone A municipal vs Zone B rural schedules, EPF 13%, ESIC 3.25%, and WB LWF compliance rules.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">Zone A &amp; B Calculator</span>
+                <Link
+                  href="/procurement/security-minimum-wages-west-bengal"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 hover:text-emerald-950 group"
+                >
+                  <span>View Rates</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Guide 8: Maharashtra Minimum Wages & Mathadi Compliance */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-sky-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-sky-50 text-sky-700 border border-sky-200">
+                    <FileSpreadsheet size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-sky-800 uppercase tracking-wider">
+                    MH Statutory Gazette
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  Maharashtra Minimum Wages &amp; Mathadi Act
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Shops &amp; Engineering industry statutory schedules (Zone I, II &amp; III), MLWF ₹25/₹75 remittance, and Mathadi Act Section 5/22 mechanized loading exemptions.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">Zone I, II &amp; III Calculator</span>
+                <Link
+                  href="/procurement/security-minimum-wages-maharashtra"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-sky-800 hover:text-sky-950 group"
+                >
+                  <span>View Rates</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Guide 9: Karnataka Unified Minimum Wages */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="p-2 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200">
+                    <FileSpreadsheet size={20} />
+                  </span>
+                  <span className="text-[11px] font-bold text-indigo-800 uppercase tracking-wider">
+                    KA Unified Gazette
+                  </span>
+                </div>
+                <h3 className="font-roboto font-bold text-navy text-base sm:text-lg mb-2">
+                  Karnataka Minimum Wages (Notification KAE 411)
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  Consolidated Notification No. KAE 411 LWA 2023 for Zone 1, 2, and 3, VDA ground truth, KLWF ₹50/₹100, and Peenya/KIADB single-window compliance.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500">Zone 1, 2 &amp; 3 Calculator</span>
+                <Link
+                  href="/procurement/security-minimum-wages-karnataka"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-indigo-800 hover:text-indigo-950 group"
+                >
+                  <span>View Rates</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

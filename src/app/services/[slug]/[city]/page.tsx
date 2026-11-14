@@ -14,11 +14,19 @@ import { ACS_SERVICES, getServiceBySlug } from "@/lib/services";
 import { ACS_CITIES, getCityBySlug } from "@/lib/cities";
 import { ACS_INDUSTRIES } from "@/lib/industries";
 import { generateServiceCityFaqs, getLocalDeploymentZones } from "@/lib/locationFaqHelper";
-import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, buildWBServiceAreaSchema, buildWBIndustrialHubSchema, buildBlueCollarServiceSchema, serializeJsonLd } from "@/lib/schema";
+import { buildFaqSchema, buildBreadcrumbSchema, buildServiceSchema, buildCityLocalBusinessSchema, buildWBServiceAreaSchema, buildWBIndustrialHubSchema, buildMHServiceAreaSchema, buildMHIndustrialHubSchema, buildKAServiceAreaSchema, buildKAIndustrialHubSchema, buildBlueCollarServiceSchema, serializeJsonLd } from "@/lib/schema";
 import { getWBHubsForCity, getWBWageZone } from "@/lib/wb-industrial-hubs";
 import { getWBLocationProfile } from "@/lib/data/wb-zone-dictionary";
 import { getWBMonthlyWage, WB_CURRENT_PERIOD } from "@/lib/wb-wages";
 import { isWBCityIndexable } from "@/lib/wb-content-quality";
+import { getMHHubsForCity, getMHWageZone } from "@/lib/mh-industrial-hubs";
+import { getMHLocationProfile } from "@/lib/data/mh-zone-dictionary";
+import { getMHMonthlyWage, MH_CURRENT_PERIOD } from "@/lib/mh-wages";
+import { isMHCityIndexable } from "@/lib/mh-content-quality";
+import { getKAHubsForCity, getKAWageZone } from "@/lib/ka-industrial-hubs";
+import { getKALocationProfile } from "@/lib/data/ka-zone-dictionary";
+import { getKAMonthlyWage, KA_CURRENT_PERIOD } from "@/lib/ka-wages";
+import { isKACityIndexable } from "@/lib/ka-content-quality";
 import CityMap from "@/components/common/CityMap";
 import ClientMarquee from "@/components/common/ClientMarquee";
 import EvidenceTrustEngine from "@/components/common/EvidenceTrustEngine";
@@ -76,9 +84,14 @@ export async function generateMetadata({
   const url = `${siteConfig.url}/services/${slug}/${citySlug}`;
 
 
-  // West Bengal enrichment: wage zone signal in meta for B2B CTR lift
+  // State detection & statutory wage signals for B2B CTR lift
   const isWestBengal = cityObj.state === "West Bengal";
+  const isMaharashtra = cityObj.state === "Maharashtra";
+  const isKarnataka = cityObj.state === "Karnataka";
+
   const wbWageZone = isWestBengal ? getWBWageZone(citySlug) : null;
+  const mhWageZone = isMaharashtra ? getMHWageZone(citySlug) : null;
+  const kaWageZone = isKarnataka ? getKAWageZone(citySlug) : null;
 
   const baseKeywords = service.keywords
     ? service.keywords.map((k) => k.replace(/\[City\]/g, cityName))
@@ -107,25 +120,88 @@ export async function generateMetadata({
       ].filter(Boolean)
     : [];
 
-  const keywords = [...baseKeywords, ...wbKeywords];
+  const mhKeywords = isMaharashtra
+    ? [
+        `${service.name} in ${cityName} Maharashtra`,
+        `bulk ${service.shortName.toLowerCase()} contractor ${cityName}`,
+        `CLRA EPF ESIC manpower agency ${cityName}`,
+        `security agency in ${cityName} Maharashtra`,
+        `housekeeping services ${cityName} MIDC`,
+        `manpower supply ${cityName} Maharashtra`,
+        `PSARA licensed security company Maharashtra`,
+        `contract labour ${cityName} Maharashtra minimum wages`,
+        mhWageZone ? `Maharashtra Zone ${mhWageZone} minimum wage compliance ${cityName}` : "",
+        `Mathadi dispute-free loading labour ${cityName}`,
+        `MIDC industrial workforce supplier ${cityName}`,
+        `facility management company ${cityName} Maharashtra`,
+      ].filter(Boolean)
+    : [];
+
+  const kaKeywords = isKarnataka
+    ? [
+        `${service.name} in ${cityName} Karnataka`,
+        `bulk ${service.shortName.toLowerCase()} contractor ${cityName}`,
+        `CLRA EPF ESIC manpower agency ${cityName}`,
+        `security agency in ${cityName} Karnataka`,
+        `housekeeping services ${cityName} KIADB`,
+        `manpower supply ${cityName} Karnataka`,
+        `PSARA licensed security company Karnataka`,
+        `contract labour ${cityName} Karnataka minimum wages`,
+        kaWageZone ? `Karnataka Zone ${kaWageZone} minimum wage compliance ${cityName}` : "",
+        `Peenya union-mitigated contract labour ${cityName}`,
+        `KIADB industrial workforce supplier ${cityName}`,
+        `facility management company ${cityName} Karnataka`,
+      ].filter(Boolean)
+    : [];
+
+  const keywords = [...baseKeywords, ...wbKeywords, ...mhKeywords, ...kaKeywords];
 
   const wbProfile = isWestBengal ? getWBLocationProfile(citySlug) : null;
   const wbUnskilledWage = isWestBengal && wbWageZone
     ? getWBMonthlyWage(wbWageZone, "unskilled").toLocaleString("en-IN")
     : null;
 
-  const description = isWestBengal && wbWageZone
-    ? (service.metaDescTemplate
-        ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
-        : `Hire ${service.name.toLowerCase()} in ${cityName}, ${wbProfile?.district || "West Bengal"} — 100% WB Zone ${wbWageZone} (₹${wbUnskilledWage ?? "10,558"}+/mo), EPF 13%, ESIC 3.25% & LWF compliant. ${wbProfile?.deploymentSlaHours ?? 24}-hr mobilization from ${wbProfile?.nearestCommandHQ || "Kolkata HQ"}. Get a B2B quote.`)
-    : (service.metaDescTemplate
-        ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
-        : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Security (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`);
+  const mhProfile = isMaharashtra ? getMHLocationProfile(citySlug) : null;
+  const mhUnskilledWage = isMaharashtra && mhWageZone
+    ? getMHMonthlyWage(mhWageZone, "unskilled", "shopsAndCommercial").toLocaleString("en-IN")
+    : null;
 
-  // Layer 4 Anti-Scaled-Content Quality Gate:
-  // Index verified West Bengal hubs with mapped estates & local corridors;
-  // serve `noindex, follow` on peripheral Tier-3 pockets while keeping UX live.
-  const shouldIndex = isWestBengal ? isWBCityIndexable(citySlug) : true;
+  const kaProfile = isKarnataka ? getKALocationProfile(citySlug) : null;
+  const kaUnskilledWage = isKarnataka && kaWageZone
+    ? getKAMonthlyWage(kaWageZone, "unskilled").toLocaleString("en-IN")
+    : null;
+
+  let description: string;
+  if (isWestBengal && wbWageZone) {
+    description = service.metaDescTemplate
+      ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
+      : `Hire ${service.name.toLowerCase()} in ${cityName}, ${wbProfile?.district || "West Bengal"} — 100% WB Zone ${wbWageZone} (₹${wbUnskilledWage ?? "10,558"}+/mo), EPF 13%, ESIC 3.25% & LWF compliant. ${wbProfile?.deploymentSlaHours ?? 24}-hr mobilization from ${wbProfile?.nearestCommandHQ || "Kolkata HQ"}. Get a B2B quote.`;
+  } else if (isMaharashtra && mhWageZone) {
+    description = service.metaDescTemplate
+      ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
+      : `Hire ${service.name.toLowerCase()} in ${cityName}, ${mhProfile?.district || "Maharashtra"} — 100% MH Zone ${mhWageZone} (₹${mhUnskilledWage ?? "14,155"}+/mo), EPF 13%, ESIC 3.25%, MLWF & Mathadi Section 5 compliant. ${mhProfile?.deploymentSlaHours ?? 24}-hr mobilization from ${mhProfile?.nearestCommandHQ || "Mumbai/Pune HQ"}. Get a B2B quote.`;
+  } else if (isKarnataka && kaWageZone) {
+    description = service.metaDescTemplate
+      ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
+      : `Hire ${service.name.toLowerCase()} in ${cityName}, ${kaProfile?.district || "Karnataka"} — 100% KA Zone ${kaWageZone} (₹${kaUnskilledWage ?? "16,774"}+/mo), EPF 13%, ESIC 3.25%, KLWF & KIADB compliant. ${kaProfile?.deploymentSlaHours ?? 24}-hr mobilization from ${kaProfile?.nearestCommandHQ || "Bengaluru HQ"}. Get a B2B quote.`;
+  } else {
+    description = service.metaDescTemplate
+      ? service.metaDescTemplate.replace(/\[City\]/g, cityName)
+      : `Looking for professional ${service.name.toLowerCase()} in ${cityName}, ${state}? Advance Corporate Security (ACS) provides PSARA-licensed, ISO 9001:2015 certified 24×7 workforce solutions. 25+ years experience. Get a free quote.`;
+  }
+
+  // Layer 4 Anti-Scaled-Content Quality Gate across WB, MH, KA:
+  // Index verified industrial hubs with mapped estates & local corridors;
+  // serve `noindex, follow` on peripheral Tier-3 commuter pockets to protect crawl equity.
+  let shouldIndex = true;
+  if (isWestBengal) {
+    shouldIndex = isWBCityIndexable(citySlug);
+  } else if (isMaharashtra) {
+    shouldIndex = isMHCityIndexable(citySlug);
+  } else if (isKarnataka) {
+    shouldIndex = isKACityIndexable(citySlug);
+  }
+
   const robotsMeta: Metadata['robots'] = {
     index: shouldIndex,
     follow: true,
@@ -170,11 +246,22 @@ export default async function ServiceCityPage({
   const { name: cityName, state, stateSlug } = cityObj;
   const pageUrl = `${siteConfig.url}/services/${slug}/${citySlug}`;
 
-  // West Bengal enrichment: industrial hubs + wage zone + district DLC/SLA profile
+  // State-specific enrichment: industrial hubs + wage zone + district DLC/SLA profile
   const isWestBengal = state === "West Bengal";
+  const isMaharashtra = state === "Maharashtra";
+  const isKarnataka = state === "Karnataka";
+
   const wbHubs = isWestBengal ? getWBHubsForCity(citySlug) : [];
   const wbWageZone = isWestBengal ? getWBWageZone(citySlug) : null;
   const wbProfile = isWestBengal ? getWBLocationProfile(citySlug) : null;
+
+  const mhHubs = isMaharashtra ? getMHHubsForCity(citySlug) : [];
+  const mhWageZone = isMaharashtra ? getMHWageZone(citySlug) : null;
+  const mhProfile = isMaharashtra ? getMHLocationProfile(citySlug) : null;
+
+  const kaHubs = isKarnataka ? getKAHubsForCity(citySlug) : [];
+  const kaWageZone = isKarnataka ? getKAWageZone(citySlug) : null;
+  const kaProfile = isKarnataka ? getKALocationProfile(citySlug) : null;
 
   const h1 = service.h1Template
     ? service.h1Template.replace(/\[City\]/g, cityName)
@@ -232,7 +319,7 @@ export default async function ServiceCityPage({
   // Other related services
   const relatedServices = ACS_SERVICES.filter((s) => s.slug !== service.slug).slice(0, 4);
 
-  // West Bengal — advanced SAB-model & Blue-Collar Contracting schemas
+  // State-specific SAB-model & industrial hub schemas
   const wbServiceAreaSchema = isWestBengal
     ? buildWBServiceAreaSchema({
         cityName,
@@ -245,6 +332,34 @@ export default async function ServiceCityPage({
     : null;
   const wbHubSchema = isWestBengal && wbHubs.length > 0
     ? buildWBIndustrialHubSchema(wbHubs)
+    : null;
+
+  const mhServiceAreaSchema = isMaharashtra
+    ? buildMHServiceAreaSchema({
+        cityName,
+        stateName: state,
+        citySlug,
+        serviceName: service.name,
+        serviceSlug: slug,
+        wageZone: mhWageZone ?? undefined,
+      })
+    : null;
+  const mhHubSchema = isMaharashtra && mhHubs.length > 0
+    ? buildMHIndustrialHubSchema(mhHubs)
+    : null;
+
+  const kaServiceAreaSchema = isKarnataka
+    ? buildKAServiceAreaSchema({
+        cityName,
+        stateName: state,
+        citySlug,
+        serviceName: service.name,
+        serviceSlug: slug,
+        wageZone: kaWageZone ?? undefined,
+      })
+    : null;
+  const kaHubSchema = isKarnataka && kaHubs.length > 0
+    ? buildKAIndustrialHubSchema(kaHubs)
     : null;
 
   const isBlueCollarTrade = service.category === "manpower" || [
@@ -274,7 +389,7 @@ export default async function ServiceCityPage({
         citySlug,
         occupationalCategory: service.category === "facility" ? "Technical MEP & Facility Maintenance Trades" : "Bulk Blue-Collar & Industrial Manpower",
         skillTier: skillTierForService,
-        wageZone: wbWageZone ?? "A",
+        wageZone: isWestBengal ? (wbWageZone ?? "A") : isMaharashtra ? (mhWageZone ?? "I") : isKarnataka ? String(kaWageZone ?? 1) : "A",
       })
     : null;
 
@@ -284,9 +399,13 @@ export default async function ServiceCityPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(localBusinessSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />}
-      {/* WB-only: SAB service area + industrial hub + blue-collar statutory wage signals */}
+      {/* State-specific SAB service area + industrial hub + blue-collar statutory wage signals */}
       {wbServiceAreaSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(wbServiceAreaSchema) }} />}
       {wbHubSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(wbHubSchema) }} />}
+      {mhServiceAreaSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(mhServiceAreaSchema) }} />}
+      {mhHubSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(mhHubSchema) }} />}
+      {kaServiceAreaSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(kaServiceAreaSchema) }} />}
+      {kaHubSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(kaHubSchema) }} />}
       {blueCollarSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(blueCollarSchema) }} />}
 
       {/* ── HERO BANNER — Authoritative B2B Enterprise Header ── */}
@@ -453,6 +572,96 @@ export default async function ServiceCityPage({
                 {wbProfile && (
                   <p className="text-slate-500">
                     🏛️ Jurisdiction: <strong>{wbProfile.policeJurisdiction}</strong> | ⚖️ Labour Office: <strong>{wbProfile.labourDepartmentOffice}</strong> | ⚡ Mobilization SLA: <strong>{wbProfile.deploymentSlaHours} hrs</strong> from <strong>{wbProfile.nearestCommandHQ}</strong>.
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ── MH INDUSTRIAL CORRIDORS (Maharashtra only — Anti-Doorway Enrichment) ── */}
+      {isMaharashtra && mhHubs.length > 0 && (
+        <section className="py-6 bg-gradient-to-r from-[#f0f7ff] to-[#f8fafc] border-b border-sky-100" aria-label="Maharashtra MIDC industrial deployment corridors">
+          <div className="container-acs">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-sky text-base">🏭</span>
+              <p className="text-xs font-bold text-navy uppercase tracking-wider font-roboto">
+                ACS {service.shortName} — Active Deployment in {cityName} MIDC Industrial Corridors
+              </p>
+              <span className="ml-auto text-[10px] text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full font-semibold shrink-0">Maharashtra MIDC &amp; PSARA Belt</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {mhHubs.map((hub) => (
+                <div key={hub.name} className="bg-white rounded-xl p-3.5 border border-sky-100 shadow-2xs hover:border-sky-300 transition-all">
+                  <div className="flex items-start justify-between gap-1 mb-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">{hub.type}</span>
+                    <span className="text-[10px] text-slate-400 font-medium shrink-0">📍 {hub.district} (Grp {hub.midcGroup})</span>
+                  </div>
+                  <h3 className="font-roboto font-bold text-navy text-xs leading-snug">{hub.name}</h3>
+                  <p className="text-slate-500 text-[11px] mt-1">
+                    24×7 statutory-compliant {service.shortName.toLowerCase()} coverage available
+                    {mhWageZone && <> — MH Zone <strong>{mhWageZone}</strong> wages</>}.
+                  </p>
+                </div>
+              ))}
+            </div>
+            {mhWageZone && (
+              <div className="mt-3 border-t border-sky-100 pt-2.5 space-y-1.5 text-[11px] text-slate-600">
+                <p>
+                  ✅ All ACS personnel deployed in <strong>{cityName} ({mhProfile?.district || "Maharashtra"})</strong> adhere to the <strong>Maharashtra Minimum Wages Act — Zone {mhWageZone}</strong> ({MH_CURRENT_PERIOD}): Commercial/Shops Unskilled <strong>₹{getMHMonthlyWage(mhWageZone, "unskilled", "shopsAndCommercial").toLocaleString("en-IN")}/mo</strong> (Skilled <strong>₹{getMHMonthlyWage(mhWageZone, "skilled", "shopsAndCommercial").toLocaleString("en-IN")}/mo</strong>) | Engineering Industry Unskilled <strong>₹{getMHMonthlyWage(mhWageZone, "unskilled", "engineering").toLocaleString("en-IN")}/mo</strong> (Skilled <strong>₹{getMHMonthlyWage(mhWageZone, "skilled", "engineering").toLocaleString("en-IN")}/mo</strong>), plus 13% EPF, 3.25% ESIC, 8.33% Bonus, 4.81% Gratuity &amp; MLWF (₹25/₹75).
+                </p>
+                <p className="text-slate-600">
+                  ⚖️ <strong>Mathadi Act Exemption:</strong> ACS mechanized warehouse material handling (reach trucks, forklifts, powered pallet trucks) operates with verified Section 5 &amp; 22 exemption, ensuring zero toli friction or unauthorized levies in MIDC clusters.
+                </p>
+                {mhProfile && (
+                  <p className="text-slate-500">
+                    🏛️ Jurisdiction: <strong>{mhProfile.policeJurisdiction}</strong> | ⚖️ Labour Office: <strong>{mhProfile.labourDepartmentOffice}</strong> | ⚡ Mobilization SLA: <strong>{mhProfile.deploymentSlaHours} hrs</strong> from <strong>{mhProfile.nearestCommandHQ}</strong>.
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ── KA INDUSTRIAL CORRIDORS (Karnataka only — Anti-Doorway Enrichment) ── */}
+      {isKarnataka && kaHubs.length > 0 && (
+        <section className="py-6 bg-gradient-to-r from-[#f0f7ff] to-[#f8fafc] border-b border-sky-100" aria-label="Karnataka KIADB industrial deployment corridors">
+          <div className="container-acs">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-sky text-base">🏭</span>
+              <p className="text-xs font-bold text-navy uppercase tracking-wider font-roboto">
+                ACS {service.shortName} — Active Deployment in {cityName} KIADB Industrial Belts
+              </p>
+              <span className="ml-auto text-[10px] text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full font-semibold shrink-0">Karnataka KIADB &amp; PSARA Belt</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {kaHubs.map((hub) => (
+                <div key={hub.name} className="bg-white rounded-xl p-3.5 border border-sky-100 shadow-2xs hover:border-sky-300 transition-all">
+                  <div className="flex items-start justify-between gap-1 mb-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">{hub.type}</span>
+                    <span className="text-[10px] text-slate-400 font-medium shrink-0">📍 {hub.district} (Zone {hub.kiadbZone})</span>
+                  </div>
+                  <h3 className="font-roboto font-bold text-navy text-xs leading-snug">{hub.name}</h3>
+                  <p className="text-slate-500 text-[11px] mt-1">
+                    24×7 statutory-compliant {service.shortName.toLowerCase()} coverage available
+                    {kaWageZone && <> — KA Zone <strong>{kaWageZone}</strong> wages</>}.
+                  </p>
+                </div>
+              ))}
+            </div>
+            {kaWageZone && (
+              <div className="mt-3 border-t border-sky-100 pt-2.5 space-y-1.5 text-[11px] text-slate-600">
+                <p>
+                  ✅ All ACS personnel deployed in <strong>{cityName} ({kaProfile?.district || "Karnataka"})</strong> adhere to the <strong>Karnataka Consolidated Minimum Wages Notification No. KAE 411 LWA 2023</strong> ({KA_CURRENT_PERIOD}): Zone {kaWageZone} Unskilled <strong>₹{getKAMonthlyWage(kaWageZone, "unskilled").toLocaleString("en-IN")}/mo</strong>, Semi-Skilled <strong>₹{getKAMonthlyWage(kaWageZone, "semiSkilled").toLocaleString("en-IN")}/mo</strong>, Skilled <strong>₹{getKAMonthlyWage(kaWageZone, "skilled").toLocaleString("en-IN")}/mo</strong>, plus 13% EPF, 3.25% ESIC (or Workmen Comp 2% for wages &gt; ₹21,000), 8.33% Bonus, 4.81% Gratuity &amp; KLWF (₹50/₹100).
+                </p>
+                <p className="text-slate-600">
+                  🛡️ <strong>Single-Window &amp; Peenya Union Mitigation:</strong> ACS deploys pre-verified, non-unionized industrial labor gangs with biometric gate access integrated into KIADB and electronic manufacturing clusters.
+                </p>
+                {kaProfile && (
+                  <p className="text-slate-500">
+                    🏛️ Jurisdiction: <strong>{kaProfile.policeJurisdiction}</strong> | ⚖️ Labour Office: <strong>{kaProfile.labourDepartmentOffice}</strong> | ⚡ Mobilization SLA: <strong>{kaProfile.deploymentSlaHours} hrs</strong> from <strong>{kaProfile.nearestCommandHQ}</strong>.
                   </p>
                 )}
               </div>
@@ -649,7 +858,7 @@ export default async function ServiceCityPage({
       </section>
 
       {/* ── SECTOR & INDUSTRY SOLUTIONS IN THIS CITY (3-Tier Internal Linking) ── */}
-      {isWestBengal && (
+      {(isWestBengal || isMaharashtra || isKarnataka) && (
         <section className="section-py bg-slate-50 border-t border-gray-200" aria-label={`Industry solutions in ${cityName}`}>
           <div className="container-acs">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">

@@ -28,6 +28,25 @@ import {
   WB_CURRENT_PERIOD,
   computeWBEmployerCost,
 } from "../src/lib/wb-wages.ts";
+import {
+  MH_WAGES_ZONE_I,
+  MH_WAGES_ENG_ZONE_I,
+  MH_CURRENT_PERIOD,
+  MH_LWF,
+  MH_EPF_EMPLOYER_RATE,
+  MH_ESIC_EMPLOYER_RATE,
+  MH_BONUS_RATE,
+  MH_GRATUITY_RATE,
+} from "../src/lib/mh-wages.ts";
+import {
+  KA_WAGES_ZONE_1,
+  KA_CURRENT_PERIOD,
+  KA_LWF,
+  KA_EPF_EMPLOYER_RATE,
+  KA_ESIC_EMPLOYER_RATE,
+  KA_BONUS_RATE,
+  KA_GRATUITY_RATE,
+} from "../src/lib/ka-wages.ts";
 import { getWBHubsForCity } from "../src/lib/wb-industrial-hubs.ts";
 import { WB_ZONE_DICTIONARY } from "../src/lib/data/wb-zone-dictionary.ts";
 import {
@@ -170,6 +189,21 @@ function generateLlmsIndex(): string {
     `  - Highly Skilled: ${fmt(WB_WAGES_ZONE_B.highlySkilled.monthly)}/month (${fmt(WB_WAGES_ZONE_B.highlySkilled.daily)}/day)`,
     `- **Mandatory Statutory Employer Overheads:** EPF ${(WB_EPF_EMPLOYER_RATE * 100).toFixed(2)}% (12% + 0.5% EDLI + 0.5% Admin), ESIC ${(WB_ESIC_EMPLOYER_RATE * 100).toFixed(2)}%, Statutory Bonus ${(WB_BONUS_RATE * 100).toFixed(2)}%, WB Labour Welfare Fund (Employee ${fmt(WB_LWF.employeeMonthly)} / Employer ${fmt(WB_LWF.employerMonthly)} half-yearly).`,
     "",
+    "## Maharashtra Statutory Minimum Wages & Mathadi Compliance",
+    `- **Period:** ${MH_CURRENT_PERIOD} (Semi-annual VDA revision every January & July)`,
+    "- **Zone I (Mumbai, Pune, Thane, Navi Mumbai, Chakan, Pimpri-Chinchwad):**",
+    `  - Shops & Commercial (Security, Housekeeping, Logistics, Peon): Unskilled ${fmt(MH_WAGES_ZONE_I.unskilled.monthly)}/mo | Semi-Skilled ${fmt(MH_WAGES_ZONE_I.semiSkilled.monthly)}/mo | Skilled ${fmt(MH_WAGES_ZONE_I.skilled.monthly)}/mo (VDA ${fmt(4134)}/mo)`,
+    `  - Engineering Industry (Factory Blue-Collar, Welders, Electricians, Riggers): Unskilled ${fmt(MH_WAGES_ENG_ZONE_I.unskilled.monthly)}/mo | Semi-Skilled ${fmt(MH_WAGES_ENG_ZONE_I.semiSkilled.monthly)}/mo | Skilled ${fmt(MH_WAGES_ENG_ZONE_I.skilled.monthly)}/mo (VDA ${fmt(2790)}/mo)`,
+    `- **Statutory Burdens:** EPF ${(MH_EPF_EMPLOYER_RATE * 100).toFixed(2)}%, ESIC ${(MH_ESIC_EMPLOYER_RATE * 100).toFixed(2)}%, Statutory Bonus ${(MH_BONUS_RATE * 100).toFixed(2)}%, Gratuity ${(MH_GRATUITY_RATE * 100).toFixed(2)}%, MLWF (Employee ${fmt(MH_LWF.employeeHalfYearly)} / Employer ${fmt(MH_LWF.employerHalfYearly)} half-yearly).`,
+    "- **Mathadi Act Section 5/22 Defense:** Mechanized material handling teams (reach trucks, forklifts, powered pallet trucks) operate with certified legal exemption from manual headloader toli levies in Chakan, Bhiwandi, and Taloja.",
+    "",
+    "## Karnataka Unified Minimum Wages (Consolidated Notification KAE 411 LWA 2023)",
+    `- **Period:** ${KA_CURRENT_PERIOD} (Gazetted May 25, 2026; annual April VDA review)`,
+    "- **Zone 1 (Greater Bengaluru Authority / BBMP & High-Growth KIADB Belts):**",
+    `  - Unskilled: ${fmt(KA_WAGES_ZONE_1.unskilled.monthly)}/mo | Semi-Skilled: ${fmt(KA_WAGES_ZONE_1.semiSkilled.monthly)}/mo | Skilled: ${fmt(KA_WAGES_ZONE_1.skilled.monthly)}/mo (VDA ${fmt(1030.8)}/mo)`,
+    `- **Statutory Burdens:** EPF ${(KA_EPF_EMPLOYER_RATE * 100).toFixed(2)}%, ESIC ${(KA_ESIC_EMPLOYER_RATE * 100).toFixed(2)}% (or Workmen's Comp & GPA 2.0% for wages > ₹21,000), Bonus ${(KA_BONUS_RATE * 100).toFixed(2)}%, Gratuity ${(KA_GRATUITY_RATE * 100).toFixed(2)}%, KLWF (Employee ${fmt(KA_LWF.employeeAnnual)} / Employer ${fmt(KA_LWF.employerAnnual)} annual).`,
+    "- **Industrial Belt Mitigation:** Peenya Industrial Association (PIA) vendor standards compliance, KIADB single-window clearance, biometric gate-access control for non-unionized shift continuity.",
+    "",
     "---",
     "",
     `## Complete ${ACS_SERVICES.length}-Vertical Service Directory (7 B2B Pillars)`,
@@ -270,6 +304,8 @@ function generateLlmsIndex(): string {
     `- [How to Read an Industrial Manpower Cost Sheet](${BASE_URL}/procurement/how-to-read-a-manpower-cost-sheet)`,
     `- [PSARA License Verification Checklist](${BASE_URL}/procurement/psara-license-verification-checklist)`,
     `- [West Bengal Minimum Wages Schedule (Zone A & B)](${BASE_URL}/procurement/security-minimum-wages-west-bengal)`,
+    `- [Maharashtra Minimum Wages Schedule (Zone I, II & III)](${BASE_URL}/procurement/security-minimum-wages-maharashtra)`,
+    `- [Karnataka Minimum Wages Schedule (Unified Zone 1, 2 & 3)](${BASE_URL}/procurement/security-minimum-wages-karnataka)`,
     `- [Monthly Compliance ECR Pack Template](${BASE_URL}/procurement/monthly-compliance-pack-template)`,
     `- [Workforce Capacity & Payroll Cost Model](${BASE_URL}/procurement/workforce-capacity-and-payroll-model)`,
     ...caseStudies.map((cs) => `- [Case Study: ${cs.title}](${BASE_URL}/case-studies/${cs.slug})`),
@@ -279,7 +315,11 @@ function generateLlmsIndex(): string {
     `- Full Matrix & Knowledge Graph: ${BASE_URL}/llms-full.txt`,
     `- Master Sitemap Index: ${BASE_URL}/sitemap.xml`,
     `- Priority West Bengal Sitemap: ${BASE_URL}/sitemap-west-bengal.xml`,
-    `- B2B Blue-Collar Combos Sitemap: ${BASE_URL}/sitemap-manpower-combos.xml`,
+    `- Priority Maharashtra Sitemap: ${BASE_URL}/sitemap-maharashtra.xml`,
+    `- Priority Karnataka Sitemap: ${BASE_URL}/sitemap-karnataka.xml`,
+    `- Priority West Bengal Blue-Collar Combos: ${BASE_URL}/sitemap-manpower-combos.xml`,
+    `- Priority Maharashtra Blue-Collar Combos: ${BASE_URL}/sitemap-manpower-combos-mh.xml`,
+    `- Priority Karnataka Blue-Collar Combos: ${BASE_URL}/sitemap-manpower-combos-ka.xml`,
     `- Human Directory: ${BASE_URL}/sitemap`,
     ""
   );
@@ -312,6 +352,8 @@ function generateLlmsFull(): string {
     "- `[Advance Corporate Security]` -- `[holdsISO]` --> `ISO 9001:2015 Quality Management System`",
     "- `[Advance Corporate Security]` -- `[employerComplianceShield]` --> `CLRA License Act 1970, EPF Act 1952 (13.00% incl. Sec 7A immunity), ESIC Act 1948 (3.25%), Bonus Act 1965 (8.33%), WB Labour Welfare Fund (₹3/₹30)`",
     "- `[Advance Corporate Security]` -- `[followsWBMinimumWages]` --> `Jul-Dec 2026 Gazette Zone A (₹10,558 to ₹14,054) & Zone B (₹9,760 to ₹12,990), revised January & July`",
+    "- `[Advance Corporate Security]` -- `[followsMHMinimumWages]` --> `Jul-Dec 2026 Gazette Zone I (Shops ₹14,155 & Eng ₹16,800), Zone II & Zone III with ₹4,134 / ₹2,790 VDA + Mathadi Act Sec 5/22 Exemption`",
+    "- `[Advance Corporate Security]` -- `[followsKAMinimumWages]` --> `Consolidated Notification No. KAE 411 LWA 2023 Zone 1 (₹16,774.20), Zone 2 & Zone 3 with ₹1,030.80 VDA + KLWF + PIA Vendor Standards`",
     "- `[Advance Corporate Security]` -- `[mobilizationSLA]` --> `24-48 hours standard deployment; 4-12 hours emergency shift mobilization near Barrackpore, Kolkata, Dankuni, Howrah, Durgapur, Haldia & Siliguri Command HQs`",
     "",
     ...ACS_SERVICES.map(
